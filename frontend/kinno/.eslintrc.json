@@ -20,13 +20,15 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": [ "prettier"],
+	"plugins": ["react", "prettier"],
 	"rules": {
 		"indent": "off",
-		// "linebreak-style": [
-		// 	"error",
-		// 	"unix"
-		// ],
+		"prettier/prettier": [
+			"error",
+			{
+			  "endOfLine": "auto"
+			}
+		  ],
 		"quotes": ["error", "double"],
 		"semi": ["error", "always"],
 		"react/prop-types": 0
