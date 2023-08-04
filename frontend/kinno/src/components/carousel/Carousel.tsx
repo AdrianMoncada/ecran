@@ -5,6 +5,7 @@ import movies from "@/assets/carousel.json";
 import { Container } from "./Carousel.styles";
 import "swiper/css";
 import "swiper/css/navigation";
+import React from "react";
 
 const Carousel = () => {
 	return (

@@ -1,5 +1,6 @@
 import Carousel from "@/components/carousel/Carousel";
 import { SuggestionsStyle, SuggestionCarousel } from "@/styles/Home.styles";
+import React from 'react';
 
 export default function Home() {
 	return (
