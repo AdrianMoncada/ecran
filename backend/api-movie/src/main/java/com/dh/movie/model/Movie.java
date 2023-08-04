@@ -30,12 +30,10 @@ public class Movie implements Serializable {
     private String trailer_url;
     private String release_date;
     private String genre;
+    private String rt_score;
+    private String imdb_score;
+    private String mc_score;
     private List<String> platforms;
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
-
-    private void setMovieId(String id) {
-        this.movieId = id;
-    }
-
 }

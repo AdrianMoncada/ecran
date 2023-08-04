@@ -48,6 +48,9 @@ public class MovieService {
             movieDB.setImage_url(moviePatch.getImage_url());
             movieDB.setRelease_date(moviePatch.getRelease_date());
             movieDB.setImage_url(moviePatch.getImage_url());
+            movieDB.setRt_score(moviePatch.getRt_score());
+            movieDB.setImdb_score(moviePatch.getImdb_score());
+            movieDB.setMc_score(moviePatch.getMc_score());
         } else return null;
         return mapper.map(movieRepository.save(movieDB), MovieDTO.class);
     }
