@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,13 +18,16 @@ public class MovieDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
-    private Long movieId;
-
-    private String name;
-
+    private String title;
+    private String actors;
+    private String director;
+    private String composer;
+    private String review;
+    private String image_url;
+    private String trailer_url;
+    private String release_date;
     private String genre;
-
-    private String urlStream;
-
+    private List<String> platforms;
+    private List<String> comments = new ArrayList<>();
+    private List<String> scores = new ArrayList<>();
 }
