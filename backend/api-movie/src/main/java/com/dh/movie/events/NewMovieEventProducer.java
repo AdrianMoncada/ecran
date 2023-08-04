@@ -1,3 +1,4 @@
+/*
 package com.dh.movie.events;
 
 import com.dh.movie.config.RabbitMQConfig;
@@ -22,4 +23,4 @@ public class NewMovieEventProducer {
         rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TOPIC_NEW_MOVIES, movieDTO);
     }
 
-}
+}*/

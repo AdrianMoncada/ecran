@@ -1,33 +1,37 @@
 package com.dh.movie.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Setter
+@Getter
+@Document(collection = "Movies")
 public class Movie implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final int serialVersionUID = 1;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long movieId;
-
-    private String name;
-
+    private String movieId;
+    private String title;
+    private String actors;
+    private String director;
+    private String composer;
+    private String review;
+    private String image_url;
+    private String trailer_url;
+    private String release_date;
     private String genre;
-
-    private String urlStream;
+    private List<String> platforms;
+    private List<String> comments = new ArrayList<>();
+    private List<String> scores = new ArrayList<>();
 
 }

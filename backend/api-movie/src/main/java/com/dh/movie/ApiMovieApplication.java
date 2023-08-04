@@ -5,16 +5,16 @@ import com.dh.movie.repository.MovieRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+/*import org.springframework.cloud.openfeign.EnableFeignClients;*/
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import java.util.ArrayList;
 
 
 @SpringBootApplication
-@EnableJpaRepositories
 @EnableDiscoveryClient
-@EnableFeignClients
+/*@EnableFeignClients*/
 public class ApiMovieApplication {
 
     public static void main(String[] args) {
@@ -29,10 +29,7 @@ public class ApiMovieApplication {
                 return;
             }
 
-            repository.save(new Movie(null, "Pelicula 1", "Terror", "www.netflix.com"));
-            repository.save(new Movie(null, "Pelicula 2", "Terror", "www.netflix.com"));
-            repository.save(new Movie(null, "Pelicula 3", "Comedia", "www.netflix.com"));
-            repository.save(new Movie(null, "Pelicula 4", "Ficcion", "www.netflix.com"));
+            repository.save(new Movie(null, "Oppenheimer", "Cilian Murphy", "Christopher Nolan", "Bethoven", "asdasdasd", "asd.com", "youtube.com", "15/02/02", "accion", new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>()));
         };
     }
 

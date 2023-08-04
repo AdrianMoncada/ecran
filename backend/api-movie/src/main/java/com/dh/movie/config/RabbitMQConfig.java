@@ -1,3 +1,4 @@
+/*
 package com.dh.movie.config;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -28,4 +29,4 @@ public class RabbitMQConfig {
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
-}
+}*/
