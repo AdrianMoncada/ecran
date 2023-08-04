@@ -34,4 +34,8 @@ public class Movie implements Serializable {
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
 
+    private void setMovieId(String id) {
+        this.movieId = id;
+    }
+
 }
