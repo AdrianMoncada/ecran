@@ -6,7 +6,7 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
 	width: 100%;
-	height: 432.15px;
+	height: 400px;
 	flex-shrink: 0;
 	border-radius: 24px;
 	border: 1px solid #1e293b;
@@ -19,6 +19,11 @@ export const Container = styled.div<ContainerProps>`
 	flex-direction: column;
 	justify-content: flex-end;
 	padding: 20px;
+	transition: 250ms all;
+
+	&:hover {
+		transform: scale(1.1);
+	}
 
 	.title {
 		margin: 20px 0 10px;

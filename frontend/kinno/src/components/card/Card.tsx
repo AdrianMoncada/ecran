@@ -23,19 +23,21 @@ const Card: React.FC<Prop> = ({ movie }) => {
 		textoOriginal.slice(0, limiteCaracteres) + (textoOriginal.length > limiteCaracteres ? "..." : "");
 
 	return (
-		<Container imageUrl={movie.imagen}>
-			<CardHeader>
-				{/* <Image src="/images/Group12.svg" alt="icon" width={143} height={143} /> */}
-				<BsCircleFill size={60} color="grey" />
-				<div>
-					<p>{movie.genero}</p>
-					<p>{movie.year}</p>
-				</div>
-			</CardHeader>
-			<h1 className="title">{movie.title}</h1>
-			<p className="description">{textoCortado}</p>
-			<a className="button">Ver más</a>
-		</Container>
+		<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "430px" }}>
+			<Container imageUrl={movie.imagen}>
+				<CardHeader>
+					{/* <Image src="/images/Group12.svg" alt="icon" width={143} height={143} /> */}
+					<BsCircleFill size={60} color="grey" />
+					<div>
+						<p>{movie.genero}</p>
+						<p>{movie.year}</p>
+					</div>
+				</CardHeader>
+				<h1 className="title">{movie.title}</h1>
+				<p className="description">{textoCortado}</p>
+				<a className="button">Ver más</a>
+			</Container>
+		</div>
 	);
 };
 
