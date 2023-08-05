@@ -23,6 +23,6 @@ public class SeasonDTO implements Serializable {
 
     private Integer seasonNumber;
 
-    private List<ChapterDTO> chapters = new ArrayList<>();;
+    private List<ChapterDTO> chapters = new ArrayList<>();
 
 }

@@ -1,7 +1,24 @@
 spring:
   application:
     name: api-series
-  cloud:
-    config:
-      enabled: true
-      uri: http://localhost:8888
+  data:
+    mongodb:
+      database: seriesdb
+      port: 27017
+      host: localhost
+#server:
+#  port: ${PORT:${SERVER_PORT:0}}
+#  cloud:
+#    config:
+#      enabled: true
+#      uri: http://localhost:8888
+
+#        datasource:
+#          driverClassName: com.mysql.jdbc.Driver
+#          url: jdbc:mysql://localhost:3306/movie-dev
+#          username: root
+#          password: 1234
+#        jpa:
+#          hibernate.ddl-auto: update
+#          generate-ddl: true
+#          show-sql: true
