@@ -2,8 +2,8 @@ package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.model.Movie;
-import com.dh.movie.model.dto.MovieRequestDTO;
-import com.dh.movie.model.dto.MovieResponseDTO;
+import com.dh.movie.model.dto.movie.MovieRequestDTO;
+import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

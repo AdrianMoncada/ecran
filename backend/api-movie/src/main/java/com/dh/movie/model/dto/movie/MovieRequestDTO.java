@@ -1,4 +1,4 @@
-package com.dh.movie.model.dto;
+package com.dh.movie.model.dto.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MovieRequestDTO implements Serializable {
 
-    @NotBlank(message = "title cannot be null")
+    @NotBlank
     private String title;
     @NotBlank
     private String actors;
@@ -40,10 +40,7 @@ public class MovieRequestDTO implements Serializable {
     private String imdb_score;
     @NotBlank
     private String mc_score;
-    @NotBlank
     private List<String> platforms = new ArrayList<>();
-    @NotBlank
     private List<String> comments = new ArrayList<>();
-    @NotBlank
     private List<String> scores = new ArrayList<>();
 }

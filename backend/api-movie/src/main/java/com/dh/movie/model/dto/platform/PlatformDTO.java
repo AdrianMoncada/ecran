@@ -1,4 +1,4 @@
-package com.dh.movie.model.dto;
+package com.dh.movie.model.dto.platform;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

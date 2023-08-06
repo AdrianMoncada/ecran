@@ -3,7 +3,7 @@ package com.dh.movie.events;
 
 import com.dh.movie.config.RabbitMQConfig;
 import com.dh.movie.model.Movie;
-import com.dh.movie.model.dto.MovieRequestDTO;
+import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

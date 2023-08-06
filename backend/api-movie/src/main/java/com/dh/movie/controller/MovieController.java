@@ -1,7 +1,7 @@
 package com.dh.movie.controller;
 
-import com.dh.movie.model.dto.MovieRequestDTO;
-import com.dh.movie.model.dto.MovieResponseDTO;
+import com.dh.movie.model.dto.movie.MovieRequestDTO;
+import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
