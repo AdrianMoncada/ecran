@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -32,13 +33,20 @@ public class SeasonServiceImpl implements SerieService {
     }
 
     @Override
+    public List<Serie> getAll() {
+        List<Serie> series = serieRepository.findAll();
+        logger.info("FOUND SERIES: " + series.size() + " series found");
+        return series;
+    }
+
+    @Override
     public Optional<Serie> getById(String id) throws ApiException {
         Optional<Serie> foundSerie = serieRepository.findById(id);
         if (foundSerie.isEmpty()) {
             logger.info("NOT FOUND: SERIE WITH ID: " + id + " NOT FOUND");
             throw new ApiException(HttpStatus.NOT_FOUND, "Serie with id: " + id + " not found");
         }
-        logger.info("FOUND SERIE WITH ID: "+ id + " " + foundSerie.toString());
+        logger.info("FOUND SERIE WITH ID: " + id + " " + foundSerie.toString());
         return foundSerie;
     }
 

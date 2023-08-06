@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,14 +15,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SerieController {
     private final SeasonServiceImpl service;
-
-
-    //    @GetMapping()
-//    private ResponseEntity<List<Serie>> getAllSeries(){
-//        return ResponseEntity.ok(service.getAll());
-//    }
-//
-
 
     @PostMapping()
     private Serie postSeries(@RequestBody SerieDTO serie) throws Exception {
@@ -31,6 +24,11 @@ public class SerieController {
     @GetMapping("/{id}")
     private ResponseEntity<Optional<Serie>> getById(@PathVariable String id) throws Exception {
         return ResponseEntity.ok(service.getById(id));
+    }
+
+    @GetMapping()
+    private ResponseEntity<List<Serie>> getAllSeries() {
+        return ResponseEntity.ok(service.getAll());
     }
 
 }
