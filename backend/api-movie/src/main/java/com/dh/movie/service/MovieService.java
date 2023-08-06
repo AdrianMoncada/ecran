@@ -35,7 +35,7 @@ public class MovieService {
     }
 
     public MovieResponseDTO updateById(String id, MovieRequestDTO movie) {
-        Movie movieDB = movieRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exist"));
+        Movie movieDB = movieRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
         Movie moviePatch = mapper.map(movie, Movie.class);
         mapper.map(moviePatch, movieDB);
         movieDB.setMovieId(id);
@@ -44,7 +44,7 @@ public class MovieService {
 
     public void deleteById(String id) {
         if (!movieRepository.existsById(id)) {
-            throw new RuntimeException("Associate with id " + id + "doesn't exist");
+            throw new RuntimeException("Associate with id " + id + "doesn't exists.");
         }
         movieRepository.deleteById(id);
     }

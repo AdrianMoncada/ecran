@@ -20,8 +20,6 @@ public class Platform {
 
     @Id
     private String platformId;
-    @NotBlank
     private String name;
-    @NotBlank
     private String logo_url;
 }

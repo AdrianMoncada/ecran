@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serial;
 
 @Getter
@@ -15,6 +16,8 @@ public class PlatformDTO {
 
     @Serial
     private static final long serialVersionUID = 1L;
+    @NotBlank
     private String name;
+    @NotBlank
     private String logo_url;
 }
