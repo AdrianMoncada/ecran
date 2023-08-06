@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieResponseDTO implements Serializable {
+public class PlatformResponseDTO implements Serializable {
 
     private String movieId;
     private String title;

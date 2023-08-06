@@ -3,7 +3,7 @@ package com.dh.movie.service;
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
-import com.dh.movie.model.dto.movie.MovieResponseDTO;
+import com.dh.movie.model.dto.movie.PlatformResponseDTO;
 import com.dh.movie.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,46 +17,46 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MovieService {
 
-    private final MovieRepository movieRepository;
+    private final MovieRepository repository;
     private final ModelMapper mapper;
 
-    public MovieResponseDTO save(MovieRequestDTO movie) {
+    public PlatformResponseDTO save(MovieRequestDTO movie) {
         Movie movieDB = mapper.map(movie, Movie.class);
-        return mapper.map(movieRepository.save(movieDB), MovieResponseDTO.class);
+        return mapper.map(repository.save(movieDB), PlatformResponseDTO.class);
     }
 
-    public List<MovieResponseDTO> findAll() {
-        return movieRepository.findAll().stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    public List<PlatformResponseDTO> findAll() {
+        return repository.findAll().stream().map(m -> mapper.map(m, PlatformResponseDTO.class)).toList();
     }
 
-    public MovieResponseDTO findById(String id) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Associated id " + id + " doesn't exists."));
-        return mapper.map(movie, MovieResponseDTO.class);
+    public PlatformResponseDTO findById(String id) {
+        Movie movie = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
+        return mapper.map(movie, PlatformResponseDTO.class);
     }
 
-    public MovieResponseDTO updateById(String id, MovieRequestDTO movie) {
-        Movie movieDB = movieRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
+    public PlatformResponseDTO updateById(String id, MovieRequestDTO movie) {
+        Movie movieDB = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
         Movie moviePatch = mapper.map(movie, Movie.class);
         mapper.map(moviePatch, movieDB);
         movieDB.setMovieId(id);
-        return mapper.map(movieRepository.save(movieDB), MovieResponseDTO.class);
+        return mapper.map(repository.save(movieDB), PlatformResponseDTO.class);
     }
 
     public void deleteById(String id) {
-        if (!movieRepository.existsById(id)) {
-            throw new RuntimeException("Associate with id " + id + "doesn't exists.");
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Movie with id " + id + "doesn't exists.");
         }
-        movieRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
 
-    public List<MovieResponseDTO> findByGenre(String genre) {
-        List<MovieResponseDTO> moviesDTO;
+    public List<PlatformResponseDTO> findByGenre(String genre) {
+        List<PlatformResponseDTO> moviesDTO;
 
-        List<Movie> movies = movieRepository.findByGenre(genre);
+        List<Movie> movies = repository.findByGenre(genre);
 
         if (!movies.isEmpty()) {
-            moviesDTO = movies.stream().map(movie -> mapper.map(movie, MovieResponseDTO.class)).collect(Collectors.toList());
+            moviesDTO = movies.stream().map(movie -> mapper.map(movie, PlatformResponseDTO.class)).collect(Collectors.toList());
         } else {
             moviesDTO = Collections.emptyList();
         }
