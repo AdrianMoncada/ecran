@@ -18,9 +18,9 @@ build_back:
         - cd target
         - ls
     rules:
+      - if: $CI_COMMIT_REF_NAME == "develop"
       - changes:
          - backend/*
-         - if: $CI_COMMIT_REF_NAME == "develop"
     artifacts:
         expire_in: 1 week
         paths:
@@ -74,5 +74,5 @@ deploy_front:
     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
   rules:
     - changes:
+    - if: $CI_COMMIT_REF_NAME == "develop"
        - frontend/*
-       - if: $CI_COMMIT_REF_NAME == "develop"
