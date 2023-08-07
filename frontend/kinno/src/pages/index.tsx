@@ -6,7 +6,7 @@ export default function Home() {
 	return (
 		<main>
 			<SuggestionsStyle>
-				<h1 className="suggestion_title">Nuestras sugerencias</h1>
+				<h1 className="suggestion_title">Nuestras sugerencia</h1>
 				<p className="suggestion_p">
 					De clásicos atemporales a gemas contemporáneas, estas recomendaciones te llevarán a un viaje inolvidable en el
 					fascinante mundo del entretenimiento
