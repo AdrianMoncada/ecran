@@ -1,6 +1,11 @@
+default:
+  image: node:16.16.0
+
+
 stages:
     - build API
     - deploy API
+    - deploy Frontend
 
 build:
     stage: build API
@@ -42,3 +47,23 @@ deploy:
         - scp  api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
         - echo "Finished deploying the app."
+
+deploy_preview:
+  stage: deploy Frontend
+  except:
+    - develop
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+
+deploy_production:
+  stage: deploy Frontend
+  only:
+    - develop
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
