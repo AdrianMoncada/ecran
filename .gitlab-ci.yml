@@ -18,6 +18,7 @@ build_back:
         - cd target
         - ls
     rules:
+      - if:
         changes:
          - backend/*
     artifacts:
