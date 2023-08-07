@@ -52,7 +52,7 @@ deploy_back:
         - echo "Finished deploying the app."
     needs:
     - job: build_back
-      optional: true
+      optional: false
 
 .deploy_preview:
   stage: deploy Frontend
