@@ -7,7 +7,7 @@ stages:
     - deploy API
     - deploy Frontend
 
-build:
+.build:
     stage: build API
     image:  maven:latest
     script:
@@ -23,7 +23,7 @@ build:
         paths:
             - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
 
-deploy:
+.deploy:
     stage: deploy API
     image: alpine:3.11
     rules:
