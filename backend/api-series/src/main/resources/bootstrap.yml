@@ -1,11 +1,10 @@
 spring:
   application:
     name: api-series
-  data:
-    mongodb:
-      database: seriesdb
-      port: 27017
-      host: localhost
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8888
 #server:
 #  port: ${PORT:${SERVER_PORT:0}}
 #  cloud:
