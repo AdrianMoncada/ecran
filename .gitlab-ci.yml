@@ -20,6 +20,7 @@ build_back:
     rules:
       - changes:
          - backend/*
+         - if: $CI_COMMIT_REF_NAME == "develop"
     artifacts:
         expire_in: 1 week
         paths:
@@ -64,8 +65,6 @@ deploy_back:
 
 deploy_front:
   stage: deploy
-  only:
-    - develop
   script:
     - npm install --global vercel
     - cd frontend
@@ -76,3 +75,4 @@ deploy_front:
   rules:
     - changes:
        - frontend/*
+       - if: $CI_COMMIT_REF_NAME == "develop"
