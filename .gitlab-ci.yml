@@ -50,7 +50,9 @@ deploy_back:
         - scp  api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
         - echo "Finished deploying the app."
-    needs: ["build_back"]
+    needs:
+    - job: build_back
+      optional: true
 
 .deploy_preview:
   stage: deploy Frontend
