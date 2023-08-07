@@ -36,7 +36,7 @@ deploy:
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
         - ls
         - cd backend
-        - cd demo
+        - cd api-movie
         - cd target
         - ls
         - scp  ubuntu@$DEPLOY_SERVER_IP:~/console-app/
