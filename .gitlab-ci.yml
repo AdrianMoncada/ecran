@@ -3,12 +3,11 @@ default:
 
 
 stages:
-    - build API
-    - deploy API
-    - deploy Frontend
+    - build
+    - deploy
 
-build:
-    stage: build API
+build_back:
+    stage: build
     image:  maven:latest
     script:
         - cd backend
@@ -18,13 +17,16 @@ build:
         - ls
         - cd target
         - ls
+    rules:
+      - changes:
+         - backend/*
     artifacts:
         expire_in: 1 week
         paths:
             - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
 
-deploy:
-    stage: deploy API
+deploy_back:
+    stage: deploy
     image: alpine:3.11
     rules:
         - if: $CI_COMMIT_REF_NAME == "develop"
@@ -47,8 +49,10 @@ deploy:
         - scp  api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
         - echo "Finished deploying the app."
+    needs:
+        - build_back
 
-deploy_preview:
+.deploy_preview:
   stage: deploy Frontend
   except:
     - develop
@@ -58,8 +62,8 @@ deploy_preview:
     - vercel build --token=$VERCEL_TOKEN
     - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
 
-deploy_production:
-  stage: deploy Frontend
+deploy_front:
+  stage: deploy
   only:
     - develop
   script:
@@ -69,3 +73,6 @@ deploy_production:
     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
     - vercel build --prod --token=$VERCEL_TOKEN
     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+  rules:
+    - changes:
+       - frontend/*
