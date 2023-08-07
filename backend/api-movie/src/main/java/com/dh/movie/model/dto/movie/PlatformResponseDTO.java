@@ -1,25 +1,19 @@
-package com.dh.movie.model;
+package com.dh.movie.model.dto.movie;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import java.io.Serial;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@Document(collection = "Movies")
-public class Movie implements Serializable {
+public class PlatformResponseDTO implements Serializable {
 
-    @Serial
-    private static final int serialVersionUID = 1;
-
-    @Id
     private String movieId;
     private String title;
     private String actors;
@@ -36,5 +30,4 @@ public class Movie implements Serializable {
     private List<String> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
-
 }

@@ -1,7 +1,9 @@
 package com.dh.movie.service;
 
+import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.model.Movie;
-import com.dh.movie.model.dto.MovieDTO;
+import com.dh.movie.model.dto.movie.MovieRequestDTO;
+import com.dh.movie.model.dto.movie.PlatformResponseDTO;
 import com.dh.movie.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,61 +17,46 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MovieService {
 
-    private final MovieRepository movieRepository;
+    private final MovieRepository repository;
     private final ModelMapper mapper;
 
-    public Movie save(MovieDTO movie) {
+    public PlatformResponseDTO save(MovieRequestDTO movie) {
         Movie movieDB = mapper.map(movie, Movie.class);
-        return movieRepository.save(movieDB);
+        return mapper.map(repository.save(movieDB), PlatformResponseDTO.class);
     }
 
-    public MovieDTO findById(String id) {
-        Movie movie = movieRepository.findById(id).orElse(null);
-        return mapper.map(movie, MovieDTO.class);
+    public List<PlatformResponseDTO> findAll() {
+        return repository.findAll().stream().map(m -> mapper.map(m, PlatformResponseDTO.class)).toList();
     }
 
-    public List<Movie> findAll() {
-        return movieRepository.findAll();
+    public PlatformResponseDTO findById(String id) {
+        Movie movie = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
+        return mapper.map(movie, PlatformResponseDTO.class);
     }
 
-    public MovieDTO updateById(String id, MovieDTO movie) {
+    public PlatformResponseDTO updateById(String id, MovieRequestDTO movie) {
+        Movie movieDB = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
         Movie moviePatch = mapper.map(movie, Movie.class);
-        Movie movieDB = movieRepository.findById(id).orElse(null);
-        if (movieDB != null) {
-            movieDB.setActors(moviePatch.getActors());
-            movieDB.setGenre(moviePatch.getGenre());
-            movieDB.setComposer(moviePatch.getComposer());
-            movieDB.setComments(moviePatch.getComments());
-            movieDB.setDirector(moviePatch.getDirector());
-            movieDB.setPlatforms(moviePatch.getPlatforms());
-            movieDB.setScores(moviePatch.getScores());
-            movieDB.setReview(moviePatch.getReview());
-            movieDB.setTitle(moviePatch.getTitle());
-            movieDB.setImage_url(moviePatch.getImage_url());
-            movieDB.setRelease_date(moviePatch.getRelease_date());
-            movieDB.setImage_url(moviePatch.getImage_url());
-            movieDB.setRt_score(moviePatch.getRt_score());
-            movieDB.setImdb_score(moviePatch.getImdb_score());
-            movieDB.setMc_score(moviePatch.getMc_score());
-        } else return null;
-        return mapper.map(movieRepository.save(movieDB), MovieDTO.class);
+        mapper.map(moviePatch, movieDB);
+        movieDB.setMovieId(id);
+        return mapper.map(repository.save(movieDB), PlatformResponseDTO.class);
     }
 
     public void deleteById(String id) {
-        if (!movieRepository.existsById(id)) {
-            throw new RuntimeException("Associate with id " + id + "doesn't exist");
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Movie with id " + id + "doesn't exists.");
         }
-        movieRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
 
-    public List<MovieDTO> findByGenre(String genre) {
-        List<MovieDTO> moviesDTO;
+    public List<PlatformResponseDTO> findByGenre(String genre) {
+        List<PlatformResponseDTO> moviesDTO;
 
-        List<Movie> movies = movieRepository.findByGenre(genre);
+        List<Movie> movies = repository.findByGenre(genre);
 
         if (!movies.isEmpty()) {
-            moviesDTO = movies.stream().map(movie -> mapper.map(movie, MovieDTO.class)).collect(Collectors.toList());
+            moviesDTO = movies.stream().map(movie -> mapper.map(movie, PlatformResponseDTO.class)).collect(Collectors.toList());
         } else {
             moviesDTO = Collections.emptyList();
         }

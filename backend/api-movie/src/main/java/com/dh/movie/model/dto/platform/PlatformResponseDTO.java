@@ -1,20 +1,16 @@
-package com.dh.movie.model.dto;
-
+package com.dh.movie.model.dto.platform;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serial;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlatformDTO {
+public class PlatformResponseDTO {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+    private String platformId;
     private String name;
     private String logo_url;
 }

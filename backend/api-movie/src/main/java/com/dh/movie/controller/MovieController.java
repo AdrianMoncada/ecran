@@ -1,12 +1,13 @@
 package com.dh.movie.controller;
 
-import com.dh.movie.model.Movie;
-import com.dh.movie.model.dto.MovieDTO;
+import com.dh.movie.model.dto.movie.MovieRequestDTO;
+import com.dh.movie.model.dto.movie.PlatformResponseDTO;
 import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,22 +18,22 @@ public class MovieController {
     private final MovieService movieService;
 
     @PostMapping("")
-    ResponseEntity<Movie> save(@RequestBody MovieDTO movie) {
+    ResponseEntity<PlatformResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie) {
         return ResponseEntity.ok().body(movieService.save(movie));
     }
 
-    @GetMapping("/{id}")
-    ResponseEntity<MovieDTO> findById(@PathVariable("id") String id) {
-        return ResponseEntity.ok().body(movieService.findById(id));
-    }
-
     @GetMapping("")
-    ResponseEntity<List<Movie>> findAll() {
+    ResponseEntity<List<PlatformResponseDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<PlatformResponseDTO> findById(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(movieService.findById(id));
+    }
+
     @PutMapping("/{id}")
-    ResponseEntity<MovieDTO> updateById(@PathVariable("id") String id, @RequestBody MovieDTO movie) {
+    ResponseEntity<PlatformResponseDTO> updateById(@PathVariable("id") String id, @Valid @RequestBody MovieRequestDTO movie) {
         return ResponseEntity.ok().body(movieService.updateById(id, movie));
     }
 
@@ -43,7 +44,7 @@ public class MovieController {
     }
 
     @GetMapping("/genre/{genre}")
-    ResponseEntity<List<MovieDTO>> getMovieByGenre(@PathVariable String genre) {
+    ResponseEntity<List<PlatformResponseDTO>> getMovieByGenre(@PathVariable String genre) {
         return ResponseEntity.ok().body(movieService.findByGenre(genre));
     }
 }
