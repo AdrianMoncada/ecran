@@ -7,7 +7,7 @@ stages:
     - deploy API
     - deploy Frontend
 
-.build:
+build:
     stage: build API
     image:  maven:latest
     script:
@@ -23,7 +23,7 @@ stages:
         paths:
             - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
 
-.deploy:
+deploy:
     stage: deploy API
     image: alpine:3.11
     rules:
@@ -65,7 +65,6 @@ deploy_production:
   script:
     - npm install --global vercel
     - cd frontend
-    - cd kinno
     - ls
     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
     - vercel build --prod --token=$VERCEL_TOKEN
