@@ -70,6 +70,7 @@ public class SeasonServiceImpl implements SerieService {
         String id = serie.getId();
         logger.info("UPDATING: SERIE WITH ID: " + id);
         getById(id);
+        validSerie(mapper.map(serie, SerieDTO.class));
         serie = serieRepository.save(serie);
         logger.info("UPDATED SERIE: " + serie.toString());
         return serie;
