@@ -1,4 +1,5 @@
 import Carousel from "@/components/carousel/Carousel";
+import InfiniteCarrousel from "@/components/InfiniteCarrousel/infiniteCarrousel";
 import { MainHome, SuggestionsStyle, SuggestionCarousel, Day, Oldies, Profile, Discover } from "@/styles/Home.styles";
 import Image from "next/image";
 import React from "react";
@@ -16,6 +17,7 @@ export default function Home() {
 				</h4>
 				<div className="buscador"></div>
 			</MainHome>
+			<InfiniteCarrousel />
 			<SuggestionsStyle>
 				<h2 className="suggestion_title">Nuestras sugerencias</h2>
 				<p className="suggestion_p">
