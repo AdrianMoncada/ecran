@@ -4,7 +4,7 @@
 
 URL DE LA API: http://54.234.185.146:8080
 
-Endpoints:
+- Endpoints:
     - Peliculas:
         - GET Listado de películas /api/v1/movies
         - GET Película por id /api/v1/movies/:id
