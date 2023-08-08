@@ -46,9 +46,4 @@ public class MovieController {
         movieService.deleteById(id);
         return ResponseEntity.ok().body("Movie " + id + " deleted");
     }
-
-    @GetMapping("/genre/{genre}")
-    ResponseEntity<List<MovieResponseDTO>> getMovieByGenre(@PathVariable String genre) {
-        return ResponseEntity.ok().body(movieService.findByGenre(genre));
-    }
 }

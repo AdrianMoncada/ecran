@@ -1,7 +1,6 @@
 spring:
   application:
     name: api-series
-<<<<<<< HEAD
   data:
     mongodb:
       database: seriesdb

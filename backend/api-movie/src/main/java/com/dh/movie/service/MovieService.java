@@ -53,18 +53,4 @@ public class MovieService {
         repository.deleteById(id);
     }
 
-
-    public List<MovieResponseDTO> findByGenre(String genre) {
-        List<MovieResponseDTO> moviesDTO;
-
-        List<Movie> movies = repository.findByGenre(genre);
-
-        if (!movies.isEmpty()) {
-            moviesDTO = movies.stream().map(movie -> mapper.map(movie, MovieResponseDTO.class)).collect(Collectors.toList());
-        } else {
-            moviesDTO = Collections.emptyList();
-        }
-        return moviesDTO;
-    }
-
 }

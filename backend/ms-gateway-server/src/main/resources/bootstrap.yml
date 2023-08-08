@@ -1,7 +1,39 @@
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+
 spring:
   application:
     name: ms-gateway-server
   cloud:
-    config:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: api-movie
+          uri: lb://api-movie
+          predicates:
+            - Path=/api/v1/movies/**
+        - id: api-series
+          uri: lb://api-series
+          predicates:
+            - Path=/api/v1/series/**
+
+info:
+  app:
+    name: ${spring.application.name}
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoint:
+    gateway:
       enabled: true
-      uri: http://localhost:8888
+  endpoints:
+    web:
+      exposure:
+        include: gateway
