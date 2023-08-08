@@ -50,6 +50,31 @@ public class SeasonServiceImpl implements SerieService {
         return foundSerie;
     }
 
+    @Override
+    public String deleteById(String id) throws ApiException {
+        logger.info("DELETING: SERIE WITH ID: " + id);
+        Optional<Serie> foundSerie = getById(id);
+        serieRepository.deleteById(id);
+        foundSerie = serieRepository.findById(id);
+        if (foundSerie.isEmpty()) {
+            logger.info("DELETED: SERIE WITH ID: " + id + " WAS DELETED");
+            return ("DELETED: SERIE WITH ID: " + id + " WAS DELETED");
+        } else {
+            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Serie with id: " + id + " could not be deleted");
+        }
+
+    }
+
+    @Override
+    public Serie updateById(Serie serie) {
+        String id = serie.getId();
+        logger.info("UPDATING: SERIE WITH ID: " + id);
+        getById(id);
+        serie = serieRepository.save(serie);
+        logger.info("UPDATED SERIE: " + serie.toString());
+        return serie;
+    }
+
 //    @Override
 //    public List<Serie> getAll() {
 //        return serieRepository.findAll();

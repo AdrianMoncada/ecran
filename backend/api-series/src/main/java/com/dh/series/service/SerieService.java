@@ -14,11 +14,11 @@ public interface SerieService {
     List<Serie> getAll();
 
     Optional<Serie> getById(String id);
-//
-//    void deleteById(String id);
-//
-//    void update(Serie serie);
-//
+
+    String deleteById(String id);
+
+   Serie updateById(Serie serie);
+
 //    List<Serie> findByGenre(String genre);
 //
 //    void addChapter(String serieId, String seasonId, Chapter chapter) throws Exception;

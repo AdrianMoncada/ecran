@@ -31,4 +31,14 @@ public class SerieController {
         return ResponseEntity.ok(service.getAll());
     }
 
+    @DeleteMapping("/{id}")
+    private ResponseEntity<String> deleteById(@PathVariable String id)  throws Exception{
+        return ResponseEntity.ok(service.deleteById(id));
+    }
+
+    @PutMapping()
+    private ResponseEntity<Serie> updateById(@RequestBody Serie serie)  throws Exception{
+        return ResponseEntity.ok(service.updateById(serie));
+    }
+
 }
