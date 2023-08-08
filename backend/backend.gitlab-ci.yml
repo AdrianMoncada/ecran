@@ -49,17 +49,17 @@ deploy-job:
     script:
 #  - CONFIG SERVER
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp  backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/console-app/
+        - scp backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/console-app/
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl start consoleapp.service"
 #  - EUREKA SERVER
         - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp  backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/
+        - scp backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/
         - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl start consoleapp.service"
 #  - API USERS
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp  backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
+        - scp backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
 #  - GATEWAY SERVER
         - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp  backend/ms-eureka-server/target/backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
+        - scp backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
         - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
