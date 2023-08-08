@@ -36,7 +36,6 @@ variables:
 backend-build:
     stage: build
     extends: .backend
-    needs: []
     image:  maven:latest
     script:
         - cd backend
