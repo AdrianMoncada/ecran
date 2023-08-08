@@ -13,14 +13,17 @@ backend-build-job:
     extends: .backend-common
     image:  maven:latest
     script:
-        - cd backend
-        - cd api-movie
-        - mvn clean install
-        - cd target
+        - mvn -f backend/api-movie/pom.xml clean install
+        - mvn -f backend/ms-config-server/pom.xml clean install
+        - mvn -f backend/ms-eureka-server/pom.xml clean install
+        - mvn -f backend/ms-gateway-server/pom.xml clean install
     artifacts:
         expire_in: 1 week
         paths:
             - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
+            - backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar
+            - backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar
+            - backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar
 
 backend-test-job:
     extends: .backend-common
@@ -28,7 +31,7 @@ backend-test-job:
     script:
         - echo "Testing backend"
 
-backend-deploy-job:
+deploy-job:
     stage: deploy
     image: alpine:3.11
     extends: .backend-common
@@ -40,14 +43,23 @@ backend-deploy-job:
         - touch ~/.ssh/config
         - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
         - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
+        - ssh-keyscan -H $CONFIG_SERVER_IP >> ~/.ssh/known_hosts
+        - ssh-keyscan -H $EUREKA_SERVER_IP >> ~/.ssh/known_hosts
+        - ssh-keyscan -H $GATEWAY_SERVER_IP >> ~/.ssh/known_hosts
     script:
-        - echo "Deploying started!"
+#  - API USERS
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - ls
-        - cd backend
-        - cd api-movie
-        - cd target
-        - ls
-        - scp  api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
+        - scp  backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
-        - echo "Finished deploying the app."
+#  - CONFIG SERVER
+        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop consoleapp.service"
+        - scp  backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/console-app/
+        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl start consoleapp.service"
+#  - EUREKA SERVER
+        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop consoleapp.service"
+        - scp  backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/
+        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl start consoleapp.service"
+#  - GATEWAY SERVER
+        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
+        - scp  backend/ms-eureka-server/target/backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
+        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
