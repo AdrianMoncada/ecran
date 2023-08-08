@@ -5,7 +5,7 @@
 URL DE LA API: http://54.234.185.146:8080
 
 - Endpoints:
-    - Peliculas:
+    - Peliculas (**BASE /api/v1/movies**):
         - GET Listado de películas **/api/v1/movies**
         - GET Película por id **/api/v1/movies/:id**
         - GET Todas las películas por nombre **/api/v1/movies/filter?title=:titulo**
@@ -18,4 +18,3 @@ URL DE LA API: http://54.234.185.146:8080
             - **_(ACLARACIÓN: Cuando se manda petición PUT, se manda el OBJETO COMPLETO)_**
 
         - DELETE Eliminar película por id **/api/v1/movies/:id**
-
