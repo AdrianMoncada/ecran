@@ -27,7 +27,7 @@ public class SeasonServiceImpl implements SerieService {
         validSerie(seriedto);
         Serie serie = mapper.map(seriedto, Serie.class);
         serie = serieRepository.save(serie);
-        logger.info("SAVED NEW SERIE: " + serie.toString());
+        logger.info("SAVED NEW SERIE: " + serie);
         return serie;
     }
 
@@ -45,7 +45,7 @@ public class SeasonServiceImpl implements SerieService {
             logger.info("NOT FOUND: SERIE WITH ID: " + id + " NOT FOUND");
             throw new ApiException(HttpStatus.NOT_FOUND, "Serie with id: " + id + " not found");
         }
-        logger.info("FOUND SERIE WITH ID: " + id + " " + foundSerie.toString());
+        logger.info("FOUND SERIE WITH ID: " + id + " " + foundSerie);
         return foundSerie;
     }
 
@@ -71,7 +71,7 @@ public class SeasonServiceImpl implements SerieService {
         getById(id);
         validSerie(mapper.map(serie, SerieDTO.class));
         serie = serieRepository.save(serie);
-        logger.info("UPDATED SERIE: " + serie.toString());
+        logger.info("UPDATED SERIE: " + serie);
         return serie;
     }
 
@@ -86,8 +86,8 @@ public class SeasonServiceImpl implements SerieService {
         Optional<String> rtScoreOptional = Optional.ofNullable(serie.getRt_score());
         Optional<String> mcScoreOptional = Optional.ofNullable(serie.getMc_score());
         Optional<String> imdbScoreOptional = Optional.ofNullable(serie.getImdb_score());
-        Optional<Date> releaseDateOptional = Optional.ofNullable(serie.getRelease_date());
-        Optional<Date> endDateOptional = Optional.ofNullable(serie.getEnd_date());
+        Optional<String> releaseDateOptional = Optional.ofNullable(serie.getRelease_date());
+        Optional<String> endDateOptional = Optional.ofNullable(serie.getEnd_date());
 
 
         if (!titleOptional.isPresent() || serie.getTitle().isEmpty()) {

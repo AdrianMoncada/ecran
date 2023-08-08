@@ -15,22 +15,24 @@ import java.util.List;
 @Setter
 @Getter
 @Data
-@Document(collection = "series")
+@Document(collection = "Series")
 public class Serie implements Serializable {
 
     @Id
     private String id;
     private String title;
     private String actors;
+    private String review;
     private String seasons;
     private String chapters;
     private String image_url;
     private String trailer_url;
-    private String rt_score;
+    private String release_date;
+    private String end_date;
     private String mc_score;
+    private String rt_score;
     private String imdb_score;
-    private Date release_date;
-    private Date end_date;
+    private List<String> genres;
 
 
     @Override
@@ -40,6 +42,7 @@ public class Serie implements Serializable {
                 "\n title='" + title + '\'' + ','+
                 "\n actors='" + actors + '\'' + ','+
                 "\n seasons='" + seasons + '\'' + ','+
+                "\n review='" + review + '\'' + ','+
                 "\n chapters='" + chapters + '\'' + ','+
                 "\n image_url='" + image_url + '\'' + ','+
                 "\n trailer_url='" + trailer_url + '\'' + ','+
