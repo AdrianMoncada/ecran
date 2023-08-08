@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SerieDTO implements Serializable {
 
-    private String id;
     private String title;
     private String actors;
     private String seasons;
