@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://gitlab.ctd.academy/ctd/hispanos/proyecto-integrador-2/proyecto-integrador-0723/1021ft-c1/equipo-01
+          uri: https://gitlab.ctd.academy/ctd/hispanos/proyecto-integrador-2/proyecto-integrador-0723/1021ft-c1/equipo-01.git
           default-label: develop
           force-pull: true
           search-paths: backend/configs/

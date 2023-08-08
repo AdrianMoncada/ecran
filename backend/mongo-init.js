@@ -20,7 +20,7 @@ db.createCollection("Series");
 
 db.holiday.insert({
   serieId: 1,
-  name: "A.M.I.G.O.S",
+  name: "F.R.I.E.N.D.S",
   genre: "comedy",
   seasons: [
     {
