@@ -1,98 +1,13 @@
-default:
-  image: node:16.16.0
-
-
 stages:
     - build
+    - test
     - deploy
 
-variables:
-  RULES_CHANGES_PATH: "**/*"
-
-.base-rules:
-  rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
-      when: always
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-      when: never
-    - if: $CI_COMMIT_TAG
-      when: never
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      changes:
-        - $RULES_CHANGES_PATH
-    - when: manual
-      allow_failure: true
-
-.backend:
-  extends: .base-rules
-  variables:
-    RULES_CHANGES_PATH: "backend/**/*"
-
-.frontend:
-  extends: .base-rules
-  variables:
-    RULES_CHANGES_PATH: "frontend/**/*"
-
-backend-build:
+top-level-job:
     stage: build
-    extends: .backend
-    needs: []
-    image:  maven:latest
     script:
-        - cd backend
-        - cd api-movie
-        - ls
-        - mvn clean install
-        - ls
-        - cd target
-        - ls
-    artifacts:
-        expire_in: 1 week
-        paths:
-            - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
+        - echo "Hello World"
 
-backend-deploy:
-    stage: deploy
-    image: alpine:3.11
-    extends: .backend
-    needs: ["backend-build"]
-    before_script:
-        - apk update && apk add openssh-client bash
-        - mkdir -p ~/.ssh
-        - eval $(ssh-agent -s)
-        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-        - touch ~/.ssh/config
-        - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-        - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
-    script:
-        - echo "Deploying started!"
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - ls
-        - cd backend
-        - cd api-movie
-        - cd target
-        - ls
-        - scp  api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
-        - echo "Finished deploying the app."
-
-.deploy_preview:
-  stage: deploy Frontend
-  except:
-    - develop
-  script:
-    - npm install --global vercel
-    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-    - vercel build --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
-
-deploy_front:
-  stage: deploy
-  extends: .frontend
-  script:
-    - npm install --global vercel
-    - cd frontend
-    - ls
-    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-    - vercel build --prod --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+include:
+    - local: '/backend/backend.gitlab-ci.yml'
+    - local: '/frontend/frontend.gitlab-ci.yml'

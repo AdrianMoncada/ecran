@@ -1,0 +1,45 @@
+default:
+  image: node:16.16.0
+
+stages:
+    - build
+    - test
+    - deploy
+
+.frontend.common:
+    rules:
+        - changes:
+            - 'frontend/*'
+
+frontend-build-job:
+    extends: .frontend.common
+    stage: build
+    script:
+        - echo "Building Frontend"
+
+frontend-test-job:
+    extends: .frontend.common
+    stage: test
+    script:
+        - echo "Testing Frontend"
+
+.deploy_preview:
+  stage: deploy Frontend
+  except:
+    - develop
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+
+frontend-deploy-job:
+  stage: deploy
+  extends: .frontend.common
+  script:
+    - npm install --global vercel
+    - cd frontend
+    - ls
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
