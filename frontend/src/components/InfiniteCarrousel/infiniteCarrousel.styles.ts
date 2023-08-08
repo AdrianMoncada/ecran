@@ -65,8 +65,8 @@ export const Brand = styled.img`
 	width: 100%;
 	height: 100%;
 
-	.brand {
+	/* .brand {
 		height: 50px;
 		padding: 50px 15px;
-	}
+	} */
 `;
