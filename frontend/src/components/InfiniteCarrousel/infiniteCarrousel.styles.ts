@@ -10,24 +10,26 @@ export const Slider = styled.div`
 	background: #0f172a;
 
 	&::after {
-		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 7%, rgba(170, 151, 203, 0.02376302083333337) 22%);
+		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 40%, rgba(0, 0, 0, 0));
 		content: "";
 		content: "";
 		height: 150px;
 		position: absolute;
-		width: 50px;
+		width: 300px;
 		z-index: 2;
 		right: 0;
 		top: 0;
+		border: 1px solid red;
 		transform: rotateZ(180deg);
 	}
 	&::before {
-		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 7%, rgba(170, 151, 203, 0.02376302083333337) 22%);
+		border: 1px solid red;
+		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 40%, rgba(0, 0, 0, 0));
 		content: "";
 		content: "";
 		height: 150px;
 		position: absolute;
-		width: 50px;
+		width: 300px;
 		z-index: 2;
 		left: 0;
 		top: 0;
@@ -43,8 +45,9 @@ const Myscroll = keyframes`
       }
     
       100% {
-        -webkit-transform: translateX(calc(-200px * 4));
-        transform: translateX(calc(-200px * 4));
+        -webkit-transform: translateX(calc(-200px * 7));
+        /* transform: translateX(calc(-200px * 4)); */
+        transform: translateX(calc(-200px * 7));
       }
 
 `;
@@ -54,19 +57,15 @@ export const SlideTrack = styled.div`
 	gap: 100px;
 	animation: ${Myscroll} 40s linear infinite;
 	-webkit-animation: ${Myscroll} 40s linear infinite;
-	width: calc(200px * 8);
+	width: calc(200px * 14);
 `;
 
 export const Slide = styled.div`
 	width: 200px;
+	margin: auto;
 `;
 
 export const Brand = styled.img`
-	width: 100%;
-	height: 100%;
-
-	/* .brand {
-		height: 50px;
-		padding: 50px 15px;
-	} */
+	/* width: 100%;
+	height: 100%; */
 `;

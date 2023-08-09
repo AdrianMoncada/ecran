@@ -25,7 +25,25 @@ const InfiniteCarrousel = () => {
 						<Brand src="images/home/NetflixLogo.png" alt="netflix" />
 					</Slide>
 					<Slide>
-						<Brand src="images/home/HBOLogo.png" alt="hbo" />
+						<Brand className="brand" src="images/home/HBOLogo.png" alt="hbo" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
+					</Slide>
+					<Slide>
+						<Brand src="images/home/youtubeLogo.png" alt="youtube" />
 					</Slide>
 					<Slide>
 						<Brand src="images/home/youtubeLogo.png" alt="youtube" />

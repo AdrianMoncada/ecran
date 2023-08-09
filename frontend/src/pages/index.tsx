@@ -1,10 +1,11 @@
 import Carousel from "@/components/carousel/Carousel";
-import InfiniteCarrousel from "@/components/InfiniteCarrousel/infiniteCarrousel";
+/* import InfiniteCarrousel from "@/components/InfiniteCarrousel/infiniteCarrousel"; */
 import { MainHome, SuggestionsStyle, SuggestionCarousel, Day, Oldies, Profile, Discover } from "@/styles/Home.styles";
 import Image from "next/image";
 import React from "react";
 import movies from "@/assets/carousel.json";
 import moviesTop from "@/assets/carouselTop.json";
+import Infinite from "@/components/InfiniteCarrousel/Infinite";
 
 export default function Home() {
 	return (
@@ -17,7 +18,8 @@ export default function Home() {
 				</h4>
 				<div className="buscador"></div>
 			</MainHome>
-			<InfiniteCarrousel />
+			{/* <InfiniteCarrousel /> */}
+			<Infinite />
 			<SuggestionsStyle>
 				<h2 className="suggestion_title">Nuestras sugerencias</h2>
 				<p className="suggestion_p">
