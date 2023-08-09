@@ -1,5 +1,4 @@
 import Carousel from "@/components/carousel/Carousel";
-/* import InfiniteCarrousel from "@/components/InfiniteCarrousel/infiniteCarrousel"; */
 import { MainHome, SuggestionsStyle, SuggestionCarousel, Day, Oldies, Profile, Discover } from "@/styles/Home.styles";
 import Image from "next/image";
 import React from "react";
