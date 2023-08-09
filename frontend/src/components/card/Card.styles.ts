@@ -20,9 +20,33 @@ export const Container = styled.div<ContainerProps>`
 	justify-content: flex-end;
 	padding: 20px;
 	transition: 250ms all;
+	user-select: none;
 
 	&:hover {
 		transform: scale(1.1);
+	}
+
+	&:hover .card_top {
+		background: linear-gradient(90deg, rgba(168, 85, 247, 1) 0%, rgba(233, 213, 255, 1) 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		transition: 250ms all;
+	}
+
+	.card_top {
+		position: absolute;
+		top: -45px;
+		right: 0;
+		text-align: center;
+		font-size: 140px;
+		font-weight: 700;
+		letter-spacing: -0.25px;
+		background: linear-gradient(90deg, rgba(168, 85, 247, 0.5) 0%, rgba(233, 213, 255, 0.6) 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		transition: 250ms all;
 	}
 
 	.title {

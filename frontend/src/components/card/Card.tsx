@@ -3,17 +3,18 @@ import { Container, CardHeader } from "./Card.styles";
 /* import Image from "next/image"; */
 import { BsCircleFill } from "react-icons/bs";
 
-type movie = {
-	id: String;
-	title: String;
-	year: String;
-	genero: String;
-	imagen: String;
-	descripcion: String;
+export type Movie = {
+	id: string;
+	title: string;
+	year: string;
+	genero: string;
+	imagen: string;
+	descripcion: string;
+	top: string | undefined | null;
 };
 
 interface Prop {
-	movie: movie;
+	movie: Movie;
 }
 
 const Card: React.FC<Prop> = ({ movie }) => {
@@ -25,8 +26,8 @@ const Card: React.FC<Prop> = ({ movie }) => {
 	return (
 		<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "430px" }}>
 			<Container imageUrl={movie.imagen}>
+				<span className="card_top">{movie.top}</span>
 				<CardHeader>
-					{/* <Image src="/images/Group12.svg" alt="icon" width={143} height={143} /> */}
 					<BsCircleFill size={60} color="grey" />
 					<div>
 						<p>{movie.genero}</p>

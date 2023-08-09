@@ -35,7 +35,7 @@
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
+	color: white;
 	background: #0f172a;
 	font-family: Inter;
 }
