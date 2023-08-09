@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+	margin-top: 20px;
 	@-webkit-keyframes scroll {
 		0% {
 			-webkit-transform: translateX(0);
@@ -25,12 +26,13 @@ export const Container = styled.div`
 	.slider {
 		background: #0f172a;
 		/*box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);*/
-		height: 200px;
+		height: 150px;
 		margin: auto;
 		overflow: hidden;
 		position: relative;
 		width: 95%;
 	}
+
 	.slider::before,
 	.slider::after {
 		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 40%, rgba(0, 0, 0, 0));
@@ -57,12 +59,14 @@ export const Container = styled.div`
 		width: calc(250px * 16);
 	}
 	.slider .slide {
-		height: 50px;
 		width: 250px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.slide img {
-		width: 200px;
+		width: 100px;
 		margin: auto;
 	}
 `;
