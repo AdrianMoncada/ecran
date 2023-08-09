@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import movies from "@/assets/carousel.json";
 import moviesTop from "@/assets/carouselTop.json";
-import Infinite from "@/components/InfiniteCarrousel/Infinite";
+import Infinite from "@components/InfiniteCarrousel/Infinite";
 
 export default function Home() {
 	return (

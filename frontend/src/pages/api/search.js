@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
 const movies = [
 	{
 		id: 1,
@@ -23,11 +21,11 @@ const movies = [
 	},
 ];
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
 	const { id, q } = req.query;
 
 	if (id) {
-		const item: any = movies.find((item) => item.id === +id);
+		const item = movies.find((item) => item.id === +id);
 		return res.status(200).json(item);
 	}
 

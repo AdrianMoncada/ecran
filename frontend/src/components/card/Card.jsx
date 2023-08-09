@@ -3,21 +3,7 @@ import { Container, CardHeader } from "./Card.styles";
 /* import Image from "next/image"; */
 import { BsCircleFill } from "react-icons/bs";
 
-export type Movie = {
-	id: string;
-	title: string;
-	year: string;
-	genero: string;
-	imagen: string;
-	descripcion: string;
-	top: string | undefined | null;
-};
-
-interface Prop {
-	movie: Movie;
-}
-
-const Card: React.FC<Prop> = ({ movie }) => {
+const Card = ({ movie }) => {
 	const textoOriginal = movie.descripcion;
 	const limiteCaracteres = 70;
 	const textoCortado =

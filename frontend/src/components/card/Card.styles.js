@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-interface ContainerProps {
-	imageUrl: String;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
 	width: 100%;
 	height: 400px;
 	flex-shrink: 0;

@@ -7,12 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import React from "react";
 
-interface Prop {
-	movies: any;
-	top: boolean;
-}
-
-const Carousel: React.FC<Prop> = ({ movies, top }) => {
+const Carousel = ({ movies, top }) => {
 	return (
 		<Container>
 			<Swiper
@@ -36,17 +31,17 @@ const Carousel: React.FC<Prop> = ({ movies, top }) => {
 			>
 				{top
 					? movies
-							.sort((a: any, b: any) => a.top - b.top)
-							.map((movie: Movie) => (
-								<SwiperSlide key={parseInt(movie.id)}>
-									<Card movie={movie} />
-								</SwiperSlide>
-							))
-					: movies.map((movie: Movie) => (
+						.sort((a, b) => a.top - b.top)
+						.map((movie) => (
 							<SwiperSlide key={parseInt(movie.id)}>
 								<Card movie={movie} />
 							</SwiperSlide>
-					  ))}
+						))
+					: movies.map((movie) => (
+						<SwiperSlide key={parseInt(movie.id)}>
+							<Card movie={movie} />
+						</SwiperSlide>
+					))}
 			</Swiper>
 		</Container>
 	);
