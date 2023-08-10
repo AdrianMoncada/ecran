@@ -13,7 +13,8 @@
 		"plugin:react/recommended",
 		"next",
 		"plugin:prettier/recommended",
-		"next/core-web-vitals"
+		"next/core-web-vitals",
+		"next/babel"
 	],
 	"ignorePatterns": ["next/babel"],
 	"overrides": [],

@@ -48,4 +48,31 @@ export const Container = styled.div`
 	.swiper-button-next:hover {
 		background: linear-gradient(-90deg, rgba(15, 23, 42, 1) 70%, rgba(0, 0, 0, 0));
 	}
+
+	@media screen and (max-width: 768px) {
+		.swiper-button-prev {
+			width: 35px;
+		}
+
+		.swiper-button-next {
+			width: 35px;
+		}
+
+		.swiper-button-prev::after {
+			background: transparent;
+			width: 35px;
+		}
+
+		.swiper-button-next::after {
+			background: transparent;
+			width: 35px;
+		}
+
+		.swiper-button-prev:hover {
+			background: transparent;
+		}
+		.swiper-button-next:hover {
+			background: transparent;
+		}
+	}
 `;
