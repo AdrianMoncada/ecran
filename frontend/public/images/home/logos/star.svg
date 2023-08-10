@@ -99,10 +99,10 @@
      id="stop29"
      style="stop-color:#020814;fill-opacity:1.0;fill:url(#linearGradient952)"
      offset="0.8" /></linearGradient>
-	
-	
-	
-	
+
+
+
+
 		<linearGradient
    id="path3144_1_"
    gradientUnits="userSpaceOnUse"
@@ -149,19 +149,19 @@
 
 
 <g
-   style="font-weight:bold;font-size:590.996px;line-height:1;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Bold';text-align:center;letter-spacing:3.46px;word-spacing:0px;text-anchor:middle;fill:url(#linearGradient95);fill-opacity:1;stroke-width:3.0781"
+   style="font-weight:bold;font-size:590.996px;line-height:1;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Bold';text-align:center;letter-spacing:3.46px;word-spacing:0px;text-anchor:middle;fill:#FFFFFF;fill-opacity:1;stroke-width:3.0781"
    id="text874"
    transform="matrix(0.59343609,0,0,0.52120939,13.347199,-3.2856471)"
    aria-label="STAR+" /><style
    type="text/css"
    id="style2">
-	.st0{fill:#241C32;}
-	.st1{fill:url(#path3144_1_);}
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#FFFFFF;}
 </style><g
    id="g101"><path
      inkscape:connector-curvature="0"
      id="path935"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:590.996px;line-height:1;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;letter-spacing:3.46px;word-spacing:0px;text-anchor:middle;fill:#241c32;fill-opacity:1;stroke-width:3.64691"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:590.996px;line-height:1;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;letter-spacing:3.46px;word-spacing:0px;text-anchor:middle;fill:#FFFFFF;fill-opacity:1;stroke-width:3.64691"
      d="M 1458.2986,257.71621 V 123.83587 h 81.8553 v 133.88034 h 122.4554 v 89.25355 h -122.4554 v 133.52331 h -81.8553 V 346.96976 h -122.7827 v -89.25355 z"
      transform="matrix(0.59343609,0,0,0.52120939,13.347199,-3.2856471)" /><path
      id="path11"
@@ -180,4 +180,4 @@
      inkscape:connector-curvature="0"
      class="st1"
      d="M 599.71517,108.9541 H 485.07176 L 449.61102,0 414.15028,108.9541 H 299.50687 l 91.96412,67.49231 c 0,0 44.9689,-29.61556 99.44595,-40.76037 -80.3517,59.30907 -123.99569,118.15052 -123.99569,118.15052 v 0 0 l -10.05371,31.64189 92.74348,-67.33644 92.74347,67.33644 -35.3828,-109.03204 z"
-     style="fill:url(#path3144_1_);stroke-width:0.779357" /></g></svg>
+     style="fill:#FFFFFF;stroke-width:0.779357" /></g></svg>

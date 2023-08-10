@@ -76,7 +76,7 @@ export const Container = styled.div`
 export const CardHeader = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-end;
 
 	p {
 		font-size: 12px;
