@@ -1,8 +1,4 @@
 import { useEffect, React, useState } from "react";
-import Carousel from "@/components/carousel/Carousel";
-import moviesTop from "@/assets/carouselTop.json";
-import axios from "axios";
-
 import {
 	Sugestions,
 	PosterContainer,
@@ -19,52 +15,12 @@ import {
 } from "@/pages/movies/movies.styles";
 
 import { useRouter } from "next/router";
-import { fetchMovieId } from "../api/movies";
+import { fetchMovies } from "../api/movies";
+import Card from "@components/card/Card";
 
-// export const getStaticPaths = async () => {
-// 	const res = await fetch("http://localhost:3000/api/movies");
-// 	const posts = await res.json();
-// 	const paths = posts.map(({ id }) => ({
-// 		params: { id: `${id}` },
-// 	}));
-
-// 	return {
-// 		paths,
-// 		fallback: "blocking",
-// 	};
-// };
-
-// export const getStaticProps = async ({ params }) => {
-// 	const { id } = params;
-// 	const res = await fetch(`http://localhost:3000/api/movies/${id}`);
-// 	const posts = await res.json();
-// 	return {
-// 		props: {
-// 			id,
-// 			posts,
-// 		},
-// 		revalidate: 2,
-// 	};
-// };
-
-function MovieDetail() {
-	const [movies, setMovie] = useState([]);
+function MovieDetail({ movies, cardMovies }) {
 	const router = useRouter();
 	const { id } = router.query;
-
-	useEffect(() => {
-		const fetchMovie = async () => {
-			try {
-				/* const response = await axios.get(`/api/movies/${id}`); */
-				const response = await fetchMovieId(id);
-				setMovie(response);
-			} catch (error) {
-				console.error("Error fetching movie", error);
-			}
-		};
-
-		fetchMovie();
-	}, [id]);
 
 	return (
 		<main>
@@ -72,21 +28,21 @@ function MovieDetail() {
 			<Contenedor>
 				<ContainerInfoMovie>
 					<Info>
-						<p className="genero">{movies.genero}</p>
-						<p className="anio">{movies.year}</p>
-						<p className="titulo">{movies.title}</p>
+						<p className="genero">{movies?.genero}</p>
+						<p className="anio">{movies?.year}</p>
+						<p className="titulo">{movies?.title}</p>
 						<span className="cast">
 							Director:
-							<p className="castD">George Lucas</p>
+							<p className="castD">{movies?.director}</p>
 						</span>
 						<span className="cast">
 							Musica:
-							<p className="castD">Jhon Williams</p>
+							<p className="castD">{movies?.composer}</p>
 						</span>
 						<span className="cast">
 							Elenco:
 							<p className="castD">
-								Mark Hamill - Harrison Ford -Carrie Fisher<br></br>Peter Mayhew
+								{movies?.actors}
 							</p>
 						</span>
 						<span className="platforms">
@@ -98,7 +54,7 @@ function MovieDetail() {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies.imagen} />
+							<Poster src={movies?.image_url} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
@@ -115,9 +71,9 @@ function MovieDetail() {
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
 						<div className="container">
-							<p className="numerosPorcentaje">8.6</p>
-							<p className="numerosPorcentaje">76</p>
-							<p className="numerosPorcentaje">90%</p>
+							<p className="numerosPorcentaje">{movies.rt_score}</p>
+							<p className="numerosPorcentaje">{movies.imdb_score}</p>
+							<p className="numerosPorcentaje">{movies.mc_score}</p>
 						</div>
 						<div className="container">
 							<img src="/images/Group.svg" />
@@ -126,18 +82,32 @@ function MovieDetail() {
 						</div>
 					</Puntuaciones>
 					<p className="day_p">
-						{movies.descripcion}El primer parámetro representa el radio del circulo y es opcional. El valor por
-						defectodel centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que el
+						{movies.review}El primer parámetro representa el radio del circulo y es opcional. El valor por
+						defectodel centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a
 						centro del circulo se encuentra en el centro del elemento. Para especificar el valor del radio o las
 						coordenadas del centro podemos utilizar palabras clave ( closest-side o farthest-side ) unidades de longitud
 						( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El
-						valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El segundo parámetro
+						valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El segundo parámetroest-side ) unidades de longitud
+						( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El
+						valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El segundest-side ) unidades de longitud
+						( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El
+						valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El segund
 					</p>
 				</DescriptioContainer>
 			</Contenedor>
 			<Sugestions>
 				<h4 className="oldies_title">Sugerencias</h4>
-				<Carousel movies={moviesTop} top={true} />
+				{/* <Carousel movies={moviesTop} top={true} /> */}
+				<div className="suggestions_cards">
+					{
+						cardMovies.slice(0, 3).map((item) => (
+							<div className="card" key={item.id}> {/* Asegúrate de usar una clave única para cada elemento */}
+								<Card movie={item} />
+							</div>
+						))
+					}
+				</div>
+
 			</Sugestions>
 		</main>
 	);
@@ -145,14 +115,15 @@ function MovieDetail() {
 
 export async function getServerSideProps(context) {
 	const { id } = context.params;
-
-	// Hacer la solicitud a la API para obtener los detalles de la card por ID
-	const response = await fetch(`URL_DE_TU_API/${id}`);
-	const card = await response.json();
+	console.log(id)
+	const response = await fetch(`http://54.234.185.146:8080/api/v1/movies/${id}`);
+	const movies = await response.json();
+	const cardMovies = await fetchMovies();
 
 	return {
 		props: {
-			card,
+			movies,
+			cardMovies
 		},
 	};
 }
