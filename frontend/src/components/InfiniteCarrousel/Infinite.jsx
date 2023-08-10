@@ -6,7 +6,7 @@ const Infinite = () => {
 	const [brand, setBrand] = useState(brands);
 
 	useEffect(() => {
-		if (brand.lenght <= 16) {
+		if (brand.length < 16) {
 			setBrand([...brand, ...brand])
 		}
 	}, [])
@@ -16,7 +16,7 @@ const Infinite = () => {
 			<div className="slider">
 				<div className="slide-track">
 					{
-						brand.map((item) => <div className="slide">
+						brand.map((item, index) => <div key={index} className="slide">
 							<img src={`images/home/logos/${item.name}.svg`} alt={item.name} />
 						</div>)
 					}

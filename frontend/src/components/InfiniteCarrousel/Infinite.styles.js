@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	margin-top: 20px;
+	margin: 1em 0;
 	@-webkit-keyframes scroll {
 		0% {
 			-webkit-transform: translateX(0);
@@ -26,18 +26,21 @@ export const Container = styled.div`
 	.slider {
 		background: #0f172a;
 		/*box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);*/
-		height: 150px;
+		height: 9ch;
 		margin: auto;
 		overflow: hidden;
 		position: relative;
 		width: 95%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.slider::before,
 	.slider::after {
 		background: linear-gradient(90deg, rgba(15, 23, 42, 1) 40%, rgba(0, 0, 0, 0));
 		content: "";
-		height: 200px;
+		height: 90px;
 		position: absolute;
 		width: 200px;
 		z-index: 2;
@@ -66,7 +69,7 @@ export const Container = styled.div`
 	}
 
 	.slide img {
-		width: 100px;
+		width: 5em;
 		margin: auto;
 	}
 `;
