@@ -9,12 +9,12 @@
 		"node": true
 	},
 	"extends": [
+		"next",
+		"next/babel",
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"next",
 		"plugin:prettier/recommended",
-		"next/core-web-vitals",
-		"next/babel"
+		"next/core-web-vitals"
 	],
 	"ignorePatterns": ["next/babel"],
 	"overrides": [],

@@ -20,7 +20,7 @@ export default function Home({ response }) {
 			</MainHome>
 			{/* <InfiniteCarrousel /> */}
 			<Infinite />
-			<SuggestionsStyle>
+			<SuggestionsStyle id="sugerencias">
 				<h2 className="suggestion_title">Nuestras sugerencias</h2>
 				<p className="suggestion_p">
 					De clásicos atemporales a gemas contemporáneas, estas recomendaciones te llevarán a un viaje inolvidable en el
@@ -36,9 +36,9 @@ export default function Home({ response }) {
 					Descubre una sugerencia diferente cada día para explorar nuevos títulos y géneros cinematográficos. ¡Encuentra
 					emocionantes series y películas que te sorprenderán!
 				</p>
-				<Carousel movies={response} top={false} />
+				<Carousel movies={moviesTop} top={false} />
 			</Day>
-			<Oldies>
+			<Oldies id="proximamente">
 				<div className="oldies_text">
 					<h2 className="oldies_title">Próximamente</h2>
 					<h4 className="oldies_h4">Filtra series y películas por calificación, género, y más!</h4>
