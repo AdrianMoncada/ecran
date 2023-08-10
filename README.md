@@ -18,3 +18,4 @@ URL DE LA API: http://54.234.185.146:8080
             - **_(ACLARACIÓN: Cuando se manda petición PUT, se manda el OBJETO COMPLETO)_**
 
         - DELETE Eliminar película por id **/api/v1/movies/:id**
+   
