@@ -36,7 +36,7 @@ export default function Home({ response }) {
 					Descubre una sugerencia diferente cada día para explorar nuevos títulos y géneros cinematográficos. ¡Encuentra
 					emocionantes series y películas que te sorprenderán!
 				</p>
-				<Carousel movies={moviesTop} top={false} />
+				<Carousel movies={response} top={false} />
 			</Day>
 			<Oldies id="proximamente">
 				<div className="oldies_text">

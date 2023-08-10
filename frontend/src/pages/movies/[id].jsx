@@ -19,6 +19,7 @@ import {
 } from "@/pages/movies/movies.styles";
 
 import { useRouter } from "next/router";
+import { fetchMovieId } from "../api/movies";
 
 // export const getStaticPaths = async () => {
 // 	const res = await fetch("http://localhost:3000/api/movies");
@@ -54,8 +55,9 @@ function MovieDetail() {
 	useEffect(() => {
 		const fetchMovie = async () => {
 			try {
-				const response = await axios.get(`/api/movies/${id}`);
-				setMovie(response.data);
+				/* const response = await axios.get(`/api/movies/${id}`); */
+				const response = await fetchMovieId(id);
+				setMovie(response);
 			} catch (error) {
 				console.error("Error fetching movie", error);
 			}
@@ -139,6 +141,20 @@ function MovieDetail() {
 			</Sugestions>
 		</main>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const { id } = context.params;
+
+	// Hacer la solicitud a la API para obtener los detalles de la card por ID
+	const response = await fetch(`URL_DE_TU_API/${id}`);
+	const card = await response.json();
+
+	return {
+		props: {
+			card,
+		},
+	};
 }
 
 export default MovieDetail;

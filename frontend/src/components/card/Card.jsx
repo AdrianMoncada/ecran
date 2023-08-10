@@ -9,7 +9,7 @@ const Card = ({ movie }) => {
 	const router = useRouter();
 
 	const handleClick = () => {
-		router.push(`/movies/${movie.id}`);
+		router.push(`/movies/${movie.movieId}`);
 	};
 
 	function cortarTexto(texto, limite) {
