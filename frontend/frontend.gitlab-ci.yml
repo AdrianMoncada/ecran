@@ -10,7 +10,6 @@ stages:
     rules:
         - changes:
             - 'frontend/*'
-        - if: $CI_COMMIT_BRANCH == "develop"
 
 frontend-build-job:
     extends: .frontend.common

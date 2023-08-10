@@ -9,7 +9,7 @@ import React from "react";
 
 const Carousel = ({ movies, top }) => {
 	return (
-		<Container>
+		<Container top={top}>
 			<Swiper
 				simulateTouch={false}
 				modules={[Navigation]}

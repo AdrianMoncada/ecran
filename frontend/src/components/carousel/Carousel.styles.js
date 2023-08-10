@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	width: 96%;
-	margin: 20px auto;
+	width: ${(props) => (!props.top ? "97%" : "null")};
+	margin: 20px 20px;
 	position: relative;
 
 	.swiper-button-next,
@@ -47,6 +47,11 @@ export const Container = styled.div`
 	}
 	.swiper-button-next:hover {
 		background: linear-gradient(-90deg, rgba(15, 23, 42, 1) 70%, rgba(0, 0, 0, 0));
+	}
+
+	@media screen and (max-width: 777px) {
+		width: ${(props) => (!props.top ? "93%" : "null")};
+		margin: 0 20px;
 	}
 
 	@media screen and (max-width: 768px) {

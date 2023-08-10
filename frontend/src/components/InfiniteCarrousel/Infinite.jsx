@@ -1,59 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "./Infinite.styles";
+import brands from "@/assets/marcas.json";
 
 const Infinite = () => {
+	const [brand, setBrand] = useState(brands);
+
+	useEffect(() => {
+		if (brand.length < 16) {
+			setBrand([...brand, ...brand])
+		}
+	}, [])
+
 	return (
 		<Container>
 			<div className="slider">
 				<div className="slide-track">
-					<div className="slide">
-						<img src="images/home/DisneyPlusLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/NetflixLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/HBOLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/youtubeLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/DisneyPlusLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/NetflixLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/HBOLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/youtubeLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/DisneyPlusLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/NetflixLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/HBOLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/youtubeLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/DisneyPlusLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/NetflixLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/HBOLogo.png" height={100} width={250} alt="infinite" />
-					</div>
-					<div className="slide">
-						<img src="images/home/youtubeLogo.png" height={100} width={250} alt="infinite" />
-					</div>
+					{
+						brand.map((item, index) => <div key={index} className="slide">
+							<img src={`images/home/logos/${item.name}.svg`} alt={item.name} />
+						</div>)
+					}
 				</div>
 			</div>
 		</Container>
