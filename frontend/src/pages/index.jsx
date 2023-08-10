@@ -5,6 +5,7 @@ import React from "react";
 import movies from "@/assets/carousel.json";
 import moviesTop from "@/assets/carouselTop.json";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
+import Search from "@components/search/Search";
 
 export default function Home() {
 	return (
@@ -15,7 +16,7 @@ export default function Home() {
 					Desde éxitos de taquilla hasta joyas ocultas, Ecran te ofrece una visión única del mundo del cine y la
 					televisión, todo a solo un clic de distancia.
 				</h4>
-				<div className="buscador"></div>
+				<Search />
 			</MainHome>
 			{/* <InfiniteCarrousel /> */}
 			<Infinite />
