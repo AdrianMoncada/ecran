@@ -1,103 +1,111 @@
-// import React, { useMemo, useRef, useState } from "react";
-// import { createAutocomplete } from "@algolia/autocomplete-core";
-// import Image from "next/image";
-// import { Form, Input, InputContent } from "./Search.styles";
+import { useMemo, useRef, useState } from "react";
+import { createAutocomplete } from "@algolia/autocomplete-core";
+// import Link from "next/link";
+import { Form, Input, InputContent, DropdownConteiner, List } from "./Search.styles";
+import { FiSearch } from "react-icons/fi";
+import { fetchMoviesByTitle } from "@/pages/api/search";
 
-// interface AutocompleteItemProps {
-// 	id: number;
-// 	title: string;
-// 	img: string;
-// }
+const AutocompleteItem = ({ movieId, title, image_url }) => {
+	return (
+		<List>
+			{/* <Link href={`/detail/${id}`}> */}
+			<div className="list">
+				<div className="imageList">
+					<img src={image_url} alt={title} className="image" />
+				</div>
 
-// interface Props {
-// 	id: number;
-// 	title: string;
-// 	img: string;
-// }
+				<div className="descriptionList">
+					<h3 className="titleList">{title}</h3>
+					<p>Genero</p>
+					<p>Año</p>
+				</div>
+			</div>
+			<hr />
+			{/* </Link> */}
+		</List>
+	);
+};
 
-// const AutocompleteItem: React.FC<AutocompleteItemProps> = ({ id, title, img }) => {
-// 	return (
-// 		<li key={id}>
-// 			<Image src={img} alt={title} className="w-12 h-12 object-contain" />
-// 			<div>
-// 				<h3 className="text-sm font-semibold">{title}</h3>
-// 			</div>
-// 		</li>
-// 	);
-// };
+export default function Search(props) {
+	const [autocompleteState, setAutocompleteState] = useState({
+		collections: [],
+		isOpen: false,
+	});
 
-// export default function Search(props: Props) {
-// 	const [autocompleteState, setAutocompleteState] = useState<any>({
-// 		collections: [],
-// 		isOpen: false,
-// 	});
+	//useMemo para asegurarse de que la instancia del componente de autocompletado no se cree innecesariamente en cada renderizado
+	const autocomplete = useMemo(
+		() =>
+			//función que crea un componente de autocompletado.
+			createAutocomplete({
+				placeholder: "Nemo, The Walking Dead...",
+				//función que se invocará cuando cambie el estado del componente de autocompletado.
+				onStateChange: ({ state }) => setAutocompleteState(state),
+				// función que devuelve un array con datos
+				getSources: () => [
+					{
+						sourceId: "movies-api",
+						getItems: async ({ query }) => {
+							//Si query (el texto ingresado por el usuario) tiene algún valor, se llama a la función fetchMoviesByTitle(query)
+							if (!!query) {
+								const movies = await fetchMoviesByTitle(query);
+								const items = movies.map((movie) => ({
+									id: movie.movieId,
+									title: movie.title,
+									image_url: movie.image_url,
+								}));
+								console.log(movies);
+								return items;
+							}
+						},
+					},
+				],
+				//props contiene algunas propiedades que se deben pasar a la instancia del componente de autocompletado.
+				...props,
+			}),
+		[props],
+	);
 
-// 	//crear el autocomplete solo cuando cambie la props, con usememo
-// 	const autocomplete = useMemo(
-// 		() =>
-// 			createAutocomplete({
-// 				placeholder: "Nemo, The Walking Dead...",
-// 				//calback que se va a ejcutar cada vez que cambie el estado del autocomplete
-// 				onStateChange: ({ state }) => setAutocompleteState(state),
-// 				//conecto con la api
-// 				getSources: () => [
-// 					{
-// 						sourceId: "movies-api",
-// 						getItems: ({ query }) => {
-// 							if (query) {
-// 								return fetch(`/api/search?q=${query}`).then((res) => res.json());
-// 							}
-// 						},
-// 					},
-// 				],
-// 				...props,
-// 			}),
-// 		[props],
-// 	);
+	//Las referencias se utilizan para acceder a los elementos DOM directamente. Aquí referencian los elementos del formulario, el campo de entrada y el panel de resultados del autocompletado respectivamente.
+	const formRef = useRef(null);
+	const inputRef = useRef(null);
+	const panelRef = useRef(null);
 
-// 	const formRef = useRef<HTMLFormElement>(null);
-// 	const inputRef = useRef<HTMLInputElement>(null);
-// 	//donde se vana dibujar los resultados de las busquedas
-// 	const panelRef = useRef<HTMLDivElement>(null);
+	//necesario para que el autocompletado pueda controlar el comportamiento del formulario y la entrada.
+	const formProps = autocomplete.getFormProps({
+		inputElement: inputRef.current,
+	});
+	//devuelve propiedades que deben aplicarse al campo de entrada
+	const inputProps = autocomplete.getInputProps({
+		inputElement: inputRef.current,
+	});
 
-// 	//recuperamos las props
-// 	const formProps = autocomplete.getFormProps({
-// 		inputElement: inputRef.current,
-// 	});
-// 	const inputProps = autocomplete.getInputProps({
-// 		inputElement: inputRef.current,
-// 	});
-
-// 	return (
-// 		<Form ref={formRef} {...formProps}>
-// 			<InputContent>
-// 				<Input ref={inputRef} {...inputProps} />
-
-// 				{autocompleteState.isOpen && (
-// 					<div
-// 						className="absolute mt-16 top-0 left-0 border border-gray-100 bg-white overflow-hidden rounded-lg shadow-lg z-10"
-// 						ref={panelRef}
-// 						{...autocomplete.getPanelProps()}
-// 					>
-// 						{/* mostrar los resultados */}
-// 						{autocompleteState.collections.map((collection: any, index: any) => {
-// 							const { items } = collection;
-// 							// console.log({ items });
-// 							return (
-// 								<section key={`section-${index}`}>
-// 									{items.length > 0 && (
-// 										<ul {...autocomplete.getListProps()}>
-// 											{items.map((item: any) => (
-// 												<AutocompleteItem key={item.id} {...item} />
-// 											))}
-// 										</ul>
-// 									)}
-// 								</section>
-// 							);
-// 						})}
-// 					</div>
-// 				)}
-// 			</InputContent>
-// 		</Form>
-// 	);
-// }
+	return (
+		<Form ref={formRef} {...formProps}>
+			<InputContent>
+				<Input ref={inputRef} {...inputProps} />
+				<FiSearch className="iconSearch" />
+				{/* verifica si el estado del autocompletadoestá abierto. Si es así, se procede a renderizar el panel de resultados. */}
+				{autocompleteState.isOpen && (
+					/* Esto permite al autocompletado controlar la visibilidad y posicionamiento del panel. */
+					<DropdownConteiner ref={panelRef} {...autocomplete.getPanelProps()}>
+						{autocompleteState.collections.map((collection, index) => {
+							const { items } = collection;
+							console.log({ items });
+							return (
+								<section key={`section-${index}`}>
+									{items.length > 0 && (
+										<ul {...autocomplete.getListProps()}>
+											{items.map((item) => (
+												<AutocompleteItem key={item.id} {...item} />
+											))}
+										</ul>
+									)}
+								</section>
+							);
+						})}
+					</DropdownConteiner>
+				)}
+			</InputContent>
+		</Form>
+	);
+}
