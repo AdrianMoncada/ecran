@@ -29,8 +29,11 @@ public class Movie implements Serializable {
     private String image_url;
     private String trailer_url;
     private String release_date;
-    private String genre;
-    private List<String> platforms;
+    private String rt_score;
+    private String imdb_score;
+    private String mc_score;
+    private List<String> genres = new ArrayList<>();
+    private List<String> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
 

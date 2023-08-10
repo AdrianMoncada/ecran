@@ -3,4 +3,4 @@ spring:
     name: ms-eureka-server
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://34.238.41.135:8888

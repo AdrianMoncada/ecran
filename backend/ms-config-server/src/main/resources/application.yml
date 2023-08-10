@@ -3,12 +3,14 @@ server:
 
 spring:
   application:
-    name: config-server
+    name: ms-config-server
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/tomascaceres14/esp-back-i-parcial
+          uri: https://gitlab.ctd.academy/ctd/hispanos/proyecto-integrador-2/proyecto-integrador-0723/1021ft-c1/equipo-01.git
           default-label: develop
           force-pull: true
-          search-paths: configs
+          search-paths: backend/configs/
+          username: tomascaceres
+          password: Wing6gitlab1Lam;

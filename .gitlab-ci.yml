@@ -1,0 +1,13 @@
+stages:
+    - build
+    - test
+    - deploy
+
+top-level-job:
+    stage: build
+    script:
+        - echo "Hello World"
+
+include:
+    - local: '/backend/backend.gitlab-ci.yml'
+    - local: '/frontend/frontend.gitlab-ci.yml'
