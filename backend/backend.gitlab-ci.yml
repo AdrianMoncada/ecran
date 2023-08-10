@@ -7,7 +7,6 @@ stages:
     rules:
         - changes:
             - 'backend/**/*'
-        - if: $CI_COMMIT_BRANCH == "develop"
 
 backend-build-job:
     stage: build
