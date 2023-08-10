@@ -4,10 +4,32 @@ import { Container, CardHeader } from "./Card.styles";
 import { BsCircleFill } from "react-icons/bs";
 
 const Card = ({ movie }) => {
-	const textoOriginal = movie?.review;
+	/* const textoOriginal = movie?.review;
 	const limiteCaracteres = 65;
 	const textoCortado =
-		textoOriginal?.slice(0, limiteCaracteres) + (textoOriginal?.length > limiteCaracteres ? "..." : "");
+		textoOriginal?.slice(0, limiteCaracteres) + (textoOriginal?.length > limiteCaracteres ? "..." : ""); */
+	function cortarTexto(texto, limite) {
+		if (texto.length <= limite) {
+			return texto;
+		} else {
+			const palabras = texto.split(" ");
+			let resultado = "";
+			let contador = 0;
+			for (const palabra of palabras) {
+				if (contador + palabra.length + resultado.length + 3 <= limite) { // 3 es la longitud de "..."
+					resultado += palabra + " ";
+					contador += palabra.length + 1; // +1 para el espacio
+				} else {
+					break;
+				}
+			}
+			return resultado.trim() + "...";
+		}
+	}
+
+	const texto = movie?.review;
+	const limite = 100;
+	const textoCortado = cortarTexto(texto, limite);
 
 	return (
 		<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "430px" }}>
