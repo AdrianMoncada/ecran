@@ -5,7 +5,7 @@ export const Form = styled.form`
 	justify-content: center;
 	width: 60%;
 	max-width: 500px;
-	height: 100%;
+	/* height: 100%; */
 	min-width: 200px;
 `;
 
@@ -46,7 +46,6 @@ export const Input = styled.input`
 	line-height: 22px;
 	border: none;
 
-	
 	&:focus {
 		outline: none;
 	}

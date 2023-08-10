@@ -8,8 +8,7 @@ import { fetchMoviesByTitle } from "@/pages/api/search";
 const AutocompleteItem = ({ movieId, title, image_url }) => {
 	return (
 		<List>
-			<Link href={`/detail/${movieId}`}>
-			<div className="list">
+			<Link className="list" href={`/movies/${movieId}`} >
 				<div className="imageList">
 					<img src={image_url} alt={title} className="image" />
 				</div>
@@ -19,9 +18,8 @@ const AutocompleteItem = ({ movieId, title, image_url }) => {
 					<p>Genero</p>
 					<p>Año</p>
 				</div>
-			</div>
-			<hr />
 			</Link>
+			<hr />
 		</List>
 	);
 };
@@ -96,7 +94,7 @@ export default function Search(props) {
 									{items.length > 0 && (
 										<ul {...autocomplete.getListProps()}>
 											{items.map((item) => (
-												<AutocompleteItem key={item.id} {...item} />
+												<AutocompleteItem key={item.id} movieId={item.id} {...item} />
 											))}
 										</ul>
 									)}

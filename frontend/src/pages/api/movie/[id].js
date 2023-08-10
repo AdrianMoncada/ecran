@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 	}
 
 	try {
-		const response = await fetch(`http://54.234.185.146:8080/api/v1/movies`);
+		const response = await fetch(`http://3.95.255.94:8080/api/v1/movies`);
 		const data = await response.json();
 		const movie = data.find((movie) => movie.id === movieId);
 		return movie;
