@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { createAutocomplete } from "@algolia/autocomplete-core";
-// import Link from "next/link";
+import Link from "next/link";
 import { Form, Input, InputContent, DropdownConteiner, List } from "./Search.styles";
 import { FiSearch } from "react-icons/fi";
 import { fetchMoviesByTitle } from "@/pages/api/search";
@@ -8,7 +8,7 @@ import { fetchMoviesByTitle } from "@/pages/api/search";
 const AutocompleteItem = ({ movieId, title, image_url }) => {
 	return (
 		<List>
-			{/* <Link href={`/detail/${id}`}> */}
+			<Link href={`/detail/${movieId}`}>
 			<div className="list">
 				<div className="imageList">
 					<img src={image_url} alt={title} className="image" />
@@ -21,7 +21,7 @@ const AutocompleteItem = ({ movieId, title, image_url }) => {
 				</div>
 			</div>
 			<hr />
-			{/* </Link> */}
+			</Link>
 		</List>
 	);
 };
