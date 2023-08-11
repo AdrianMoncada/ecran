@@ -11,8 +11,14 @@ export const Purple = styled.div`
 `;
 
 export const Contenedor = styled.section`
-	top: 20%;
+	top: 24%;
 	position: absolute;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
 `;
 
 export const ContainerInfoMovie = styled.div`
@@ -21,6 +27,7 @@ export const ContainerInfoMovie = styled.div`
 	justify-content: center;
 	margin: 0 80px;
 	margin-bottom: 50px;
+	width: 70%;
 
 	.genero {
 		font-family: InterBold;
@@ -127,6 +134,7 @@ export const DescriptioContainer = styled.div`
 	margin-left: 80px;
 	width: 100%;
 	height: 100%;
+	padding: 0 90px;
 	.day_p {
 		color: #94a3b8;
 		text-align: justify;
@@ -166,7 +174,7 @@ export const Sugestions = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 1200px;
+	padding: 1200px 90px 70px 90px;
 
 	.oldies_title {
 		font-family: InterBold;
