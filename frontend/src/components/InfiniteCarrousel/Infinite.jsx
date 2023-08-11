@@ -9,7 +9,7 @@ const Infinite = () => {
 		if (brand.length < 16) {
 			setBrand([...brand, ...brand])
 		}
-	}, [])
+	}, [brand])
 
 	return (
 		<Container>
