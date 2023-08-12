@@ -1,7 +1,13 @@
 spring:
   application:
     name: api-series
-  cloud:
-    config:
-      enabled: true
-      uri: http://34.238.41.135:8888
+  data:
+    mongodb:
+      database: seriesdb
+      port: 27017
+      host: localhost
+springdoc:
+  swagger-ui:
+    path: swagger
+server:
+  port: 8082
