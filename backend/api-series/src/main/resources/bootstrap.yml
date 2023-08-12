@@ -6,5 +6,8 @@ spring:
       database: seriesdb
       port: 27017
       host: localhost
+springdoc:
+  swagger-ui:
+    path: swagger
 server:
   port: 8082
