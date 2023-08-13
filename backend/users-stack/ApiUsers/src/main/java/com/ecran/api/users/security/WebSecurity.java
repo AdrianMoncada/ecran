@@ -46,17 +46,21 @@ public class WebSecurity {
     	.passwordEncoder(bCryptPasswordEncoder);
     	
     	AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+
+		AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager, usersService, environment);
+		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
     	
     	http.csrf((csrf) -> csrf.disable());
-  
+
     	http.authorizeHttpRequests((authz) -> authz
         .requestMatchers(HttpMethod.POST, "/users").access(new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
-						.requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
+				.requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
-        .authenticationManager(authenticationManager)
+				.addFilter(authenticationFilter)
+				.authenticationManager(authenticationManager)
         .sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
- 
+
     	http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
         return http.build();
 
