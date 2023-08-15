@@ -32,7 +32,7 @@ public class MovieRequestDTO implements Serializable {
     @NotBlank
     private String release_date;
     @NotBlank
-    private String genre;
+    private List<String> genre;
     @NotBlank
     private String rt_score;
     @NotBlank

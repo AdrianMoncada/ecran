@@ -1,18 +1,6 @@
-server:
-  port: 8080
-
 spring:
   application:
     name: api-movie
-  data:
-    mongodb:
-      database: movies-dev-mongo
-      port: 27017
-      host: 44.201.102.47
-
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://44.203.152.200:8761/eureka
+  cloud:
+    config:
+      uri: http://34.238.41.135:8888
