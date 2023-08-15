@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
 	width: 100%;
@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div`
 	.links .link_text {
 		position: relative;
 		text-decoration: none;
-		font-size: 1.3vw;
+		font-size: 1em;
 	}
 
 	.links .link_text::before {

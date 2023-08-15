@@ -17,7 +17,7 @@ export const FooterContainer = styled.div`
 
 	.footer_icons svg {
 		cursor: pointer;
-		width: 5vw;
+		width: 2vw;
 	}
 
 	.footer_logo {

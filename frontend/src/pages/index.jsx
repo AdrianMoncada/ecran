@@ -2,7 +2,6 @@ import Carousel from "@/components/carousel/Carousel";
 import { MainHome, SuggestionsStyle, SuggestionCarousel, Day, Oldies, Profile, Discover } from "@/styles/Home.styles";
 import Image from "next/image";
 import React from "react";
-import movies from "@/assets/carousel.json";
 import moviesTop from "@/assets/carouselTop.json";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
