@@ -18,7 +18,6 @@ export const Contenedor = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
 `;
 
 export const ContainerInfoMovie = styled.div`

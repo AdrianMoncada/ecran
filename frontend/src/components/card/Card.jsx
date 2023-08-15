@@ -1,8 +1,5 @@
 import React from "react";
 import { Container, CardHeader } from "./Card.styles";
-/* import Image from "next/image"; */
-import { BsCircleFill } from "react-icons/bs";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Card = ({ movie }) => {

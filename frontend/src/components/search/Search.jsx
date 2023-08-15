@@ -4,13 +4,15 @@ import Link from "next/link";
 import { Form, Input, InputContent, DropdownConteiner, List } from "./Search.styles";
 import { FiSearch } from "react-icons/fi";
 import { fetchMoviesByTitle } from "@/pages/api/search";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const AutocompleteItem = ({ movieId, title, image_url }) => {
 	return (
 		<List>
-			<Link className="list" href={`/movies/${movieId}`} >
+			<Link className="list" href={`/movies/${movieId}`}>
 				<div className="imageList">
-					<img src={image_url} alt={title} className="image" />
+					<Image src={image_url} alt={title} className="image" width={50} height={50} />
 				</div>
 
 				<div className="descriptionList">
@@ -30,6 +32,8 @@ export default function Search(props) {
 		isOpen: false,
 	});
 
+	const router = useRouter();
+
 	//useMemo para asegurarse de que la instancia del componente de autocompletado no se cree innecesariamente en cada renderizado
 	const autocomplete = useMemo(
 		() =>
@@ -44,12 +48,16 @@ export default function Search(props) {
 						sourceId: "movies-api",
 						getItems: async ({ query }) => {
 							//Si query (el texto ingresado por el usuario) tiene algún valor, se llama a la función fetchMoviesByTitle(query)
-							if (!!query) {
+							if (query) {
 								const movies = await fetchMoviesByTitle(query);
-								const items = movies.map((movie) => ({
-									id: movie.movieId,
-									title: movie.title,
-									image_url: movie.image_url,
+								const items = movies.results.map((movie) => ({
+									// id: movie.movieId,
+									// title: movie.title,
+									// image_url: movie.image_url,
+
+									id: movie.id,
+									title: movie.name,
+									image_url: movie.image,
 								}));
 								console.log(movies);
 								return items;
@@ -71,7 +79,25 @@ export default function Search(props) {
 	//necesario para que el autocompletado pueda controlar el comportamiento del formulario y la entrada.
 	const formProps = autocomplete.getFormProps({
 		inputElement: inputRef.current,
+		onSubmit: async (event) => {
+			event.preventDefault();
+			if (inputProps.value) {
+				const movies = await fetchMoviesByTitle(inputProps.value);
+				const items = movies.results.map((movie) => ({
+					id: movie.id,
+					title: movie.name,
+					image_url: movie.image,
+				}));
+				router.push({
+					pathname: "/search-results",
+					query: { query: inputProps.value, items: JSON.stringify(items) }, // Pasamos los resultados serializados como cadena en la URL.
+				});
+			}
+		},
 	});
+
+	// ... (resto del código)
+
 	//devuelve propiedades que deben aplicarse al campo de entrada
 	const inputProps = autocomplete.getInputProps({
 		inputElement: inputRef.current,
