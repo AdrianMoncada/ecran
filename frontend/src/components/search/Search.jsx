@@ -89,7 +89,7 @@ export default function Search(props) {
 					image_url: movie.image,
 				}));
 				router.push({
-					pathname: "/search-results",
+					pathname: "/search-result",
 					query: { query: inputProps.value, items: JSON.stringify(items) }, // Pasamos los resultados serializados como cadena en la URL.
 				});
 			}

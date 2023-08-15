@@ -12,7 +12,7 @@ import {
 	Info,
 	Contenedor,
 	Puntuaciones,
-} from "@/pages/movies/movies.styles";
+} from "@styles/pages.styles/movies.styles";
 
 // import { useRouter } from "next/router";
 import { fetchMovies } from "../api/movies";

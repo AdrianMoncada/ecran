@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Search from "@components/search/Search";
-import { SearchResultsContainer, ResultsContainer, List } from "@/pages/search-results.styles";
+import { SearchResultsContainer, ResultsContainer, List } from "@styles/pages.styles/search-results.styles";
 
 const SearchResults = () => {
 	const router = useRouter();
