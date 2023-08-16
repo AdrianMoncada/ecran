@@ -9,9 +9,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,8 +58,10 @@ public class MovieService {
 
     public List<MovieResponseDTO> findAllVarargs(String title, List<String> genres, String min_date, String max_date) {
         List<String> parsedGenres = genres.stream().map(g -> "{ genre: '"+g+"' }").toList();
-        System.out.println("SERVICE: " + parsedGenres);
-        return repository.findAllVarargs(title, parsedGenres, min_date, max_date).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+        String[] genresArray = new String[parsedGenres.size()];
+        parsedGenres.toArray(genresArray);
+        System.out.println(Arrays.toString(genresArray));
+        return repository.findAllVarargs(title, genresArray, min_date, max_date).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     };
 
     public List<MovieResponseDTO> findByFilters(String title, List<String> genres, String min_date, String max_date) {
