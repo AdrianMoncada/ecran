@@ -1,6 +1,7 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.model.Genre;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
@@ -56,16 +57,17 @@ public class MovieService {
         return repository.findAllByGenre(genre).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     }
 
-    public List<MovieResponseDTO> findAllVarargs(String title, List<String> genres, String min_date, String max_date) {
-        List<String> parsedGenres = genres.stream().map(g -> "{ genre: '"+g+"' }").toList();
-        String[] genresArray = new String[parsedGenres.size()];
-        parsedGenres.toArray(genresArray);
-        System.out.println(Arrays.toString(genresArray));
-        return repository.findAllVarargs(title, genresArray, min_date, max_date).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
-    };
-
     public List<MovieResponseDTO> findByFilters(String title, List<String> genres, String min_date, String max_date) {
-        return repository.findByTitleContainsIgnoreCaseAndGenreInAndReleaseDateBetween(title, genres, min_date, max_date).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+        List<Movie> moviesDB;
+
+        if (!genres.isEmpty()) {
+            List<Genre> parsedGenres = genres.stream().map(Genre::new).toList();
+            moviesDB = repository.findByFilters(title, parsedGenres, min_date, max_date);
+        } else {
+            moviesDB = repository.findByFiltersNoGenre(title, min_date, max_date);
+        }
+
+        return moviesDB.stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     };
 
 }

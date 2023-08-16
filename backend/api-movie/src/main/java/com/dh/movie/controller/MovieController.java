@@ -43,18 +43,13 @@ public class MovieController {
         return ResponseEntity.ok().body("Movie " + id + " deleted");
     }
 
-/*    @GetMapping("/filter")
+    @GetMapping("/filter")
     ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title) {
         return ResponseEntity.ok().body(movieService.findAllByTitle(title));
-    }*/
-
-    @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findByFilters(@RequestParam String title, @RequestParam List<String> genres, @RequestParam String min_date, @RequestParam String max_date) {
-        return ResponseEntity.ok().body(movieService.findAllVarargs(title, genres, min_date, max_date));
     }
 
-    /*@GetMapping("/filter/genre/{genre}")
-    ResponseEntity<List<MovieResponseDTO>> findAllByGenre(@PathVariable String genre) {
-        return ResponseEntity.ok().body(movieService.findAllByGenre(genre));
-    }*/
+    @GetMapping("/filter")
+    ResponseEntity<List<MovieResponseDTO>> findByFilters(@RequestParam String title, @RequestParam List<String> genres, @RequestParam(defaultValue = "0") String min_date, @RequestParam(defaultValue = "3000") String max_date) {
+        return ResponseEntity.ok().body(movieService.findByFilters(title, genres, min_date, max_date));
+    }
 }
