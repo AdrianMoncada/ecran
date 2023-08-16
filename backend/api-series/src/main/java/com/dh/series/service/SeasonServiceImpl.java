@@ -19,22 +19,18 @@ import java.util.logging.Logger;
 public class SeasonServiceImpl implements SerieService {
     private final SerieRepository serieRepository;
     private final ModelMapper mapper;
-    private static final Logger logger = Logger.getLogger("LOG-Series");
-
 
     @Override
     public Serie save(SerieDTO seriedto) throws ApiException {
         validSerie(seriedto);
         Serie serie = mapper.map(seriedto, Serie.class);
         serie = serieRepository.save(serie);
-        logger.info("SAVED NEW SERIE: " + serie);
         return serie;
     }
 
     @Override
     public List<Serie> getAll() {
         List<Serie> series = serieRepository.findAll();
-        logger.info("FOUND SERIES: " + series.size() + " series found");
         return series;
     }
 
@@ -42,21 +38,17 @@ public class SeasonServiceImpl implements SerieService {
     public Optional<Serie> getById(String id) throws ApiException {
         Optional<Serie> foundSerie = serieRepository.findById(id);
         if (foundSerie.isEmpty()) {
-            logger.info("NOT FOUND: SERIE WITH ID: " + id + " NOT FOUND");
             throw new ApiException(HttpStatus.NOT_FOUND, "Serie with id: " + id + " not found");
         }
-        logger.info("FOUND SERIE WITH ID: " + id + " " + foundSerie);
         return foundSerie;
     }
 
     @Override
     public String deleteById(String id) throws ApiException {
-        logger.info("DELETING: SERIE WITH ID: " + id);
         Optional<Serie> foundSerie = getById(id);
         serieRepository.deleteById(id);
         foundSerie = serieRepository.findById(id);
         if (foundSerie.isEmpty()) {
-            logger.info("DELETED: SERIE WITH ID: " + id + " WAS DELETED");
             return ("DELETED: SERIE WITH ID: " + id + " WAS DELETED");
         } else {
             throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Serie with id: " + id + " could not be deleted");
@@ -67,11 +59,9 @@ public class SeasonServiceImpl implements SerieService {
     @Override
     public Serie updateById(Serie serie) {
         String id = serie.getId();
-        logger.info("UPDATING: SERIE WITH ID: " + id);
         getById(id);
         validSerie(mapper.map(serie, SerieDTO.class));
         serie = serieRepository.save(serie);
-        logger.info("UPDATED SERIE: " + serie);
         return serie;
     }
 
