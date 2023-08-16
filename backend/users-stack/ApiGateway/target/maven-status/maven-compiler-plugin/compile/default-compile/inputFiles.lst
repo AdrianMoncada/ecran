@@ -1,0 +1,5 @@
+/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiGateway/src/main/java/com/ecran/ApiGateway/GlobalFiltersConfiguration.java
+/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiGateway/src/main/java/com/ecran/ApiGateway/AuthorizationHeaderFilter.java
+/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiGateway/src/main/java/com/ecran/ApiGateway/MyPreFilter.java
+/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiGateway/src/main/java/com/ecran/ApiGateway/ApiGatewayApplication.java
+/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiGateway/src/main/java/com/ecran/ApiGateway/MyPostFilter.java
