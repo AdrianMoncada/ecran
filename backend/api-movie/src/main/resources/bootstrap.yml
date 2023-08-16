@@ -14,3 +14,10 @@ spring:
     mongodb:
       uri: mongodb://root:root1234@44.201.102.47:27017
       database: movies-dev-mongo
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://44.203.152.200:8761/eureka
