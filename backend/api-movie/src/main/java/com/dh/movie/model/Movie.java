@@ -16,9 +16,6 @@ import java.util.List;
 @Document(collection = "Movies")
 public class Movie implements Serializable {
 
-    @Serial
-    private static final int serialVersionUID = 1;
-
     @Id
     private String movieId;
     private String title;
