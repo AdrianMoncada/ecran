@@ -32,7 +32,7 @@ public class Movie implements Serializable {
     private String rt_score;
     private String imdb_score;
     private String mc_score;
-    private List<String> genre;
+    private List<String> genre = new ArrayList<>();
     private List<String> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
