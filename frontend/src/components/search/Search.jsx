@@ -50,14 +50,14 @@ export default function Search(props) {
 							//Si query (el texto ingresado por el usuario) tiene algún valor, se llama a la función fetchMoviesByTitle(query)
 							if (query) {
 								const movies = await fetchMoviesByTitle(query);
-								const items = movies.results.map((movie) => ({
-									// id: movie.movieId,
-									// title: movie.title,
-									// image_url: movie.image_url,
+								const items = movies.map((movie) => ({
+									id: movie?.movieId,
+									title: movie?.title,
+									image_url: movie?.image_url,
 
-									id: movie.id,
-									title: movie.name,
-									image_url: movie.image,
+									// id: movie.id,
+									// title: movie.name,
+									// image_url: movie.image,
 								}));
 								console.log(movies);
 								return items;
@@ -83,10 +83,10 @@ export default function Search(props) {
 			event.preventDefault();
 			if (inputProps.value) {
 				const movies = await fetchMoviesByTitle(inputProps.value);
-				const items = movies.results.map((movie) => ({
-					id: movie.id,
-					title: movie.name,
-					image_url: movie.image,
+				const items = movies.map((movie) => ({
+					id: movie?.movieId,
+					title: movie?.title,
+					image_url: movie?.image_url,
 				}));
 				router.push({
 					pathname: "/search-result",
