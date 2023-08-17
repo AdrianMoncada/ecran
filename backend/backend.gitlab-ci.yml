@@ -37,7 +37,9 @@ backend-build-job:
             - backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar
 
 backend-test-job:
-    extends: .backend-common
+    extends: 
+        - .backend-common
+        - .base-rules
     stage: test
     script:
         - echo "Testing backend"

@@ -27,7 +27,9 @@ frontend-build-job:
         - echo "Building Frontend"
 
 frontend-test-job:
-    extends: .frontend.common
+    extends: 
+      - .frontend.common
+      - .base-rules
     stage: test
     script:
         - echo "Testing Frontend"
