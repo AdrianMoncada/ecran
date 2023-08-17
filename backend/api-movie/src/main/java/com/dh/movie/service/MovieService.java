@@ -53,4 +53,8 @@ public class MovieService {
         repository.deleteById(id);
     }
 
+    public List<MovieResponseDTO> findAllByGenre(String genre) {
+        return repository.findAllByGenre(genre).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    }
+
 }

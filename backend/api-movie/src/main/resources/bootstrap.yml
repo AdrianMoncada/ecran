@@ -3,5 +3,4 @@ spring:
     name: api-movie
   cloud:
     config:
-      enabled: true
       uri: http://34.238.41.135:8888

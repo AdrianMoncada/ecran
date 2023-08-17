@@ -1,4 +1,4 @@
-import Card, { Movie } from "@/components/card/Card";
+import Card from "@/components/card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 /* import movies from "@/assets/carousel.json"; */
@@ -9,7 +9,7 @@ import React from "react";
 
 const Carousel = ({ movies, top }) => {
 	return (
-		<Container>
+		<Container top={top}>
 			<Swiper
 				simulateTouch={false}
 				modules={[Navigation]}
@@ -31,17 +31,17 @@ const Carousel = ({ movies, top }) => {
 			>
 				{top
 					? movies
-						.sort((a, b) => a.top - b.top)
-						.map((movie) => (
+							.sort((a, b) => a.top - b.top)
+							.map((movie) => (
+								<SwiperSlide key={parseInt(movie.id)}>
+									<Card movie={movie} />
+								</SwiperSlide>
+							))
+					: movies.map((movie) => (
 							<SwiperSlide key={parseInt(movie.id)}>
 								<Card movie={movie} />
 							</SwiperSlide>
-						))
-					: movies.map((movie) => (
-						<SwiperSlide key={parseInt(movie.id)}>
-							<Card movie={movie} />
-						</SwiperSlide>
-					))}
+					  ))}
 			</Swiper>
 		</Container>
 	);

@@ -7,7 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+ 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +15,6 @@ import java.util.List;
 @Getter
 @Document(collection = "Movies")
 public class Movie implements Serializable {
-
-    @Serial
-    private static final int serialVersionUID = 1;
 
     @Id
     private String movieId;
@@ -32,7 +29,7 @@ public class Movie implements Serializable {
     private String rt_score;
     private String imdb_score;
     private String mc_score;
-    private List<String> genres = new ArrayList<>();
+    private List<String> genre = new ArrayList<>();
     private List<String> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();

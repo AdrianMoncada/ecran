@@ -26,11 +26,6 @@ public class MovieController {
         return ResponseEntity.ok().body(movieService.findAll());
     }
 
-    @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title) {
-        return ResponseEntity.ok().body(movieService.findAllByTitle(title));
-    }
-
     @GetMapping("/{id}")
     ResponseEntity<MovieResponseDTO> findById(@PathVariable("id") String id) {
         return ResponseEntity.ok().body(movieService.findById(id));
@@ -46,4 +41,14 @@ public class MovieController {
         movieService.deleteById(id);
         return ResponseEntity.ok().body("Movie " + id + " deleted");
     }
+
+    @GetMapping("/filter")
+    ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title) {
+        return ResponseEntity.ok().body(movieService.findAllByTitle(title));
+    }
+
+    /*@GetMapping("/filter/genre/{genre}")
+    ResponseEntity<List<MovieResponseDTO>> findAllByGenre(@PathVariable String genre) {
+        return ResponseEntity.ok().body(movieService.findAllByGenre(genre));
+    }*/
 }
