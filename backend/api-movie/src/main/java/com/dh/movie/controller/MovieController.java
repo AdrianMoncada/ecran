@@ -43,7 +43,7 @@ public class MovieController {
     }
 
     @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title, @RequestParam String genre) {
+    ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title) {
         return ResponseEntity.ok().body(movieService.findAllByTitle(title));
     }
 
