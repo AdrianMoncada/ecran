@@ -6,13 +6,22 @@ stages:
     - test
     - deploy
 
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+
 .frontend.common:
     rules:
         - changes:
             - 'frontend/*'
 
 frontend-build-job:
-    extends: .frontend.common
+    extends: 
+      - .frontend.common
+      - .base-rules
     stage: build
     script:
         - echo "Building Frontend"
@@ -23,19 +32,11 @@ frontend-test-job:
     script:
         - echo "Testing Frontend"
 
-.deploy_preview:
-  stage: deploy Frontend
-  except:
-    - develop
-  script:
-    - npm install --global vercel
-    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-    - vercel build --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
-
 frontend-deploy-job:
   stage: deploy
-  extends: .frontend.common
+  extends: 
+    - .frontend.common
+    - .base-rules
   script:
     - npm install --global vercel
     - cd frontend

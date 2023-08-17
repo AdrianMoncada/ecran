@@ -3,6 +3,13 @@ stages:
     - test
     - deploy
 
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+
 .backend-common:
     rules:
         - changes:
@@ -10,7 +17,9 @@ stages:
 
 backend-build-job:
     stage: build
-    extends: .backend-common
+    extends: 
+        - .backend-common
+        - .base-rules
     image:  maven:latest
     script:
         - mvn -f backend/api-series/pom.xml clean install
@@ -36,7 +45,9 @@ backend-test-job:
 deploy-job:
     stage: deploy
     image: alpine:3.11
-    extends: .backend-common
+    extends: 
+        - .backend-common
+        - .base-rules
     before_script:
         - apk update && apk add openssh-client bash
         - mkdir -p ~/.ssh
