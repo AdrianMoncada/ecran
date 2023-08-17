@@ -1,6 +1,7 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.model.Genre;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
@@ -9,8 +10,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,7 +48,7 @@ public class MovieService {
 
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Movie with id " + id + "doesn't exists.");
+            throw new RuntimeException("Movie with id " + id + " doesn't exists.");
         }
         repository.deleteById(id);
     }
@@ -56,5 +56,18 @@ public class MovieService {
     public List<MovieResponseDTO> findAllByGenre(String genre) {
         return repository.findAllByGenre(genre).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     }
+
+    public List<MovieResponseDTO> findByFilters(String title, List<String> genres, String min_date, String max_date) {
+        List<Movie> moviesDB;
+
+        if (!genres.isEmpty()) {
+            List<Genre> parsedGenres = genres.stream().map(Genre::new).toList();
+            moviesDB = repository.findByFilters(title, parsedGenres, min_date, max_date);
+        } else {
+            moviesDB = repository.findByFiltersNoGenre(title, min_date, max_date);
+        }
+
+        return moviesDB.stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    };
 
 }
