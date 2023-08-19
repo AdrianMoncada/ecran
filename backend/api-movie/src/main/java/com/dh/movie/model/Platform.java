@@ -18,10 +18,10 @@ public class Platform {
 
     @Id
     private String platformId;
-    private String name;
+    private String platform;
     private String logo_url;
 
-    public Platform(String name) {
-        this.name = name;
+    public Platform(String platform) {
+        this.platform = platform;
     }
 }

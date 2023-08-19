@@ -1,5 +1,6 @@
 package com.dh.movie.model.dto.movie;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class MovieResponseDTO implements Serializable {
     private String review;
     private String image_url;
     private String trailer_url;
+    @JsonProperty("release_date")
     private String releaseDate;
     private String rt_score;
     private String imdb_score;
