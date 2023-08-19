@@ -43,8 +43,22 @@ public class MovieController {
         return ResponseEntity.ok().body("Movie " + id + " deleted");
     }
 
-    @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findByFilters(@RequestParam String title, @RequestParam List<String> genres, @RequestParam(defaultValue = "0") String min_date, @RequestParam(defaultValue = "3000") String max_date) {
-        return ResponseEntity.ok().body(movieService.findByFilters(title, genres, min_date, max_date));
+    @GetMapping("/search")
+    ResponseEntity<List<MovieResponseDTO>> findByName(@RequestParam String title) {
+        return ResponseEntity.ok().body(movieService.findAllByTitle(title));
     }
+
+    @GetMapping("/filter")
+    ResponseEntity<List<MovieResponseDTO>> findByFilters
+            (
+                    @RequestParam(required = false, defaultValue = "") List<String> genres,
+                    @RequestParam(required = false, defaultValue = "") List<String> platforms,
+                    @RequestParam(defaultValue = "0") String min_date,
+                    @RequestParam(defaultValue = "3000") String max_date
+            )
+    {
+        return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date));
+    }
+
+
 }

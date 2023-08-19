@@ -4,10 +4,10 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serial;
+import java.util.function.Function;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Document(collection = "Platforms")
@@ -20,4 +20,8 @@ public class Platform {
     private String platformId;
     private String name;
     private String logo_url;
+
+    public Platform(String name) {
+        this.name = name;
+    }
 }
