@@ -18,6 +18,6 @@ public class ApiUsersApplication {
 	public BCryptPasswordEncoder bCryptPasswordEncoder()
 	{
 		return new BCryptPasswordEncoder();
-	}
+	}`
 
 }
