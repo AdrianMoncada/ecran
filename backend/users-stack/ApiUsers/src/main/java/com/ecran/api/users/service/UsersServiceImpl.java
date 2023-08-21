@@ -1,13 +1,19 @@
 package com.ecran.api.users.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
+import com.ecran.api.users.ui.model.MoviesResponseModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,18 +22,25 @@ import org.springframework.stereotype.Service;
 
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.data.*;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class UsersServiceImpl implements UsersService {
-	
+
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	RestTemplate restTemplate;
+
+	Environment environment;
 	
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTemplate, Environment environment)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.restTemplate = restTemplate;
+		this.environment= environment;
 	}
  
 	@Override
@@ -66,6 +79,21 @@ public class UsersServiceImpl implements UsersService {
 		if(userEntity == null) throw new UsernameNotFoundException(email);
 		
 		return new ModelMapper().map(userEntity, UserDto.class);
+	}
+
+	@Override
+	public UserDto getUserByUserId(String userId) {
+		UserEntity userEntity = usersRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+
+		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
+
+		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
+		});
+		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
+		userDto.setMovies(moviesList);
+		return userDto;
 	}
 
 }

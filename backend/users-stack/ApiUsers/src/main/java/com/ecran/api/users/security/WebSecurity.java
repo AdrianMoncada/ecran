@@ -54,6 +54,7 @@ public class WebSecurity {
 
     	http.authorizeHttpRequests((authz) -> authz
         .requestMatchers(HttpMethod.POST, "/users").permitAll()
+						.requestMatchers(HttpMethod.GET, "/users/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())

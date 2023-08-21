@@ -1,6 +1,9 @@
 package com.ecran.api.users.shared;
 
+import com.ecran.api.users.ui.model.MoviesResponseModel;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDto implements Serializable {
 	/**
@@ -14,6 +17,16 @@ public class UserDto implements Serializable {
 	private String password;
 	private String userId;
 	private String encryptedPassword;
+
+	private List<MoviesResponseModel> movies;
+
+	public List<MoviesResponseModel> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<MoviesResponseModel> movies) {
+		this.movies = movies;
+	}
 
 	public String getFirstName() {
 		return firstName;
