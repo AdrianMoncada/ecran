@@ -10,6 +10,7 @@
 	},
 	"extends": [
 		"next",
+		"next/babel",
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:prettier/recommended",

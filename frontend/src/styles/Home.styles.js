@@ -5,6 +5,7 @@ export const MainHome = styled.div`
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
 	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
@@ -64,6 +65,7 @@ export const SuggestionsStyle = styled.div`
 	margin: 0 20px;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
 	padding-top: 7em;
 
 	.suggestion_title {

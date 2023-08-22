@@ -31,8 +31,8 @@ function MovieDetail({ movies, cardMovies }) {
 			<Contenedor>
 				<ContainerInfoMovie>
 					<Info>
-						<p className="genero">{movies?.genero}</p>
-						<p className="anio">{movies?.year}</p>
+						<p className="genero">{movies?.genre}</p>
+						<p className="anio">{movies?.releaseDate}</p>
 						<p className="titulo">{movies?.title}</p>
 						<span className="cast">
 							Director:
@@ -67,22 +67,22 @@ function MovieDetail({ movies, cardMovies }) {
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 						</div>
-						<Puntuaciones className="puntuacion">
-						
-							<p className="numerosPorcentaje div3">{movies.rt_score}</p>
-							<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
-							<p className="numerosPorcentaje div5">{movies.mc_score}</p>
-						
-						
-							<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6"/>
-							<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7"/>
-							<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8"/>
-						
-					</Puntuaciones>
+
 					</As>
 				</ContainerInfoMovie>
 				<DescriptioContainer>
-					
+					<Puntuaciones className="puntuacion">
+
+						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
+						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
+						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
+
+
+						<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6" />
+						<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7" />
+						<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8" />
+
+					</Puntuaciones>
 					<p className="day_p">
 						{movies.review} El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
 						centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a centro del
@@ -129,18 +129,18 @@ function MovieDetail({ movies, cardMovies }) {
 					</p>
 				</DescriptioContainer>
 				<Sugestions>
-				<h4 className="oldies_title">Sugerencias</h4>
-				{/* <Carousel movies={moviesTop} top={true} /> */}
-				<div className="suggestions_cards">
-					{cardMovies.slice(0, 3).map((item) => (
-						<div className="card" key={item.id}>
-							{" "}
-							{/* Asegúrate de usar una clave única para cada elemento */}
-							<Card movie={item} />
-						</div>
-					))}
-				</div>
-			</Sugestions>
+					<h4 className="oldies_title">Sugerencias</h4>
+					{/* <Carousel movies={moviesTop} top={true} /> */}
+					<div className="suggestions_cards">
+						{cardMovies.slice(0, 3).map((item) => (
+							<div className="card" key={item.id}>
+								{" "}
+								{/* Asegúrate de usar una clave única para cada elemento */}
+								<Card movie={item} />
+							</div>
+						))}
+					</div>
+				</Sugestions>
 			</Contenedor>
 		</main>
 	);
