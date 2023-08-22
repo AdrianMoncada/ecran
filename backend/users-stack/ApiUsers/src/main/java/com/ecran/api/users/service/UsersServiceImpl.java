@@ -7,8 +7,11 @@ import java.util.UUID;
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -30,16 +33,20 @@ public class UsersServiceImpl implements UsersService {
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	RestTemplate restTemplate;
+//	RestTemplate restTemplate;
 
 	Environment environment;
+	MoviesServiceClient moviesServiceClient;
+
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTemplate, Environment environment)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.restTemplate = restTemplate;
+//		this.restTemplate = restTemplate;
+		this.moviesServiceClient=moviesServiceClient;
 		this.environment= environment;
 	}
  
@@ -87,11 +94,17 @@ public class UsersServiceImpl implements UsersService {
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
+//		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
+//		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
+//		});
+//		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
 
-		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
-		});
-		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
+		List<MoviesResponseModel> moviesList = null;
+		try {
+			moviesList = moviesServiceClient.getAlbums(userId);
+		} catch (FeignException e) {
+			logger.error(e.getLocalizedMessage());
+		}
 		userDto.setMovies(moviesList);
 		return userDto;
 	}
