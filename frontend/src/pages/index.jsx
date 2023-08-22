@@ -9,7 +9,7 @@ import { fetchMovies } from "./api/movies";
 
 export default function Home({ response }) {
 	return (
-		<main>
+		<>
 			<MainHome>
 				<h1 className="title">Reseñas de series y películas al instante</h1>
 				<h4 className="mainHome_p">
@@ -70,7 +70,7 @@ export default function Home({ response }) {
 				</h4>
 				{/* <div className="discover_buscador"></div> */}
 			</Discover>
-		</main>
+		</>
 	);
 }
 
