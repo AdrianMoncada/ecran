@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainHome = styled.div`
-	height: 83vh;
+	height: 60vh;
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
@@ -10,20 +10,21 @@ export const MainHome = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 50px;
-	margin: 0 20px;
+	gap: 40px;
+	margin: 0 auto;
+	width: 90vw;
 
 	.title {
 		font-family: InterBold;
 		text-align: center;
 		font-size: 4vw;
-		width: 16em;
+		width: 80%;
 		font-weight: 800;
 		line-height: 55px;
 	}
 
 	.buscador {
-		width: 34em;
+		width: 100%;
 		height: 3em;
 		flex-shrink: 0;
 		border-radius: 50px;
@@ -40,18 +41,37 @@ export const MainHome = styled.div`
 		text-align: center;
 		font-size: 1.3vw;
 		font-weight: 400;
-		width: 45em;
+		width: 80%;
 	}
 
+	/*<------------Media Query-------------->*/
+
 	@media screen and (max-width: 768px) {
+		height: 60vh;
+		/* padding-top: 50px; */
+		gap: 30px;
+
 		.title {
-			font-size: 7vw;
+			font-size: 5vw;
 			width: 12em;
 		}
 
 		.mainHome_p {
-			font-size: 3vw;
+			font-size: 2vw;
 			width: 25em;
+		}
+
+		.buscador {
+			width: 32em;
+			height: 2em;
+			flex-shrink: 0;
+			border-radius: 50px;
+			background: linear-gradient(
+				45deg,
+				rgba(30, 41, 59, 0.15) 0%,
+				rgba(30, 41, 59, 0.48) 51.32%,
+				rgba(30, 41, 59, 0.15) 100%
+			);
 		}
 	}
 `;
@@ -80,6 +100,7 @@ export const SuggestionsStyle = styled.div`
 		font-size: 1.3vw;
 	}
 
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
 		.suggestion_title {
 			text-align: center;
@@ -120,6 +141,7 @@ export const Day = styled.div`
 		width: 42em;
 		margin: 1.5em auto;
 	}
+	/*<------------Media Query-------------->*/
 
 	@media screen and (max-width: 768px) {
 		.day_title {
@@ -194,6 +216,7 @@ export const Oldies = styled.div`
 		width: 26em;
 	}
 
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
 		flex-direction: column;
 		width: 100%;
@@ -269,6 +292,7 @@ export const Profile = styled.div`
 		font-weight: 400;
 		width: 43em;
 	}
+	/*<------------Media Query-------------->*/
 
 	@media screen and (max-width: 768px) {
 		.profile_title {
@@ -332,7 +356,7 @@ export const Discover = styled.div`
 			rgba(30, 41, 59, 0.15) 100%
 		);
 	}
-
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
 		width: 95%;
 		.discover_title {

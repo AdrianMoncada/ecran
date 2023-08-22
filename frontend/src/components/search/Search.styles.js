@@ -7,6 +7,10 @@ export const Form = styled.form`
 	max-width: 500px;
 	/* height: 100%; */
 	min-width: 200px;
+
+	@media screen and (max-width: 768px) {
+		width: 50%;
+	}
 `;
 
 export const InputContent = styled.div`
