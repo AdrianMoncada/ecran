@@ -18,6 +18,7 @@ export const Contenedor = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	height: fit-content;
 `;
 
 export const ContainerInfoMovie = styled.div`
@@ -48,11 +49,12 @@ export const ContainerInfoMovie = styled.div`
 		font-size: 55px;
 		letter-spacing: -0.5px;
 		color: #e2e8f0;
-		margin-bottom: 25px;
+		margin-bottom: 3rem;
 	}
 
 	.cast {
 		display: flex;
+		align-items: baseline;
 		font-family: Inter;
 		font-size: 20px;
 		letter-spacing: -0.5px;
@@ -60,7 +62,6 @@ export const ContainerInfoMovie = styled.div`
 		margin-bottom: 40px;
 	}
 	.castD {
-		margin-top: 8px;
 		margin-left: 20px;
 		text-align: left;
 		font-family: Inter;
@@ -68,9 +69,24 @@ export const ContainerInfoMovie = styled.div`
 		letter-spacing: -0.5px;
 		color: #e2e8f0;
 	}
+
+
+	@media screen and (max-width: 1200px) {
+		width: 80%;
+	}
+
+	@media screen and (max-width: 1024px) {
+		.titulo {
+			font-size: 40px;
+		}
+	}
+
+	
+
 `;
 export const Info = styled.div`
 	width: 60%;
+	height:fit-content;
 
 	.platforms {
 		flex-direction: column;
@@ -81,12 +97,12 @@ export const Info = styled.div`
 		letter-spacing: -0.5px;
 		color: #e2c7fe;
 		margin-bottom: 40px;
-		margin-top: 120px;
+
 	}
 
 	.imagenPlatform {
 		display: flex;
-		margin-top: 20px;
+
 		margin-left: 20%;
 	}
 
@@ -98,9 +114,10 @@ export const Info = styled.div`
 export const As = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	width: 40%;
+	margin-left: 3rem;
 
 	.container {
 		display: flex;
@@ -112,28 +129,45 @@ export const PosterContainer = styled.div`
 	border-radius: 10px;
 	height: 450px;
 	width: 320px;
-	margin-bottom: 60px;
+	margin-bottom: 6rem;
+
+
+	@media screen and (max-width: 1024px) {
+		margin-bottom: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	
 `;
 export const Poster = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 	border-radius: 10px;
+
+	@media screen and (max-width: 1024px) {
+		height: 85%;
+		width: 85%;
+	}
+	
 `;
 export const RatesContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	margin-bottom: 10px;
+
+	
 `;
 export const LogoRates = styled.img`
 	height: 100px;
 	width: 100px;
 `;
 export const DescriptioContainer = styled.div`
-	margin-left: 80px;
+
+
 	width: 100%;
-	height: 100%;
-	padding: 0 90px;
+
 	.day_p {
 		color: #94a3b8;
 		text-align: justify;
@@ -141,7 +175,14 @@ export const DescriptioContainer = styled.div`
 		font-weight: 400;
 		line-height: 27px;
 		letter-spacing: -0.25px;
-		width: 768px;
+		width: 80%;
+		height:fit-content;
+		margin: auto;
+	}
+
+	@media screen and (max-width: 1024px) {
+		height: 85%;
+		width: 85%;
 	}
 `;
 export const Puntuaciones = styled.div`
@@ -149,8 +190,24 @@ export const Puntuaciones = styled.div`
 	height: 200px;
 	width: 300px;
 	float: right;
-	margin-right: 200px;
-	margin-left: 60px;
+	margin-top:3rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 0.4fr);
+	grid-column-gap: 25px;
+	grid-row-gap: 5px;
+	align-items: center;
+	justify-items: center;
+    align-items: start;
+		
+		.div1 { grid-area: 1 / 1 / 2 / 4; }
+		.div2 { grid-area: 2 / 1 / 3 / 4; }
+		.div3 { grid-area: 1 / 1 / 2 / 2; }
+		.div4 { grid-area: 1 / 2 / 2 / 3; }
+		.div5 { grid-area: 1 / 3 / 2 / 4; }
+		.div6 { grid-area: 2 / 1 / 3 / 2; }
+		.div7 { grid-area: 2 / 2 / 3 / 3; }
+		.div8 { grid-area: 2 / 3 / 3 / 4; }
 
 	.numerosPorcentaje {
 		color: #e2c7fe;
@@ -165,6 +222,16 @@ export const Puntuaciones = styled.div`
 	.container {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	@media screen and (max-width: 1024px) {
+
+		grid-column-gap: 0px;
+
+		.numerosPorcentaje{
+			font-size: 23px;
+		}
+
 	}
 `;
 
@@ -197,4 +264,8 @@ export const Sugestions = styled.div`
 	.card {
 		width: 30%;
 	}
+
+
+
+
 `;

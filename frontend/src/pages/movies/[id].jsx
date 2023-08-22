@@ -47,7 +47,7 @@ function MovieDetail({ movies, cardMovies }) {
 						<span className="platforms">
 							Disponible en:
 							<div className="imagenPlatform">
-								<Image className="logo" src="/images/home/logos/disney.svg" alt="" width={50} height={50} />
+								<Image className="logo" src="/images/home/logos/disney.svg" alt="" width={100} height={100} />
 							</div>
 						</span>
 					</Info>
@@ -59,29 +59,30 @@ function MovieDetail({ movies, cardMovies }) {
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
-							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
-							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
-							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
-							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
-							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 						</div>
+						<Puntuaciones className="puntuacion">
+						
+							<p className="numerosPorcentaje div3">{movies.rt_score}</p>
+							<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
+							<p className="numerosPorcentaje div5">{movies.mc_score}</p>
+						
+						
+							<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6"/>
+							<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7"/>
+							<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8"/>
+						
+					</Puntuaciones>
 					</As>
 				</ContainerInfoMovie>
 				<DescriptioContainer>
-					<Puntuaciones className="puntuacion">
-						<div className="container">
-							<p className="numerosPorcentaje">{movies.rt_score}</p>
-							<p className="numerosPorcentaje">{movies.imdb_score}</p>
-							<p className="numerosPorcentaje">{movies.mc_score}</p>
-						</div>
-						<div className="container">
-							<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} />
-							<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} />
-							<Image src="/images/RottenTomatoes.png" alt="imagen1" width={50} height={50} />
-						</div>
-					</Puntuaciones>
+					
 					<p className="day_p">
-						{movies.review}El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
+						{movies.review} El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
 						centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a centro del
 						circulo se encuentra en el centro del elemento. Para especificar el valor del radio o las coordenadas del
 						centro podemos utilizar palabras clave ( closest-side o farthest-side ) unidades de longitud ( px, em etc. .
@@ -91,7 +92,38 @@ function MovieDetail({ movies, cardMovies }) {
 						opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El
 						segundest-side ) unidades de longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el
 						radio del circulo y es opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más
-						cercano. El segund
+						cercano. El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
+						centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a centro del
+						circulo se encuentra en el centro del elemento. Para especificar el valor del radio o las coordenadas del
+						centro podemos utilizar palabras clave ( closest-side o farthest-side ) unidades de longitud ( px, em etc. .
+						. ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El valor por defecto es
+						closest-side o sea la distancia hasta el lado más cercano. El segundo parámetroest-side ) unidades de
+						longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es
+						opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El
+						segundest-side ) unidades de longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el
+						radio del circulo y es opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más
+						cercano.El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
+						centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a centro del
+						circulo se encuentra en el centro del elemento. Para especificar el valor del radio o las coordenadas del
+						centro podemos utilizar palabras clave ( closest-side o farthest-side ) unidades de longitud ( px, em etc. .
+						. ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El valor por defecto es
+						closest-side o sea la distancia hasta el lado más cercano. El segundo parámetroest-side ) unidades de
+						longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es
+						opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El
+						segundest-side ) unidades de longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el
+						radio del circulo y es opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más
+						cercano.
+						El primer parámetro representa el radio del circulo y es opcional. El valor por defectodel
+						centro (x,y) y es también opcional. Si no especificamos la posición, el CSS considera que a centro del
+						circulo se encuentra en el centro del elemento. Para especificar el valor del radio o las coordenadas del
+						centro podemos utilizar palabras clave ( closest-side o farthest-side ) unidades de longitud ( px, em etc. .
+						. ) o porcentajes.El primer parámetro representa el radio del circulo y es opcional. El valor por defecto es
+						closest-side o sea la distancia hasta el lado más cercano. El segundo parámetroest-side ) unidades de
+						longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el radio del circulo y es
+						opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más cercano. El
+						segundest-side ) unidades de longitud ( px, em etc. . . ) o porcentajes.El primer parámetro representa el
+						radio del circulo y es opcional. El valor por defecto es closest-side o sea la distancia hasta el lado más
+						cercano.
 					</p>
 				</DescriptioContainer>
 			</Contenedor>
