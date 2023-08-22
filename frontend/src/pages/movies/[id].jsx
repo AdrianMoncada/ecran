@@ -47,7 +47,7 @@ function MovieDetail({ movies, cardMovies }) {
 						<span className="platforms">
 							Disponible en:
 							<div className="imagenPlatform">
-								<Image className="logo" src="/images/home/logos/disney.svg" alt="" />
+								<Image className="logo" src="/images/home/logos/disney.svg" alt="" width={50} height={50} />
 							</div>
 						</span>
 					</Info>
@@ -59,11 +59,11 @@ function MovieDetail({ movies, cardMovies }) {
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
-							<Image src="/images/home/Star1.png" alt="" />
-							<Image src="/images/home/Star1.png" alt="" />
-							<Image src="/images/home/Star1.png" alt="" />
-							<Image src="/images/home/Star1.png" alt="" />
-							<Image src="/images/home/Star1.png" alt="" />
+							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
+							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
+							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
+							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
+							<Image src="/images/home/Star1.png" alt="" width={50} height={50} />
 						</div>
 					</As>
 				</ContainerInfoMovie>
@@ -75,9 +75,9 @@ function MovieDetail({ movies, cardMovies }) {
 							<p className="numerosPorcentaje">{movies.mc_score}</p>
 						</div>
 						<div className="container">
-							<Image src="/images/Group.svg" alt="imagen1" />
-							<Image src="/images/Metacritic1.png" alt="imagen1" />
-							<Image src="/images/RottenTomatoes.png" alt="imagen1" />
+							<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} />
+							<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} />
+							<Image src="/images/RottenTomatoes.png" alt="imagen1" width={50} height={50} />
 						</div>
 					</Puntuaciones>
 					<p className="day_p">

@@ -3,6 +3,8 @@ package com.dh.movie.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,10 +27,11 @@ public class Movie implements Serializable {
     private String review;
     private String image_url;
     private String trailer_url;
-    private String release_date;
     private String rt_score;
     private String imdb_score;
     private String mc_score;
+    @Field("release_date")
+    private String releaseDate;
     private List<String> genre = new ArrayList<>();
     private List<String> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
