@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class MovieResponseDTO implements Serializable {
     private String review;
     private String image_url;
     private String trailer_url;
-    private String releaseDate;
+    private String release_date;
     private String rt_score;
     private String imdb_score;
     private String mc_score;

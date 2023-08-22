@@ -6,7 +6,6 @@ import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -43,22 +42,13 @@ public class MovieController {
         return ResponseEntity.ok().body("Movie " + id + " deleted");
     }
 
-    @GetMapping("/search")
-    ResponseEntity<List<MovieResponseDTO>> findByName(@RequestParam String title) {
+    @GetMapping("/filter")
+    ResponseEntity<List<MovieResponseDTO>> findAllByTitle(@RequestParam String title) {
         return ResponseEntity.ok().body(movieService.findAllByTitle(title));
     }
 
-    @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findByFilters
-            (
-                    @RequestParam(required = false, defaultValue = "") List<String> genres,
-                    @RequestParam(required = false, defaultValue = "") List<String> platforms,
-                    @RequestParam(defaultValue = "0") String min_date,
-                    @RequestParam(defaultValue = "3000") String max_date
-            )
-    {
-        return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date));
-    }
-
-
+    /*@GetMapping("/filter/genre/{genre}")
+    ResponseEntity<List<MovieResponseDTO>> findAllByGenre(@PathVariable String genre) {
+        return ResponseEntity.ok().body(movieService.findAllByGenre(genre));
+    }*/
 }
