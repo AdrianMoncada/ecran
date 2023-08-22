@@ -11,8 +11,8 @@ export const Purple = styled.div`
 `;
 
 export const Contenedor = styled.section`
-	top: 24%;
-	position: absolute;
+	position: relative;
+	bottom: 6rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -78,6 +78,27 @@ export const ContainerInfoMovie = styled.div`
 	@media screen and (max-width: 1024px) {
 		.titulo {
 			font-size: 40px;
+			    padding-top: 1.5rem;
+
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items:center;
+
+		
+		.titulo {
+			font-size: 40px;
+			padding-top: 1.5rem;
+			text-align:center;
+		}
+
+		.cast {
+			font-size: 16px;
+		}
+		.castD {
+			font-size: 16px;
 		}
 	}
 
@@ -102,12 +123,19 @@ export const Info = styled.div`
 
 	.imagenPlatform {
 		display: flex;
-
 		margin-left: 20%;
 	}
 
 	.logo {
 		height: 120px;
+	}
+
+	@media screen and (max-width: 768px) {
+		width: 80%;
+	}
+
+	@media screen and (max-width: 640px) {
+		width: 90%;
 	}
 `;
 
@@ -122,6 +150,10 @@ export const As = styled.div`
 	.container {
 		display: flex;
 		justify-content: center;
+	}
+
+	@media screen and (max-width: 640px) {
+		margin-left: 0rem;
 	}
 `;
 
@@ -171,18 +203,23 @@ export const DescriptioContainer = styled.div`
 	.day_p {
 		color: #94a3b8;
 		text-align: justify;
-		font-size: 18px;
+		font-size: 15px;
 		font-weight: 400;
-		line-height: 27px;
+		line-height: 30px;
 		letter-spacing: -0.25px;
 		width: 80%;
 		height:fit-content;
 		margin: auto;
 	}
 
+
 	@media screen and (max-width: 1024px) {
 		height: 85%;
 		width: 85%;
+
+		.day_p{
+			width: 90%;
+		}
 	}
 `;
 export const Puntuaciones = styled.div`
@@ -240,7 +277,7 @@ export const Sugestions = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 1200px 90px 70px 90px;
+	margin-top: 4rem;
 
 	.oldies_title {
 		font-family: InterBold;
@@ -251,6 +288,7 @@ export const Sugestions = styled.div`
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		margin-top: 2rem;
 	}
 
 	.suggestions_cards {

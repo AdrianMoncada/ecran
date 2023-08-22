@@ -14,6 +14,8 @@ import {
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
 
+import Footer from '@components/layout/footer/Footer'
+
 // import { useRouter } from "next/router";
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
@@ -126,8 +128,7 @@ function MovieDetail({ movies, cardMovies }) {
 						cercano.
 					</p>
 				</DescriptioContainer>
-			</Contenedor>
-			<Sugestions>
+				<Sugestions>
 				<h4 className="oldies_title">Sugerencias</h4>
 				{/* <Carousel movies={moviesTop} top={true} /> */}
 				<div className="suggestions_cards">
@@ -140,6 +141,7 @@ function MovieDetail({ movies, cardMovies }) {
 					))}
 				</div>
 			</Sugestions>
+			</Contenedor>
 		</main>
 	);
 }
