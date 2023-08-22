@@ -1,30 +1,11 @@
 import { useMemo, useRef, useState } from "react";
 import { createAutocomplete } from "@algolia/autocomplete-core";
-import Link from "next/link";
-import { Form, Input, InputContent, DropdownConteiner, List } from "./Search.styles";
+// import Link from "next/link";
+import { Form, Input, InputContent, DropdownConteiner } from "./Search.styles";
 import { FiSearch } from "react-icons/fi";
 import { fetchMoviesByTitle } from "@/pages/api/search";
 import { useRouter } from "next/router";
-import Image from "next/image";
-
-const AutocompleteItem = ({ movieId, title, image_url }) => {
-	return (
-		<List>
-			<Link className="list" href={`/movies/${movieId}`}>
-				<div className="imageList">
-					<Image src={image_url} alt={title} className="image" width={50} height={50} />
-				</div>
-
-				<div className="descriptionList">
-					<h3 className="titleList">{title}</h3>
-					<p>Genero</p>
-					<p>Año</p>
-				</div>
-			</Link>
-			<hr />
-		</List>
-	);
-};
+import AutocompleteItem from "@/components/results/AutocompleteItem";
 
 export default function Search(props) {
 	const [autocompleteState, setAutocompleteState] = useState({
