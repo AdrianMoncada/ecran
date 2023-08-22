@@ -1,7 +1,9 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.model.Genre;
 import com.dh.movie.model.Movie;
+import com.dh.movie.model.Platform;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.repository.MovieRepository;
@@ -9,9 +11,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -48,13 +48,32 @@ public class MovieService {
 
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Movie with id " + id + "doesn't exists.");
+            throw new RuntimeException("Movie with id " + id + " doesn't exists.");
         }
         repository.deleteById(id);
     }
 
-    public List<MovieResponseDTO> findAllByGenre(String genre) {
+    public List<MovieResponseDTO> findAllByGenres(String genre) {
         return repository.findAllByGenre(genre).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     }
+
+    public List<MovieResponseDTO> findByFilters(List<String> genres, List<String> platforms, String min_date, String max_date) {
+        List<Movie> movies;
+        List<Genre> parsedGenres = genres.stream().map(Genre::new).toList();
+        List<Platform> parsedPlatforms = platforms.stream().map(Platform::new).toList();
+
+        if (!genres.isEmpty() && !platforms.isEmpty()) {
+            movies = repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date);
+        }
+        if (!genres.isEmpty()){
+            movies = repository.findByGenresInDateRange(parsedGenres, min_date, max_date);
+        }
+        if (!platforms.isEmpty()){
+            movies = repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date);
+        }
+        else movies = repository.findByDateRange(min_date, max_date);
+
+        return movies.stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    };
 
 }
