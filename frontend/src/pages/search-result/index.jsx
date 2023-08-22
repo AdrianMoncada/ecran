@@ -31,24 +31,28 @@ const SearchResults = () => {
 					</h1>
 				</div>
 				<div className="container-list">
-					<ul>
-						{searchResults.map((item) => (
-							<List key={item.id}>
-								<div className="list">
-									<div className="imageList">
-										<Image src={item.image_url} alt={item.title} className="image" width={100} height={200} />
-									</div>
+					{searchResults.length > 0 ? (
+						<ul>
+							{searchResults.map((item) => (
+								<List key={item.id}>
+									<div className="list">
+										<div className="imageList">
+											<Image src={item.image_url} alt={item.title} className="image" width={100} height={200} />
+										</div>
 
-									<div className="descriptionList">
-										<h3 className="titleList">{item.title}</h3>
-										<p>Genero</p>
-										<p>Año</p>
+										<div className="descriptionList">
+											<h3 className="titleList">{item.title}</h3>
+											<p>Genero</p>
+											<p>Año</p>
+										</div>
 									</div>
-								</div>
-								<hr />
-							</List>
-						))}
-					</ul>
+									<hr />
+								</List>
+							))}
+						</ul>
+					) : (
+						<p>No se encontraron resultados.</p>
+					)}
 				</div>
 			</ResultsContainer>
 		</>
