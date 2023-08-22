@@ -1,5 +1,3 @@
-const API_URL = process.env.API_URL;
-
 export async function fetchMovies() {
 	try {
 		const response = await fetch("http://3.95.255.94:8080/api/v1/movies");
@@ -13,7 +11,7 @@ export async function fetchMovies() {
 
 export async function fetchMovieId(req) {
 	try {
-		const response = await fetch(API_URL);
+		const response = await fetch("http://54.234.185.146:8080/api/v1/movies");
 		const data = await response.json();
 		const movie = data.find((movie) => movie.id === req);
 		console.log(movie);
