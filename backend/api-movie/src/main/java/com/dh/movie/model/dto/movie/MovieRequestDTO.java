@@ -1,5 +1,6 @@
 package com.dh.movie.model.dto.movie;
 
+import com.dh.movie.model.Platform;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,7 +41,7 @@ public class MovieRequestDTO implements Serializable {
     @NotBlank
     private String mc_score;
     private List<String> genre = new ArrayList<>();
-    private List<String> platforms = new ArrayList<>();
+    private List<Platform> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
 }

@@ -33,7 +33,7 @@ public class Movie implements Serializable {
     @Field("release_date")
     private String releaseDate;
     private List<String> genre = new ArrayList<>();
-    private List<String> platforms = new ArrayList<>();
+    private List<Platform> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
 

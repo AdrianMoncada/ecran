@@ -24,4 +24,9 @@ public class Platform {
     public Platform(String name) {
         this.name = name;
     }
+
+    public Platform(String name, String logo_url) {
+        this.name = name;
+        this.logo_url = logo_url;
+    }
 }
