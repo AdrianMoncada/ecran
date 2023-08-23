@@ -1,12 +1,12 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
-import com.dh.movie.model.Genre;
+import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
-import com.dh.movie.model.Platform;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.repository.MovieRepository;
+import com.dh.movie.repository.dtos.PlatformDB;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
@@ -59,21 +59,29 @@ public class MovieService {
     }
 
     public List<MovieResponseDTO> findByFilters(List<String> genres, List<String> platforms, String min_date, String max_date, String order) {
-        List<Genre> parsedGenres = genres.stream().map(Genre::new).toList();
-        List<Platform> parsedPlatforms = platforms.stream().map(Platform::new).toList();
+        List<GenreDB> parsedGenres = genres.stream().map(GenreDB::new).toList();
+        List<PlatformDB> parsedPlatforms = platforms.stream().map(PlatformDB::new).toList();
 
         Sort.Direction sortDirection = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort sort = Sort.by(sortDirection, "title");
 
-        if (genres.isEmpty() && platforms.isEmpty()) {
+        if (parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
+            System.out.println("Nothing");
             return repository.findByDateRange(min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
-        if (!genres.isEmpty() && platforms.isEmpty()){
+
+        if (!parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
+            System.out.println("No platforms");
+            System.out.println(parsedGenres);
             return repository.findByGenresInDateRange(parsedGenres, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
-        if (genres.isEmpty()){
+
+        if (parsedGenres.isEmpty() && !parsedPlatforms.isEmpty()) {
+            System.out.println("No genres");
+            System.out.println(parsedPlatforms);
             return repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
+
         return repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     };
 
