@@ -26,21 +26,20 @@ public class PlatformService {
     }
 
     public PlatformResponseDTO findById(String id) {
-        Platform platform = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Platform id " + id + " doesn't exists."));
+        Platform platform = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("PlatformDB id " + id + " doesn't exists."));
         return mapper.map(platform, PlatformResponseDTO.class);
     }
 
     public PlatformResponseDTO updateById(String id, PlatformRequestDTO platform) {
-        Platform platformDB = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Platform id " + id + " doesn't exists."));
+        Platform platformDB = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("PlatformDB id " + id + " doesn't exists."));
         Platform platformPatch = mapper.map(platform, Platform.class);
         mapper.map(platformPatch, platformDB);
-        platformDB.setPlatformId(id);
         return mapper.map(repository.save(platformDB), PlatformResponseDTO.class);
     }
 
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Platform with id " + id + "doesn't exists.");
+            throw new RuntimeException("PlatformDB with id " + id + "doesn't exists.");
         }
         repository.deleteById(id);
     }
