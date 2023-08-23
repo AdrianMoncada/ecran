@@ -270,10 +270,25 @@ export const Puntuaciones = styled.div`
 	}
 
 	@media screen and (max-width: 1024px) {
-		grid-column-gap: 0px;
+		float: none;
+		margin-left: 0;
+	}
 
-		.numerosPorcentaje {
-			font-size: 23px;
+	@media screen and (max-width: 768px) {
+		.card {
+			width: 100%;
+		}
+
+		.oldies_title {
+			font-family: InterBold;
+			font-size: 10vw;
+			font-weight: 700;
+			letter-spacing: -0.25px;
+			background: linear-gradient(90deg, #a855f7 0%, #e9d5ff 100%);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			margin-top: 2rem;
 		}
 	}
 `;
