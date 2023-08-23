@@ -55,7 +55,7 @@ public class MovieController {
                     @RequestParam(required = false, defaultValue = "") List<String> platforms,
                     @RequestParam(defaultValue = "0") String min_date,
                     @RequestParam(defaultValue = "3000") String max_date,
-                    @RequestParam(defaultValue = "asc") String order
+                    @RequestParam(required = false, defaultValue = "asc") String order
             )
     {
         return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date, order));
