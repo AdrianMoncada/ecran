@@ -4,14 +4,16 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.function.Function;
 
 @Data
-@AllArgsConstructor
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "Platforms")
-public class Platform {
+public class Platform implements Serializable {
 
     @Serial
     private static final int serialVersionUID = 1;
@@ -23,10 +25,5 @@ public class Platform {
 
     public Platform(String name) {
         this.name = name;
-    }
-
-    public Platform(String name, String logo_url) {
-        this.name = name;
-        this.logo_url = logo_url;
     }
 }
