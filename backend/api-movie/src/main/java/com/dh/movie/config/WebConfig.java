@@ -1,4 +1,4 @@
-package com.dh.movie.config;
+/*package com.dh.movie.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -14,3 +14,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("Access-Control-Allow-Origin", "*");
     }
 }
+*/
