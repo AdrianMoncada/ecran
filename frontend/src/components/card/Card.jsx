@@ -40,7 +40,7 @@ const Card = ({ movie }) => {
 				<CardHeader>
 					<div>
 						<p>{movie?.director}</p>
-						<p>{movie?.release_date}</p>
+						<p>{movie?.releaseDate}</p>
 					</div>
 				</CardHeader>
 				<h1 className="title">{movie?.title}</h1>
