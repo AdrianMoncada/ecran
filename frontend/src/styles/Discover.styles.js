@@ -5,13 +5,13 @@ export const Container = styled.div`
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
+	width: 100%;
 	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 40px;
-	margin: 0 auto;
 	margin: 0 20px;
 `;
 
@@ -49,7 +49,7 @@ export const List = styled.li`
 	}
 
 	.imageList {
-		width: 20%;
+		width: 15%;
 		margin: 20px 0;
 	}
 
@@ -79,25 +79,21 @@ export const List = styled.li`
 
 		.textItem {
 			color: #e2e8f0;
-			font-size: 20px;
+			font-size: 1.5vw;
 			font-weight: 400;
+			margin-bottom: -5px;
 		}
 
 		.rewiew {
 			color: #94a3b8;
-			font-family: Inter;
-			font-size: 18px;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 27px; /* 150% */
-			letter-spacing: -0.25px;
+			font-size: 3vw !important;
 		}
 	}
 
 	.titleList {
 		font-weight: 600;
 		color: #fff;
-		font-size: 35px;
+		font-size: 2.4vw;
 		font-style: normal;
 		font-weight: 600;
 		/* padding-bottom: 15px; */
@@ -113,4 +109,18 @@ export const List = styled.li`
 		width: 80%;
 		border-width: 1px;
 	}
+`;
+
+export const ContainerSearch = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+`;
+
+export const ModalFilters = styled.div`
+	background-color: #ceb6ea;
 `;
