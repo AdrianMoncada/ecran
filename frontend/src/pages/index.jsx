@@ -40,7 +40,8 @@ export default function Home({ response, moviesTop, moviesOld }) {
 			<Oldies id="proximamente">
 				<h2 className="oldies_title">Oldies but Goodies</h2>
 				<p className="oldies_p">
-					Un Viaje en el Tiempo a los Clásicos Cinematográficos. Redescubre las joyas atemporales que continúan cautivando con su encanto único y narrativas inolvidables.
+					Un Viaje en el Tiempo a los Clásicos Cinematográficos. Redescubre las joyas atemporales que continúan
+					cautivando con su encanto único y narrativas inolvidables.
 				</p>
 				<Carousel movies={moviesOld} top={false} />
 			</Oldies>
@@ -70,12 +71,12 @@ export default function Home({ response, moviesTop, moviesOld }) {
 export async function getStaticProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
-	const moviesOld = await fetchMoviesDate(2016, 2017)
+	const moviesOld = await fetchMoviesDate(2016, 2017);
 	return {
 		props: {
 			response,
 			moviesTop,
-			moviesOld
+			moviesOld,
 		},
 	};
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MdClose } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HeaderContainer } from "./Header.styles";
-import { MdExplore } from "react-icons/md"
+import { MdExplore } from "react-icons/md";
 
 const Header = () => {
 	const [openNav, setOpenNav] = useState(false);
