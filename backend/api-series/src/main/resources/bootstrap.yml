@@ -1,21 +1,21 @@
 spring:
   application:
     name: api-series
-#  cloud:
-#    config:
-#      enabled: true
-#      uri: http://34.238.41.135:8888
+  cloud:
+    config:
+      enabled: true
+      uri: http://34.238.41.135:8888
 #data:
 #  mongodb:
 #    database: seriesdb
 #    port: 27017
 #    host: localhost
-data:
-  mongodb:
-    uri: mongodb://root:root1234@44.201.102.47:27017
-    database: series-dev-mongo
-springdoc:
-  swagger-ui:
-    path: swagger
-server:
-  port: 8082
+#data:
+#  mongodb:
+#    uri: mongodb://root:root1234@44.201.102.47:27017
+#    database: series-dev-mongo
+#springdoc:
+#  swagger-ui:
+#    path: swagger
+#server:
+#  port: 8082
