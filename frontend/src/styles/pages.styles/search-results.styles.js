@@ -122,4 +122,46 @@ export const List = styled.li`
 		width: 80%;
 		border-width: 1px;
 	}
-`;
+`
+export const NotFound = styled.div`
+height: fit-content;	
+display: flex;
+justify-content:center;
+	
+
+	.not-found-text{
+		color: white;
+		display: flex;
+		flex-direction: column;
+		margin-left:2rem;
+		justify-content: center;
+		align-items: start;
+	}
+
+	.not-found-text h2{
+		font-size: 40px;
+	}
+
+	@media screen and (max-width: 640px) {
+		flex-direction: column;
+		align-items: center;
+
+		.not-found-text{
+			flex-direction: column;
+			margin-left:0rem;
+			margin-top:1rem;
+			align-items: center;
+		}
+
+		.not-found-text h2{
+			text-align:center;
+		}
+
+		.not-found-text p{
+			text-align:center;
+		}
+
+	}
+
+`
+;
