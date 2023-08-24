@@ -49,7 +49,7 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 			.then((response) => response.json())
 			.then((data) => setFilteredMovies(data))
 			.catch((error) => console.log(error));
- 
+
 		// Aquí podrías realizar la llamada a la API con la URL construida
 		// fetch(apiUrl)
 		//   .then(response => response.json())
