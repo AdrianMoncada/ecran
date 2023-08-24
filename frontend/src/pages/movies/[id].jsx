@@ -114,7 +114,6 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getServerSideProps(context) {
 	const { id } = context.params;
-	console.log(id);
 	const response = await fetch(`http://3.95.255.94:8080/api/v1/movies/${id}`);
 	const movies = await response.json();
 	const cardMovies = await fetchMovies();
