@@ -7,7 +7,6 @@ export default function Document() {
 			<Head>
 				<link rel="icon" href="/images/A.png" />
 				<title>Ecrán</title>
-				<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
 			</Head>
 			<body>
 				<Main />
