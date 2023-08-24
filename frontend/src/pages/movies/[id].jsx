@@ -146,18 +146,45 @@ function MovieDetail({ movies, cardMovies }) {
 	);
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 	const { id } = context.params;
-	console.log(id);
-	const response = await fetch(`http://3.95.255.94:8080/api/v1/movies/${id}`);
-	const movies = await response.json();
+
+	try {
+		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch movie with ID ${id}`);
+		}
+
+		const movies = await response.json();
+		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
+
+		return {
+			props: {
+				movies,
+				cardMovies,
+			},
+		};
+	} catch (error) {
+		console.error(error);
+
+		return {
+			props: {
+				error: "An error occurred while fetching the movie.",
+			},
+		};
+	}
+}
+
+export async function getStaticPaths() {
 	const cardMovies = await fetchMovies();
+	const paths = cardMovies.map((movie) => {
+		return { params: { id: movie.movieId.toString() } };
+	});
 
 	return {
-		props: {
-			movies,
-			cardMovies,
-		},
+		paths,
+		fallback: true,
 	};
 }
 

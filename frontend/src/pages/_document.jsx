@@ -4,7 +4,10 @@ import React from "react";
 export default function Document() {
 	return (
 		<Html lang="en">
-			<Head />
+			<Head>
+				<link rel="icon" href="/images/A.png" />
+				<title>Ecrán</title>
+			</Head>
 			<body>
 				<Main />
 				<NextScript />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainHome = styled.div`
-	height: 83vh;
+	height: 73vh;
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
@@ -11,20 +11,21 @@ export const MainHome = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 50px;
-	margin: 0 20px;
+	gap: 40px;
+	margin: 0 auto;
+	width: 90vw;
 
 	.title {
 		font-family: InterBold;
 		text-align: center;
 		font-size: 4vw;
-		width: 16em;
+		width: 80%;
 		font-weight: 800;
 		line-height: 55px;
 	}
 
 	.buscador {
-		width: 34em;
+		width: 100%;
 		height: 3em;
 		flex-shrink: 0;
 		border-radius: 50px;
@@ -41,18 +42,37 @@ export const MainHome = styled.div`
 		text-align: center;
 		font-size: 1.3vw;
 		font-weight: 400;
-		width: 45em;
+		width: 80%;
 	}
 
+	/*<------------Media Query-------------->*/
+
 	@media screen and (max-width: 768px) {
+		height: 60vh;
+		/* padding-top: 50px; */
+		gap: 30px;
+
 		.title {
-			font-size: 7vw;
+			font-size: 5vw;
 			width: 12em;
 		}
 
 		.mainHome_p {
-			font-size: 3vw;
+			font-size: 2vw;
 			width: 25em;
+		}
+
+		.buscador {
+			width: 32em;
+			height: 2em;
+			flex-shrink: 0;
+			border-radius: 50px;
+			background: linear-gradient(
+				45deg,
+				rgba(30, 41, 59, 0.15) 0%,
+				rgba(30, 41, 59, 0.48) 51.32%,
+				rgba(30, 41, 59, 0.15) 100%
+			);
 		}
 	}
 `;
@@ -82,6 +102,7 @@ export const SuggestionsStyle = styled.div`
 		font-size: 1.3vw;
 	}
 
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
 		.suggestion_title {
 			text-align: center;
@@ -122,6 +143,7 @@ export const Day = styled.div`
 		width: 42em;
 		margin: 1.5em auto;
 	}
+	/*<------------Media Query-------------->*/
 
 	@media screen and (max-width: 768px) {
 		.day_title {
@@ -141,98 +163,36 @@ export const Oldies = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	margin: 100px auto;
 	width: 100%;
 
-	.oldies_text {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 50px;
-		width: 46%;
-	}
-
-	.oldies_img {
-		width: 50%;
-	}
-
-	.oldies_img img {
-		width: 100%;
-	}
-
 	.oldies_title {
-		font-family: InterBold;
-		font-size: 6vw;
-		font-weight: 700;
-		background: linear-gradient(90deg, #a855f7 0%, #e9d5ff 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.oldies_h4 {
-		font-size: 2.5vw;
+		margin-top: 0em;
+		text-align: center;
+		font-size: 3.6vw;
 		font-weight: 800;
-		line-height: 46px;
-		background: linear-gradient(
-			314deg,
-			rgba(248, 250, 252, 0.24) 0%,
-			#f8fafc 55.43%,
-			rgba(248, 250, 252, 0.87) 63.02%,
-			rgba(248, 250, 252, 0.24) 100%
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		width: 15em;
 	}
 
 	.oldies_p {
 		color: #94a3b8;
-		font-weight: 400;
-		letter-spacing: -0.25px;
+		text-align: center;
 		font-size: 1.3vw;
 		font-weight: 400;
-		width: 26em;
+		width: 42em;
+		margin: 1.5em auto;
 	}
 
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
-		flex-direction: column;
-		width: 100%;
-
-		.oldies_text {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-		}
-
 		.oldies_title {
-			font-size: 9vw;
-		}
-
-		.oldies_h4 {
-			line-height: 50px;
-			font-size: 4.5vw;
-			text-align: center;
+			font-size: 8vw;
 		}
 
 		.oldies_p {
-			color: #94a3b8;
-			font-weight: 400;
-			letter-spacing: -0.25px;
+			margin: 2em;
 			font-size: 2.5vw;
-			font-weight: 400;
 			width: 35em;
-			text-align: center;
-		}
-
-		.oldies_img {
-			width: 96%;
-		}
-
-		.oldies_img img {
-			width: 100%;
 		}
 	}
 `;
@@ -271,6 +231,7 @@ export const Profile = styled.div`
 		font-weight: 400;
 		width: 43em;
 	}
+	/*<------------Media Query-------------->*/
 
 	@media screen and (max-width: 768px) {
 		.profile_title {
@@ -334,7 +295,7 @@ export const Discover = styled.div`
 			rgba(30, 41, 59, 0.15) 100%
 		);
 	}
-
+	/*<------------Media Query-------------->*/
 	@media screen and (max-width: 768px) {
 		width: 95%;
 		.discover_title {

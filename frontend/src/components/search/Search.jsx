@@ -1,32 +1,13 @@
 import { useMemo, useRef, useState } from "react";
 import { createAutocomplete } from "@algolia/autocomplete-core";
-import Link from "next/link";
-import { Form, Input, InputContent, DropdownConteiner, List } from "./Search.styles";
+// import Link from "next/link";
+import { Form, Input, InputContent, DropdownConteiner } from "./Search.styles";
 import { FiSearch } from "react-icons/fi";
 import { fetchMoviesByTitle } from "@/pages/api/search";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import AutocompleteItem from "@/components/results/AutocompleteItem";
 
-const AutocompleteItem = ({ movieId, title, image_url }) => {
-	return (
-		<List>
-			<Link className="list" href={`/movies/${movieId}`}>
-				<div className="imageList">
-					<Image src={image_url} alt={title} className="image" width={50} height={50} />
-				</div>
-
-				<div className="descriptionList">
-					<h3 className="titleList">{title}</h3>
-					<p>Genero</p>
-					<p>Año</p>
-				</div>
-			</Link>
-			<hr />
-		</List>
-	);
-};
-
-export default function Search(props) {
+export default function Search({ showAutocomplete, props }) {
 	const [autocompleteState, setAutocompleteState] = useState({
 		collections: [],
 		isOpen: false,
@@ -50,16 +31,11 @@ export default function Search(props) {
 							//Si query (el texto ingresado por el usuario) tiene algún valor, se llama a la función fetchMoviesByTitle(query)
 							if (query) {
 								const movies = await fetchMoviesByTitle(query);
-								const items = movies.map((movie) => ({
-									id: movie?.movieId,
-									title: movie?.title,
-									image_url: movie?.image_url,
-
-									// id: movie.id,
-									// title: movie.name,
-									// image_url: movie.image,
+								const items = movies?.map((movie) => ({
+									id: movie.movieId,
+									title: movie.title,
+									image_url: movie.image_url,
 								}));
-								console.log(movies);
 								return items;
 							}
 						},
@@ -84,13 +60,14 @@ export default function Search(props) {
 			if (inputProps.value) {
 				const movies = await fetchMoviesByTitle(inputProps.value);
 				const items = movies.map((movie) => ({
-					id: movie?.movieId,
-					title: movie?.title,
-					image_url: movie?.image_url,
+					id: movie.movieId,
+					title: movie.title,
+					image_url: movie.image_url,
 				}));
 				router.push({
 					pathname: "/search-result",
-					query: { query: inputProps.value, items: JSON.stringify(items) }, // Pasamos los resultados serializados como cadena en la URL.
+					query: { query: inputProps.value, items: JSON.stringify(items) },
+					// Pasamos los resultados serializados como cadena en la URL.
 				});
 			}
 		},
@@ -109,7 +86,7 @@ export default function Search(props) {
 				<Input ref={inputRef} {...inputProps} />
 				<FiSearch className="iconSearch" />
 				{/* verifica si el estado del autocompletadoestá abierto. Si es así, se procede a renderizar el panel de resultados. */}
-				{autocompleteState.isOpen && (
+				{showAutocomplete && autocompleteState.isOpen && (
 					/* Esto permite al autocompletado controlar la visibilidad y posicionamiento del panel. */
 					<DropdownConteiner ref={panelRef} {...autocomplete.getPanelProps()}>
 						{autocompleteState.collections.map((collection, index) => {
