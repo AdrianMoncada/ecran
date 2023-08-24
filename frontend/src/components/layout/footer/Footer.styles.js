@@ -5,7 +5,10 @@ export const FooterContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	margin-bottom: 5em;
+	margin-bottom: 2em;
+  	bottom: 0;
+	
+
 
 	.footer_icons {
 		display: flex;

@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
 export const MainHome = styled.div`
-	height: 73vh;
-	background-image: url("/images/home/Bg.svg");
+	/* background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
-	border-radius: 0% 0% 50px 50px;
+	border-radius: 0% 0% 50px 50px; */
+	height: 73vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	gap: 40px;
 	margin: 0 auto;
-	width: 90vw;
+	width: 90vw; 
+	flex-shrink: 0;
+	border-radius: 0px 0px 48px 48px;
+	background: radial-gradient(122.17% 122.17% at 50% 100%, #e9d5ff 0%, #a855f7 22.35%, rgba(15, 23, 42, 0) 100%);
 
 	.title {
 		font-family: InterBold;

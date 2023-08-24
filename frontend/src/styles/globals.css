@@ -34,6 +34,10 @@
 	src: url("/fonts/Inter-Bold.ttf") format("truetype"); /* Ruta de la fuente y formato */
 }
 
+html{
+	height: 100vh;
+}
+
 body {
 	color: white;
 	background: #0f172a;
