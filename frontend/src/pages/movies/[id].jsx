@@ -135,11 +135,10 @@ export async function getServerSideProps(context) {
 
 		return {
 			props: {
-				error: 'An error occurred while fetching the movie.',
+				error: "An error occurred while fetching the movie.",
 			},
 		};
 	}
 }
-
 
 export default MovieDetail;
