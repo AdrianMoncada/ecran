@@ -23,7 +23,7 @@ export const ResultsContainer = styled.div`
 	gap: 10px;
 	margin: 0 auto;
 	max-width: 1200px;
-	height: 100vh;
+	/* height: 100vh; */
 
 	.title-results {
 		color: #e2e8f0;
