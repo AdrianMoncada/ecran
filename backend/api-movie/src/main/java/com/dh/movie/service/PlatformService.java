@@ -1,6 +1,7 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.model.Platform;
 import com.dh.movie.model.dto.platform.PlatformRequestDTO;
 import com.dh.movie.model.dto.platform.PlatformResponseDTO;
 import com.dh.movie.repository.PlatformRepository;
