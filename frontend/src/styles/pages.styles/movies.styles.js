@@ -206,6 +206,9 @@ export const DescriptioContainer = styled.div`
 	@media screen and (max-width: 1024px) {
 		height: 85%;
 		width: 85%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
 		.day_p {
 			width: 90%;
@@ -272,6 +275,7 @@ export const Puntuaciones = styled.div`
 	@media screen and (max-width: 1024px) {
 		float: none;
 		margin-left: 0;
+		margin-right: 0rem;
 	}
 
 	@media screen and (max-width: 768px) {
@@ -291,6 +295,7 @@ export const Puntuaciones = styled.div`
 			margin-top: 2rem;
 		}
 	}
+
 `;
 
 export const Sugestions = styled.div`
