@@ -15,7 +15,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 					Desde éxitos de taquilla hasta joyas ocultas, Ecran te ofrece una visión única del mundo del cine y la
 					televisión, todo a solo un clic de distancia.
 				</h4>
-				<Search />
+				<Search showAutocomplete={true} />
 			</MainHome>
 			{/* <InfiniteCarrousel /> */}
 			<Infinite />
