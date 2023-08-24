@@ -21,7 +21,7 @@ const genresOptions = [
 	"Ciencia ficcion",
 ];
 
-const index = ({ response }) => {
+const Discover = ({ response }) => {
 	const [filteredMovies, setFilteredMovies] = useState([]);
 	const [showFiltered, setShowFiltered] = useState(false);
 	const router = useRouter();
@@ -99,4 +99,4 @@ export async function getStaticProps() {
 	};
 }
 
-export default index;
+export default Discover;
