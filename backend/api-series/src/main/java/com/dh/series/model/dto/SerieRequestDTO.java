@@ -1,22 +1,22 @@
 package com.dh.series.model.dto;
 
+import javax.validation.constraints.NotNull;
 
+import com.dh.series.model.Platform;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SerieDTO implements Serializable {
+public class SerieRequestDTO implements Serializable {
 
     private String title;
     private String actors;
@@ -30,5 +30,8 @@ public class SerieDTO implements Serializable {
     private String mc_score;
     private String rt_score;
     private String imdb_score;
-    private List<String> genres;
+    private List<String> genres = new ArrayList<>();
+    private List<Platform> platforms = new ArrayList<>();
+    private List<String> comments = new ArrayList<>();
+    private List<String> scores = new ArrayList<>();
 }

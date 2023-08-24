@@ -1,22 +1,22 @@
-package com.dh.series.model;
+package com.dh.series.model.dto;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.dh.series.model.Platform;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
 @Getter
-@Data
-@Document(collection = "Series")
-public class Serie implements Serializable {
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class SerieResponseDTO implements Serializable {
 
-    @Id
-    private String serieId;
+    private String id;
     private String title;
     private String actors;
     private String review;
@@ -33,5 +33,4 @@ public class Serie implements Serializable {
     private List<Platform> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();
-
 }
