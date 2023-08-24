@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Filtros, List } from "@/styles/Discover.styles";
 import { fetchMovies } from "@/pages/api/movies";
 import Filters from '@components/filtros/Filters';
@@ -13,24 +13,9 @@ const index = ({ response }) => {
     const [showFiltered, setShowFiltered] = useState(false);
     const router = useRouter();
 
-    const applyFilters = async (filters) => {
-        const apiUrl = `http://54.234.185.146:8080/api/v1/movies/filter?genres=${filters.genres}&platforms=${filters.platforms}&min_date=${filters.min_date}&max_date=${filters.max_date}&order=${filters.order}`;
-
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            setFilteredMovies(data);
-            setShowFiltered(true);
-
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    const clearFilters = () => {
-        setShowFiltered(false);
-        setFilteredMovies([]);
-    };
+    useEffect(() => {
+        filteredMovies.length !== 0 ? setShowFiltered(true) : setShowFiltered(false);
+    }, [filteredMovies])
 
     const displayedMovies = showFiltered ? filteredMovies : response;
 
@@ -54,7 +39,7 @@ const index = ({ response }) => {
         }
     }
 
-    const limite = 200;
+    const limite = 300;
 
     return (
         <div>
@@ -65,8 +50,7 @@ const index = ({ response }) => {
                 <Filtros>
                     <Filters genresOptions={genresOptions}
                         platformsOptions={platformsOptions}
-                        applyFilters={applyFilters}
-                        clearFilters={clearFilters}
+                        setFilteredMovies={setFilteredMovies}
                     />
                 </Filtros>
                 <div>

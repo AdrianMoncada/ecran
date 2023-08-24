@@ -29,7 +29,6 @@ export async function fetchMovieId(req) {
 		const response = await fetch(API_URL);
 		const data = await response.json();
 		const movie = data.find((movie) => movie.id === req);
-		console.log(movie);
 		return movie;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);
@@ -70,7 +69,6 @@ export default async function fetchMoviesWithTop(req, res) {
 		const data = await response.json();
 
 		const moviesWithTop = assignTopToMovies(data);
-		console.log(moviesWithTop);
 		return moviesWithTop;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);
