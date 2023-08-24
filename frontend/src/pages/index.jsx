@@ -71,7 +71,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 export async function getStaticProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
-	const moviesOld = await fetchMoviesDate(2016, 2017);
+	const moviesOld = await fetchMoviesDate(2000, 2004);
 	return {
 		props: {
 			response,

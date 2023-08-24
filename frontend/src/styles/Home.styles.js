@@ -11,8 +11,7 @@ export const MainHome = styled.div`
 	align-items: center;
 	flex-direction: column;
 	gap: 40px;
-	margin: 0 auto;
-	width: 90vw;
+	margin: 0 20px;
 
 	.title {
 		font-family: InterBold;

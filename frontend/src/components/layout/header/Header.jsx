@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdClose } from "react-icons/md";
@@ -8,8 +8,25 @@ import { MdExplore } from "react-icons/md";
 
 const Header = () => {
 	const [openNav, setOpenNav] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				setIsScrolled(true);
+			} else {
+				setIsScrolled(false);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
-		<HeaderContainer>
+		<HeaderContainer isScrolled={isScrolled}>
 			{/* <div className="header-content"> */}
 			<Link href="/" className="logo">
 				<Image src="/images/home/ecran.svg" alt="logo ecran" width={50} height={100} />{" "}

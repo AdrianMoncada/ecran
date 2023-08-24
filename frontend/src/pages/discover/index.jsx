@@ -75,7 +75,7 @@ const Discover = ({ response }) => {
 									<img src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
 								</div>
 								<div className="descriptionList">
-									<p className="textItem">{item.genre}</p>
+									<p className="textItem">{item.genres.map(i => i).join("/")}</p>
 									<p className="textItem">{item.releaseDate}</p>
 									<h3 className="titleList">{item.title}</h3>
 									<p className="review">{cortarTexto(item.review, limite)}</p>
