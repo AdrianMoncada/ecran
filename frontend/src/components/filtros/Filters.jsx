@@ -43,13 +43,13 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 			order: "desc",
 		});
 
-		const apiUrl = `http://54.234.185.146:8080/api/v1/movies/filter?${queryParams}`;
+		const apiUrl = `http://52.87.235.254:8080/api/v1/movies/filter?${queryParams}`;
 
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then((data) => setFilteredMovies(data))
 			.catch((error) => console.log(error));
-
+ 
 		// Aquí podrías realizar la llamada a la API con la URL construida
 		// fetch(apiUrl)
 		//   .then(response => response.json())
