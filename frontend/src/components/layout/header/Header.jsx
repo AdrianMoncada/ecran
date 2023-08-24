@@ -36,7 +36,7 @@ const Header = () => {
 					<MdClose className={openNav ? "close-menu" : "noshow"} onClick={() => setOpenNav(false)} />
 				</div>
 				<ul className={openNav ? "nav-ul-mobile" : "nav-ul"}>
-					<li>
+					{/* <li>
 						<Link href="/signIn" className="link_text">
 							Inicia sesion
 						</Link>
@@ -45,7 +45,7 @@ const Header = () => {
 						<Link href="/signUp" className="link_text">
 							Registrate
 						</Link>
-					</li>
+					</li> */}
 					<li>
 						<Link href="/discover" className="buttonExplore">
 							<MdExplore className="icon" />
