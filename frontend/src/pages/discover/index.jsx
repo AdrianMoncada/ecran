@@ -121,8 +121,8 @@ const Discover = ({ response }) => {
 							<hr />
 						</List>
 					))}
-					<Box sx={{ width: "100%", display: "flex", justifyContent: "center", backgroundColor: "white", margin: "20px 0" }}>
-						<Pagination count={Math.round(count)} page={pagina} onChange={handleChange} color="secondary" />
+					<Box sx={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
+						<Pagination count={Math.round(count)} page={pagina} onChange={handleChange} color="secondary" variant="outlined" shape="rounded" />
 					</Box>
 				</div>
 			</ContainerSearch>
