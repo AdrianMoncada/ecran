@@ -63,7 +63,7 @@ function assignTopToMovies(movieData) {
 	return result;
 }
 
-export default async function fetchMoviesWithTop(req, res) {
+export default async function fetchMoviesWithTop() {
 	try {
 		const response = await fetch("http://54.234.185.146:8080/api/v1/movies");
 		const data = await response.json();
