@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const MainHome = styled.div`
-	/* background-image: url("/images/home/Bg.svg");
+	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
-	border-radius: 0% 0% 50px 50px; */
-	height: 73vh;
+	background-size: cover;
+	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -88,7 +88,7 @@ export const SuggestionsStyle = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	padding-top: 5rem;
+	padding-top: 7em;
 
 	.suggestion_title {
 		text-align: center;
