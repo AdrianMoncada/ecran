@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Container, Filtros, List, ContainerSearch, ModalFilters } from "@/styles/Discover.styles";
+import { Container, Filtros, List, ContainerSearch, ModalFilters, ContainerFilters, ContainerResults } from "@/styles/Discover.styles";
 import { fetchMovies } from "@/pages/api/movies";
 import Filters from "@components/filtros/Filters";
 import platformsOptions from "@/assets/platforms.json";
 import Search from "@components/search/Search";
 import { useRouter } from "next/router";
 import Pagination from '@mui/material/Pagination';
-import { Box, Modal, Button, Hidden } from "@mui/material";
+import { Box, Modal, Hidden } from "@mui/material";
+import { LiaFilterSolid } from "react-icons/lia"
 
 const genresOptions = [
 	"Acción",
@@ -79,22 +80,22 @@ const Discover = ({ response }) => {
 				<Search />
 			</Container>
 			<ContainerSearch>
-				<Hidden mdDown>
-					<Filtros>
-						<Filters
-							genresOptions={genresOptions}
-							platformsOptions={platformsOptions}
-							setFilteredMovies={setFilteredMovies}
-						/>
-					</Filtros>
-				</Hidden>
+				<ContainerFilters>
+					<Hidden mdDown>
+						<Filtros>
+							<Filters
+								genresOptions={genresOptions}
+								platformsOptions={platformsOptions}
+								setFilteredMovies={setFilteredMovies}
+							/>
+						</Filtros>
+					</Hidden>
+				</ContainerFilters>
 				<Hidden mdUp>
-					{/* Botón para mostrar el modal del filtro en dispositivos móviles */}
-					<Button onClick={toggleFilterVisibility}>
-						Filtros
-					</Button>
-					{/* Modal para la sección de filtro en dispositivos móviles */}
-					<Modal sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "80%", height: "200px" }} open={isFilterVisible} onClose={toggleFilterVisibility}>
+					<button className="buttonFiltros" onClick={toggleFilterVisibility}>
+						Filtros <LiaFilterSolid />
+					</button>
+					<Modal sx={{ display: "flex", justifyContent: "center", alignItems: "center" }} open={isFilterVisible} onClose={toggleFilterVisibility}>
 						<ModalFilters>
 							<Filters
 								genresOptions={genresOptions}
@@ -104,7 +105,7 @@ const Discover = ({ response }) => {
 						</ModalFilters>
 					</Modal>
 				</Hidden>
-				<div>
+				<ContainerResults>
 					{displayedMovies.slice((pagina - 1) * POR_PAGINA, (pagina - 1) * POR_PAGINA + POR_PAGINA).map((item) => (
 						<List key={item.id} onClick={() => router.push(`/movies/${item.movieId}`)}>
 							<div className="list">
@@ -112,8 +113,8 @@ const Discover = ({ response }) => {
 									<img src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
 								</div>
 								<div className="descriptionList">
-									<p className="textItem">{item.genres.map(i => i).join("/")}</p>
-									<p className="textItem">{item.releaseDate}</p>
+									<p className="textItem genre">{item.genres.map(i => i).join("/")}</p>
+									<p className="textItem">{item.release_date}</p>
 									<h3 className="titleList">{item.title}</h3>
 									<p className="review">{cortarTexto(item.review, limite)}</p>
 								</div>
@@ -122,9 +123,11 @@ const Discover = ({ response }) => {
 						</List>
 					))}
 					<Box sx={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
-						<Pagination count={Math.round(count)} page={pagina} onChange={handleChange} color="secondary" variant="outlined" shape="rounded" />
+						<Box sx={{ width: "300px", backgroundColor: "#c0bbbb", padding: "10px", borderRadius: "20px", display: "flex", justifyContent: "center" }}>
+							<Pagination count={Math.round(count)} page={pagina} onChange={handleChange} color="secondary" variant="outlined" shape="rounded" />
+						</Box>
 					</Box>
-				</div>
+				</ContainerResults>
 			</ContainerSearch>
 		</div>
 	);

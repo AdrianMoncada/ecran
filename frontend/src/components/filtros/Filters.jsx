@@ -34,7 +34,6 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 	};
 
 	useEffect(() => {
-		// Aquí puedes construir la URL con los parámetros de filtro seleccionados
 		const queryParams = new URLSearchParams({
 			genres: selectedGenres.join(","),
 			platforms: selectedPlatforms.join(","),
@@ -43,36 +42,14 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 			order: "desc",
 		});
 
-		const apiUrl = `http://54.234.185.146:8080/api/v1/movies/filter?${queryParams}`;
+		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/filter?${queryParams}`;
 
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then((data) => setFilteredMovies(data))
 			.catch((error) => console.log(error));
-
-		// Aquí podrías realizar la llamada a la API con la URL construida
-		// fetch(apiUrl)
-		//   .then(response => response.json())
-		//   .then(data => {
-		//     // Procesar los datos filtrados
-		//   })
-		//   .catch(error => {
-		//     // Manejar el error
-		//   });
 	}, [selectedGenres, selectedPlatforms, dateRange]);
 
-	/* const handleApplyFilters = () => {
-        // Construir la URL con los parámetros seleccionados y llamar a la función applyFilters
-        const filters = {
-            genres: selectedGenres.join(','),
-            platforms: selectedPlatforms.join(','),
-            min_date: dateRange[0],
-            max_date: dateRange[1],
-            order: 'desc', // Puedes modificar esto según tus necesidades
-        };
-        applyFilters(filters);
-    };
- */
 	return (
 		<Container style={{ color: "#663B9F" }} className="p-4 space-y-4 text-center">
 			<h2 className="font-bold  title">Elige una opción...</h2>
@@ -106,12 +83,6 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 				<h2 className="text-lg font-semibold">Rango de Fechas</h2>
 				<RangeSlider min={MIN_DATE} max={MAX_DATE} value={dateRange} onChange={handleSliderChange} />
 			</div>
-			{/*  <button
-                onClick={handleApplyFilters}
-                className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600"
-            >
-                Aplicar Filtros
-            </button> */}
 		</Container>
 	);
 };

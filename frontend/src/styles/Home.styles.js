@@ -10,6 +10,7 @@ export const MainHome = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	background-size: cover;
 	gap: 40px;
 	margin: 0 20px;
 
@@ -77,13 +78,13 @@ export const MainHome = styled.div`
 
 export const SuggestionsStyle = styled.div`
 	height: 94vh;
-	margin: 0px auto;
 	background-image: url("/images/home/Section.svg");
 	border-radius: 50px 50px 0% 0%;
 	margin: 0 20px;
 	background-repeat: no-repeat;
 	background-position: center;
-	padding-top: 7em;
+	background-size: cover;
+	padding-top: 5rem;
 
 	.suggestion_title {
 		text-align: center;

@@ -14,14 +14,7 @@ export const Container = styled.div`
 	margin: 0 20px;
 `;
 
-export const Filtros = styled.div`
-	width: 20em;
-	height: 45em;
-	flex-shrink: 0;
-	background-color: #ceb6ea;
-	margin: 20px 0 0 20px;
-	border-radius: 20px;
-`;
+export const Filtros = styled.div``;
 
 export const List = styled.li`
 	display: flex;
@@ -41,9 +34,6 @@ export const List = styled.li`
 		justify-content: space-evenly;
 		align-items: center;
 		width: 100%;
-		/* height: 300px;
-		max-height: 300px;
-		padding: 20px 10px; */
 		height: 100%;
 	}
 
@@ -76,16 +66,19 @@ export const List = styled.li`
 			font-size: 12px;
 		}
 
-		.textItem {
-			color: #e2e8f0;
-			font-size: 1.5vw;
-			font-weight: 400;
-			margin-bottom: -5px;
+		.review {
+			color: #94a3b8;
+			font-size: 1vw;
 		}
 
-		.rewiew {
-			color: #94a3b8;
-			font-size: 3vw !important;
+		.textItem {
+			color: #e2e8f0;
+			font-size: 1.4vw;
+			font-weight: 400;
+		}
+
+		.genre {
+			margin-bottom: -10px;
 		}
 	}
 
@@ -108,18 +101,57 @@ export const List = styled.li`
 		width: 80%;
 		border-width: 1px;
 	}
+
+	@media screen and (max-width: 900px) {
+		.descriptionList .review {
+			font-size: 2vw;
+		}
+
+		.descriptionList .textItem {
+			font-size: 3vw;
+		}
+
+		.titleList {
+			font-size: 3vw;
+		}
+	}
 `;
 
 export const ContainerSearch = styled.div`
 	display: flex;
-	justify-content: center;
-	margin-top: 50px;
+	justify-content: space-between;
+	width: 100%;
 
-	@media screen and (max-width: 768px) {
+	.buttonFiltros {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: underline;
+		margin-bottom: 10px;
+	}
+
+	@media screen and (max-width: 900px) {
 		flex-direction: column;
 	}
 `;
 
 export const ModalFilters = styled.div`
 	background-color: #ceb6ea;
+`;
+
+export const ContainerFilters = styled.div`
+	width: 29%;
+	height: 100%;
+	flex-shrink: 0;
+	background-color: #ceb6ea;
+	margin: 20px 0 0 20px;
+	border-radius: 20px;
+`;
+
+export const ContainerResults = styled.div`
+	width: 70%;
+
+	@media screen and (max-width: 900px) {
+		width: 100%;
+	}
 `;

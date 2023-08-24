@@ -26,22 +26,26 @@ const Carousel = ({ movies, top }) => {
 						slidesPerView: 4,
 						spaceBetween: 20,
 					},
+					1400: {
+						slidesPerView: 5,
+						spaceBetween: 20,
+					}
 				}}
 				navigation
 			>
 				{top
 					? movies
-							.sort((a, b) => a.top - b.top)
-							.map((movie) => (
-								<SwiperSlide key={parseInt(movie.id)}>
-									<Card movie={movie} />
-								</SwiperSlide>
-							))
-					: movies.map((movie) => (
+						.sort((a, b) => a.top - b.top)
+						.map((movie) => (
 							<SwiperSlide key={parseInt(movie.id)}>
 								<Card movie={movie} />
 							</SwiperSlide>
-					  ))}
+						))
+					: movies.map((movie) => (
+						<SwiperSlide key={parseInt(movie.id)}>
+							<Card movie={movie} />
+						</SwiperSlide>
+					))}
 			</Swiper>
 		</Container>
 	);

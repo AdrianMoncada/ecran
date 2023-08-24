@@ -14,15 +14,11 @@ import {
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
 
-// import { useRouter } from "next/router";
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
 
 function MovieDetail({ movies, cardMovies }) {
-	// const router = useRouter();
-	// const { id } = router.query;
-
 	return (
 		<main>
 			<Purple></Purple>
