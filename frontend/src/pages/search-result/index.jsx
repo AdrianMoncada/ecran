@@ -30,11 +30,13 @@ const SearchResults = () => {
 					</h1>
 				</div>
 				<div className="container-list">
+				{searchResults.length > 0 ? (
 					<ul>
 						{searchResults.map((item) => (
 							<AutocompleteItem key={item.id} movieId={item.id} {...item} />
 						))}
 					</ul>
+				) : (<p>No se encontaron resultados</p>)}
 				</div>
 			</ResultsContainer>
 		</>
