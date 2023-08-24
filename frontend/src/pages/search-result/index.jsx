@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Search from "@components/search/Search";
 import { SearchResultsContainer, ResultsContainer, List } from "@styles/pages.styles/search-results.styles";
+import notFound from '@public/images/Not-found.png'
 
 const SearchResults = () => {
 	const router = useRouter();
@@ -51,7 +52,14 @@ const SearchResults = () => {
 							))}
 						</ul>
 					) : (
-						<p>No se encontraron resultados.</p>
+						<div className="not-found">
+						<img src={notFound} alt="" />
+						<div className="not-found-text">
+							<h2>Oops!</h2>
+							<p>No hay resultados para tu busqueda</p>
+						</div>
+						</div>
+
 					)}
 				</div>
 			</ResultsContainer>
