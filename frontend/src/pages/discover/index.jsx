@@ -9,7 +9,7 @@ import Pagination from '@mui/material/Pagination';
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia"
 
-const genresOptions = [
+/* const genresOptions = [
 	"Acción",
 	"Drama",
 	"Comedia",
@@ -22,6 +22,21 @@ const genresOptions = [
 	"Animadas",
 	"Terror",
 	"Ciencia ficcion",
+]; */
+
+const genresOptions = [
+	"Acción",
+	"Drama",
+	"Comedia",
+	"Aventura",
+	"Fantasía",
+	"Musical",
+	"Documental",
+	"Animación",
+	"Terror",
+	"Deporte",
+	"Romance",
+	"Familia"
 ];
 
 const POR_PAGINA = 5;
@@ -43,13 +58,22 @@ const Discover = ({ response }) => {
 	}
 
 	useEffect(() => {
-		filteredMovies.length !== 0 ? setShowFiltered(true) : setShowFiltered(false);
+		/* filteredMovies.length !== 0 ? setShowFiltered(true) : setShowFiltered(false); */
+		setShowFiltered(true)
 		if (showFiltered) {
 			setCount(filteredMovies.length / POR_PAGINA);
 		} else {
 			setCount(response.length / POR_PAGINA);
 		}
 	}, [filteredMovies]);
+
+	useEffect(() => {
+		if (showFiltered) {
+			setCount(filteredMovies.length / POR_PAGINA);
+		} else {
+			setCount(response.length / POR_PAGINA);
+		}
+	}, [showFiltered])
 
 	const displayedMovies = showFiltered ? filteredMovies : response;
 
@@ -87,6 +111,7 @@ const Discover = ({ response }) => {
 								genresOptions={genresOptions}
 								platformsOptions={platformsOptions}
 								setFilteredMovies={setFilteredMovies}
+								setShowFiltered={setShowFiltered}
 							/>
 						</Filtros>
 					</Hidden>
@@ -101,6 +126,7 @@ const Discover = ({ response }) => {
 								genresOptions={genresOptions}
 								platformsOptions={platformsOptions}
 								setFilteredMovies={setFilteredMovies}
+								setShowFiltered={setShowFiltered}
 							/>
 						</ModalFilters>
 					</Modal>

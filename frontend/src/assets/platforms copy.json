@@ -5,6 +5,11 @@
 		"value": "images/home/logos/hbo.svg"
 	},
 	{
+		"id": "2",
+		"label": "Paramount",
+		"value": "images/home/logos/paramount.svg"
+	},
+	{
 		"id": "3",
 		"label": "Prime video",
 		"value": "images/home/logos/amazon.svg"
@@ -23,5 +28,15 @@
 		"id": "6",
 		"label": "Netflix",
 		"value": "images/home/logos/netflix.svg"
+	},
+	{
+		"id": "7",
+		"label": "Star",
+		"value": "images/home/logos/star.svg"
+	},
+	{
+		"id": "8",
+		"label": "Vix",
+		"value": "images/home/logos/vix.svg"
 	}
 ]

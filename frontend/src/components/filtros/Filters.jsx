@@ -8,7 +8,7 @@ import CheckboxImage from "./help/CheckboxImage";
 const MIN_DATE = 1990;
 const MAX_DATE = 2023;
 
-const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
+const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFiltered }) => {
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 	const [dateRange, setDateRange] = useState([MIN_DATE, MAX_DATE]);
@@ -43,7 +43,7 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 		});
 
 		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/filter?${queryParams}`;
-
+		console.log(apiUrl)
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then((data) => setFilteredMovies(data))
@@ -83,6 +83,14 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 				<h2 className="text-lg font-semibold">Rango de Fechas</h2>
 				<RangeSlider min={MIN_DATE} max={MAX_DATE} value={dateRange} onChange={handleSliderChange} />
 			</div>
+			<button onClick={() => {
+				setShowFiltered(false)
+				setSelectedGenres([])
+				setSelectedPlatforms([])
+				setDateRange([MIN_DATE, MAX_DATE])
+			}}>
+				Limpiar filtros
+			</button>
 		</Container>
 	);
 };
