@@ -2,12 +2,11 @@ import Carousel from "@/components/carousel/Carousel";
 import { MainHome, SuggestionsStyle, SuggestionCarousel, Day, Oldies, Profile, Discover } from "@/styles/Home.styles";
 import Image from "next/image";
 import React from "react";
-import moviesTop from "@/assets/carouselTop.json";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
-import { fetchMovies } from "./api/movies";
+import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "./api/movies";
 
-export default function Home({ response }) {
+export default function Home({ response, moviesTop, moviesOld }) {
 	return (
 		<>
 			<MainHome>
@@ -21,7 +20,7 @@ export default function Home({ response }) {
 			{/* <InfiniteCarrousel /> */}
 			<Infinite />
 			<SuggestionsStyle id="sugerencias">
-				<h2 className="suggestion_title">Nuestras sugerencias</h2>
+				<h2 className="suggestion_title">Top del día</h2>
 				<p className="suggestion_p">
 					De clásicos atemporales a gemas contemporáneas, estas recomendaciones te llevarán a un viaje inolvidable en el
 					fascinante mundo del entretenimiento
@@ -39,17 +38,11 @@ export default function Home({ response }) {
 				<Carousel movies={response} top={false} />
 			</Day>
 			<Oldies id="proximamente">
-				<div className="oldies_text">
-					<h2 className="oldies_title">Próximamente</h2>
-					<h4 className="oldies_h4">Filtra series y películas por calificación, género, y más!</h4>
-					<p className="oldies_p">
-						Pronto podrás filtrar el contenido por género, año de estreno, calificación y mucho más. Mantente atento,
-						¡la magia del entretenimiento nunca ha sido tan única y emocionante!
-					</p>
-				</div>
-				<div className="oldies_img">
-					<Image src="images/home/Temporal.svg" alt="temporal" width={536} height={500} />
-				</div>
+				<h2 className="oldies_title">Oldies but Goodies</h2>
+				<p className="oldies_p">
+					Un Viaje en el Tiempo a los Clásicos Cinematográficos. Redescubre las joyas atemporales que continúan cautivando con su encanto único y narrativas inolvidables.
+				</p>
+				<Carousel movies={moviesOld} top={false} />
 			</Oldies>
 			<Profile>
 				<h2 className="profile_title">Crea tu perfil personalizado</h2>
@@ -76,9 +69,13 @@ export default function Home({ response }) {
 
 export async function getStaticProps() {
 	const response = await fetchMovies();
+	const moviesTop = await fetchMoviesWithTop();
+	const moviesOld = await fetchMoviesDate(2016, 2017)
 	return {
 		props: {
 			response,
+			moviesTop,
+			moviesOld
 		},
 	};
 }
