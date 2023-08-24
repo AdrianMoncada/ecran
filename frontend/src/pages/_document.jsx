@@ -5,8 +5,8 @@ export default function Document() {
 	return (
 		<Html lang="en">
 			<Head>
-				{/* <link rel="icon" href="/images/A.png" />
-				<title>Ecrán</title> */}
+				<link rel="icon" href="/images/A.png" />
+				<title>Ecrán</title>
 			</Head>
 			<body>
 				<Main />
