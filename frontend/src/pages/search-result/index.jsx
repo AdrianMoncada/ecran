@@ -1,9 +1,8 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Search from "@components/search/Search";
-import { SearchResultsContainer, ResultsContainer, List } from "@styles/pages.styles/search-results.styles";
+import { SearchResultsContainer, ResultsContainer } from "@styles/pages.styles/search-results.styles";
+import AutocompleteItem from "@/components/results/AutocompleteItem";
 import notFound from '@public/images/Not-found.png'
 
 const SearchResults = () => {
@@ -22,7 +21,7 @@ const SearchResults = () => {
 	return (
 		<>
 			<SearchResultsContainer>
-				<Search />
+				<Search showAutocomplete={false} />
 			</SearchResultsContainer>
 
 			<ResultsContainer>
@@ -52,13 +51,14 @@ const SearchResults = () => {
 							))}
 						</ul>
 					) : (
-						<div className="not-found">
-						<img src={notFound} alt="" />
-						<div className="not-found-text">
-							<h2>Oops!</h2>
-							<p>No hay resultados para tu busqueda</p>
-						</div>
-						</div>
+						<NotFound>
+							<img src={notFound} alt="" />
+							<div className="not-found-text">
+								<h2>Oops!</h2>
+								<p>No hay resultados para tu busqueda</p>
+							</div>
+						</NotFound>
+						
 
 					)}
 				</div>

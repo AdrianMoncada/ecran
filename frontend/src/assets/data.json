@@ -1,0 +1,222 @@
+[
+	{
+		"movie_id": "1",
+		"title": "Casablanca",
+		"releaseDate": "1942",
+		"genre": "Drama, Romance, War",
+		"image_url": "https://hips.hearstapps.com/hmg-prod/images/casablanca-1942-con-ingrid-bergman-y-humphrey-bogart-1591633989.jpg",
+		"review": "'Casablanca', dirigida por Michael Curtiz, es una obra maestra del cine clásico. La película se desarrolla en el contexto de la Segunda Guerra Mundial y sigue a Rick Blaine, interpretado por Humphrey Bogart, quien regenta un popular café en Casablanca. Cuando su antigua amante Ilsa Lund, interpretada por Ingrid Bergman, reaparece en su vida con su esposo, Victor Laszlo, comienza un dilema moral y emocional.\n\nLa película explora temas de amor, sacrificio y elecciones difíciles en tiempos de conflicto global. La química entre Bogart y Bergman es palpable, y la frase 'Siempre nos quedará París' se ha convertido en un icono romántico. 'Casablanca' es una lección de dirección, con escenas memorables y diálogos inolvidables, y sigue siendo un clásico querido por su mezcla de romance y política.",
+		"actors": ["Humphrey Bogart", "Ingrid Bergman"],
+		"director": "Michael Curtiz",
+		"composer": "Max Steiner"
+	},
+	{
+		"movie_id": "2",
+		"title": "Gone with the Wind",
+		"releaseDate": "1939",
+		"genre": "Drama, History, Romance",
+		"image_url": "https://m.media-amazon.com/images/M/MV5BMTk3MDYwNzkyN15BMl5BanBnXkFtZTgwMzYxODYyMTI@._V1_.jpg",
+		"review": "'Gone with the Wind', dirigida por Victor Fleming, es un drama épico ambientado en el sur de Estados Unidos durante la Guerra Civil. La película sigue a Scarlett O'Hara, interpretada por Vivien Leigh, una joven sureña que lucha por sobrevivir y mantener su plantación tras la devastación de la guerra. Su compleja relación con Rhett Butler, interpretado por Clark Gable, es el corazón de la historia.\n\nLa película aborda temas de pasión, amor no correspondido y cambios sociopolíticos. A través de la travesía de Scarlett, 'Gone with the Wind' muestra cómo la guerra transforma las vidas de las personas y la sociedad. Las actuaciones y el esplendor visual hacen de esta película una experiencia inolvidable en la historia del cine.",
+		"actors": ["Vivien Leigh", "Clark Gable"],
+		"director": "Victor Fleming",
+		"composer": "Max Steiner"
+	},
+	{
+		"movie_id": "3",
+		"title": "Lawrence of Arabia",
+		"releaseDate": "1962",
+		"genre": "Adventure, Biography, Drama",
+		"image_url": "https://www.thenationalnews.com/resizer/Px2D5SrmS_KyVdoHf2KSpFImsOY=/arc-photo-thenational/eu-central-1-prod/public/MFJDMRHJELPQUEMI72O2UGSLIA.jpg",
+		"review": "'Lawrence of Arabia', dirigida por David Lean, narra la vida del oficial británico T.E. Lawrence, interpretado por Peter O'Toole, durante la Primera Guerra Mundial. La película sigue sus esfuerzos para unir tribus árabes contra el Imperio Otomano. La magnificencia de los paisajes desérticos y la lucha de Lawrence por comprender y respetar la cultura árabe son temas centrales.\n\nLa película es un logro visual y narrativo, capturando la vastedad y la belleza del desierto. Las actuaciones, la dirección y la partitura de Maurice Jarre contribuyen a la epopeya histórica. 'Lawrence of Arabia' es una exploración de la identidad, la guerra y el poder de un individuo para cambiar el curso de la historia.",
+		"actors": ["Peter O'Toole"],
+		"director": "David Lean",
+		"composer": "Maurice Jarre"
+	},
+	{
+		"movie_id": "4",
+		"title": "Citizen Kane",
+		"releaseDate": "1941",
+		"genre": "Drama, Mystery",
+		"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Citizen-Kane-Welles-Podium.jpg/220px-Citizen-Kane-Welles-Podium.jpg",
+		"review": "'Citizen Kane', dirigida por Orson Welles, es considerada una de las películas más influyentes en la historia del cine. La trama sigue la vida del magnate de los medios Charles Foster Kane, interpretado por Welles, desde su infancia hasta su muerte. A medida que un periodista investiga la vida de Kane, se revelan las complejidades de su personalidad y su búsqueda de poder.\n\nLa película es un ejemplo magistral de narrativa no lineal y técnica cinematográfica innovadora. El uso de la profundidad de campo y la estructura narrativa contribuyen a la atmósfera inquietante de la historia. 'Citizen Kane' explora temas de ambición, soledad y la relación entre la riqueza y la felicidad.",
+		"actors": ["Orson Welles"],
+		"director": "Orson Welles",
+		"composer": "Bernard Herrmann"
+	},
+	{
+		"movie_id": "5",
+		"title": "It's a Wonderful Life",
+		"releaseDate": "1946",
+		"genre": "Drama, Family, Fantasy",
+		"image_url": "https://m.media-amazon.com/images/M/MV5BMjQxNTM4Mjg1NV5BMl5BanBnXkFtZTgwNDYyNzM4NjM@._V1_.jpg",
+		"review": "'It's a Wonderful Life', dirigida por Frank Capra, es una joya navideña que toca los corazones de generaciones. La película sigue a George Bailey, interpretado por James Stewart, quien contempla el suicidio en la víspera de Navidad. Un ángel, Clarence, le muestra cómo habría sido la vida de su comunidad si nunca hubiera nacido.\n\nLa película captura la lucha de George por encontrar sentido en medio de las dificultades. La actuación de Stewart es conmovedora y auténtica, y su transformación emocional resuena con el público. 'It's a Wonderful Life' es un recordatorio de la importancia de las conexiones humanas y cómo nuestras vidas afectan a quienes nos rodean.",
+		"actors": ["James Stewart"],
+		"director": "Frank Capra",
+		"composer": "Dimitri Tiomkin"
+	},
+	{
+		"movie_id": "6",
+		"title": "The Graduate",
+		"releaseDate": "1967",
+		"genre": "Comedy, Drama, Romance",
+		"image_url": "https://assets.mubicdn.net/images/artworks/522464/images-original.png?1676665720",
+		"review": "'The Graduate', dirigida por Mike Nichols, es un reflejo de la alienación de la juventud de la década de 1960. La película sigue a Benjamin Braddock, interpretado por Dustin Hoffman, quien se siente perdido después de graduarse. Su relación con la seductora Mrs. Robinson, interpretada por Anne Bancroft, y su amor por su hija Elaine crean un conflicto intergeneracional.\n\nLa película captura el sentimiento de desconexión y el choque de valores entre generaciones. La icónica banda sonora de Simon & Garfunkel aporta una dimensión adicional a la narrativa. 'The Graduate' es una exploración de la búsqueda de identidad y la confusión emocional en una época de cambio cultural.",
+		"actors": ["Dustin Hoffman", "Anne Bancroft"],
+		"director": "Mike Nichols",
+		"composer": "Simon & Garfunkel"
+	},
+	{
+		"movie_id": "7",
+		"title": "Ben-Hur",
+		"releaseDate": "1959",
+		"genre": "Adventure, Drama, History",
+		"image_url": "https://www.lavanguardia.com/peliculas-series/images/movie/poster/1959/7/w1280/zd5sVotNicXuNNFQ29j6JlC14GK.jpg",
+		"review": "'Ben-Hur', dirigida por William Wyler, es un épico cinematográfico que narra la historia de Judá Ben-Hur, interpretado por Charlton Heston. Ambientada en la Jerusalén del siglo I, la película sigue la transformación de Judá de próspero noble a esclavo injustamente acusado, y finalmente a campeón de carreras de cuadrigas.\n\nLa película es conocida por su espectacular escena de carreras de cuadrigas y su mensaje de redención. 'Ben-Hur' explora temas de venganza, perdón y el conflicto entre el individualismo y la compasión. La dirección magistral y las actuaciones sólidas hacen que esta película sea un logro cinematográfico perdurable.",
+		"actors": ["Charlton Heston"],
+		"director": "William Wyler",
+		"composer": "Miklós Rózsa"
+	},
+	{
+		"movie_id": "8",
+		"title": "12 Angry Men",
+		"releaseDate": "1957",
+		"genre": "Drama",
+		"image_url": "https://s3.amazonaws.com/static.rogerebert.com/uploads/review/primary_image/reviews/great-movie-12-angry-men-1957/EB20020929REVIEWS08209290301AR.jpg",
+		"review": "'12 Angry Men', dirigida por Sidney Lumet, es un estudio sobre el poder del diálogo y la empatía. La película se desarrolla en una sala de jurado, donde 12 hombres deliberan sobre el destino de un joven acusado de asesinato. A medida que las tensiones aumentan y los prejuicios se ponen de manifiesto, un jurado se niega a dar un veredicto rápido y busca la verdad.\n\nLa película es una exploración de los prejuicios y la justicia en el sistema legal. Las actuaciones sólidas y los diálogos intensos hacen que la película sea un ejercicio emocional y mental. '12 Angry Men' resalta cómo el cuestionamiento y el respeto mutuo pueden cambiar perspectivas y transformar vidas.",
+		"actors": ["Henry Fonda"],
+		"director": "Sidney Lumet",
+		"composer": "Kenyon Hopkins"
+	},
+	{
+		"movie_id": "9",
+		"title": "Singin' in the Rain",
+		"releaseDate": "1952",
+		"genre": "Comedy, Musical, Romance",
+		"image_url": "https://i.guim.co.uk/img/media/e90f6bf9f555fba928a786d33585bf2c289e9b6c/0_441_1381_828/master/1381.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=5d4824577300b6400d7c7b090814cf19",
+		"review": "'Singin' in the Rain', dirigida por Stanley Donen y Gene Kelly, es un musical clásico que destila alegría y talento. La película sigue a Don Lockwood, interpretado por Gene Kelly, una estrella de cine mudo que debe adaptarse a la llegada del cine sonoro. Su romance con Kathy Selden, interpretada por Debbie Reynolds, y las desventuras de la transición tecnológica forman la trama.\n\nLa película es un homenaje a la época dorada de Hollywood y al poder de la música y el baile. La coreografía icónica de Gene Kelly en la secuencia de la lluvia es un hito en la historia del cine. 'Singin' in the Rain' es un recordatorio alegre de cómo el arte puede perseverar incluso en tiempos de cambio.",
+		"actors": ["Gene Kelly", "Debbie Reynolds"],
+		"director": "Stanley Donen, Gene Kelly",
+		"composer": "Nacio Herb Brown, Arthur Freed"
+	},
+	{
+		"movie_id": "10",
+		"title": "The Sound of Music",
+		"releaseDate": "1965",
+		"genre": "Biography, Drama, Family",
+		"image_url": "https://i.insider.com/603d160587d37600190d064b?width=750&format=jpeg&auto=webp",
+		"review": "'The Sound of Music', dirigida por Robert Wise, es un musical que captura la esencia de la familia y la música. La película sigue a Maria, interpretada por Julie Andrews, una joven que se convierte en la gobernanta de la familia von Trapp. Mientras inspira a los niños con su amor por la música, se enamora del Capitán von Trapp, interpretado por Christopher Plummer.\n\nLa película celebra la belleza de la música, la naturaleza y la conexión humana. Las canciones icónicas y las actuaciones conmovedoras dan vida a la historia. 'The Sound of Music' resuena con el público por su mensaje de esperanza y su enfoque en la importancia de encontrar la felicidad en momentos oscuros.",
+		"actors": ["Julie Andrews", "Christopher Plummer"],
+		"director": "Robert Wise",
+		"composer": "Richard Rodgers, Oscar Hammerstein II"
+	},
+	{
+		"movie_id": "11",
+		"title": "The Great Dictator",
+		"releaseDate": "1940",
+		"genre": "Comedy, Drama, War",
+		"image_url": "https://m.media-amazon.com/images/M/MV5BYjYyNjJmMGMtMjFiNy00ZWJhLTg4MTMtNDc1N2ZiZGNlOTE4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+		"review": "'The Great Dictator', escrita, dirigida y protagonizada por Charlie Chaplin, es una sátira audaz sobre el nazismo y la dictadura. Chaplin interpreta a dos personajes: Adenoid Hynkel, un dictador inspirado en Adolf Hitler, y un barbero judío que lucha por sobrevivir en medio de la opresión.\n\nLa película combina comedia y crítica social de manera magistral. El famoso discurso final de Chaplin transmite un mensaje de humanidad y unidad en tiempos de división. 'The Great Dictator' destaca la importancia de reírse de la tiranía y el poder del cine para provocar reflexión y cambio.",
+		"actors": ["Charlie Chaplin"],
+		"director": "Charlie Chaplin",
+		"composer": "Charlie Chaplin"
+	},
+	{
+		"movie_id": "12",
+		"title": "To Kill a Mockingbird",
+		"releaseDate": "1962",
+		"genre": "Crime, Drama",
+		"image_url": "https://m.media-amazon.com/images/M/MV5BMDNhMzIzMzQtZGNiMC00YzhhLWE1ZDYtN2QzNTY5ZDg2NDVkXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+		"review": "'To Kill a Mockingbird', dirigida por Robert Mulligan, es una adaptación de la novela de Harper Lee. La película sigue a Scout Finch, interpretada por Mary Badham, mientras su padre, el abogado Atticus Finch, interpretado por Gregory Peck, defiende a un hombre negro acusado injustamente de violación. La película aborda el racismo y la justicia en el sur de Estados Unidos.\n\nLa historia se presenta a través de los ojos de Scout, lo que agrega profundidad emocional. La actuación de Peck como Atticus Finch es un ícono de la lucha por la justicia. 'To Kill a Mockingbird' es una reflexión conmovedora sobre la bondad y la crueldad humanas.",
+		"actors": ["Gregory Peck"],
+		"director": "Robert Mulligan",
+		"composer": "Elmer Bernstein"
+	},
+	{
+		"movie_id": "13",
+		"title": "A Streetcar Named Desire",
+		"releaseDate": "1951",
+		"genre": "Drama",
+		"image_url": "https://prod-images.tcm.com/Master-Profile-Images/astreetcarnameddesire1951.16434.jpg",
+		"review": "'A Streetcar Named Desire', dirigida por Elia Kazan, es una adaptación de la obra de teatro de Tennessee Williams. La película sigue a Blanche DuBois, interpretada por Vivien Leigh, mientras se muda con su hermana Stella y su cuñado Stanley, interpretado por Marlon Brando. Las tensiones entre los personajes y el colapso mental de Blanche son el foco central.\n\nLa película explora temas de deseo, ilusión y decadencia. Las actuaciones de Leigh y Brando son poderosas y emocionalmente intensas. 'A Streetcar Named Desire' es un estudio fascinante de la psicología humana y las luchas internas.",
+		"actors": ["Vivien Leigh", "Marlon Brando"],
+		"director": "Elia Kazan",
+		"composer": "Alex North"
+	},
+	{
+		"movie_id": "14",
+		"title": "Sunset Boulevard",
+		"releaseDate": "1950",
+		"genre": "Drama, Film-Noir",
+		"image_url": "https://s1.eestatic.com/2020/08/04/el-cultural/el_cultural_510461221_218727548_1706x960.jpg",
+		"review": "'Sunset Boulevard', dirigida por Billy Wilder, ofrece una mirada oscura al mundo de Hollywood y la obsesión por la fama. La película sigue a Joe Gillis, interpretado por William Holden, un guionista desesperado que se involucra con la enigmática actriz Norma Desmond, interpretada por Gloria Swanson. La decadencia de Norma y la industria del cine son los temas principales.\n\nLa película es un estudio de personajes intensamente actuado y dirigido. La narrativa no convencional, contada desde la perspectiva de un fallecido, añade un elemento inquietante. 'Sunset Boulevard' cuestiona la búsqueda implacable de la juventud y la eternidad en la fama.",
+		"actors": ["William Holden", "Gloria Swanson"],
+		"director": "Billy Wilder",
+		"composer": "Franz Waxman"
+	},
+	{
+		"movie_id": "15",
+		"title": "Rebel Without a Cause",
+		"releaseDate": "1955",
+		"genre": "Drama",
+		"image_url": "https://s3.amazonaws.com/static.rogerebert.com/uploads/review/primary_image/reviews/great-movie-rebel-without-a-cause-1955/EB20050619REVIEWS08506190301AR.jpg",
+		"review": "'Rebel Without a Cause', dirigida por Nicholas Ray, captura el espíritu de la rebeldía juvenil y la búsqueda de identidad en la década de 1950. La película sigue a Jim Stark, interpretado por James Dean, un adolescente que lucha por encajar y encuentra amistad y conflicto en sus compañeros desafiantes.\n\nLa película aborda temas de alienación, presión social y violencia juvenil. James Dean se convirtió en un ícono cultural debido a su actuación y estilo. 'Rebel Without a Cause' es un retrato atemporal de la lucha adolescente por encontrar su lugar en un mundo cambiante.",
+		"actors": ["James Dean"],
+		"director": "Nicholas Ray",
+		"composer": "Leonard Rosenman"
+	},
+	{
+		"movie_id": "16",
+		"title": "The Maltese Falcon",
+		"releaseDate": "1941",
+		"genre": "Film-Noir, Mystery",
+		"image_url": "https://m.media-amazon.com/images/M/MV5BMjA1MzAzNzQxOF5BMl5BanBnXkFtZTgwOTc0MjY5NzE@._V1_.jpg",
+		"review": "'The Maltese Falcon', dirigida por John Huston, es un clásico del cine negro que estableció el arquetipo del detective duro y cínico. La película sigue al detective privado Sam Spade, interpretado por Humphrey Bogart, mientras investiga la desaparición de su socio y se ve envuelto en un intrincado juego de engaños y traición.\n\nLa película es un ejemplo magistral de narrativa de misterio y personajes oscuros. Bogart personifica al detective sin escrúpulos en un mundo de moral ambigua. 'The Maltese Falcon' es una exploración del ansia de riqueza y la corrupción en la sociedad.",
+		"actors": ["Humphrey Bogart"],
+		"director": "John Huston",
+		"composer": "Adolph Deutsch"
+	},
+	{
+		"movie_id": "17",
+		"title": "Psycho",
+		"releaseDate": "1960",
+		"genre": "Horror, Mystery, Thriller",
+		"image_url": "https://uploads-ssl.webflow.com/610c5007d3b7ee36cc3e07c1/62e3b34012ae3d815066e63a_Psycho-Screenplay-Breakdown.jpg",
+		"review": "'Psycho', dirigida por Alfred Hitchcock, es un hito en el género de terror y un ícono de la cinematografía. La película sigue a Marion Crane, interpretada por Janet Leigh, quien se refugia en el motel Bates después de cometer un robo. Su encuentro con el misterioso Norman Bates, interpretado por Anthony Perkins, desencadena una cadena de eventos macabros.\n\nLa película es conocida por su sorprendente giro y la famosa escena de la ducha. Hitchcock crea una atmósfera de suspense psicológico que perdura. 'Psycho' explora la dualidad de la mente humana y la perturbadora conexión entre madre e hijo.",
+		"actors": ["Janet Leigh", "Anthony Perkins"],
+		"director": "Alfred Hitchcock",
+		"composer": "Bernard Herrmann"
+	},
+	{
+		"movie_id": "18",
+		"title": "Roman Holiday",
+		"releaseDate": "1953",
+		"genre": "Comedy, Drama, Romance",
+		"image_url": "https://variety.com/wp-content/uploads/2017/06/roman-holiday.jpg",
+		"review": "'Roman Holiday', dirigida por William Wyler, es una encantadora historia de amor que captura la magia de Roma. La película sigue a la princesa Ann, interpretada por Audrey Hepburn en su debut en Hollywood, mientras escapa de sus deberes reales y se encuentra con un periodista estadounidense, interpretado por Gregory Peck.\n\nLa película es una celebración de la espontaneidad y la aventura. Audrey Hepburn se convierte en un símbolo de elegancia y frescura. 'Roman Holiday' es una historia de amor nostálgica que muestra cómo las experiencias inesperadas pueden cambiar vidas.",
+		"actors": ["Audrey Hepburn", "Gregory Peck"],
+		"director": "William Wyler",
+		"composer": "Georges Auric"
+	},
+	{
+		"movie_id": "19",
+		"title": "All About Eve",
+		"releaseDate": "1950",
+		"genre": "Drama",
+		"image_url": "https://prod-images.tcm.com/Master-Profile-Images/allabouteve1950.67044.jpg",
+		"review": "'All About Eve', dirigida por Joseph L. Mankiewicz, es un vistazo al mundo competitivo y traicionero del teatro. La película sigue a Eve Harrington, interpretada por Anne Baxter, una joven admiradora que se convierte en la protegida de la famosa actriz Margo Channing, interpretada por Bette Davis. Sin embargo, las verdaderas intenciones de Eve comienzan a revelarse.\n\nLa película es un estudio de personajes brillantemente escrito y actuado. Bette Davis brilla como la envejecida diva del teatro. 'All About Eve' explora temas de ambición, envidia y la naturaleza volátil de la fama.",
+		"actors": ["Bette Davis", "Anne Baxter"],
+		"director": "Joseph L. Mankiewicz",
+		"composer": "Alfred Newman"
+	},
+	{
+		"movie_id": "20",
+		"title": "The African Queen",
+		"releaseDate": "1951",
+		"genre": "Adventure, Drama, Romance",
+		"image_url": "https://prod-images.tcm.com/Master-Profile-Images/theafricanqueen1951.24323.jpg",
+		"review": "'The African Queen', dirigida por John Huston, es una aventura emocionante que reúne a dos estrellas legendarias: Humphrey Bogart y Katharine Hepburn. La película sigue a Charlie Allnut, interpretado por Bogart, y Rose Sayer, interpretada por Hepburn, mientras navegan por un río peligroso en África durante la Primera Guerra Mundial.\n\nLa película combina romance y acción en un entorno exótico. Bogart ganó un Oscar por su actuación y Hepburn también brilla. 'The African Queen' es un viaje emocionante y conmovedor que demuestra la resistencia humana ante la adversidad.",
+		"actors": ["Humphrey Bogart", "Katharine Hepburn"],
+		"director": "John Huston",
+		"composer": "Allan Gray"
+	}
+]

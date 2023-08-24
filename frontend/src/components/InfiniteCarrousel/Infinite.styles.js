@@ -8,8 +8,8 @@ export const Container = styled.div`
 			transform: translateX(0);
 		}
 		100% {
-			-webkit-transform: translateX(calc(-250px * 8));
-			transform: translateX(calc(-250px * 8));
+			-webkit-transform: translateX(calc(-300px * 8));
+			transform: translateX(calc(-300px * 8));
 		}
 	}
 
@@ -19,8 +19,8 @@ export const Container = styled.div`
 			transform: translateX(0);
 		}
 		100% {
-			-webkit-transform: translateX(calc(-250px * 8));
-			transform: translateX(calc(-250px * 8));
+			-webkit-transform: translateX(calc(-300px * 8));
+			transform: translateX(calc(-300px * 8));
 		}
 	}
 	.slider {
@@ -59,10 +59,10 @@ export const Container = styled.div`
 		-webkit-animation: scroll 40s linear infinite;
 		animation: scroll 40s linear infinite;
 		display: flex;
-		width: calc(250px * 16);
+		width: calc(300px * 24);
 	}
 	.slider .slide {
-		width: 250px;
+		width: 300px;
 		display: flex;
 		align-items: center;
 		justify-content: center;

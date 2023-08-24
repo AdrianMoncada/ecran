@@ -29,10 +29,33 @@ export const HeaderContainer = styled.div`
 
 	.nav ul {
 		display: flex;
+		align-items: center;
 		gap: 2rem;
 	}
 
+	.buttonExplore {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		background-color: #683ca0;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 10px;
+		transition: all 250ms ease;
+	}
+
+	.buttonExplore:hover {
+		background-color: #553482;
+	}
+
+	.buttonExplore .icon {
+		width: 20px;
+		height: 20px;
+	}
+
 	.link_text {
+		margin-top: 10px;
 		position: relative;
 		text-decoration: none;
 		font-size: 1em;
@@ -44,7 +67,7 @@ export const HeaderContainer = styled.div`
 		display: block;
 		width: 100%;
 		height: 2px;
-		bottom: 0;
+		bottom: -4px;
 		left: 0;
 		background-color: #fff;
 		transform: scaleX(0);

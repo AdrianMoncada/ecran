@@ -122,4 +122,19 @@ export const List = styled.li`
 		width: 80%;
 		border-width: 1px;
 	}
-`;
+`
+export const NotFound = styled.div`
+	
+display: flex;
+	
+	img{
+		height: 4rem;
+	}
+
+	.not-found-text{
+		color: white;
+		display: flex;
+		flex-direction: column;
+	}
+`
+;

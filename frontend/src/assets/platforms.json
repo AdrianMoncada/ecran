@@ -1,0 +1,42 @@
+[
+	{
+		"id": "1",
+		"label": "HBO",
+		"value": "images/home/logos/hbo.svg"
+	},
+	{
+		"id": "2",
+		"label": "Paramount",
+		"value": "images/home/logos/paramount.svg"
+	},
+	{
+		"id": "3",
+		"label": "Amazon",
+		"value": "images/home/logos/amazon.svg"
+	},
+	{
+		"id": "4",
+		"label": "Apple",
+		"value": "images/home/logos/apple.svg"
+	},
+	{
+		"id": "5",
+		"label": "Disney",
+		"value": "images/home/logos/disney.svg"
+	},
+	{
+		"id": "6",
+		"label": "Netflix",
+		"value": "images/home/logos/netflix.svg"
+	},
+	{
+		"id": "7",
+		"label": "Star",
+		"value": "images/home/logos/star.svg"
+	},
+	{
+		"id": "8",
+		"label": "Vix",
+		"value": "images/home/logos/vix.svg"
+	}
+]

@@ -10,6 +10,7 @@
 	},
 	"extends": [
 		"next",
+		"next/babel",
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:prettier/recommended",
@@ -27,9 +28,9 @@
 		"prettier/prettier": [
 			"error",
 			{
-			  "endOfLine": "auto"
+				"endOfLine": "auto"
 			}
-		  ],
+		],
 		"no-unused-vars": "error",
 		"quotes": ["error", "double"],
 		"semi": ["error", "always"],

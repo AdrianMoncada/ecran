@@ -23,9 +23,9 @@ const SignIn = () => {
 
 				<Button>Sign In</Button>
 				<p className="text">
-					Don't have an account?{"   "}
+					No tienes una cuenta?
 					<Link className="link" href="/signUp">
-						Sign Up
+						Registrarse
 					</Link>
 				</p>
 			</ContainerFrom>
