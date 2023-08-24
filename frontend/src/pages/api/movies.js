@@ -2,7 +2,7 @@ const API_URL = process.env.API_URL;
 
 export async function fetchMovies() {
 	try {
-		const response = await fetch("http://52.87.235.254:8080/api/v1/movies");
+		const response = await fetch("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies");
 		const data = await response.json();
 		return data;
 	} catch (error) {
@@ -14,7 +14,7 @@ export async function fetchMovies() {
 export async function fetchMoviesDate(minDate, maxDate) {
 	try {
 		const response = await fetch(
-			`http://52.87.235.254:8080/api/v1/movies/filter?min_date=${minDate}&max_date=${maxDate}&order=desc`,
+			`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/filter?min_date=${minDate}&max_date=${maxDate}&order=desc`,
 		);
 		const data = await response.json();
 		return data;
@@ -65,7 +65,7 @@ function assignTopToMovies(movieData) {
 
 export default async function fetchMoviesWithTop() {
 	try {
-		const response = await fetch("http://52.87.235.254:8080/api/v1/movies");
+		const response = await fetch("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies");
 		const data = await response.json();
 
 		const moviesWithTop = assignTopToMovies(data);

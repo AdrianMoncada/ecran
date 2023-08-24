@@ -43,7 +43,7 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies }) => {
 			order: "desc",
 		});
 
-		const apiUrl = `http://52.87.235.254:8080/api/v1/movies/filter?${queryParams}`;
+		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/filter?${queryParams}`;
 
 		fetch(apiUrl)
 			.then((response) => response.json())
