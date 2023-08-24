@@ -21,6 +21,7 @@ export const FooterContainer = styled.div`
 	}
 
 	.footer_logo {
+		height: 1rem;
 	}
 
 	.footer_logo img {
@@ -30,5 +31,28 @@ export const FooterContainer = styled.div`
 
 	.footer_text {
 		margin-right: 8em;
+
 	}
+	
+
+	@media screen and (max-width: 768px) {
+
+	margin-botton:3rem;
+		
+	.footer_text {
+		margin-right: 2em;
+		font-size: 9px;
+	}
+
+	.footer_logo img {
+
+	}
+
+	.footer_icons {
+		margin-left: 2em;
+	}
+
+	}
+
+	
 `;
