@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, CardHeader } from "./Card.styles";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Card = ({ movie }) => {
-	const router = useRouter();
+	// const router = useRouter();
 
-	const handleClick = () => {
-		router.push(`/movies/${movie.movieId}`);
-	};
+	// const handleClick = () => {
+	// 	router.push(`/movies/${movie.movieId}`);
+	// };
 
 	function cortarTexto(texto, limite) {
 		if (texto.length <= limite) {
@@ -45,9 +46,9 @@ const Card = ({ movie }) => {
 				</CardHeader>
 				<h1 className="title">{movie?.title}</h1>
 				<p className="description">{textoCortado}</p>
-				<p onClick={handleClick} className="button">
+				<Link className="button" href={`/movies/${movie.movieId}`}>
 					Ver más
-				</p>
+				</Link>
 			</Container>
 		</div>
 	);

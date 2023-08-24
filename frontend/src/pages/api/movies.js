@@ -1,5 +1,3 @@
-const API_URL = process.env.API_URL;
-
 export async function fetchMovies() {
 	try {
 		const response = await fetch("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies");
@@ -24,7 +22,7 @@ export async function fetchMoviesDate(minDate, maxDate) {
 	}
 }
 
-export async function fetchMovieId(req) {
+/* export async function fetchMovieId(req) {
 	try {
 		const response = await fetch(API_URL);
 		const data = await response.json();
@@ -34,7 +32,7 @@ export async function fetchMovieId(req) {
 		console.error("Error fetching movies data:", error);
 		throw error;
 	}
-}
+} */
 
 function assignTopToMovies(movieData) {
 	// Copiar el arreglo para no modificar el original
