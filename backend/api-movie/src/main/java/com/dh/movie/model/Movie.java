@@ -1,5 +1,6 @@
 package com.dh.movie.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -32,7 +33,7 @@ public class Movie implements Serializable {
     private String mc_score;
     @Field("release_date")
     private String releaseDate;
-    private List<String> genre = new ArrayList<>();
+    private List<String> genres = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private List<String> scores = new ArrayList<>();

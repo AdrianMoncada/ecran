@@ -51,8 +51,8 @@ public class MovieController {
     @GetMapping("/filter")
     ResponseEntity<List<MovieResponseDTO>> findByFilters
             (
-                    @RequestParam(required = false, defaultValue = "") List<String> genres,
-                    @RequestParam(required = false, defaultValue = "") List<String> platforms,
+                    @RequestParam(defaultValue = "") List<String> genres,
+                    @RequestParam(defaultValue = "") List<String> platforms,
                     @RequestParam(defaultValue = "0") String min_date,
                     @RequestParam(defaultValue = "3000") String max_date,
                     @RequestParam(required = false, defaultValue = "asc") String order

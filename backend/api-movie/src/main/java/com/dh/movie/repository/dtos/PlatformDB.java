@@ -1,17 +1,14 @@
-package com.dh.movie.model;
+package com.dh.movie.repository.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Platform {
-
+@ToString
+public class PlatformDB {
     private String name;
-    private String logo_url;
-
 }

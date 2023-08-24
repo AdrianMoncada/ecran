@@ -1,4 +1,4 @@
-package com.dh.movie.model;
+package com.dh.series.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,11 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Platform {
+@NoArgsConstructor
+public class PlatformResponseDTO {
 
+    private String platformId;
     private String name;
     private String logo_url;
-
 }
+
