@@ -112,8 +112,9 @@ function MovieDetail({ movies, cardMovies }) {
 	);
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 	const { id } = context.params;
+
 	try {
 		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
 
@@ -122,7 +123,7 @@ export async function getServerSideProps(context) {
 		}
 
 		const movies = await response.json();
-		const cardMovies = await fetchMovies();
+		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
 
 		return {
 			props: {
@@ -139,6 +140,18 @@ export async function getServerSideProps(context) {
 			},
 		};
 	}
+}
+
+export async function getStaticPaths() {
+	const cardMovies = await fetchMovies();
+	const paths = cardMovies.map((movie) => {
+		return { params: { id: movie.movieId.toString() } };
+	});
+
+	return {
+		paths,
+		fallback: true,
+	};
 }
 
 export default MovieDetail;
