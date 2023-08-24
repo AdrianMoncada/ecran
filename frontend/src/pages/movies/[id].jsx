@@ -114,16 +114,32 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getServerSideProps(context) {
 	const { id } = context.params;
-	const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
-	const movies = await response.json();
-	const cardMovies = await fetchMovies();
+	try {
+		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
 
-	return {
-		props: {
-			movies,
-			cardMovies,
-		},
-	};
+		if (!response.ok) {
+			throw new Error(`Failed to fetch movie with ID ${id}`);
+		}
+
+		const movies = await response.json();
+		const cardMovies = await fetchMovies();
+
+		return {
+			props: {
+				movies,
+				cardMovies,
+			},
+		};
+	} catch (error) {
+		console.error(error);
+
+		return {
+			props: {
+				error: 'An error occurred while fetching the movie.',
+			},
+		};
+	}
 }
+
 
 export default MovieDetail;
