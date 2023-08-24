@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container } from "./Infinite.styles";
 import brands from "@/assets/marcas.json";
 import Image from "next/image";
