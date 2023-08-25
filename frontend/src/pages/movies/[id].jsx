@@ -112,7 +112,21 @@ function MovieDetail({ movies, cardMovies }) {
 	);
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
+	const { id } = context.params;
+	const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
+	const movies = await response.json();
+	const cardMovies = await fetchMovies();
+
+	return {
+		props: {
+			movies,
+			cardMovies,
+		},
+	};
+}
+
+/* export async function getStaticProps(context) {
 	const { id } = context.params;
 
 	try {
@@ -152,6 +166,6 @@ export async function getStaticPaths() {
 		paths,
 		fallback: true,
 	};
-}
+} */
 
 export default MovieDetail;
