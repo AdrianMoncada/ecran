@@ -34,7 +34,7 @@
 	src: url("/fonts/Inter-Bold.ttf") format("truetype"); /* Ruta de la fuente y formato */
 }
 
-html{
+html {
 	height: 100vh;
 }
 

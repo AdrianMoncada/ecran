@@ -5,8 +5,6 @@ import { SearchResultsContainer, ResultsContainer, NotFound } from "@styles/page
 import AutocompleteItem from "@/components/results/AutocompleteItem";
 import Image from "next/image";
 
-
-
 const SearchResults = () => {
 	const router = useRouter();
 	const { query, items } = router.query;
@@ -33,19 +31,21 @@ const SearchResults = () => {
 					</h1>
 				</div>
 				<div className="container-list">
-				{searchResults.length > 0 ? (
-					<ul>
-						{searchResults.map((item) => (
-							<AutocompleteItem key={item.id} movieId={item.id} {...item} />
-						))}
-					</ul>
-				) : (<NotFound>
-					<Image src="/images/Not-found.png" alt="" width={200} height={200}/>
-					<div className="not-found-text">
-						<h2>Oops!</h2>
-						<p>No hay resultados para tu busqueda</p>
-					</div>
-					</NotFound>)}
+					{searchResults.length > 0 ? (
+						<ul>
+							{searchResults.map((item) => (
+								<AutocompleteItem key={item.id} movieId={item.id} {...item} />
+							))}
+						</ul>
+					) : (
+						<NotFound>
+							<Image src="/images/Not-found.png" alt="" width={200} height={200} />
+							<div className="not-found-text">
+								<h2>Oops!</h2>
+								<p>No hay resultados para tu busqueda</p>
+							</div>
+						</NotFound>
+					)}
 				</div>
 			</ResultsContainer>
 		</>

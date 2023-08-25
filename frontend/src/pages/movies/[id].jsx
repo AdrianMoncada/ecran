@@ -60,25 +60,19 @@ function MovieDetail({ movies, cardMovies }) {
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 						</div>
-
 					</As>
 				</ContainerInfoMovie>
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
-
 						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
 						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
 						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
 
-
 						<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6" />
 						<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7" />
 						<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8" />
-
 					</Puntuaciones>
-					<p className="day_p">
-						{movies.review}
-					</p>
+					<p className="day_p">{movies.review}</p>
 				</DescriptioContainer>
 				<Sugestions>
 					<h4 className="oldies_title">Sugerencias</h4>

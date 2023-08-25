@@ -6,9 +6,7 @@ export const FooterContainer = styled.div`
 	align-items: center;
 	width: 100%;
 	margin-bottom: 2em;
-  	bottom: 0;
-	
-
+	bottom: 0;
 
 	.footer_icons {
 		display: flex;
@@ -34,28 +32,21 @@ export const FooterContainer = styled.div`
 
 	.footer_text {
 		margin-right: 8em;
-
 	}
-	
 
 	@media screen and (max-width: 768px) {
+		margin-botton: 3rem;
 
-	margin-botton:3rem;
-		
-	.footer_text {
-		margin-right: 2em;
-		font-size: 9px;
+		.footer_text {
+			margin-right: 2em;
+			font-size: 9px;
+		}
+
+		.footer_logo img {
+		}
+
+		.footer_icons {
+			margin-left: 2em;
+		}
 	}
-
-	.footer_logo img {
-
-	}
-
-	.footer_icons {
-		margin-left: 2em;
-	}
-
-	}
-
-	
 `;

@@ -295,7 +295,6 @@ export const Puntuaciones = styled.div`
 			margin-top: 2rem;
 		}
 	}
-
 `;
 
 export const Sugestions = styled.div`

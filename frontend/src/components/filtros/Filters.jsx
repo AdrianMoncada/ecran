@@ -82,12 +82,14 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFi
 				<h2 className="text-lg font-semibold">Rango de Fechas</h2>
 				<RangeSlider min={MIN_DATE} max={MAX_DATE} value={dateRange} onChange={handleSliderChange} />
 			</div>
-			<button onClick={() => {
-				setShowFiltered(false)
-				setSelectedGenres([])
-				setSelectedPlatforms([])
-				setDateRange([MIN_DATE, MAX_DATE])
-			}}>
+			<button
+				onClick={() => {
+					setShowFiltered(false);
+					setSelectedGenres([]);
+					setSelectedPlatforms([]);
+					setDateRange([MIN_DATE, MAX_DATE]);
+				}}
+			>
 				Limpiar filtros
 			</button>
 		</Container>
