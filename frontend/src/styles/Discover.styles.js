@@ -5,24 +5,16 @@ export const Container = styled.div`
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
 	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 40px;
-	margin: 0 auto;
 	margin: 0 20px;
 `;
 
-export const Filtros = styled.div`
-	width: 20em;
-	height: 45em;
-	flex-shrink: 0;
-	background-color: #ceb6ea;
-	margin: 20px 0 0 20px;
-	border-radius: 20px;
-`;
+export const Filtros = styled.div``;
 
 export const List = styled.li`
 	display: flex;
@@ -42,14 +34,11 @@ export const List = styled.li`
 		justify-content: space-evenly;
 		align-items: center;
 		width: 100%;
-		/* height: 300px;
-		max-height: 300px;
-		padding: 20px 10px; */
 		height: 100%;
 	}
 
 	.imageList {
-		width: 20%;
+		width: 15%;
 		margin: 20px 0;
 	}
 
@@ -77,27 +66,26 @@ export const List = styled.li`
 			font-size: 12px;
 		}
 
+		.review {
+			color: #94a3b8;
+			font-size: 1vw;
+		}
+
 		.textItem {
 			color: #e2e8f0;
-			font-size: 20px;
+			font-size: 1.4vw;
 			font-weight: 400;
 		}
 
-		.rewiew {
-			color: #94a3b8;
-			font-family: Inter;
-			font-size: 18px;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 27px; /* 150% */
-			letter-spacing: -0.25px;
+		.genre {
+			margin-bottom: -10px;
 		}
 	}
 
 	.titleList {
 		font-weight: 600;
 		color: #fff;
-		font-size: 35px;
+		font-size: 2.4vw;
 		font-style: normal;
 		font-weight: 600;
 		/* padding-bottom: 15px; */
@@ -112,5 +100,58 @@ export const List = styled.li`
 		height: 1px;
 		width: 80%;
 		border-width: 1px;
+	}
+
+	@media screen and (max-width: 900px) {
+		.descriptionList .review {
+			font-size: 2vw;
+		}
+
+		.descriptionList .textItem {
+			font-size: 3vw;
+		}
+
+		.titleList {
+			font-size: 3vw;
+		}
+	}
+`;
+
+export const ContainerSearch = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	.buttonFiltros {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: underline;
+		margin-bottom: 10px;
+	}
+
+	@media screen and (max-width: 900px) {
+		flex-direction: column;
+	}
+`;
+
+export const ModalFilters = styled.div`
+	background-color: #ceb6ea;
+`;
+
+export const ContainerFilters = styled.div`
+	width: 29%;
+	height: 100%;
+	flex-shrink: 0;
+	background-color: #ceb6ea;
+	margin: 20px 0 0 20px;
+	border-radius: 20px;
+`;
+
+export const ContainerResults = styled.div`
+	width: 70%;
+
+	@media screen and (max-width: 900px) {
+		width: 100%;
 	}
 `;
