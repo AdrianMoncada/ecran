@@ -1,9 +1,9 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Search from "@components/search/Search";
-import { SearchResultsContainer, ResultsContainer, List } from "@styles/pages.styles/search-results.styles";
+import { SearchResultsContainer, ResultsContainer, NotFound } from "@styles/pages.styles/search-results.styles";
+import AutocompleteItem from "@/components/results/AutocompleteItem";
+import Image from "next/image";
 
 const SearchResults = () => {
 	const router = useRouter();
@@ -21,7 +21,7 @@ const SearchResults = () => {
 	return (
 		<>
 			<SearchResultsContainer>
-				<Search />
+				<Search showAutocomplete={false} />
 			</SearchResultsContainer>
 
 			<ResultsContainer>
@@ -31,24 +31,21 @@ const SearchResults = () => {
 					</h1>
 				</div>
 				<div className="container-list">
-					<ul>
-						{searchResults.map((item) => (
-							<List key={item.id}>
-								<div className="list">
-									<div className="imageList">
-										<Image src={item.image_url} alt={item.title} className="image" width={100} height={200} />
-									</div>
-
-									<div className="descriptionList">
-										<h3 className="titleList">{item.title}</h3>
-										<p>Genero</p>
-										<p>Año</p>
-									</div>
-								</div>
-								<hr />
-							</List>
-						))}
-					</ul>
+					{searchResults.length > 0 ? (
+						<ul>
+							{searchResults.map((item) => (
+								<AutocompleteItem key={item.id} movieId={item.id} {...item} />
+							))}
+						</ul>
+					) : (
+						<NotFound>
+							<Image src="/images/Not-found.png" alt="" width={200} height={200} />
+							<div className="not-found-text">
+								<h2>Oops!</h2>
+								<p>No hay resultados para tu busqueda</p>
+							</div>
+						</NotFound>
+					)}
 				</div>
 			</ResultsContainer>
 		</>

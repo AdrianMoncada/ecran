@@ -5,21 +5,10 @@ export async function fetchMoviesByTitle(query) {
 		);
 		console.log(response);
 		const data = await response.json();
+		console.log(data);
 		return data;
 	} catch (error) {
 		console.error("Error fetching movie data:", error);
 		throw error;
 	}
 }
-
-// export async function fetchMoviesByTitle(query) {
-// 	try {
-// 		const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${query}`);
-// 		console.log(response);
-// 		const data = await response.json();
-// 		return data;
-// 	} catch (error) {
-// 		console.error("Error fetching movie data:", error);
-// 		throw error;
-// 	}
-// }

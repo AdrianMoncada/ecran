@@ -5,14 +5,19 @@ export const MainHome = styled.div`
 	background-image: url("/images/home/Bg.svg");
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
 	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	background-size: cover;
 	gap: 40px;
 	margin: 0 auto;
-	width: 90vw;
+	flex-shrink: 0;
+	border-radius: 0px 0px 48px 48px;
+	background: radial-gradient(122.17% 122.17% at 50% 100%, #e9d5ff 0%, #a855f7 22.35%, rgba(15, 23, 42, 0) 100%);
+	margin: 0 20px;
 
 	.title {
 		font-family: InterBold;
@@ -78,12 +83,12 @@ export const MainHome = styled.div`
 
 export const SuggestionsStyle = styled.div`
 	height: 94vh;
-	margin: 0px auto;
 	background-image: url("/images/home/Section.svg");
 	border-radius: 50px 50px 0% 0%;
 	margin: 0 20px;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
 	padding-top: 7em;
 
 	.suggestion_title {

@@ -15,7 +15,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 					Desde éxitos de taquilla hasta joyas ocultas, Ecran te ofrece una visión única del mundo del cine y la
 					televisión, todo a solo un clic de distancia.
 				</h4>
-				<Search />
+				<Search showAutocomplete={true} />
 			</MainHome>
 			{/* <InfiniteCarrousel /> */}
 			<Infinite />
@@ -71,7 +71,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 export async function getStaticProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
-	const moviesOld = await fetchMoviesDate(2016, 2017);
+	const moviesOld = await fetchMoviesDate(2000, 2004);
 	return {
 		props: {
 			response,

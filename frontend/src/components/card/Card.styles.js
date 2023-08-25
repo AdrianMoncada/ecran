@@ -70,6 +70,11 @@ export const Container = styled.div`
 		font-weight: 500;
 		line-height: 22px;
 		text-align: right;
+
+		&:hover {
+			text-decoration: underline;
+			color: white;
+		}
 	}
 `;
 
