@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
 import {
 	Sugestions,
 	PosterContainer,
@@ -12,12 +13,22 @@ import {
 	Info,
 	Contenedor,
 	Puntuaciones,
+	CloseButton,
+	VideoModal,
 } from "@styles/pages.styles/movies.styles";
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
 
 function MovieDetail({ movies, cardMovies }) {
+	//section for manage the modal state
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const handleImageClick = () => {
+		setIsModalOpen(true);
+	};
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
 	return (
 		<main>
 			<Purple></Purple>
@@ -48,7 +59,7 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url} />
+							<Poster src={movies?.image_url} onClick={handleImageClick} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
@@ -87,6 +98,15 @@ function MovieDetail({ movies, cardMovies }) {
 						))}
 					</div>
 				</Sugestions>
+				<VideoModal
+					isOpen={isModalOpen}
+					onRequestClose={handleCloseModal}
+					overlayClassName="ReactModal__Overlay custom-overlay"
+					ariaHideApp={false}
+				>
+					<ReactPlayer url={movies?.trailer_url} playing controls width="100%" height="100%" />
+					<CloseButton onClick={handleCloseModal}>Cerrar</CloseButton>
+				</VideoModal>
 			</Contenedor>
 		</main>
 	);

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Modal from 'react-modal';
 
 export const Purple = styled.div`
 	height: 63vh;
@@ -173,6 +174,7 @@ export const Poster = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 10px;
+	cursor: pointer;
 
 	@media screen and (max-width: 1024px) {
 		height: 85%;
@@ -347,4 +349,32 @@ export const Sugestions = styled.div`
 			margin-top: 2rem;
 		}
 	}
+`;
+
+
+//styles for the new elements to trailer 
+
+
+export const VideoModal = styled(Modal)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  max-width: 800px;
+  background-color: rgba(32, 32, 32, 0.75); 
+  padding: 20px;
+  border-radius: 8px;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
 `;
