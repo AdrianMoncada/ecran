@@ -19,6 +19,7 @@ import {
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
+import StarRating from "@components/stars/Estrellas";
 
 function MovieDetail({ movies, cardMovies }) {
 	//section for manage the modal state
@@ -28,6 +29,13 @@ function MovieDetail({ movies, cardMovies }) {
 	};
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
+	};
+
+	//section to mange the rating stars
+	const [rating, setRating] = useState(0);
+
+	const handleStarClick = (newRating) => {
+		setRating(newRating);
 	};
 	return (
 		<main>
@@ -65,11 +73,12 @@ function MovieDetail({ movies, cardMovies }) {
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
+							{/* <Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} /> */}
+							<StarRating rating={rating} onStarClick={handleStarClick} />
 						</div>
 					</As>
 				</ContainerInfoMovie>
