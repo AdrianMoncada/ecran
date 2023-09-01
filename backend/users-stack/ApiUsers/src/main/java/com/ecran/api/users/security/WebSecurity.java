@@ -11,24 +11,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.ecran.api.users.service.UsersService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurity {
+public class WebSecurity{
 	private Environment environment;
-
-//	@Autowired
-//	public WebSecurity(Environment environment){
-//		this.environment = environment;
-//	}
-	
 	private UsersService usersService;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	public WebSecurity(UsersService usersService, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment) {
 		this.usersService = usersService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -37,21 +37,23 @@ public class WebSecurity {
     
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-    	
+//		http.cors(cors -> cors.disable());
+
     	// Configure AuthenticationManagerBuilder
-    	AuthenticationManagerBuilder authenticationManagerBuilder = 
+    	AuthenticationManagerBuilder authenticationManagerBuilder =
     			http.getSharedObject(AuthenticationManagerBuilder.class);
-    	
+
     	authenticationManagerBuilder.userDetailsService(usersService)
     	.passwordEncoder(bCryptPasswordEncoder);
-    	
+
     	AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
 		AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager, usersService, environment);
 		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
-    	
-    	http.csrf((csrf) -> csrf.disable());
 
+
+    	http.csrf((csrf) -> csrf.disable());
+		http.cors(withDefaults());
     	http.authorizeHttpRequests((authz) -> authz
         .requestMatchers(HttpMethod.POST, "/users").permitAll()
 						.requestMatchers(HttpMethod.GET, "/users/**").permitAll()
@@ -63,8 +65,21 @@ public class WebSecurity {
         .sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-    	http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
-        return http.build();
 
+    	http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
+
+        return http.build();
     }
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("*"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
 }

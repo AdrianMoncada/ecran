@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 public class ApiUsersApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(ApiUsersApplication.class, args);
 	}
