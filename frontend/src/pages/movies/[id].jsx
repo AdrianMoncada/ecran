@@ -16,6 +16,7 @@ import {
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
+import Button from "@components/button/Button";
 
 function MovieDetail({ movies, cardMovies }) {
 	return (
@@ -49,6 +50,7 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} />
+							<Button />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
