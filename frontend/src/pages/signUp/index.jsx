@@ -5,6 +5,7 @@ import dataInput from "@/assets/input.json";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
+import { postData } from "@/utils/fetchApi";
 
 const initalData = {
 	firstName: "",
@@ -12,6 +13,8 @@ const initalData = {
 	email: "",
 	password: "",
 };
+
+const BASE_URL = "https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com";
 
 const SignUp = () => {
 	const [submitted, setSubmitted] = useState(false);
@@ -26,21 +29,22 @@ const SignUp = () => {
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			console.log(formData);
 			try {
-				const response = await fetch("http://ec2-52-90-230-6.compute-1.amazonaws.com:8181/users/login", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(formData),
-				});
-
-				const data = await response.json();
-				toast.success("Usuario creado con exito");
-				console.log(data);
+				const response = await postData(`${BASE_URL}/authorization/users`, formData);
+				console.log(response);
+				if (response.status === 201) {
+					const data = {
+						email: formData.email,
+						password: formData.password,
+					};
+					const login = await postData(`${BASE_URL}/authorization/users/login`, data);
+					console.log(login.headers);
+					toast.success("Usuario creado con éxito");
+				} else {
+					toast.error("Error, por favor inténtelo de nuevo");
+				}
 			} catch (error) {
-				toast.error("Error, porfavor intentelo de nuevo");
+				toast.error("Error, por favor inténtelo de nuevo");
 				console.error("Error registering:", error);
 			}
 		},
