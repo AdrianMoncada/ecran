@@ -1,9 +1,8 @@
 import { HeaderContainer, Container, AvatarContainer, TitleContainer } from "@/styles/pages.styles/my-list.styles";
 import Carousel from "@components/carousel/Carousel";
 import List from "@components/list/list";
-import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "../../pages/api/movies";
 
-const MyList = ({ response }) => {
+const MyList = () => {
 	return (
 		<>
 			<HeaderContainer>
@@ -20,26 +19,13 @@ const MyList = ({ response }) => {
 				</Container>
 			</HeaderContainer>
 			<List>
-				<Carousel movies={response} top={false} />
+				<Carousel />
 			</List>
 			<List>
-				<Carousel movies={response} top={false} />
+				<Carousel />
 			</List>
 		</>
 	);
 };
-
-export async function getStaticProps() {
-	const response = await fetchMovies();
-	const moviesTop = await fetchMoviesWithTop();
-	const moviesOld = await fetchMoviesDate(2000, 2004);
-	return {
-		props: {
-			response,
-			moviesTop,
-			moviesOld,
-		},
-	};
-}
 
 export default MyList;
