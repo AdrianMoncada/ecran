@@ -22,14 +22,14 @@ public class MoviesServiceImpl implements MoviesService {
         movieEntity.setMovieId("movie1Id");
         movieEntity.setDescription("movie 1 description");
         movieEntity.setId(1L);
-        movieEntity.setName("movie 1 name");
+        movieEntity.setName("Elm Street");
         
         MovieEntity movieEntity2 = new MovieEntity();
         movieEntity2.setUserId(userId);
         movieEntity2.setMovieId("movie2Id");
         movieEntity2.setDescription("movie 2 description");
         movieEntity2.setId(2L);
-        movieEntity2.setName("movie 2 name");
+        movieEntity2.setName("The Exorcist");
         
         returnValue.add(movieEntity);
         returnValue.add(movieEntity2);

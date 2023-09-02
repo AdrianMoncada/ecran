@@ -1,9 +1,222 @@
-2023-08-28T17:21:39.952-03:00  INFO [movies, , ] 20814 --- [main] c.e.a.m.P.MoviesApplicationTests         : Starting MoviesApplicationTests using Java 17.0.8 with PID 20814 (started by adrianmoncada in /home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies)
-2023-08-28T17:21:39.978-03:00  INFO [movies, , ] 20814 --- [main] c.e.a.m.P.MoviesApplicationTests         : No active profile set, falling back to 1 default profile: "default"
-2023-08-28T17:21:42.119-03:00  INFO [movies, , ] 20814 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a878f3aa-f4a3-36e1-81f1-a81e9af0c508
-2023-08-28T17:21:44.118-03:00  INFO [movies, , ] 20814 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2023-08-28T17:21:44.213-03:00  WARN [movies, , ] 20814 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2023-08-28T17:21:44.240-03:00  INFO [movies, , ] 20814 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2023-08-28T17:21:44.384-03:00  INFO [movies, , ] 20814 --- [main] c.e.a.m.P.MoviesApplicationTests         : Started MoviesApplicationTests in 5.213 seconds (process running for 7.235)
-2023-08-28T17:21:45.303-03:00  INFO [movies, , ] 20814 --- [SpringApplicationShutdownHook] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2023-08-28T17:21:45.313-03:00  INFO [movies, , ] 20814 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MOVIES with eureka with status DOWN
+2023-09-02T00:04:13.324-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:09:13.336-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:14:13.350-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:19:13.351-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:24:13.352-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:29:13.353-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:34:13.359-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:39:13.360-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:41:38.055-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-CacheRefreshExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T00:41:44.236-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-HeartbeatExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T00:41:48.867-03:00  WARN [movies, , ] 114099 --- [DiscoveryClient-1] c.netflix.discovery.TimedSupervisorTask  : task supervisor timed out
+
+java.util.concurrent.TimeoutException: null
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204) ~[na:na]
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:68) ~[eureka-client-2.0.0.jar:2.0.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-02T00:44:13.366-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:49:13.367-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:54:13.368-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T00:59:13.369-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:04:13.370-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:09:13.382-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:14:13.387-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:19:13.391-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:24:13.392-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:29:13.395-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:34:13.396-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:39:13.396-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:44:13.406-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:49:13.409-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:54:13.411-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T01:59:13.416-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:04:13.417-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:09:13.515-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:14:13.516-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:19:13.516-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:24:13.520-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:29:13.521-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:34:13.522-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:39:13.525-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:44:13.526-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:49:13.528-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:54:13.529-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T02:59:13.530-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:04:13.545-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:09:13.546-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:14:13.550-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:19:13.551-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:24:13.560-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:29:13.565-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:34:13.573-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:39:13.576-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:44:13.583-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:49:13.586-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:54:13.587-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T03:59:13.590-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:04:13.594-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:09:13.595-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:14:13.608-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:19:13.610-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:24:13.619-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:29:13.622-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:34:13.635-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:39:13.641-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:44:13.644-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:49:13.646-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:54:13.648-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T04:59:13.649-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:04:13.651-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:09:13.652-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:14:13.653-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:19:13.657-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:24:13.660-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:29:13.661-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:34:13.663-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:39:13.666-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:44:13.667-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:49:13.668-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:54:13.670-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T05:59:13.673-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:04:13.674-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:09:13.675-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:14:13.677-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:19:13.685-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:24:13.686-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:29:13.691-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:34:13.692-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:39:13.698-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:44:13.704-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:49:13.705-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:54:13.707-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T06:59:13.709-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:04:13.710-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:09:13.744-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:14:13.745-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:19:13.747-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:24:13.748-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:29:13.752-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:34:13.754-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:39:13.755-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:44:13.760-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:49:13.781-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:54:13.865-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T07:59:13.866-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:04:13.870-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:09:13.871-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:14:13.874-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:19:13.882-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:24:13.885-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:29:13.887-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:34:13.899-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:39:13.904-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:44:13.906-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:49:13.908-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:54:13.910-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T08:59:13.911-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:04:13.920-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:09:13.921-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:14:13.930-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:19:13.931-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:24:13.932-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:29:13.934-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:34:13.935-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:39:13.936-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:44:13.937-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:49:13.939-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:54:13.944-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T09:59:13.955-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:04:13.955-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:09:13.957-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:14:13.965-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:19:13.968-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:24:13.971-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:29:13.989-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:34:13.992-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:39:13.993-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:44:13.998-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:49:14.002-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:54:14.003-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T10:59:14.004-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:04:14.005-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:09:14.007-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:14:14.008-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:19:14.010-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:24:14.011-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:29:14.012-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:34:14.016-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:39:14.017-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:41:35.980-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-HeartbeatExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T11:41:38.897-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-CacheRefreshExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T11:44:14.017-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:49:14.020-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:54:14.022-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T11:59:14.023-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:04:14.024-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:09:14.025-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:14:14.027-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:19:14.032-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:24:14.032-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:29:14.033-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:34:14.034-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:39:14.034-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:44:14.035-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:49:14.036-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:54:14.041-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T12:59:14.042-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:04:14.043-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:09:14.048-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:14:14.055-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:19:14.057-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:24:14.063-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:29:14.068-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:34:14.073-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:38:47.026-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-CacheRefreshExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T13:38:48.181-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-HeartbeatExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T13:39:14.082-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:44:14.087-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:49:14.089-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:54:14.090-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T13:59:14.091-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:04:14.109-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:09:14.111-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:14:14.113-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:19:14.121-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:24:14.124-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:29:14.126-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:34:14.127-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:39:14.130-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:44:14.132-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:49:14.132-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:54:14.133-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T14:59:14.134-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:04:14.140-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:09:14.143-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:14:14.146-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:19:14.147-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:24:14.149-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:29:14.168-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:34:14.170-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:39:14.175-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:41:31.242-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-HeartbeatExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-02T15:44:14.176-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:49:14.177-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:54:14.179-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T15:59:14.180-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T16:04:14.182-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T16:09:14.190-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T16:14:14.192-03:00  INFO [movies, , ] 114099 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-02T16:16:42.222-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MOVIES with eureka with status DOWN
+2023-09-02T16:16:42.223-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693682202223, current=DOWN, previous=UP]
+2023-09-02T16:16:42.224-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:07097cff4dd6ae5f13d784061e174e3c: registering service...
+2023-09-02T16:16:42.477-03:00  INFO [movies, , ] 114099 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:07097cff4dd6ae5f13d784061e174e3c - registration status: 204
+2023-09-02T16:16:43.185-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-02T16:16:46.204-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-02T16:16:46.438-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:07097cff4dd6ae5f13d784061e174e3c - deregister  status: 200
+2023-09-02T16:16:46.470-03:00  INFO [movies, , ] 114099 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

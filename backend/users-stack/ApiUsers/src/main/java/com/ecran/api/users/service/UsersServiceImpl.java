@@ -98,14 +98,14 @@ public class UsersServiceImpl implements UsersService {
 //		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
 //		});
 //		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
-		logger.debug("Before calling albums Microservice");
+		logger.debug("Before calling movies Microservice");
 		List<MoviesResponseModel> moviesList = null;
 		try {
-			moviesList = moviesServiceClient.getAlbums(userId);
+			moviesList = moviesServiceClient.getMovies(userId);
 		} catch (FeignException e) {
 			logger.error(e.getLocalizedMessage());
 		}
-		logger.debug("After calling albums Microservice");
+		logger.debug("After calling movies Microservice");
 		userDto.setMovies(moviesList);
 		return userDto;
 	}

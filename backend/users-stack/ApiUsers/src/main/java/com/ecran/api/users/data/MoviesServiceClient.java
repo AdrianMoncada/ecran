@@ -15,7 +15,7 @@ public interface MoviesServiceClient {
     @GetMapping("/users/{id}/movies")
     @Retry(name="movies")
     @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
-    public List<MoviesResponseModel> getAlbums(@PathVariable String id);
+    public List<MoviesResponseModel> getMovies(@PathVariable String id);
 
     default List<MoviesResponseModel> getMoviesFallback(String id, Throwable exception){
         System.out.println(id);
