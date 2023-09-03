@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const initalData = {
 	email: "",
@@ -44,7 +45,7 @@ const SignIn = () => {
 		<Container>
 			<ContainerHead>
 				<Link href="/">
-					<img src="./EcranLogo.png" alt="ecranLogo" />
+					<Image src="/images/signLogo.png" alt="ecranLogo" width={100} height={100} />
 				</Link>
 				<h3 className="title">
 					Bienvenido a la comunidad <br></br> Écran
@@ -90,3 +91,7 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+SignIn.getLayout = function PageLayout(page) {
+	return <>{page}</>;
+};

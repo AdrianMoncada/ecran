@@ -5,8 +5,7 @@ export const Container = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 15%;
-	margin-bottom: 20%;
+	height: 100vh;
 `;
 export const ContainerHead = styled.div`
 	display: flex;
@@ -86,8 +85,6 @@ export const Button = styled.button`
 	height: 45px;
 	border-radius: 15px;
 	border: 0px solid transparent;
-	margin-top: 80px;
-	margin-bottom: 20px;
 	color: white;
 	font-weight: bold;
 `;

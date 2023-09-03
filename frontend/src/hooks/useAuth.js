@@ -28,6 +28,11 @@ function useProvideAuth() {
 		const token = headers.token;
 		if (token) {
 			Cookie.set("token", token, { expires: 5 });
+			setUser({
+				firstName: "Jacobo",
+				lastName: "Arcila",
+				email: "jacoboArcila1@gmail.com",
+			});
 			//Esto lo que hace es traer toda la info del usuario con el token
 			/* axios.defaults.headers.Authorization = `Bearer ${token}`;
 			const { data: user } = await axios.get();
@@ -49,9 +54,16 @@ function useProvideAuth() {
 		}
 	};
 
+	const signOut = () => {
+		// Elimina la cookie de token y establece el usuario en null para cerrar sesión.
+		Cookie.remove("token");
+		setUser(null);
+	};
+
 	return {
 		user,
 		signIn,
 		signUp,
+		signOut,
 	};
 }

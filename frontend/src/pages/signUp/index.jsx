@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const initalData = {
 	firstName: "",
@@ -48,14 +49,14 @@ const SignUp = () => {
 		<Container>
 			<ContainerHead>
 				<Link href="/">
-					<img src="./EcranLogo.png" alt="ecranLogo" />
+					<Image src="/images/signLogo.png" alt="ecranLogo" width={100} height={100} />
 				</Link>
 				<h3 className="title">Se parte de nuestra comunidad!</h3>
 			</ContainerHead>
 			<ContainerFrom>
 				<form onSubmit={formik.handleSubmit}>
-					{dataInput.map((item, key) => (
-						<div key={key} className="separator">
+					{dataInput.map((item) => (
+						<div key={item.id} className="separator">
 							<label>{item.label}</label>
 							<input
 								className={`input ${submitted && formik.errors[item.name] ? "input-error" : ""}`}
@@ -90,3 +91,7 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+SignUp.getLayout = function PageLayout(page) {
+	return <>{page}</>;
+};

@@ -7,6 +7,16 @@ import Loader from "@components/loader/Loader";
 import { ProviderAuth } from "@/hooks/useAuth";
 
 export default function App({ Component, pageProps }) {
+	if (Component.getLayout) {
+		return (
+			<ThemeProvider theme={theme}>
+				<ProviderAuth>
+					<Suspense fallback={<Loader />}>{Component.getLayout(<Component {...pageProps} />)}</Suspense>
+				</ProviderAuth>
+			</ThemeProvider>
+		);
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<ProviderAuth>
