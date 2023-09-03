@@ -4,6 +4,7 @@ import Checkbox from "./help/Checkbox";
 import RangeSlider from "./help/RangeSlider";
 import { ContainerGenre, ContainerPlaforms, Container } from "./Filters.styles";
 import CheckboxImage from "./help/CheckboxImage";
+import endPoints from "@/service/api";
 
 const MIN_DATE = 1990;
 const MAX_DATE = 2023;
@@ -42,7 +43,7 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFi
 			order: "desc",
 		});
 
-		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/filter?${queryParams}`;
+		const apiUrl = endPoints.movies.filters(queryParams);
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then((data) => setFilteredMovies(data))

@@ -5,16 +5,18 @@ import dataInput from "@/assets/login.json";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
-import { postData } from "@/utils/fetchApi";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 
 const initalData = {
 	email: "",
 	password: "",
 };
-const BASE_URL = "https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com";
 
 const SignIn = () => {
 	const [submitted, setSubmitted] = useState(false);
+	const auth = useAuth();
+	const router = useRouter();
 
 	const validate = Yup.object({
 		email: Yup.string().email("Email invalido").required("*Obligatorio*"),
@@ -24,18 +26,16 @@ const SignIn = () => {
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			try {
-				const response = await postData(`${BASE_URL}/authorization/users/login`, formData);
-				console.log(response);
-				if (response.status === 200) {
+			auth
+				.signIn(formData.email, formData.password)
+				.then(() => {
+					router.push("/");
 					toast.success("Inicio de sesión exitoso");
-				} else {
-					toast.error("Error, por favor inténtelo de nuevo");
-				}
-			} catch (error) {
-				toast.error("Error, por favor inténtelo de nuevo");
-				console.error("Error registering:", error);
-			}
+				})
+				.catch((err) => {
+					toast.error("Sus credenciales son incorrectas");
+					console.error(err);
+				});
 		},
 		validationSchema: validate,
 	});

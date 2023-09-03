@@ -5,7 +5,8 @@ import dataInput from "@/assets/input.json";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
-import { postData } from "@/utils/fetchApi";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 
 const initalData = {
 	firstName: "",
@@ -14,10 +15,10 @@ const initalData = {
 	password: "",
 };
 
-const BASE_URL = "https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com";
-
 const SignUp = () => {
 	const [submitted, setSubmitted] = useState(false);
+	const auth = useAuth();
+	const router = useRouter();
 
 	const validate = Yup.object({
 		firstName: Yup.string().max(15).required("*El nombre es obligatorio*"),
@@ -29,24 +30,16 @@ const SignUp = () => {
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			try {
-				const response = await postData(`${BASE_URL}/authorization/users`, formData);
-				console.log(response);
-				if (response.status === 201) {
-					const data = {
-						email: formData.email,
-						password: formData.password,
-					};
-					const login = await postData(`${BASE_URL}/authorization/users/login`, data);
-					console.log(login.headers);
-					toast.success("Usuario creado con éxito");
-				} else {
-					toast.error("Error, por favor inténtelo de nuevo");
-				}
-			} catch (error) {
-				toast.error("Error, por favor inténtelo de nuevo");
-				console.error("Error registering:", error);
-			}
+			auth
+				.signUp(formData)
+				.then(() => {
+					router.push("/");
+					toast.success("Cuenta creada con exito!");
+				})
+				.catch((err) => {
+					console.error(err);
+					toast.error("Lo siento, intentelo de nuevo");
+				});
 		},
 		validationSchema: validate,
 	});
