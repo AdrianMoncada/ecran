@@ -12,29 +12,36 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MoviesServiceImpl implements MoviesService {
-
+    // Array Movies
     @Override
-    public List<MovieEntity> getMovies(String userId) {
-        List<MovieEntity> returnValue = new ArrayList<>();
-        
-        MovieEntity movieEntity = new MovieEntity();
-        movieEntity.setUserId(userId);
-        movieEntity.setMovieId("movie1Id");
-        movieEntity.setDescription("movie 1 description");
-        movieEntity.setId(1L);
-        movieEntity.setName("Elm Street");
-        
-        MovieEntity movieEntity2 = new MovieEntity();
-        movieEntity2.setUserId(userId);
-        movieEntity2.setMovieId("movie2Id");
-        movieEntity2.setDescription("movie 2 description");
-        movieEntity2.setId(2L);
-        movieEntity2.setName("The Exorcist");
-        
-        returnValue.add(movieEntity);
-        returnValue.add(movieEntity2);
-        
-        return returnValue;
+    public List<String> getMovies(String userId) {
+        List<String> movieIds = new ArrayList<>();
+        movieIds.add("movie1Id");
+        movieIds.add("movie2Id");
+        return movieIds;
     }
+//    @Override
+//    public List<MovieEntity> getMovies(String userId) {
+//        List<MovieEntity> returnValue = new ArrayList<>();
+//
+//        MovieEntity movieEntity = new MovieEntity();
+//        movieEntity.setUserId(userId);
+//        movieEntity.setMovieId("movie1Id");
+//        movieEntity.setDescription("movie 1 description");
+//        movieEntity.setId(1L);
+//        movieEntity.setName("Elm Street");
+//
+//        MovieEntity movieEntity2 = new MovieEntity();
+//        movieEntity2.setUserId(userId);
+//        movieEntity2.setMovieId("movie2Id");
+//        movieEntity2.setDescription("movie 2 description");
+//        movieEntity2.setId(2L);
+//        movieEntity2.setName("The Exorcist");
+//
+//        returnValue.add(movieEntity);
+//        returnValue.add(movieEntity2);
+//
+//        return returnValue;
+//    }
     
 }

@@ -15,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 
  import com.ecran.api.users.ui.model.CreateUserRequestModel;
 import com.ecran.api.users.ui.model.CreateUserResponseModel;
-import com.ecran.api.users.service.*;
-import com.ecran.api.users.shared.*;
 
 @RestController
 @RequestMapping("/users")
@@ -53,9 +51,12 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 
+//	TO DO: Modificar nombre de metodo a ResponseEntity<List<Movie>> getMoviesDetailsByUserId
 	@GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId){
-		UserDto userDto= usersService.getUserByUserId(userId);
+		UserDto userDto= usersService.getWatchlistByUserId(userId);
+//		TO DO: Almacenar en variable lista de peliculas y devolverlas
+//		List<Movie> moviesDetails = usersService.getWatchlistByUserId(userId);
 		UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
 		return ResponseEntity.status(HttpStatus.OK).body(returnValue);
 	}

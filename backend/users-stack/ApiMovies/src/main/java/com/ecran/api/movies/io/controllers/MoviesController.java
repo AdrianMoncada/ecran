@@ -41,14 +41,14 @@ public class MoviesController {
 
         List<MoviesResponseModel> returnValue = new ArrayList<>();
         
-        List<MovieEntity> moviesEntities = moviesService.getMovies(id);
+        List<String> moviesEntities = moviesService.getMovies(id);
         
         if(moviesEntities == null || moviesEntities.isEmpty())
         {
             return returnValue;
         }
         
-        Type listType = new TypeToken<List<MoviesResponseModel>>(){}.getType();
+        Type listType = new TypeToken<List<String>>(){}.getType();
  
         returnValue = new ModelMapper().map(moviesEntities, listType);
         logger.info("Returning " + returnValue.size() + " movies");

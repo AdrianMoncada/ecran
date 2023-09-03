@@ -10,5 +10,7 @@ import com.ecran.api.movies.data.MovieEntity;
 import java.util.List;
 
 public interface MoviesService {
-    List<MovieEntity> getMovies(String userId);
+//    List<MovieEntity> getMovies(String userId);
+
+    List<String> getMovies(String userId);
 }

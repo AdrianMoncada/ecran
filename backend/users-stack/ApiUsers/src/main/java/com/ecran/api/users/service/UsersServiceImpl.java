@@ -6,17 +6,13 @@ import java.util.UUID;
 
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
-import com.ecran.api.users.ui.model.MoviesResponseModel;
 import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.data.*;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -88,25 +83,53 @@ public class UsersServiceImpl implements UsersService {
 		return new ModelMapper().map(userEntity, UserDto.class);
 	}
 
+//	@Override
+//	public UserDto getUserByUserId(String userId) {
+//		UserEntity userEntity = usersRepository.findByUserId(userId);
+//		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+//		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+//
+////		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
+////		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
+////		});
+////		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
+//		logger.debug("Before calling movies Microservice");
+//		List<MoviesResponseModel> moviesList = null;
+//		try {
+//			moviesList = moviesServiceClient.getMovies(userId);
+//		} catch (FeignException e) {
+//			logger.error(e.getLocalizedMessage());
+//		}
+//		logger.debug("After calling movies Microservice");
+//		userDto.setMovies(moviesList);
+//		return userDto;
+//	}
+
+
+//	TO DO: Modificar firma, retornara una lista de peliculas List<Movie>
 	@Override
-	public UserDto getUserByUserId(String userId) {
+	public UserDto getWatchlistByUserId(String userId) {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-//		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
-//		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
-//		});
-//		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
+//			TO DO: Obtener y enviar a MS Movies la lista de watchlistId
+//			List<String> watchlistIds = userEntity.GetWatchlist();
+
 		logger.debug("Before calling movies Microservice");
-		List<MoviesResponseModel> moviesList = null;
+		List<String> moviesList = new ArrayList<>();
 		try {
-			moviesList = moviesServiceClient.getMovies(userId);
+//			TO DO: Obtener lista con detalle de las peliculas, utilizando la lista de ids
+//			List<Movies> moviesList = moviesServiceClient.getMoviesDetails(watchlistIds);
+
+			moviesList = moviesServiceClient.getWatchlistDetails(userId);
 		} catch (FeignException e) {
 			logger.error(e.getLocalizedMessage());
 		}
+//			TO DO: Retornar lista de peliculas con su detalle
+//			return moviesList
 		logger.debug("After calling movies Microservice");
-		userDto.setMovies(moviesList);
+		userDto.setWatchlist(moviesList);
 		return userDto;
 	}
 

@@ -5,10 +5,7 @@
  */
 package com.ecran.api.users.ui.model;
 
-/**
- *
- * @author skargopolov
- */
+
 public class MoviesResponseModel {
     private String movieId;
     private String userId; 

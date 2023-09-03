@@ -1,7 +1,5 @@
 package com.ecran.api.users.shared;
 
-import com.ecran.api.users.ui.model.MoviesResponseModel;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,14 +16,24 @@ public class UserDto implements Serializable {
 	private String userId;
 	private String encryptedPassword;
 
-	private List<MoviesResponseModel> movies;
+	private List<String> watchlist;
 
-	public List<MoviesResponseModel> getMovies() {
-		return movies;
+//	private List<MoviesResponseModel> movies;
+
+//	public List<MoviesResponseModel> getMovies() {
+//		return movies;
+//	}
+//
+//	public void setMovies(List<MoviesResponseModel> movies) {
+//		this.movies = movies;
+//	}
+
+	public List<String> getWatchlist() {
+		return watchlist;
 	}
 
-	public void setMovies(List<MoviesResponseModel> movies) {
-		this.movies = movies;
+	public void setWatchlist(List<String> movies) {
+		this.watchlist = movies;
 	}
 
 	public String getFirstName() {

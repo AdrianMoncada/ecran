@@ -7,7 +7,8 @@ public class UserResponseModel {
     private String firstName;
     private String lastName;
     private String email;
-    private List<MoviesResponseModel> movies;
+//    private List<MoviesResponseModel> movies;
+private List<String> watchlist;
 
     public String getUserId() {
         return userId;
@@ -41,11 +42,19 @@ public class UserResponseModel {
         this.email = email;
     }
 
-    public List<MoviesResponseModel> getMovies() {
-        return movies;
+    public List<String> getWatchlist() {
+        return watchlist;
     }
 
-    public void setMovies(List<MoviesResponseModel> movies) {
-        this.movies = movies;
+    public void setWatchlist(List<String> watchlist) {
+        this.watchlist = watchlist;
     }
+
+//    public List<MoviesResponseModel> getMovies() {
+//        return movies;
+//    }
+//
+//    public void setMovies(List<MoviesResponseModel> movies) {
+//        this.movies = movies;
+//    }
 }
