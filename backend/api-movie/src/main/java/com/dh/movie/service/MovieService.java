@@ -1,6 +1,7 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.exceptions.ServiceException;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
@@ -89,9 +90,19 @@ public class MovieService {
 
     public List<MovieResponseDTO> findWatchlist(List<String> ids) {
         List<WatchlistDB> ObjectIDList = new ArrayList<>();
-        ids.forEach( i -> {
-            ObjectIDList.add(new WatchlistDB(new ObjectId(i)));
-        });
+
+        if (ids.isEmpty()) {
+            throw new ServiceException("Ids must not be empty");
+        }
+
+        try {
+            ids.forEach( i -> {
+                ObjectIDList.add(new WatchlistDB(new ObjectId(i)));
+            });
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage());
+        }
+
         return repository.findWatchlist(ObjectIDList).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     }
 }
