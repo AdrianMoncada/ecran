@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
+import com.ecran.api.users.ui.model.MoviesResponseModel;
 import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -89,54 +90,23 @@ public class UsersServiceImpl implements UsersService {
 		return new ModelMapper().map(userEntity, UserDto.class);
 	}
 
-//	@Override
-//	public UserDto getUserByUserId(String userId) {
-//		UserEntity userEntity = usersRepository.findByUserId(userId);
-//		if(userEntity == null) throw new UsernameNotFoundException("User not found");
-//		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
-//
-////		String moviesUrl = String.format(environment.getProperty("movies.url"), userId);
-////		ResponseEntity<List<MoviesResponseModel>> moviesListResponse = restTemplate.exchange(moviesUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<MoviesResponseModel>>() {
-////		});
-////		List<MoviesResponseModel> moviesList = moviesListResponse.getBody();
-//		logger.debug("Before calling movies Microservice");
-//		List<MoviesResponseModel> moviesList = null;
-//		try {
-//			moviesList = moviesServiceClient.getMovies(userId);
-//		} catch (FeignException e) {
-//			logger.error(e.getLocalizedMessage());
-//		}
-//		logger.debug("After calling movies Microservice");
-//		userDto.setMovies(moviesList);
-//		return userDto;
-//	}
-
-
-//	public List<MovieResponseDTO> getWatchlistByUserId(String userId)
 	@Override
-	public UserDto getWatchlistByUserId(String userId) {
+	public List<MoviesResponseModel> getWatchlistByUserId(String userId) {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
-		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-//			TO DO: Obtener y enviar a MS Movies la lista de watchlistId
-//			List<String> watchlistIds = userEntity.GetWatchlist();
+		List<String> watchlistIds = userEntity.getWatchlist();
 
 		logger.debug("Before calling movies Microservice");
-		List<String> moviesList = new ArrayList<>();
+		List<MoviesResponseModel> moviesList = new ArrayList<>();
 		try {
-//			TO DO: Obtener lista con detalle de las peliculas, utilizando la lista de ids
-//			List<Movies> moviesList = moviesServiceClient.watchlist(watchlistIds);
+			moviesList = moviesServiceClient.watchlist(watchlistIds);
 
-			moviesList = moviesServiceClient.watchlist(userId);
 		} catch (FeignException e) {
 			logger.error(e.getLocalizedMessage());
 		}
-//			TO DO: Retornar lista de peliculas con su detalle
-//			return moviesList
 		logger.debug("After calling movies Microservice");
-		userDto.setWatchlist(moviesList);
-		return userDto;
+		return moviesList;
 	}
 
 }

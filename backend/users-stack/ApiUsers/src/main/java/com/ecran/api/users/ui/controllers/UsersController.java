@@ -3,6 +3,7 @@ package com.ecran.api.users.ui.controllers;
  import com.ecran.api.users.data.UserEntity;
  import com.ecran.api.users.service.UsersService;
  import com.ecran.api.users.shared.UserDto;
+ import com.ecran.api.users.ui.model.MoviesResponseModel;
  import com.ecran.api.users.ui.model.UserResponseModel;
  import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -16,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 
  import com.ecran.api.users.ui.model.CreateUserRequestModel;
 import com.ecran.api.users.ui.model.CreateUserResponseModel;
+
+ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -52,15 +55,11 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 
-//	TO DO: Modificar nombre de metodo a ResponseEntity<List<MovieResponseDTO>> getWatchlistsByUserId
-	// Cambiar firma a "/{userId}/watchlist"
-	@GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<UserResponseModel> getWatchlistByUserId(@PathVariable("userId") String userId){
-		UserDto userDto= usersService.getWatchlistByUserId(userId);
-//		TO DO: Almacenar en variable lista de peliculas y devolverlas
-//		List<MovieResponseDTO> moviesDetails = usersService.getWatchlistByUserId(userId);
-		UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
-		return ResponseEntity.status(HttpStatus.OK).body(returnValue);
+
+	@GetMapping(value = "/{userId}/watchlist", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId){
+		List<MoviesResponseModel> moviesDetails = usersService.getWatchlistByUserId(userId);
+		return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
 	}
 
 		@PostMapping("/{userId}/add-to-watchlist/{movieId}")

@@ -6,10 +6,12 @@
 package com.ecran.api.movies.service;
 
 
+import com.ecran.api.movies.data.MovieEntity;
+
 import java.util.List;
 
 public interface MoviesService {
-//    List<MovieEntity> findWatchlist(List<String> ids);
+    List<MovieEntity> findWatchlist(List<String> ids);
 
-    List<String> findWatchlist(String userId);
+//    List<String> findWatchlist(String userId);
 }
