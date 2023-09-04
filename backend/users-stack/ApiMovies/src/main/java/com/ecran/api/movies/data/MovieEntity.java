@@ -5,82 +5,125 @@
  */
 package com.ecran.api.movies.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MovieEntity {
-    private long id;
     private String movieId;
-    private String userId; 
-    private String name;
-    private String description; 
+    private String title;
+    private String actors;
+    private String director;
+    private String composer;
+    private String review;
+    private String image_url;
+    private String trailer_url;
+    private String release_date;
+    private String genre;
+    private String rt_score;
+    private String imdb_score;
+    private String mc_score;
 
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the albumId
-     */
     public String getMovieId() {
         return movieId;
     }
 
-    /**
-     * @param movieId the albumId to set
-     */
     public void setMovieId(String movieId) {
         this.movieId = movieId;
     }
 
-    /**
-     * @return the userId
-     */
-    public String getUserId() {
-        return userId;
+    public String getTitle() {
+        return title;
     }
 
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    public String getActors() {
+        return actors;
     }
 
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public void setActors(String actors) {
+        this.actors = actors;
     }
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
+    public String getDirector() {
+        return director;
     }
 
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDirector(String director) {
+        this.director = director;
     }
-    
-    
+
+    public String getComposer() {
+        return composer;
+    }
+
+    public void setComposer(String composer) {
+        this.composer = composer;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public String getTrailer_url() {
+        return trailer_url;
+    }
+
+    public void setTrailer_url(String trailer_url) {
+        this.trailer_url = trailer_url;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRt_score() {
+        return rt_score;
+    }
+
+    public void setRt_score(String rt_score) {
+        this.rt_score = rt_score;
+    }
+
+    public String getImdb_score() {
+        return imdb_score;
+    }
+
+    public void setImdb_score(String imdb_score) {
+        this.imdb_score = imdb_score;
+    }
+
+    public String getMc_score() {
+        return mc_score;
+    }
+
+    public void setMc_score(String mc_score) {
+        this.mc_score = mc_score;
+    }
 }

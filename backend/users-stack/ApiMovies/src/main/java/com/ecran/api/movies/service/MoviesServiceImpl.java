@@ -14,32 +14,29 @@ import org.springframework.stereotype.Service;
 public class MoviesServiceImpl implements MoviesService {
     // Array Movies
     @Override
-    public List<String> getMovies(String userId) {
+    public List<String> findWatchlist(String userId) {
         List<String> movieIds = new ArrayList<>();
         movieIds.add("movie1Id");
         movieIds.add("movie2Id");
         return movieIds;
     }
 //    @Override
-//    public List<MovieEntity> getMovies(String userId) {
+//    public List<MovieEntity> findWatchlist(List<String> ids) {
 //        List<MovieEntity> returnValue = new ArrayList<>();
 //
 //        MovieEntity movieEntity = new MovieEntity();
-//        movieEntity.setUserId(userId);
-//        movieEntity.setMovieId("movie1Id");
-//        movieEntity.setDescription("movie 1 description");
-//        movieEntity.setId(1L);
-//        movieEntity.setName("Elm Street");
-//
-//        MovieEntity movieEntity2 = new MovieEntity();
-//        movieEntity2.setUserId(userId);
-//        movieEntity2.setMovieId("movie2Id");
-//        movieEntity2.setDescription("movie 2 description");
-//        movieEntity2.setId(2L);
-//        movieEntity2.setName("The Exorcist");
-//
+//        movieEntity.setMovieId("64e4d1b9daf2a2c7f2f2d1f7");
+//        movieEntity.setTitle("Patton Oswald: Annihilation");
+//        movieEntity.setActors("Patton Oswalt");
+//        movieEntity.setDirector("Bobcat Goldthwait");
+//        movieEntity.setComposer("John Williams");
+//        movieEntity.setReview("Review");
+//        movieEntity.setImage_url("https://ecran.s3.amazonaws.com/Peliculas/annihilation.jpg");
+//        movieEntity.setTrailer_url("https://www.youtube.com/watch?v=4hZi5QaMBFc&ab_channel=Netflix");
+//        movieEntity.setRt_score("100");
+//        movieEntity.setImdb_score("7.3");
+//        movieEntity.setGenre("72");
 //        returnValue.add(movieEntity);
-//        returnValue.add(movieEntity2);
 //
 //        return returnValue;
 //    }

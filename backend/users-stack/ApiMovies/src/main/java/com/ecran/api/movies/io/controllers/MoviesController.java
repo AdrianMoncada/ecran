@@ -5,7 +5,6 @@
  */
 package com.ecran.api.movies.io.controllers;
 
-import com.ecran.api.movies.data.MovieEntity;
 import com.ecran.api.movies.service.MoviesService;
 import com.ecran.api.movies.ui.model.MoviesResponseModel;
 import java.util.ArrayList;
@@ -15,10 +14,7 @@ import org.modelmapper.ModelMapper;
 import java.lang.reflect.Type;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/users/{id}/movies")
+//@RequestMapping("/api/v1/movies/watchlist")
 public class MoviesController {
     
     @Autowired
@@ -37,11 +34,15 @@ public class MoviesController {
                 MediaType.APPLICATION_JSON_VALUE,
                 MediaType.APPLICATION_XML_VALUE,
             })
-    public List<MoviesResponseModel> userMovies(@PathVariable String id) {
+//    ResponseEntity<List<MovieEntity>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
+//        return ResponseEntity.ok().body(movieService.findWatchlist(ids));
+//    }
+    public List<MoviesResponseModel> watchlist(@PathVariable String id) {
 
         List<MoviesResponseModel> returnValue = new ArrayList<>();
-        
-        List<String> moviesEntities = moviesService.getMovies(id);
+
+//        List<MovieEntity> moviesEntities = moviesService.getMovies(id);
+        List<String> moviesEntities = moviesService.findWatchlist(id);
         
         if(moviesEntities == null || moviesEntities.isEmpty())
         {
@@ -49,9 +50,7 @@ public class MoviesController {
         }
         
         Type listType = new TypeToken<List<String>>(){}.getType();
- 
         returnValue = new ModelMapper().map(moviesEntities, listType);
-        logger.info("Returning " + returnValue.size() + " movies");
         return returnValue;
     }
 

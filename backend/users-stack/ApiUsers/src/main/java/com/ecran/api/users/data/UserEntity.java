@@ -1,6 +1,8 @@
 package com.ecran.api.users.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +35,18 @@ public class UserEntity implements Serializable {
 	
 	@Column(nullable=false, unique=true)	
 	private String encryptedPassword;
-	
-	
+
+	@Column(nullable = false)
+	private List<String> watchlist = new ArrayList<>();
+
+	public List<String> getWatchlist() {
+		return watchlist;
+	}
+
+	public void addToWatchlist(String movieId) {
+		watchlist.add(movieId);
+	}
+
 	public long getId() {
 		return id;
 	}

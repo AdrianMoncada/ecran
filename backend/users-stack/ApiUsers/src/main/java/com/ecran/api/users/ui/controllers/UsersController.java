@@ -1,5 +1,6 @@
 package com.ecran.api.users.ui.controllers;
 
+ import com.ecran.api.users.data.UserEntity;
  import com.ecran.api.users.service.UsersService;
  import com.ecran.api.users.shared.UserDto;
  import com.ecran.api.users.ui.model.UserResponseModel;
@@ -51,13 +52,21 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 
-//	TO DO: Modificar nombre de metodo a ResponseEntity<List<Movie>> getMoviesDetailsByUserId
+//	TO DO: Modificar nombre de metodo a ResponseEntity<List<MovieResponseDTO>> getWatchlistsByUserId
+	// Cambiar firma a "/{userId}/watchlist"
 	@GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId){
+	public ResponseEntity<UserResponseModel> getWatchlistByUserId(@PathVariable("userId") String userId){
 		UserDto userDto= usersService.getWatchlistByUserId(userId);
 //		TO DO: Almacenar en variable lista de peliculas y devolverlas
-//		List<Movie> moviesDetails = usersService.getWatchlistByUserId(userId);
+//		List<MovieResponseDTO> moviesDetails = usersService.getWatchlistByUserId(userId);
 		UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
 		return ResponseEntity.status(HttpStatus.OK).body(returnValue);
 	}
+
+		@PostMapping("/{userId}/add-to-watchlist/{movieId}")
+	public ResponseEntity<Void> addToWatchlist(@PathVariable String userId, @PathVariable String movieId) {
+		usersService.addToWatchlist(userId, movieId);
+		return ResponseEntity.ok().build();
+	}
+
 }

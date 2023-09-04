@@ -102,3 +102,557 @@ Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http:
 2023-09-03T17:12:05.368-03:00  INFO [movies, , ] 4944 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-09-03T17:17:05.369-03:00  INFO [movies, , ] 4944 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-09-03T17:22:05.371-03:00  INFO [movies, , ] 4944 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T18:58:37.438-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Starting MoviesApplication using Java 20.0.2 with PID 17313 (/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies/target/classes started by adrianmoncada in /home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies)
+2023-09-03T18:58:37.461-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-09-03T18:58:38.239-03:00  INFO [movies, , ] 17313 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-03T18:58:38.239-03:00  INFO [movies, , ] 17313 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-03T18:58:42.356-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7c2ebb67-ba52-3524-9ef3-1377f8ed0ea8
+2023-09-03T18:58:43.451-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-09-03T18:58:43.468-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-03T18:58:43.470-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-09-03T18:58:43.595-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-03T18:58:43.596-03:00  INFO [movies, , ] 17313 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5356 ms
+2023-09-03T18:58:45.993-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-03T18:58:46.117-03:00  INFO [movies, , ] 17313 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-03T18:58:46.237-03:00  WARN [movies, , ] 17313 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-03T18:58:46.266-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-03T18:58:46.379-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-03T18:58:46.602-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-03T18:58:46.613-03:00  INFO [movies, , ] 17313 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T18:58:46.647-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-03T18:58:46.648-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-03T18:58:46.648-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-03T18:58:46.648-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-03T18:58:46.648-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-03T18:58:46.649-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-03T18:58:46.649-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-03T18:58:47.573-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-03T18:58:47.577-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-03T18:58:47.586-03:00  INFO [movies, , ] 17313 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-03T18:58:47.599-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693778327597 with initial instances count: 4
+2023-09-03T18:58:47.613-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MOVIES with eureka with status UP
+2023-09-03T18:58:47.614-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693778327614, current=UP, previous=STARTING]
+2023-09-03T18:58:47.616-03:00  INFO [movies, , ] 17313 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:b12b260dc68e2dd92bdf20e02521cbcd: registering service...
+2023-09-03T18:58:47.710-03:00  INFO [movies, , ] 17313 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-09-03T18:58:47.711-03:00  INFO [movies, , ] 17313 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2023-09-03T18:58:47.810-03:00  INFO [movies, , ] 17313 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Started MoviesApplication in 13.389 seconds (process running for 15.574)
+2023-09-03T18:58:48.125-03:00  INFO [movies, , ] 17313 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:b12b260dc68e2dd92bdf20e02521cbcd - registration status: 204
+2023-09-03T19:00:41.140-03:00  INFO [movies, , ] 17313 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-03T19:00:41.141-03:00  INFO [movies, , ] 17313 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-03T19:00:41.147-03:00  INFO [movies, , ] 17313 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-03T19:00:41.334-03:00  INFO [movies, 64f50207cb41dc5c210c1da1ead83276, 5fedfd4c6e1f7cce] 17313 --- [http-nio-8081-exec-1] c.e.a.m.io.controllers.MoviesController  : Returning 2 movies
+2023-09-03T19:00:42.449-03:00  WARN [movies, , ] 17313 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@16f08da2}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-03T19:00:42.449-03:00  WARN [movies, , ] 17313 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@16f08da2}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 1 spans due to ResourceAccessException(I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused)
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:68) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:48) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+	at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+	at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:673) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:540) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:590) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:666) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87) ~[httpclient5-5.1.4.jar:5.1.4]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862) ~[spring-web-6.0.6.jar:6.0.6]
+	... 8 common frames omitted
+
+2023-09-03T19:03:46.679-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:08:46.681-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:13:46.682-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:18:46.684-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:23:46.685-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:28:46.685-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:33:46.686-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:38:46.687-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:43:46.688-03:00  INFO [movies, , ] 17313 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:44:56.609-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MOVIES with eureka with status DOWN
+2023-09-03T19:44:56.610-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693781096610, current=DOWN, previous=UP]
+2023-09-03T19:44:56.610-03:00  INFO [movies, , ] 17313 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:b12b260dc68e2dd92bdf20e02521cbcd: registering service...
+2023-09-03T19:44:56.823-03:00  INFO [movies, , ] 17313 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:b12b260dc68e2dd92bdf20e02521cbcd - registration status: 204
+2023-09-03T19:44:56.876-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-03T19:44:59.879-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-03T19:45:00.081-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:b12b260dc68e2dd92bdf20e02521cbcd - deregister  status: 200
+2023-09-03T19:45:00.091-03:00  INFO [movies, , ] 17313 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-09-03T19:49:16.991-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Starting MoviesApplication using Java 20.0.2 with PID 20433 (/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies/target/classes started by adrianmoncada in /home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies)
+2023-09-03T19:49:16.997-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-09-03T19:49:17.170-03:00  INFO [movies, , ] 20433 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-03T19:49:17.174-03:00  INFO [movies, , ] 20433 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-03T19:49:19.895-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7c2ebb67-ba52-3524-9ef3-1377f8ed0ea8
+2023-09-03T19:49:20.885-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-09-03T19:49:20.899-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-03T19:49:20.906-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-09-03T19:49:20.986-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-03T19:49:20.988-03:00  INFO [movies, , ] 20433 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3811 ms
+2023-09-03T19:49:23.095-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-03T19:49:23.193-03:00  INFO [movies, , ] 20433 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-03T19:49:23.333-03:00  WARN [movies, , ] 20433 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-03T19:49:23.347-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-03T19:49:23.459-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-03T19:49:23.661-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-03T19:49:23.668-03:00  INFO [movies, , ] 20433 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:49:23.711-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-03T19:49:23.711-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-03T19:49:23.712-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-03T19:49:23.712-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-03T19:49:23.712-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-03T19:49:23.713-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-03T19:49:23.713-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-03T19:49:24.794-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-03T19:49:24.805-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-03T19:49:24.813-03:00  INFO [movies, , ] 20433 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-03T19:49:24.830-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693781364829 with initial instances count: 3
+2023-09-03T19:49:24.836-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MOVIES with eureka with status UP
+2023-09-03T19:49:24.837-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693781364837, current=UP, previous=STARTING]
+2023-09-03T19:49:24.839-03:00  INFO [movies, , ] 20433 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0c71efa9674d42c3459b586c427d4316: registering service...
+2023-09-03T19:49:24.913-03:00  INFO [movies, , ] 20433 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-09-03T19:49:24.915-03:00  INFO [movies, , ] 20433 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2023-09-03T19:49:25.094-03:00  INFO [movies, , ] 20433 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Started MoviesApplication in 9.232 seconds (process running for 10.424)
+2023-09-03T19:49:25.322-03:00  INFO [movies, , ] 20433 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0c71efa9674d42c3459b586c427d4316 - registration status: 204
+2023-09-03T19:50:31.858-03:00  INFO [movies, , ] 20433 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-03T19:50:31.863-03:00  INFO [movies, , ] 20433 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-03T19:50:31.872-03:00  INFO [movies, , ] 20433 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-09-03T19:50:33.111-03:00  WARN [movies, , ] 20433 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@6477bad9}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-03T19:50:33.119-03:00  WARN [movies, , ] 20433 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@6477bad9}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 1 spans due to ResourceAccessException(I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused)
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:68) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:48) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+	at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+	at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:673) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:540) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:590) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:666) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87) ~[httpclient5-5.1.4.jar:5.1.4]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862) ~[spring-web-6.0.6.jar:6.0.6]
+	... 8 common frames omitted
+
+2023-09-03T19:54:23.721-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T19:59:23.722-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:04:23.723-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:09:23.725-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:14:23.726-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:19:23.728-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:24:23.729-03:00  INFO [movies, , ] 20433 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T20:24:40.129-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MOVIES with eureka with status DOWN
+2023-09-03T20:24:40.130-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693783480130, current=DOWN, previous=UP]
+2023-09-03T20:24:40.130-03:00  INFO [movies, , ] 20433 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0c71efa9674d42c3459b586c427d4316: registering service...
+2023-09-03T20:24:40.137-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-03T20:24:40.139-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-03T20:24:40.145-03:00  WARN [movies, , ] 20433 --- [SpringApplicationShutdownHook] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@6477bad9}] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ zipkin2.reporter.ByteBoundedQueue.drainTo(ByteBoundedQueue.java:81)
+ zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:270)
+ zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378)
+ java.base/java.lang.Thread.run(Thread.java:1623)
+2023-09-03T20:24:40.229-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-03T20:24:40.361-03:00  INFO [movies, , ] 20433 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0c71efa9674d42c3459b586c427d4316 - registration status: 204
+2023-09-03T20:24:40.369-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-03T20:24:40.570-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0c71efa9674d42c3459b586c427d4316 - deregister  status: 200
+2023-09-03T20:24:40.618-03:00  INFO [movies, , ] 20433 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-09-03T22:53:36.345-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Starting MoviesApplication using Java 20.0.2 with PID 33182 (/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies/target/classes started by adrianmoncada in /home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies)
+2023-09-03T22:53:36.352-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-09-03T22:53:36.558-03:00  INFO [movies, , ] 33182 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-03T22:53:36.571-03:00  INFO [movies, , ] 33182 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-03T22:53:39.937-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7c2ebb67-ba52-3524-9ef3-1377f8ed0ea8
+2023-09-03T22:53:40.959-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-09-03T22:53:40.978-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-03T22:53:40.979-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-09-03T22:53:41.065-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-03T22:53:41.066-03:00  INFO [movies, , ] 33182 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4490 ms
+2023-09-03T22:53:43.117-03:00  WARN [movies, , ] 33182 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2023-09-03T22:53:43.211-03:00  INFO [movies, , ] 33182 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-03T22:53:43.294-03:00  WARN [movies, , ] 33182 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-03T22:53:43.318-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-03T22:53:43.478-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-03T22:53:43.658-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-03T22:53:43.666-03:00  INFO [movies, , ] 33182 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T22:53:43.749-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-03T22:53:43.750-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-03T22:53:43.750-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-03T22:53:43.750-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-03T22:53:43.750-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-03T22:53:43.750-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-03T22:53:43.751-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-03T22:53:44.553-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-03T22:53:44.562-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-03T22:53:44.566-03:00  INFO [movies, , ] 33182 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-03T22:53:44.574-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693792424573 with initial instances count: 4
+2023-09-03T22:53:44.578-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MOVIES with eureka with status UP
+2023-09-03T22:53:44.580-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693792424580, current=UP, previous=STARTING]
+2023-09-03T22:53:44.582-03:00  INFO [movies, , ] 33182 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:741a134c9da04b8670fd36793c6b4b4f: registering service...
+2023-09-03T22:53:44.664-03:00  INFO [movies, , ] 33182 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-09-03T22:53:44.665-03:00  INFO [movies, , ] 33182 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2023-09-03T22:53:44.859-03:00  INFO [movies, , ] 33182 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Started MoviesApplication in 10.238 seconds (process running for 13.333)
+2023-09-03T22:53:45.069-03:00  INFO [movies, , ] 33182 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:741a134c9da04b8670fd36793c6b4b4f - registration status: 204
+2023-09-03T22:56:51.742-03:00  INFO [movies, , ] 33182 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-03T22:56:51.744-03:00  INFO [movies, , ] 33182 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-03T22:56:51.747-03:00  INFO [movies, , ] 33182 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-03T22:56:52.966-03:00  WARN [movies, , ] 33182 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@52e13eb7}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-03T22:56:52.966-03:00  WARN [movies, , ] 33182 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@52e13eb7}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 1 spans due to ResourceAccessException(I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused)
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:68) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:48) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+	at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+	at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:673) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:540) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:590) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:666) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87) ~[httpclient5-5.1.4.jar:5.1.4]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862) ~[spring-web-6.0.6.jar:6.0.6]
+	... 8 common frames omitted
+
+2023-09-03T22:58:29.670-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MOVIES with eureka with status DOWN
+2023-09-03T22:58:29.671-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693792709671, current=DOWN, previous=UP]
+2023-09-03T22:58:29.671-03:00  INFO [movies, , ] 33182 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:741a134c9da04b8670fd36793c6b4b4f: registering service...
+2023-09-03T22:58:29.970-03:00  INFO [movies, , ] 33182 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:741a134c9da04b8670fd36793c6b4b4f - registration status: 204
+2023-09-03T22:58:30.045-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-03T22:58:33.049-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-03T22:58:33.333-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:741a134c9da04b8670fd36793c6b4b4f - deregister  status: 200
+2023-09-03T22:58:33.378-03:00  INFO [movies, , ] 33182 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-09-03T23:01:08.197-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Starting MoviesApplication using Java 20.0.2 with PID 33790 (/home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies/target/classes started by adrianmoncada in /home/adrianmoncada/Code/equipo-01/backend/users-stack/ApiMovies)
+2023-09-03T23:01:08.210-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-09-03T23:01:08.402-03:00  INFO [movies, , ] 33790 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-03T23:01:08.404-03:00  INFO [movies, , ] 33790 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-03T23:01:13.010-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7c2ebb67-ba52-3524-9ef3-1377f8ed0ea8
+2023-09-03T23:01:15.169-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-09-03T23:01:15.220-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-03T23:01:15.221-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-09-03T23:01:15.438-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-03T23:01:15.441-03:00  INFO [movies, , ] 33790 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7036 ms
+2023-09-03T23:01:20.152-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-09-03T23:01:21.145-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-03T23:01:22.177-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-09-03T23:01:22.214-03:00  INFO [movies, , ] 33790 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-03T23:01:22.441-03:00  WARN [movies, , ] 33790 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-03T23:01:22.472-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-03T23:01:22.715-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-03T23:01:23.110-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-03T23:01:23.129-03:00  INFO [movies, , ] 33790 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T23:01:23.215-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-03T23:01:23.215-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-03T23:01:23.215-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-03T23:01:23.215-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-03T23:01:23.223-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-03T23:01:23.224-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-03T23:01:23.225-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-03T23:01:24.509-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-03T23:01:24.516-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-03T23:01:24.529-03:00  INFO [movies, , ] 33790 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-03T23:01:24.538-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693792884537 with initial instances count: 3
+2023-09-03T23:01:24.545-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MOVIES with eureka with status UP
+2023-09-03T23:01:24.547-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693792884547, current=UP, previous=STARTING]
+2023-09-03T23:01:24.549-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0db65aa9f4cc981efb8a1c6070619910: registering service...
+2023-09-03T23:01:24.664-03:00  INFO [movies, , ] 33790 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-09-03T23:01:24.666-03:00  INFO [movies, , ] 33790 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2023-09-03T23:01:24.913-03:00  INFO [movies, , ] 33790 --- [restartedMain] com.ecran.api.movies.MoviesApplication   : Started MoviesApplication in 18.446 seconds (process running for 20.271)
+2023-09-03T23:01:25.177-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0db65aa9f4cc981efb8a1c6070619910 - registration status: 204
+2023-09-03T23:02:53.365-03:00  INFO [movies, , ] 33790 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-03T23:02:53.367-03:00  INFO [movies, , ] 33790 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-03T23:02:53.371-03:00  INFO [movies, , ] 33790 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-09-03T23:02:54.761-03:00  WARN [movies, , ] 33790 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@480d596b}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-03T23:02:54.762-03:00  WARN [movies, , ] 33790 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender@480d596b}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 1 spans due to ResourceAccessException(I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused)
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:68) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinRestTemplateSender$RestTemplateHttpPostCall.doExecute(ZipkinRestTemplateSender.java:48) ~[spring-boot-actuator-autoconfigure-3.0.4.jar:3.0.4]
+	at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+	at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+	at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:9411 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:673) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:540) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:590) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:666) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87) ~[httpclient5-5.1.4.jar:5.1.4]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571) ~[na:na]
+	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54) ~[httpclient5-5.1.4.jar:5.1.4]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.0.6.jar:6.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862) ~[spring-web-6.0.6.jar:6.0.6]
+	... 8 common frames omitted
+
+2023-09-03T23:06:23.228-03:00  INFO [movies, , ] 33790 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T23:11:22.813-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-CacheRefreshExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-03T23:11:23.230-03:00  INFO [movies, , ] 33790 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T23:11:29.260-03:00  WARN [movies, , ] 33790 --- [DiscoveryClient-1] c.netflix.discovery.TimedSupervisorTask  : task supervisor timed out
+
+java.util.concurrent.TimeoutException: null
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204) ~[na:na]
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:68) ~[eureka-client-2.0.0.jar:2.0.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-03T23:11:29.766-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (org.apache.hc.core5.http.NoHttpResponseException) caught when processing request to {}->http://44.203.152.200:8761
+2023-09-03T23:11:29.772-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://44.203.152.200:8761/eureka/} exception=null stacktrace=java.util.concurrent.CancellationException
+	at org.apache.hc.core5.concurrent.BasicFuture.getResult(BasicFuture.java:75)
+	at org.apache.hc.core5.concurrent.BasicFuture.get(BasicFuture.java:96)
+	at org.apache.hc.core5.pool.StrictConnPool$1.get(StrictConnPool.java:184)
+	at org.apache.hc.core5.pool.StrictConnPool$1.get(StrictConnPool.java:178)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$1.get(PoolingHttpClientConnectionManager.java:271)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:109)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:119)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:99)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:837)
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1401)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+2023-09-03T23:11:29.773-03:00  WARN [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: null
+2023-09-03T23:11:29.809-03:00  INFO [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://44.203.152.200:8761/eureka/}, exception=null stacktrace=java.util.concurrent.CancellationException
+	at org.apache.hc.core5.concurrent.BasicFuture.getResult(BasicFuture.java:75)
+	at org.apache.hc.core5.concurrent.BasicFuture.get(BasicFuture.java:96)
+	at org.apache.hc.core5.pool.StrictConnPool$1.get(StrictConnPool.java:184)
+	at org.apache.hc.core5.pool.StrictConnPool$1.get(StrictConnPool.java:178)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$1.get(PoolingHttpClientConnectionManager.java:271)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:109)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:119)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:99)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:837)
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1401)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+2023-09-03T23:11:29.812-03:00  WARN [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: null
+2023-09-03T23:11:29.813-03:00 ERROR [movies, , ] 33790 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MOVIES/movies:0db65aa9f4cc981efb8a1c6070619910 - was unable to send heartbeat!
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:837) ~[eureka-client-2.0.0.jar:2.0.0]
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1401) ~[eureka-client-2.0.0.jar:2.0.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-03T23:11:31.207-03:00  WARN [movies, , ] 33790 --- [DiscoveryClient-0] c.netflix.discovery.TimedSupervisorTask  : task supervisor timed out
+
+java.util.concurrent.TimeoutException: null
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204) ~[na:na]
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:68) ~[eureka-client-2.0.0.jar:2.0.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-03T23:16:23.233-03:00  INFO [movies, , ] 33790 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-03T23:21:23.234-03:00  INFO [movies, , ] 33790 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

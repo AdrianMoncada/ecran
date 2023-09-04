@@ -44,7 +44,13 @@ public class UsersServiceImpl implements UsersService {
 		this.moviesServiceClient=moviesServiceClient;
 		this.environment= environment;
 	}
- 
+
+	@Override
+	public void addToWatchlist(String userId, String movieId) {
+		UserEntity userEntity = usersRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+		userEntity.addToWatchlist(movieId);
+	}
 	@Override
 	public UserDto createUser(UserDto userDetails) {
 		// TODO Auto-generated method stub
@@ -106,7 +112,7 @@ public class UsersServiceImpl implements UsersService {
 //	}
 
 
-//	TO DO: Modificar firma, retornara una lista de peliculas List<Movie>
+//	public List<MovieResponseDTO> getWatchlistByUserId(String userId)
 	@Override
 	public UserDto getWatchlistByUserId(String userId) {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
@@ -120,9 +126,9 @@ public class UsersServiceImpl implements UsersService {
 		List<String> moviesList = new ArrayList<>();
 		try {
 //			TO DO: Obtener lista con detalle de las peliculas, utilizando la lista de ids
-//			List<Movies> moviesList = moviesServiceClient.getMoviesDetails(watchlistIds);
+//			List<Movies> moviesList = moviesServiceClient.watchlist(watchlistIds);
 
-			moviesList = moviesServiceClient.getWatchlistDetails(userId);
+			moviesList = moviesServiceClient.watchlist(userId);
 		} catch (FeignException e) {
 			logger.error(e.getLocalizedMessage());
 		}

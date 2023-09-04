@@ -11,23 +11,14 @@ import java.util.List;
 
 @FeignClient(name="movies")
 public interface MoviesServiceClient {
-//    @GetMapping("/users/{id}/movies")
+//    @GetMapping("/api/v1/movies/watchlist")
 //    @Retry(name="movies")
 //    @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
-//    public List<MoviesResponseModel> getMovies(@PathVariable String id);
-//
-//    default List<MoviesResponseModel> getMoviesFallback(String id, Throwable exception){
-//        System.out.println(id);
-//        System.out.println(exception.getMessage());
-//        return new ArrayList<>();
-//    }
-
-//    TO DO: Cambiar get a "/watchlist", retorna List<Movies> no recibe path variable, sino body. Query Params
-//    Reever si se puede enviar por post.
+//    public List<MovieResponseDTO> watchlist(@RequestParam(defaultValue = "") List<String> ids);
     @GetMapping("/users/{id}/movies")
     @Retry(name="movies")
     @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
-    public List<String> getWatchlistDetails(@PathVariable String id);
+    public List<String> watchlist(@PathVariable String id);
 
     default List<String> getMoviesFallback(String id, Throwable exception){
         System.out.println(id);
