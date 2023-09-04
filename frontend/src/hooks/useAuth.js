@@ -28,6 +28,7 @@ function useProvideAuth() {
 		const token = headers.token;
 		if (token) {
 			Cookie.set("token", token, { expires: 5 });
+			Cookie.set("userId", headers.userid);
 			setUser({
 				firstName: "Jacobo",
 				lastName: "Arcila",
