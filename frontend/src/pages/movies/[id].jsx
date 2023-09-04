@@ -16,9 +16,15 @@ import {
 import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
-import Button from "@components/button/Button";
+import AddButton from "@components/addButton/AddButton";
 
 function MovieDetail({ movies, cardMovies }) {
+	// const [myList, setMyList] = useState([]); // Estado local para la lista de películas
+
+	// const addToMyList = (movie) => {
+	// 	setMyList([...myList, movie]);
+	// };
+
 	return (
 		<main>
 			<Purple></Purple>
@@ -50,7 +56,8 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} />
-							<Button />
+							{/* addToMyList={addToMyList}  */}
+							<AddButton movie={movies} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
@@ -107,6 +114,7 @@ export async function getStaticProps(context) {
 		const movies = await response.json();
 		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
 
+		console.log(movies);
 		return {
 			props: {
 				movies,

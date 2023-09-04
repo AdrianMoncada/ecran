@@ -1,7 +1,8 @@
 import { HeaderContainer, Container, AvatarContainer, TitleContainer } from "@/styles/pages.styles/my-list.styles";
-import Carousel from "@components/carousel/Carousel";
+// import Carousel from "@components/carousel/Carousel";
 import List from "@components/list/list";
 
+// { myList }
 const MyList = () => {
 	return (
 		<>
@@ -18,12 +19,7 @@ const MyList = () => {
 					</TitleContainer>
 				</Container>
 			</HeaderContainer>
-			<List>
-				<Carousel />
-			</List>
-			<List>
-				<Carousel />
-			</List>
+			<List>{/* <Carousel movies={response} top={false} /> */}</List>
 		</>
 	);
 };
