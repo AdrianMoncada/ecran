@@ -14,5 +14,5 @@ public interface UsersService extends UserDetailsService {
 
 	List<MoviesResponseModel> getWatchlistByUserId(String userId);
 
-	void addToWatchlist(String userId, String movieId);
+	List<String>  addToWatchlist(String userId, String movieId);
 }

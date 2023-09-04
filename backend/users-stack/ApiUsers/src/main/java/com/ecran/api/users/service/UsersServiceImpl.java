@@ -47,10 +47,12 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public void addToWatchlist(String userId, String movieId) {
+	public List<String> addToWatchlist(String userId, String movieId) {
+		// Agregar condicion; Si movieId existe en la watchlist -> Quitarla
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 		userEntity.addToWatchlist(movieId);
+		return userEntity.getWatchlist();
 	}
 	@Override
 	public UserDto createUser(UserDto userDetails) {
@@ -96,7 +98,7 @@ public class UsersServiceImpl implements UsersService {
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
 		List<String> watchlistIds = userEntity.getWatchlist();
-
+		System.out.println(watchlistIds);
 		logger.debug("Before calling movies Microservice");
 		List<MoviesResponseModel> moviesList = new ArrayList<>();
 		try {

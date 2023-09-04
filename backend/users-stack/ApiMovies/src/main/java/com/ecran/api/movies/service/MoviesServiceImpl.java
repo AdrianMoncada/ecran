@@ -39,6 +39,21 @@ public class MoviesServiceImpl implements MoviesService {
         movieEntity.setMc_score("72");
         returnValue.add(movieEntity);
 
+        MovieEntity movieEntity2 = new MovieEntity();
+        movieEntity2.setMovieId("64e4d1b9daf2a2c7f2f2d1f7");
+        movieEntity2.setTitle("Patton Oswald: Annihilation");
+        movieEntity2.setActors("Patton Oswalt");
+        movieEntity2.setDirector("Bobcat Goldthwait");
+        movieEntity2.setComposer("John Williams");
+        movieEntity2.setReview("Review");
+        movieEntity2.setImage_url("https://ecran.s3.amazonaws.com/Peliculas/annihilation.jpg");
+        movieEntity2.setTrailer_url("https://www.youtube.com/watch?v=4hZi5QaMBFc&ab_channel=Netflix");
+        movieEntity2.setRt_score("100");
+        movieEntity2.setImdb_score("7.3");
+        movieEntity2.setGenre("Comedia");
+        movieEntity2.setMc_score("72");
+        returnValue.add(movieEntity2);
+
         return returnValue;
     }
     

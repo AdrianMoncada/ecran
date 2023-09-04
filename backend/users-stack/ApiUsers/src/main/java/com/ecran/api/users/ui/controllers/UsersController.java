@@ -56,16 +56,14 @@ public class UsersController {
 	}
 
 
-	@GetMapping(value = "/{userId}/watchlist", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/{userId}/watchlist")
 	public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId){
 		List<MoviesResponseModel> moviesDetails = usersService.getWatchlistByUserId(userId);
 		return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
 	}
-
-		@PostMapping("/{userId}/add-to-watchlist/{movieId}")
-	public ResponseEntity<Void> addToWatchlist(@PathVariable String userId, @PathVariable String movieId) {
-		usersService.addToWatchlist(userId, movieId);
-		return ResponseEntity.ok().build();
+	@PostMapping("/{userId}/watchlist")
+	public ResponseEntity<List<String>> addToWatchlist(@PathVariable String userId, @RequestBody String movieId) {
+		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
 	}
 
 }
