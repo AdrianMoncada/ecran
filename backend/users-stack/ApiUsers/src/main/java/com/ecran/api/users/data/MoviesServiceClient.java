@@ -16,7 +16,7 @@ public interface MoviesServiceClient {
     @GetMapping("/api/v1/movies/watchlist")
     @Retry(name="movies")
     @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
-    public List<MoviesResponseModel> watchlist(@RequestParam(defaultValue = "") List<String> ids);
+    public List<MoviesResponseModel> watchlist(@RequestParam(defaultValue = "") List<UsersMovieWatchlist> ids);
 
     default List<MoviesResponseModel> getMoviesFallback(List<String> ids, Throwable exception){
         System.out.println(ids);

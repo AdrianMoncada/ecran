@@ -1,10 +1,10 @@
 package com.ecran.api.users.ui.controllers;
 
  import com.ecran.api.users.data.UserEntity;
+ import com.ecran.api.users.data.UsersMovieWatchlist;
  import com.ecran.api.users.service.UsersService;
  import com.ecran.api.users.shared.UserDto;
- import com.ecran.api.users.ui.model.MoviesResponseModel;
- import com.ecran.api.users.ui.model.UserResponseModel;
+ import com.ecran.api.users.ui.model.*;
  import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
  import org.springframework.web.bind.annotation.*;
-
- import com.ecran.api.users.ui.model.CreateUserRequestModel;
-import com.ecran.api.users.ui.model.CreateUserResponseModel;
 
  import java.util.List;
 
@@ -62,7 +59,7 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
 	}
 	@PostMapping("/{userId}/watchlist")
-	public ResponseEntity<List<String>> addToWatchlist(@PathVariable String userId, @RequestBody String movieId) {
+	public ResponseEntity<List<UsersMovieWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
 	}
 

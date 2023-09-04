@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
+import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -28,30 +29,33 @@ public class UsersServiceImpl implements UsersService {
 
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-
 //	RestTemplate restTemplate;
-
 	Environment environment;
 	MoviesServiceClient moviesServiceClient;
-
+	private final ModelMapper mapper;
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 //		this.restTemplate = restTemplate;
 		this.moviesServiceClient=moviesServiceClient;
 		this.environment= environment;
+		this.mapper = mapper;
 	}
 
 	@Override
-	public List<String> addToWatchlist(String userId, String movieId) {
+	public List<UsersMovieWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
 		// Agregar condicion; Si movieId existe en la watchlist -> Quitarla
 		UserEntity userEntity = usersRepository.findByUserId(userId);
+
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
-		userEntity.addToWatchlist(movieId);
+
+		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
+		userEntity.getWatchlist().add(new UsersMovieWatchlist(umwl.getMovieId()));
+
 		return userEntity.getWatchlist();
 	}
 	@Override
@@ -97,9 +101,11 @@ public class UsersServiceImpl implements UsersService {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
-		List<String> watchlistIds = userEntity.getWatchlist();
+		List<UsersMovieWatchlist> watchlistIds = userEntity.getWatchlist();
+
 		System.out.println(watchlistIds);
 		logger.debug("Before calling movies Microservice");
+
 		List<MoviesResponseModel> moviesList = new ArrayList<>();
 		try {
 			moviesList = moviesServiceClient.watchlist(watchlistIds);
