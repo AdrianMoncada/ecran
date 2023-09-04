@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
-import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "./api/movies";
+import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
 
 export default function Home({ response, moviesTop, moviesOld }) {
 	return (
