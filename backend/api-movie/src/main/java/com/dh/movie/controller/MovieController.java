@@ -61,5 +61,10 @@ public class MovieController {
         return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date, order));
     }
 
+    @GetMapping("/watchlist")
+    ResponseEntity<List<MovieResponseDTO>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
+        return ResponseEntity.ok().body(movieService.findWatchlist(ids));
+    }
+
 
 }

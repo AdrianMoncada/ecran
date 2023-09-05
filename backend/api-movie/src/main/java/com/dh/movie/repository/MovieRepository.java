@@ -3,6 +3,7 @@ package com.dh.movie.repository;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.repository.dtos.PlatformDB;
+import com.dh.movie.repository.dtos.WatchlistDB;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -18,6 +19,10 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
 
     @Query("{genres: ?0}")
     List<Movie> findAllByGenre(String genres);
+
+    @Query("{$or: ?0}")
+    List<Movie> findWatchlist(List<WatchlistDB> movieId);
+
 
     @Query("{'release_date': { $gte: ?0, $lte: ?1 }}")
     List<Movie> findByDateRange(String min_date, String max_date, Sort sort);

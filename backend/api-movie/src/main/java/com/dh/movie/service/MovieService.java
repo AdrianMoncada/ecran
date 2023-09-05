@@ -1,13 +1,16 @@
 package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
+import com.dh.movie.exceptions.ServiceException;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.repository.MovieRepository;
 import com.dh.movie.repository.dtos.PlatformDB;
+import com.dh.movie.repository.dtos.WatchlistDB;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -84,5 +87,23 @@ public class MovieService {
 
         return repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
     };
+
+    public List<MovieResponseDTO> findWatchlist(List<String> ids) {
+        List<WatchlistDB> ObjectIDList = new ArrayList<>();
+
+        if (ids.isEmpty()) {
+            throw new ServiceException("Ids must not be empty");
+        }
+
+        try {
+            ids.forEach( i -> {
+                ObjectIDList.add(new WatchlistDB(new ObjectId(i)));
+            });
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage());
+        }
+
+        return repository.findWatchlist(ObjectIDList).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    }
 
 }
