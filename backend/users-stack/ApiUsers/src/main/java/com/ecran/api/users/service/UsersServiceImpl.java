@@ -28,15 +28,16 @@ import com.ecran.api.users.data.*;
 public class UsersServiceImpl implements UsersService {
 
 	UsersRepository usersRepository;
+	WatchlistRepository watchlistRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 //	RestTemplate restTemplate;
 	Environment environment;
 	MoviesServiceClient moviesServiceClient;
 	private final ModelMapper mapper;
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, WatchlistRepository watchlistRepository)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -44,6 +45,7 @@ public class UsersServiceImpl implements UsersService {
 		this.moviesServiceClient=moviesServiceClient;
 		this.environment= environment;
 		this.mapper = mapper;
+		this.watchlistRepository = watchlistRepository;
 	}
 
 	@Override
@@ -52,6 +54,13 @@ public class UsersServiceImpl implements UsersService {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+
+		for (UsersMovieWatchlist m :
+				userEntity.getWatchlist()) {
+			if (m.getMovieId() == movieId.getMovieId()) {
+				watchlistRepository.deleteById(m.getId());
+			}
+		}
 
 		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
 		userEntity.getWatchlist().add(umwl);
