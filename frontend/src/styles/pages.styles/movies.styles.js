@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Purple = styled.div`
-	height: 63vh;
+	height: 40vh;
 	background-image: url("/images/home/Bg.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
