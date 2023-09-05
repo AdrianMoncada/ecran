@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
-@FeignClient(name="movies")
+@FeignClient(name="api-movie")
 public interface MoviesServiceClient {
     @GetMapping("/api/v1/movies/watchlist")
-    @Retry(name="movies")
-    @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
+    @Retry(name="api-movie")
+    @CircuitBreaker(name="api-movie", fallbackMethod ="getMoviesFallback")
     public List<MoviesResponseModel> watchlist(@RequestParam(defaultValue = "") List<String> ids);
 
     default List<MoviesResponseModel> getMoviesFallback(List<String> ids, Throwable exception){
