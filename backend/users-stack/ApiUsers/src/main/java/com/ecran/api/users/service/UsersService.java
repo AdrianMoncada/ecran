@@ -14,6 +14,8 @@ public interface UsersService extends UserDetailsService {
 	UserDto createUser(UserDto userDetails);
 	UserDto getUserDetailsByEmail(String email);
 
+	UserDto getUserDetailsById(String userId);
+
 	List<MoviesResponseModel> getWatchlistByUserId(String userId);
 
 	List<UsersMovieWatchlist>  addToWatchlist(String userId, UsersMovieWLDTO movieId);

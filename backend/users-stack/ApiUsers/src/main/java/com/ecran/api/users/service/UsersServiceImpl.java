@@ -55,8 +55,9 @@ public class UsersServiceImpl implements UsersService {
 
 		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
 		userEntity.getWatchlist().add(new UsersMovieWatchlist(umwl.getMovieId()));
+		return usersRepository.save(userEntity).getWatchlist();
 
-		return userEntity.getWatchlist();
+//		return userEntity.getWatchlist();
 	}
 	@Override
 	public UserDto createUser(UserDto userDetails) {
@@ -85,6 +86,13 @@ public class UsersServiceImpl implements UsersService {
 		
 		return new User(userEntity.getEmail(),userEntity.getEncryptedPassword(),
 				true, true, true, true, new ArrayList<>());
+	}
+
+	@Override
+	public UserDto getUserDetailsById(String userId) {
+		UserEntity userEntity = usersRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException(userId);
+		return new ModelMapper().map(userEntity, UserDto.class);
 	}
 
 	@Override

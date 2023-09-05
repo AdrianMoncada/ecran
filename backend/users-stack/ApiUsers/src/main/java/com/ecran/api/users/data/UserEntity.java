@@ -7,6 +7,7 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Setter
 @Getter
@@ -37,6 +38,6 @@ public class UserEntity implements Serializable {
 	@Column(nullable=false, unique=true)	
 	private String encryptedPassword;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<UsersMovieWatchlist> watchlist = new ArrayList<>();
 }

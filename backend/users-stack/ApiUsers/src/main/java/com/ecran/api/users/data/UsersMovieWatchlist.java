@@ -1,9 +1,6 @@
 package com.ecran.api.users.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,11 +9,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users")
+@Table(name="users_watchlist")
 public class UsersMovieWatchlist {
 
     @Id
-    private Long id;
+    @GeneratedValue
+    private String id;
 
     @Column(name = "movie_id")
     private String movieId;

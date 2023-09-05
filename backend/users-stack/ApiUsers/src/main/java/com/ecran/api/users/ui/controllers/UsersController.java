@@ -52,6 +52,11 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 
+	@GetMapping(value = "/{userId}")
+	public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){
+		UserDto userDto = usersService.getUserDetailsById(userId);
+		return ResponseEntity.status(HttpStatus.OK).body(userDto);
+	}
 
 	@GetMapping(value = "/{userId}/watchlist")
 	public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId){
