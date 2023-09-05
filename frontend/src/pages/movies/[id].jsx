@@ -15,10 +15,16 @@ import {
 } from "@styles/pages.styles/movies.styles";
 import Card from "@components/card/Card";
 import Image from "next/image";
-import Button from "@components/button/Button";
 import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
+import AddButton from "@components/addButton/AddButton";
 
 function MovieDetail({ movies, cardMovies }) {
+	// const [myList, setMyList] = useState([]); // Estado local para la lista de películas
+
+	// const addToMyList = (movie) => {
+	// 	setMyList([...myList, movie]);
+	// };
+
 	return (
 		<main>
 			<Purple></Purple>
@@ -50,7 +56,8 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} />
-							<Button />
+							{/* addToMyList={addToMyList}  */}
+							<AddButton movie={movies} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
