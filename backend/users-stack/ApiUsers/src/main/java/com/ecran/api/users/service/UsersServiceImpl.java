@@ -54,7 +54,7 @@ public class UsersServiceImpl implements UsersService {
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
 		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
-		userEntity.getWatchlist().add(new UsersMovieWatchlist(umwl.getMovieId()));
+		userEntity.getWatchlist().add(umwl);
 		return usersRepository.save(userEntity).getWatchlist();
 
 //		return userEntity.getWatchlist();

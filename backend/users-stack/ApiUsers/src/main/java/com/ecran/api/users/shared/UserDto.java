@@ -1,5 +1,7 @@
 package com.ecran.api.users.shared;
 
+import com.ecran.api.users.data.UsersMovieWatchlist;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class UserDto implements Serializable {
 	private String userId;
 	private String encryptedPassword;
 
-	private List<String> watchlist;
+	private List<UsersMovieWatchlist> watchlist;
 
 //	private List<MoviesResponseModel> movies;
 
@@ -28,12 +30,13 @@ public class UserDto implements Serializable {
 //		this.movies = movies;
 //	}
 
-	public List<String> getWatchlist() {
+
+	public List<UsersMovieWatchlist> getWatchlist() {
 		return watchlist;
 	}
 
-	public void setWatchlist(List<String> movies) {
-		this.watchlist = movies;
+	public void setWatchlist(List<UsersMovieWatchlist> watchlist) {
+		this.watchlist = watchlist;
 	}
 
 	public String getFirstName() {
