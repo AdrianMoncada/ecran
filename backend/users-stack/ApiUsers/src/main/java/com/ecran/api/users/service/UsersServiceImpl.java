@@ -109,14 +109,22 @@ public class UsersServiceImpl implements UsersService {
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
+		// TO DO: El ms Movies recibe como parametro una lista de IDs
+		// Con la implementacion de <UsersMovieWatchlist> los IDs se encuentran
+		// dentro del objeto watchlistIds
 		List<UsersMovieWatchlist> watchlistIds = userEntity.getWatchlist();
 
-		System.out.println(watchlistIds);
 		logger.debug("Before calling movies Microservice");
-
+		List<String> moviesIds = new ArrayList<>();
+		for (UsersMovieWatchlist m:
+			 watchlistIds) {
+			moviesIds.add(m.getMovieId());
+		}
+		System.out.println(moviesIds);
 		List<MoviesResponseModel> moviesList = new ArrayList<>();
+
 		try {
-			moviesList = moviesServiceClient.watchlist(watchlistIds);
+			moviesList = moviesServiceClient.watchlist(moviesIds);
 
 		} catch (FeignException e) {
 			logger.error(e.getLocalizedMessage());

@@ -10802,3 +10802,432 @@ Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refus
 2023-09-05T01:05:45.170-03:00  INFO [users, , ] 69057 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-09-05T01:10:45.171-03:00  INFO [users, , ] 69057 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-09-05T01:15:45.172-03:00  INFO [users, , ] 69057 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T01:20:45.175-03:00  INFO [users, , ] 69057 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T01:21:53.939-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application USERS with eureka with status DOWN
+2023-09-05T01:21:53.939-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693887713939, current=DOWN, previous=UP]
+2023-09-05T01:21:53.942-03:00  INFO [users, , ] 69057 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082: registering service...
+2023-09-05T01:21:53.961-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2023-09-05T01:21:54.257-03:00  INFO [users, , ] 69057 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - registration status: 204
+2023-09-05T01:21:54.409-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2023-09-05T01:21:54.409-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.springCloudBus.anonymous.mOb5S9c-RiWP6unE8YCBnw'
+2023-09-05T01:21:54.424-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'application-1.rabbit-999807465.springCloudBusInput.errors' has 1 subscriber(s).
+2023-09-05T01:21:54.440-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-09-05T01:21:54.441-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application-1.errorChannel' has 0 subscriber(s).
+2023-09-05T01:21:54.441-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2023-09-05T01:21:54.521-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-05T01:21:54.528-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-09-05T01:21:54.571-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-09-05T01:21:54.671-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-05T01:21:57.673-03:00  WARN [users, , ] 69057 --- [DiscoveryClient-0] c.netflix.discovery.TimedSupervisorTask  : task supervisor shutting down, can't accept the task
+2023-09-05T01:21:57.675-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-05T01:21:57.879-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - deregister  status: 200
+2023-09-05T01:21:57.894-03:00  INFO [users, , ] 69057 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-09-05T11:53:42.219-03:00  INFO [users, , ] 5583 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
+2023-09-05T11:53:42.242-03:00  INFO [users, , ] 5583 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Exception on Url - http://localhost:8888:org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8888/users/default": Connection refused. Will be trying the next url if available
+2023-09-05T11:53:42.243-03:00  WARN [users, , ] 5583 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/users/default": Connection refused
+2023-09-05T11:53:42.324-03:00  INFO [users, , ] 5583 --- [restartedMain] c.ecran.api.users.ApiUsersApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-09-05T11:53:42.516-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.520-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:42.523-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.524-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:42.530-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.530-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:42.532-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.534-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:42.539-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.539-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:42.540-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T11:53:42.542-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T11:53:47.586-03:00  INFO [users, , ] 5583 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-05T11:53:48.255-03:00  INFO [users, , ] 5583 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 638 ms. Found 1 JPA repository interfaces.
+2023-09-05T11:53:51.038-03:00  INFO [users, , ] 5583 --- [restartedMain] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2023-09-05T11:53:51.129-03:00  INFO [users, , ] 5583 --- [restartedMain] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2023-09-05T11:53:53.489-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=e9906c51-4a0d-37bc-b4e2-02f6e31a353a
+2023-09-05T11:53:54.850-03:00  INFO [users, , ] 5583 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.ecran.api.users.data.MoviesServiceClient' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T11:53:57.025-03:00  INFO [users, , ] 5583 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T11:53:57.046-03:00  INFO [users, , ] 5583 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T11:53:57.069-03:00  INFO [users, , ] 5583 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T11:54:00.723-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-09-05T11:54:00.747-03:00  INFO [users, , ] 5583 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-05T11:54:00.749-03:00  INFO [users, , ] 5583 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-05T11:54:00.926-03:00  INFO [users, , ] 5583 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-05T11:54:00.928-03:00  INFO [users, , ] 5583 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 18377 ms
+2023-09-05T11:54:04.113-03:00  INFO [users, , ] 5583 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-05T11:54:09.110-03:00  INFO [users, , ] 5583 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@522cebe5
+2023-09-05T11:54:09.117-03:00  INFO [users, , ] 5583 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-05T11:54:09.188-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://db.ctd.academy:3306/0723TDPI2N1C01LAED1021FT_GRUPO1?serverTimezone=UTC'
+2023-09-05T11:54:12.458-03:00  INFO [users, , ] 5583 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-05T11:54:13.029-03:00  INFO [users, , ] 5583 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-09-05T11:54:13.046-03:00  INFO [users, , ] 5583 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-05T11:54:14.248-03:00  INFO [users, , ] 5583 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-05T11:54:15.376-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-05T11:54:16.643-03:00  INFO [users, , ] 5583 --- [restartedMain] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.MySQLDialect, version: 8.0.26
+2023-09-05T11:54:17.751-03:00  INFO [users, , ] 5583 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-05T11:54:19.559-03:00  INFO [users, , ] 5583 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-05T11:54:20.806-03:00  INFO [users, , ] 5583 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-05T11:54:22.243-03:00  WARN [users, , ] 5583 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-05T11:54:23.340-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-05T11:54:23.472-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'movies' URL not provided. Will try picking an instance via load-balancing.
+2023-09-05T11:54:31.091-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 33 endpoint(s) beneath base path '/actuator'
+2023-09-05T11:54:31.630-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@59030bcd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7339cf1, org.springframework.security.web.context.SecurityContextHolderFilter@6c9bb452, org.springframework.security.web.header.HeaderWriterFilter@5ed1c9a0, org.springframework.web.filter.CorsFilter@627a12db, org.springframework.security.web.authentication.logout.LogoutFilter@284c81dc, com.ecran.api.users.security.AuthenticationFilter@6bc1afdc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21e08306, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b6b12b6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2add9c0a, org.springframework.security.web.session.SessionManagementFilter@245094fa, org.springframework.security.web.access.ExceptionTranslationFilter@46a29be, org.springframework.security.web.access.intercept.AuthorizationFilter@6f5d28cd]
+2023-09-05T11:54:36.792-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'application-1.springCloudBusInput' has 1 subscriber(s).
+2023-09-05T11:54:40.530-03:00  INFO [users, , ] 5583 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-05T11:54:41.421-03:00  WARN [users, , ] 5583 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-05T11:54:42.885-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-09-05T11:54:42.886-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.i.channel.PublishSubscribeChannel    : Channel 'application-1.errorChannel' has 1 subscriber(s).
+2023-09-05T11:54:42.887-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2023-09-05T11:54:42.960-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-05T11:54:43.686-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-05T11:54:43.796-03:00  INFO [users, , ] 5583 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T11:54:43.983-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-05T11:54:43.989-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-05T11:54:43.989-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-05T11:54:43.995-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-05T11:54:43.996-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-05T11:54:43.996-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-05T11:54:43.996-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-05T11:54:46.011-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-05T11:54:46.053-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-05T11:54:46.069-03:00  INFO [users, , ] 5583 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-05T11:54:46.083-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693925686082 with initial instances count: 3
+2023-09-05T11:54:46.165-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application USERS with eureka with status UP
+2023-09-05T11:54:46.189-03:00  INFO [users, , ] 5583 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693925686188, current=UP, previous=STARTING]
+2023-09-05T11:54:46.192-03:00  INFO [users, , ] 5583 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082: registering service...
+2023-09-05T11:54:46.393-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-05T11:54:46.399-03:00  INFO [users, , ] 5583 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8082
+2023-09-05T11:54:46.512-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Creating binder: rabbit
+2023-09-05T11:54:46.513-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Constructing binder child context for rabbit
+2023-09-05T11:54:46.894-03:00  INFO [users, , ] 5583 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - registration status: 204
+2023-09-05T11:54:47.158-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Caching the binder: rabbit
+2023-09-05T11:54:47.603-03:00  INFO [users, , ] 5583 --- [restartedMain] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: springCloudBus.anonymous.WMD28jdERx-Aw-wkyiU8Bg, bound to: springCloudBus
+2023-09-05T11:54:47.647-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2023-09-05T11:54:48.127-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#2c6eecc7:0/SimpleConnection@6a990687 [delegate=amqp://admin@127.0.0.1:5672/, localPort=55512]
+2023-09-05T11:54:48.814-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-956104682.springCloudBusInput.errors' has 1 subscriber(s).
+2023-09-05T11:54:48.842-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-956104682.springCloudBusInput.errors' has 2 subscriber(s).
+2023-09-05T11:54:49.031-03:00  INFO [users, , ] 5583 --- [restartedMain] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.springCloudBus.anonymous.WMD28jdERx-Aw-wkyiU8Bg'
+2023-09-05T11:54:49.486-03:00  INFO [users, , ] 5583 --- [restartedMain] c.ecran.api.users.ApiUsersApplication    : Started ApiUsersApplication in 78.483 seconds (process running for 84.297)
+2023-09-05T11:59:44.019-03:00  INFO [users, , ] 5583 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T12:02:42.430-03:00  INFO [users, , ] 5583 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-05T12:02:42.432-03:00  INFO [users, , ] 5583 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-05T12:02:42.439-03:00  INFO [users, , ] 5583 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2023-09-05T12:02:45.336-03:00  WARN [users, , ] 5583 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender@1da1bb7a}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-05T12:02:45.336-03:00  WARN [users, , ] 5583 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender@1da1bb7a}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 2 spans due to WebClientRequestException(finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411)
+
+org.springframework.web.reactive.function.client.WebClientRequestException: finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.9.jar:6.0.9]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to POST http://localhost:9411/api/v2/spans [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.9.jar:6.0.9]
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:204) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:225) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:274) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:326) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:211) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:471) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:615) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:602) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:336) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1717) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:192) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:311) ~[reactor-netty-http-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:162) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:475) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:429) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:560) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Operators.error(Operators.java:198) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:587) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:541) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:265) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.fulfillConnectPromise(AbstractEpollChannel.java:674) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:693) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:567) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:489) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:397) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.6.jar:3.5.6]
+		at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender$WebClientHttpPostCall.doExecute(ZipkinWebClientSender.java:67) ~[spring-boot-actuator-autoconfigure-3.1.0.jar:3.1.0]
+		at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender$WebClientHttpPostCall.doExecute(ZipkinWebClientSender.java:48) ~[spring-boot-actuator-autoconfigure-3.1.0.jar:3.1.0]
+		at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+		at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+		at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+		at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.newConnectException0(Errors.java:166) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.unix.Errors.handleConnectErrno(Errors.java:131) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:359) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:710) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:687) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:567) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:489) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:397) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-05T12:04:44.022-03:00  INFO [users, , ] 5583 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T12:09:13.478-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application USERS with eureka with status DOWN
+2023-09-05T12:09:13.479-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693926553479, current=DOWN, previous=UP]
+2023-09-05T12:09:13.487-03:00  INFO [users, , ] 5583 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082: registering service...
+2023-09-05T12:09:13.501-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2023-09-05T12:09:13.559-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2023-09-05T12:09:13.560-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.springCloudBus.anonymous.WMD28jdERx-Aw-wkyiU8Bg'
+2023-09-05T12:09:13.588-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'application-1.rabbit-956104682.springCloudBusInput.errors' has 1 subscriber(s).
+2023-09-05T12:09:13.613-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-09-05T12:09:13.613-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application-1.errorChannel' has 0 subscriber(s).
+2023-09-05T12:09:13.614-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2023-09-05T12:09:13.739-03:00  INFO [users, , ] 5583 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - registration status: 204
+2023-09-05T12:09:13.840-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-05T12:09:13.853-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-09-05T12:09:13.932-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-09-05T12:09:14.179-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-05T12:09:17.182-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-05T12:09:17.389-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - deregister  status: 200
+2023-09-05T12:09:17.417-03:00  INFO [users, , ] 5583 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-09-05T12:11:34.092-03:00  INFO [users, , ] 7362 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
+2023-09-05T12:11:34.118-03:00  INFO [users, , ] 7362 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Exception on Url - http://localhost:8888:org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8888/users/default": Connection refused. Will be trying the next url if available
+2023-09-05T12:11:34.118-03:00  WARN [users, , ] 7362 --- [restartedMain] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/users/default": Connection refused
+2023-09-05T12:11:34.153-03:00  INFO [users, , ] 7362 --- [restartedMain] c.ecran.api.users.ApiUsersApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-09-05T12:11:34.218-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.220-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:34.221-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.223-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:34.224-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.224-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:34.227-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.229-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:34.231-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.238-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:34.239-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://3.229.125.193:8888
+2023-09-05T12:11:34.240-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users, profiles=[default], label=null, version=7d5827ac041245225da35005a4de7a96d82137d6, state=null
+2023-09-05T12:11:38.989-03:00  INFO [users, , ] 7362 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-05T12:11:39.439-03:00  INFO [users, , ] 7362 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 433 ms. Found 1 JPA repository interfaces.
+2023-09-05T12:11:40.692-03:00  INFO [users, , ] 7362 --- [restartedMain] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2023-09-05T12:11:40.741-03:00  INFO [users, , ] 7362 --- [restartedMain] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2023-09-05T12:11:41.962-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=e9906c51-4a0d-37bc-b4e2-02f6e31a353a
+2023-09-05T12:11:42.310-03:00  INFO [users, , ] 7362 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.ecran.api.users.data.MoviesServiceClient' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T12:11:43.245-03:00  INFO [users, , ] 7362 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T12:11:43.261-03:00  INFO [users, , ] 7362 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T12:11:43.277-03:00  INFO [users, , ] 7362 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-09-05T12:11:45.376-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-09-05T12:11:45.414-03:00  INFO [users, , ] 7362 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-05T12:11:45.415-03:00  INFO [users, , ] 7362 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-05T12:11:45.560-03:00  INFO [users, , ] 7362 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-05T12:11:45.561-03:00  INFO [users, , ] 7362 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 11319 ms
+2023-09-05T12:11:47.394-03:00  INFO [users, , ] 7362 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-05T12:11:50.635-03:00  INFO [users, , ] 7362 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63f7ce36
+2023-09-05T12:11:50.641-03:00  INFO [users, , ] 7362 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-05T12:11:50.663-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://db.ctd.academy:3306/0723TDPI2N1C01LAED1021FT_GRUPO1?serverTimezone=UTC'
+2023-09-05T12:11:51.705-03:00  INFO [users, , ] 7362 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-05T12:11:51.818-03:00  INFO [users, , ] 7362 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-09-05T12:11:51.836-03:00  INFO [users, , ] 7362 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-05T12:11:52.438-03:00  INFO [users, , ] 7362 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-05T12:11:53.034-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-05T12:11:53.800-03:00  INFO [users, , ] 7362 --- [restartedMain] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.MySQLDialect, version: 8.0.26
+2023-09-05T12:11:54.467-03:00  INFO [users, , ] 7362 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-05T12:11:56.774-03:00  INFO [users, , ] 7362 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-05T12:11:58.066-03:00  INFO [users, , ] 7362 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-05T12:11:59.790-03:00  WARN [users, , ] 7362 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-05T12:12:03.843-03:00  WARN [users, , ] 7362 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2023-09-05T12:12:04.291-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'movies' URL not provided. Will try picking an instance via load-balancing.
+2023-09-05T12:12:10.202-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 33 endpoint(s) beneath base path '/actuator'
+2023-09-05T12:12:10.441-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@75f01904, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66f56f32, org.springframework.security.web.context.SecurityContextHolderFilter@44969dfc, org.springframework.security.web.header.HeaderWriterFilter@315fbf90, org.springframework.web.filter.CorsFilter@502b13f5, org.springframework.security.web.authentication.logout.LogoutFilter@70ffa149, com.ecran.api.users.security.AuthenticationFilter@204deb9d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1636b3f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ca839ee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5580eea9, org.springframework.security.web.session.SessionManagementFilter@6eb75bf0, org.springframework.security.web.access.ExceptionTranslationFilter@7631f86c, org.springframework.security.web.access.intercept.AuthorizationFilter@261ec0b]
+2023-09-05T12:12:12.113-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'application-1.springCloudBusInput' has 1 subscriber(s).
+2023-09-05T12:12:15.544-03:00  INFO [users, , ] 7362 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-09-05T12:12:16.224-03:00  WARN [users, , ] 7362 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-05T12:12:17.183-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-09-05T12:12:17.184-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.i.channel.PublishSubscribeChannel    : Channel 'application-1.errorChannel' has 1 subscriber(s).
+2023-09-05T12:12:17.186-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2023-09-05T12:12:17.224-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-09-05T12:12:17.681-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-09-05T12:12:17.689-03:00  INFO [users, , ] 7362 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-09-05T12:12:17.730-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-09-05T12:12:17.731-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-09-05T12:12:17.732-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-09-05T12:12:17.733-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-09-05T12:12:17.734-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-09-05T12:12:17.734-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-09-05T12:12:17.735-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-09-05T12:12:18.779-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-09-05T12:12:18.787-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-09-05T12:12:18.794-03:00  INFO [users, , ] 7362 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-05T12:12:18.807-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1693926738806 with initial instances count: 4
+2023-09-05T12:12:18.840-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application USERS with eureka with status UP
+2023-09-05T12:12:18.842-03:00  INFO [users, , ] 7362 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693926738842, current=UP, previous=STARTING]
+2023-09-05T12:12:18.845-03:00  INFO [users, , ] 7362 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082: registering service...
+2023-09-05T12:12:19.099-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-05T12:12:19.106-03:00  INFO [users, , ] 7362 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8082
+2023-09-05T12:12:19.237-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Creating binder: rabbit
+2023-09-05T12:12:19.242-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Constructing binder child context for rabbit
+2023-09-05T12:12:20.026-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.s.binder.DefaultBinderFactory      : Caching the binder: rabbit
+2023-09-05T12:12:20.247-03:00  INFO [users, , ] 7362 --- [restartedMain] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: springCloudBus.anonymous.d3KoDnr2Tp6YSPdtbvbcpA, bound to: springCloudBus
+2023-09-05T12:12:20.277-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2023-09-05T12:12:20.430-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#289b4d2e:0/SimpleConnection@53df275b [delegate=amqp://admin@127.0.0.1:5672/, localPort=37692]
+2023-09-05T12:12:20.560-03:00  INFO [users, , ] 7362 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - registration status: 204
+2023-09-05T12:12:20.594-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-990672684.springCloudBusInput.errors' has 1 subscriber(s).
+2023-09-05T12:12:20.597-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-990672684.springCloudBusInput.errors' has 2 subscriber(s).
+2023-09-05T12:12:20.672-03:00  INFO [users, , ] 7362 --- [restartedMain] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.springCloudBus.anonymous.d3KoDnr2Tp6YSPdtbvbcpA'
+2023-09-05T12:12:20.859-03:00  INFO [users, , ] 7362 --- [restartedMain] c.ecran.api.users.ApiUsersApplication    : Started ApiUsersApplication in 54.647 seconds (process running for 56.944)
+2023-09-05T12:13:50.071-03:00  INFO [users, , ] 7362 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-05T12:13:50.072-03:00  INFO [users, , ] 7362 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-05T12:13:50.083-03:00  INFO [users, , ] 7362 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2023-09-05T12:13:51.358-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.service.UsersServiceImpl   : Before calling movies Microservice
+2023-09-05T12:13:51.453-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] ---> GET http://movies/api/v1/movies/watchlist?ids=64e4d1b9daf2a2c7f2f2d1f7&ids=64e4d1b9daf2a2c7f2f2d1f9&ids=64e4d1b9daf2a2c7f2f2d1f2&ids=64e4d1b9daf2a2c7f2f2d1f3&ids=64e4d1b9daf2a2c7f2f2d1f5&ids=64e4d1b9daf2a2c7f2f2d1f2 HTTP/1.1
+2023-09-05T12:13:51.454-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] ---> END HTTP (0-byte body)
+2023-09-05T12:13:52.631-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] <--- HTTP/1.1 200 (1175ms)
+2023-09-05T12:13:52.632-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] connection: keep-alive
+2023-09-05T12:13:52.632-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] content-type: application/json
+2023-09-05T12:13:52.633-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] date: Tue, 05 Sep 2023 15:13:52 GMT
+2023-09-05T12:13:52.634-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] keep-alive: timeout=60
+2023-09-05T12:13:52.639-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] transfer-encoding: chunked
+2023-09-05T12:13:52.646-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] 
+2023-09-05T12:13:52.674-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] [{"movieId":"64e4d1b9daf2a2c7f2f2d1f7","title":"Patton Oswald: Annihilation","actors":"Patton Oswalt","director":"Bobcat Goldthwait","composer":"John Williams","review":"Review","image_url":"https://ecran.s3.amazonaws.com/Peliculas/annihilation.jpg","trailer_url":"https://www.youtube.com/watch?v=4hZi5QaMBFc&ab_channel=Netflix","release_date":null,"genre":"Comedia","rt_score":"100","imdb_score":"7.3","mc_score":"72"},{"movieId":"64e4d1b9daf2a2c7f2f2d1f7","title":"Patton Oswald: Annihilation","actors":"Patton Oswalt","director":"Bobcat Goldthwait","composer":"John Williams","review":"Review","image_url":"https://ecran.s3.amazonaws.com/Peliculas/annihilation.jpg","trailer_url":"https://www.youtube.com/watch?v=4hZi5QaMBFc&ab_channel=Netflix","release_date":null,"genre":"Comedia","rt_score":"100","imdb_score":"7.3","mc_score":"72"}]
+2023-09-05T12:13:52.675-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.data.MoviesServiceClient   : [MoviesServiceClient#watchlist] <--- END HTTP (839-byte body)
+2023-09-05T12:13:52.702-03:00 DEBUG [users, 64f745aec2abf4fce1c34b25866e2679, 06a9b9737c4a2593] 7362 --- [http-nio-8082-exec-2] c.e.api.users.service.UsersServiceImpl   : After calling movies Microservice
+2023-09-05T12:13:52.840-03:00  WARN [users, , ] 7362 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender@28ef16c4}] z.r.AsyncReporter$BoundedAsyncReporter   : Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2023-09-05T12:13:52.841-03:00  WARN [users, , ] 7362 --- [AsyncReporter{org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender@28ef16c4}] z.r.AsyncReporter$BoundedAsyncReporter   : Dropped 2 spans due to WebClientRequestException(finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411)
+
+org.springframework.web.reactive.function.client.WebClientRequestException: finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.9.jar:6.0.9]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to POST http://localhost:9411/api/v2/spans [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.9.jar:6.0.9]
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:204) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:225) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:274) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:326) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:211) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:471) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:615) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:602) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:336) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1717) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:192) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:311) ~[reactor-netty-http-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:162) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:475) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:429) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:560) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Operators.error(Operators.java:198) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:587) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:541) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:265) ~[reactor-netty-core-1.1.7.jar:1.1.7]
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.fulfillConnectPromise(AbstractEpollChannel.java:674) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:693) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:567) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:489) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:397) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.6.jar:3.5.6]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.6.jar:3.5.6]
+		at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender$WebClientHttpPostCall.doExecute(ZipkinWebClientSender.java:67) ~[spring-boot-actuator-autoconfigure-3.1.0.jar:3.1.0]
+		at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinWebClientSender$WebClientHttpPostCall.doExecute(ZipkinWebClientSender.java:48) ~[spring-boot-actuator-autoconfigure-3.1.0.jar:3.1.0]
+		at zipkin2.Call$Base.execute(Call.java:391) ~[zipkin-2.23.2.jar:na]
+		at zipkin2.reporter.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:299) ~[zipkin-reporter-2.16.3.jar:na]
+		at zipkin2.reporter.AsyncReporter$Flusher.run(AsyncReporter.java:378) ~[zipkin-reporter-2.16.3.jar:na]
+		at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: localhost/127.0.0.1:9411
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.newConnectException0(Errors.java:166) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.unix.Errors.handleConnectErrno(Errors.java:131) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:359) ~[netty-transport-native-unix-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:710) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:687) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:567) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:489) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:397) ~[netty-transport-classes-epoll-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.92.Final.jar:4.1.92.Final]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+
+2023-09-05T12:16:36.292-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application USERS with eureka with status DOWN
+2023-09-05T12:16:36.293-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1693926996293, current=DOWN, previous=UP]
+2023-09-05T12:16:36.295-03:00  INFO [users, , ] 7362 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082: registering service...
+2023-09-05T12:16:36.344-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2023-09-05T12:16:36.500-03:00  INFO [users, , ] 7362 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - registration status: 204
+2023-09-05T12:16:37.119-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2023-09-05T12:16:37.121-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.springCloudBus.anonymous.d3KoDnr2Tp6YSPdtbvbcpA'
+2023-09-05T12:16:37.141-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'application-1.rabbit-990672684.springCloudBusInput.errors' has 1 subscriber(s).
+2023-09-05T12:16:37.168-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-09-05T12:16:37.168-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application-1.errorChannel' has 0 subscriber(s).
+2023-09-05T12:16:37.169-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2023-09-05T12:16:37.262-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-05T12:16:37.270-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-09-05T12:16:37.288-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-09-05T12:16:37.446-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-09-05T12:16:40.458-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-09-05T12:16:40.681-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS/10.0.2.15:users:8082 - deregister  status: 200
+2023-09-05T12:16:40.695-03:00  INFO [users, , ] 7362 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
