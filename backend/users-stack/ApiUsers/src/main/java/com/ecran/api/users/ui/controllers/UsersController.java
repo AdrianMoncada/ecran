@@ -5,12 +5,17 @@ package com.ecran.api.users.ui.controllers;
  import com.ecran.api.users.service.UsersService;
  import com.ecran.api.users.shared.UserDto;
  import com.ecran.api.users.ui.model.*;
+ import com.opencsv.CSVWriter;
+ import com.opencsv.bean.StatefulBeanToCsv;
+ import com.opencsv.bean.StatefulBeanToCsvBuilder;
+ import jakarta.servlet.http.HttpServletResponse;
  import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
+ import org.springframework.http.HttpHeaders;
+ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
  import org.springframework.web.bind.annotation.*;
@@ -66,6 +71,24 @@ public class UsersController {
 	@PostMapping("/{userId}/watchlist")
 	public ResponseEntity<List<UsersMovieWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
+	}
+
+	@GetMapping("/{userId}/watchlist/csvexport")
+	public void exportCSV(HttpServletResponse response, @PathVariable("userId") String userId)
+			throws Exception {
+
+		//set file name and content type
+		String filename = "Watchlist-data.csv";
+
+		response.setContentType("text/csv");
+		response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
+				"attachment; filename=\"" + filename + "\"");
+		//create a csv writer
+		StatefulBeanToCsv<MoviesResponseModel> writer = new StatefulBeanToCsvBuilder<MoviesResponseModel>(response.getWriter())
+				.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).withSeparator(CSVWriter.DEFAULT_SEPARATOR).withOrderedResults(false)
+				.build();
+		//write all employees data to csv file
+		writer.write(usersService.getWatchlistByUserId(userId));
 	}
 
 }

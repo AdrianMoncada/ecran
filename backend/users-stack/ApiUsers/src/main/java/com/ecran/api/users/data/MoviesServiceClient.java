@@ -12,10 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @FeignClient(name="api-movie")
+//@FeignClient(name="movies")
 public interface MoviesServiceClient {
     @GetMapping("/api/v1/movies/watchlist")
     @Retry(name="api-movie")
+//    @Retry(name="movies")
     @CircuitBreaker(name="api-movie", fallbackMethod ="getMoviesFallback")
+//    @CircuitBreaker(name="movies", fallbackMethod ="getMoviesFallback")
     public List<MoviesResponseModel> watchlist(@RequestParam(defaultValue = "") List<String> ids);
 
     default List<MoviesResponseModel> getMoviesFallback(List<String> ids, Throwable exception){
