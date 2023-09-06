@@ -4,13 +4,9 @@ import Image from "next/image";
 import React from "react";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
-<<<<<<< HEAD
-import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
-=======
 import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "./api/movies";
 import { fetchSeries } from "./api/series";
 import CarouselSeries from "@components/carouselSeries/CarouselSeries";
->>>>>>> feature/trailer-movie
 
 export default function Home({ response, moviesTop, moviesOld, responseSeries }) {
 	return (
