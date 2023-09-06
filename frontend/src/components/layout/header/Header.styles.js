@@ -89,6 +89,13 @@ export const HeaderContainer = styled.div`
 		display: none;
 	}
 
+	.nav-user {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+
 	/* <--------media query---------------> */
 
 	@media (max-width: 768px) {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { List } from "./AutocompleteItem.styles";
 
-const AutocompleteItem = ({ movieId, title, image_url }) => {
+const AutocompleteItem = ({ movieId, title, image_url, genre, year }) => {
 	return (
 		<List>
 			<Link className="list" href={`/movies/${movieId}`}>
@@ -13,8 +13,8 @@ const AutocompleteItem = ({ movieId, title, image_url }) => {
 
 				<div className="descriptionList">
 					<h3 className="titleList">{title}</h3>
-					<p>Genero</p>
-					<p>Año</p>
+					<p>{genre}</p>
+					<p>{year}</p>
 				</div>
 			</Link>
 			<hr />

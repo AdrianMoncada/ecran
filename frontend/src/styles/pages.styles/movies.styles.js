@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Purple = styled.div`
-	height: 63vh;
+	height: 40vh;
 	background-image: url("/images/home/Bg.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -161,6 +161,9 @@ export const PosterContainer = styled.div`
 	height: 450px;
 	width: 320px;
 	margin-bottom: 6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	@media screen and (max-width: 1024px) {
 		margin-bottom: 2rem;

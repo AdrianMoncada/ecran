@@ -21,6 +21,11 @@ public class MovieController {
 
     private final MovieService movieService;
 
+    @GetMapping("/watchlist")
+    ResponseEntity<List<MovieResponseDTO>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
+        return ResponseEntity.ok().body(movieService.findWatchlist(ids));
+    }
+
     @PostMapping("")
     ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie) {
         return ResponseEntity.ok().body(movieService.save(movie));

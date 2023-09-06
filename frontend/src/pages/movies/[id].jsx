@@ -13,9 +13,10 @@ import {
 	Contenedor,
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
-import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
+import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
+import AddButton from "@components/addButton/AddButton";
 
 function MovieDetail({ movies, cardMovies }) {
 	return (
@@ -49,6 +50,7 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} />
+							<AddButton movie={movies?.movieId} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
@@ -94,32 +96,16 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getStaticProps(context) {
 	const { id } = context.params;
+	const movies = await fetchMovieId(id);
+	console.log(movies);
+	const cardMovies = await fetchMovies();
 
-	try {
-		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch movie with ID ${id}`);
-		}
-
-		const movies = await response.json();
-		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
-
-		return {
-			props: {
-				movies,
-				cardMovies,
-			},
-		};
-	} catch (error) {
-		console.error(error);
-
-		return {
-			props: {
-				error: "An error occurred while fetching the movie.",
-			},
-		};
-	}
+	return {
+		props: {
+			movies,
+			cardMovies,
+		},
+	};
 }
 
 export async function getStaticPaths() {

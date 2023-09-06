@@ -8,7 +8,6 @@ import {
 	ContainerFilters,
 	ContainerResults,
 } from "@/styles/Discover.styles";
-import { fetchMovies } from "@/pages/api/movies";
 import Filters from "@components/filtros/Filters";
 import platformsOptions from "@/assets/platforms.json";
 import Search from "@components/search/Search";
@@ -16,21 +15,7 @@ import { useRouter } from "next/router";
 import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
-
-/* const genresOptions = [
-	"Acción",
-	"Drama",
-	"Comedia",
-	"Aventura",
-	"Fantasia",
-	"Musicales",
-	"Documentales",
-	"Suspenso",
-	"Horror",
-	"Animadas",
-	"Terror",
-	"Ciencia ficcion",
-]; */
+import { fetchMovies } from "@/service/movies/movies.service";
 
 const genresOptions = [
 	"Acción",
@@ -187,7 +172,7 @@ const Discover = ({ response }) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const response = await fetchMovies();
 	return {
 		props: {
