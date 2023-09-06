@@ -18,12 +18,9 @@ import {
 } from "@styles/pages.styles/movies.styles";
 import Card from "@components/card/Card";
 import Image from "next/image";
-<<<<<<< HEAD
 import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
-=======
 import StarRating from "@components/stars/Estrellas";
->>>>>>> feature/trailer-movie
 
 function MovieDetail({ movies, cardMovies }) {
 	//section for manage the modal state
@@ -71,12 +68,9 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-<<<<<<< HEAD
 							<Poster src={movies?.image_url} />
 							<AddButton movie={movies?.movieId} />
-=======
 							<Poster src={movies?.image_url} onClick={handleImageClick} />
->>>>>>> feature/trailer-movie
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
