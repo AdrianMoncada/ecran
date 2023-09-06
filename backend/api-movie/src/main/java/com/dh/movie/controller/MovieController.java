@@ -1,13 +1,17 @@
 package com.dh.movie.controller;
 
+import com.dh.movie.model.dto.UserValorationDTO;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -66,5 +70,14 @@ public class MovieController {
         return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date, order));
     }
 
+    @GetMapping("/watchlist")
+    ResponseEntity<List<MovieResponseDTO>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
+        return ResponseEntity.ok().body(movieService.findWatchlist(ids));
+    }
+
+    @PostMapping("/{id}/addscore")
+    ResponseEntity<String> addValoration(@PathVariable String id, @RequestBody UserValorationDTO uvDTO) {
+        return new ResponseEntity<>(movieService.addValoration(id, uvDTO), HttpStatus.CREATED);
+    }
 
 }

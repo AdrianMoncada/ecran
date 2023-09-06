@@ -28,7 +28,7 @@ public class ApiMovieApplication {
             if (!repository.findAll().isEmpty()) {
                 return;
             }
-            repository.save(new Movie(null, "Oppenheimer", "Cilian Murphy", "Christopher Nolan", "Bethoven", "testing", "testing.com", "youtube.com", "15/02/02", "accion", "", "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+            repository.save(new Movie(null, "Oppenheimer", "Cilian Murphy", "Christopher Nolan", "Bethoven", "testing", "testing.com", "youtube.com", "15/02/02", "accion", "", "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0.0));
         };
     }
 
