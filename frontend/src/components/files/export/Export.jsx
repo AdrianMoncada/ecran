@@ -9,7 +9,7 @@ function ExportarExcel({ listaPeliculas }) {
 		worksheet.columns = [
 			{ header: "ID", key: "movieId", width: 30 },
 			{ header: "Título", key: "title", width: 50 },
-			{ header: "Director", key: "director", width: 30 },
+			{ header: "Date", key: "release_date", width: 30 },
 		];
 
 		listaPeliculas.forEach((pelicula) => {
@@ -28,7 +28,7 @@ function ExportarExcel({ listaPeliculas }) {
 
 	return (
 		<div>
-			<button onClick={exportToExcel}>Exportar a Excel</button>
+			<button onClick={exportToExcel}>Exportar</button>
 		</div>
 	);
 }

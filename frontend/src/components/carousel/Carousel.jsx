@@ -41,7 +41,7 @@ const Carousel = ({ movies, top }) => {
 									<Card movie={movie} />
 								</SwiperSlide>
 							))
-					: movies.map((movie, index) => (
+					: movies?.map((movie, index) => (
 							<SwiperSlide key={index}>
 								<Card movie={movie} />
 							</SwiperSlide>

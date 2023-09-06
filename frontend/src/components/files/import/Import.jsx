@@ -1,10 +1,28 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
-function ImportarDesdeExcel() {
+const style = {
+	position: "absolute",
+	top: "50%",
+	left: "50%",
+	transform: "translate(-50%, -50%)",
+	width: 400,
+	bgcolor: "background.paper",
+	border: "2px solid #000",
+	boxShadow: 24,
+	p: 4,
+};
+
+function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 	const [typeError, setTyperError] = useState(null);
 	const [excelFile, setExcelFile] = useState(null);
-	const [excelData, setExcelData] = useState(null);
+	const [loadingMessage, setLoadingMessage] = useState("");
+
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
 	const handleFileUpload = (e) => {
 		let fileTypes = [
@@ -29,16 +47,19 @@ function ImportarDesdeExcel() {
 		}
 	};
 
-	const handleFileSubmit = (e) => {
+	const handleFileSubmit = async (e) => {
 		e.preventDefault();
+		setLoadingMessage("Cargando...");
 		if (excelFile !== null) {
 			try {
 				const workbook = XLSX.read(excelFile, { type: "buffer" });
 				const worksheetName = workbook.SheetNames[0];
 				const worksheet = workbook.Sheets[worksheetName];
 				const data = XLSX.utils.sheet_to_json(worksheet);
-				setExcelData(data.slice(0, 10));
-				console.log(excelData);
+				console.log(fetchMovies);
+				fetchMovies(data);
+
+				setLoadingMessage(""); // Limpia el mensaje de carga
 			} catch (error) {
 				console.error("Error al leer el archivo Excel:", error);
 				setTyperError("Error al leer el archivo Excel.");
@@ -47,11 +68,32 @@ function ImportarDesdeExcel() {
 	};
 
 	return (
-		<form onSubmit={handleFileSubmit}>
-			<input type="file" onChange={handleFileUpload} />
-			<button type="submit">Upload</button>
-			{typeError && <div>{typeError}</div>}
-		</form>
+		<div style={{ color: "black" }}>
+			<button style={{ color: "white" }} onClick={handleOpen}>
+				Importar
+			</button>
+			<Modal
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+			>
+				<Box sx={style}>
+					<form onSubmit={handleFileSubmit}>
+						<input type="file" onChange={handleFileUpload} />
+						<button style={{ color: "black" }} type="submit">
+							Upload
+						</button>
+						{typeError && <div>{typeError}</div>}
+					</form>
+					<div style={{ color: "black" }}>
+						{loadingMessage && <p>{loadingMessage}</p>}
+						{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+						{errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+					</div>
+				</Box>
+			</Modal>
+		</div>
 	);
 }
 

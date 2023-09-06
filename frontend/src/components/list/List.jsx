@@ -1,7 +1,8 @@
 import React from "react";
 import { TitleContainer, CardContainer } from "./List.slyles";
+import ExportarExcel from "@components/files/export/Export";
 
-const List = ({ children }) => {
+const List = ({ children, watchlistMovies }) => {
 	return (
 		<>
 			<TitleContainer>
@@ -10,7 +11,7 @@ const List = ({ children }) => {
 					<p>Aquí podrás encontrar las películas y series que hayas guardado previamente.</p>
 				</div>
 				<div>
-					<button>Exportar</button>
+					<ExportarExcel listaPeliculas={watchlistMovies} />
 				</div>
 			</TitleContainer>
 			<CardContainer>{children}</CardContainer>
