@@ -1,0 +1,259 @@
+[
+	{
+		"movie_id": "1",
+		"title": "The Shawshank Redemption",
+		"release_date": "1994",
+		"genre": ["Drama"],
+		"trailer_url": "https://www.youtube.com/watch?v=NmzuHjWmXOc",
+		"image": "https://www.cantonrep.com/gcdn/authoring/2019/09/23/NREP/ghows-OH-933d4bc0-c971-12a0-e053-0100007f7d27-b70b3574.jpeg?width=660&height=434&fit=crop&format=pjpg&auto=webp",
+		"review": "En 'The Shawshank Redemption', dos hombres encarcelados, Andy Dufresne y Ellis 'Red' Redding, forjan un vínculo excepcional a lo largo de varios años tras las rejas de la Penitenciaría Estatal de Shawshank. A pesar de las duras circunstancias, encuentran consuelo en la amistad y el apoyo mutuo. A través de actos de decencia común y perseverancia, logran mantener su humanidad y encuentran eventualmente la redención. La película es una exploración conmovedora de la capacidad del espíritu humano para resistir y triunfar sobre la adversidad. La relación entre Andy y Red es un testimonio de la esperanza y el poder del compañerismo en medio de la desesperación.\n\nDirigida por Frank Darabont, la película captura la cruda realidad de la vida en prisión mientras destaca la fuerza interior que puede surgir en los momentos más oscuros. Tim Robbins y Morgan Freeman entregan actuaciones cautivadoras que dan vida a estos personajes memorables. La narrativa magistralmente tejida de 'The Shawshank Redemption' recuerda la importancia de la empatía y la humanidad, incluso en los lugares más inesperados.",
+		"actors": "Tim Robbins, Morgan Freeman",
+		"director": "Frank Darabont",
+		"composer": "Thomas Newman",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Hulu",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "2",
+		"title": "The Godfather",
+		"release_date": "1972",
+		"genre": ["Crime", "Drama"],
+		"image": "https://media.gq-magazine.co.uk/photos/6389fc64ae86bf6162acc67c/1:1/w_1080,h_1080,c_limit/The-Godfather-Part-II-HEADER-1.jpg",
+		"review": "'The Godfather' nos sumerge en el mundo del crimen organizado a través de la familia Corleone. Don Vito Corleone, interpretado por Marlon Brando, es el patriarca de la familia, y su poder y influencia abarcan las sombras más profundas de la sociedad. La película examina la lucha de poder interna entre los miembros de la familia, especialmente entre el hijo menor, Michael Corleone, interpretado por Al Pacino, y su hermano mayor, Sonny. La relación entre padre e hijo es el núcleo emocional de la historia, y la transformación de Michael de un veterano de guerra reacio a un líder implacable es fascinante de presenciar.\n\nDirigida por Francis Ford Coppola, 'The Godfather' es un estudio magistral de la moralidad ambigua y las dinámicas familiares complejas. La película establece un tono sombrío y elegante, y su influencia en la cinematografía y la cultura pop sigue siendo innegable. La banda sonora evocadora de Nino Rota añade un nivel adicional de profundidad emocional a la trama, complementando a la perfección las actuaciones magníficas y la dirección experta.",
+		"actors": "Marlon Brando, Al Pacino",
+		"director": "Francis Ford Coppola",
+		"composer": "Nino Rota",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "Prime video",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/PrimeVideo.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "3",
+		"title": "The Dark Knight",
+		"release_date": "2008",
+		"genre": ["Action", "Crime", "Drama"],
+		"image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
+		"review": "En 'The Dark Knight', Christopher Nolan explora las profundidades de la psique humana en medio del caos y la anarquía. El Caballero de la Noche, Batman, interpretado por Christian Bale, se enfrenta a su desafío más complejo hasta la fecha: el surgimiento del Joker, interpretado magistralmente por Heath Ledger. El Joker, un agente del caos, desafía los ideales de justicia de Batman y pone a prueba su moralidad y determinación. Harvey Dent, interpretado por Aaron Eckhart, también juega un papel fundamental en el dilema ético central de la película.\n\nLas actuaciones impresionantes son complementadas por el estilo visual distintivo de Nolan y la partitura intensa de Hans Zimmer. 'The Dark Knight' explora temas de dualidad y responsabilidad, cuestionando qué es lo que realmente define a un héroe. El Joker, en particular, se ha convertido en un ícono cultural, representando la anarquía y la imprevisibilidad. La película es un recordatorio de que la lucha entre el bien y el mal es compleja y a menudo borrosa en la realidad.",
+		"actors": "Christian Bale, Heath Ledger",
+		"director": "Christopher Nolan",
+		"composer": "Hans Zimmer, James Newton Howard",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Hulu",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "4",
+		"title": "Pulp Fiction",
+		"release_date": "1994",
+		"genre": ["Crime", "Drama"],
+		"image": "https://www.elindependiente.com/wp-content/uploads/2017/07/pulpfiction.jpg",
+		"review": "'Pulp Fiction', dirigida por Quentin Tarantino, es una obra maestra de la narración no lineal y la construcción de personajes. La película nos introduce en un mundo de crimen, violencia y conversaciones inolvidables. La trama se entrelaza hábilmente a través de múltiples historias, cada una tejiendo una red de personajes diversos y, a menudo, moralmente ambiguos.\n\nLas actuaciones de John Travolta, Samuel L. Jackson y Uma Thurman son icónicas y memorables. La escena del baile en el Jack Rabbit Slim's, la conversación sobre la hamburguesa Royale con queso y la secuencia de 'The Gimp' son solo algunos ejemplos de momentos que han dejado una marca en la cultura pop. 'Pulp Fiction' desafía las convenciones narrativas y cinematográficas, y su estilo distintivo ha influido en una generación de cineastas. A través de su combinación de humor negro y drama intenso, Tarantino crea una experiencia cinematográfica única y per4durable.",
+		"actors": "John Travolta, Samuel L. Jackson, Uma Thurman",
+		"director": "Quentin Tarantino",
+		"composer": "Various Artists",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Prime video",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/PrimeVideo.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "5",
+		"title": "Forrest Gump",
+		"release_date": "1994",
+		"genre": ["Drama", "Romance"],
+		"image": "https://m.media-amazon.com/images/M/MV5BZTY4NjcxNDctZmVjMC00NzM0LWIxYTctNjdhNzdlN2VkNjNiXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+		"review": "A través de 'Forrest Gump', dirigida por Robert Zemeckis, somos testigos de la vida extraordinaria de un hombre aparentemente común. Forrest, interpretado por Tom Hanks, tiene un coeficiente intelectual bajo pero un corazón puro. A lo largo de décadas, Forrest se convierte en un observador y participante en eventos históricos significativos, desde la lucha por los derechos civiles hasta la Guerra de Vietnam.\n\nLa película explora cómo las acciones de un individuo pueden tener un impacto profundo y duradero en el mundo que lo rodea. Forrest toca las vidas de muchas personas, incluida su amiga de la infancia y amor de toda la vida, Jenny, interpretada por Robin Wright. A medida que la historia se desarrolla, se revela que la verdadera riqueza de Forrest radica en su bondad y su capacidad para encontrar la alegría en las circunstancias más simples. 'Forrest Gump' es una oda a la humanidad y una exploración conmovedora de la naturaleza humana.",
+		"actors": "Tom Hanks, Robin Wright",
+		"director": "Robert Zemeckis",
+		"composer": "Alan Silvestri",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "Prime video",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/PrimeVideo.png"
+			},
+			{
+				"name": "Hulu",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "6",
+		"title": "The Lord of the Rings: The Return of the King",
+		"release_date": "2003",
+		"genre": ["Adventure", "Drama", "Fantasy"],
+		"image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgWF5qQTqAGpJnkesTsPp0qKcb/SrNLKW7evc4KnBGTkRuP28aTdDSIfEAa7uKLxP3R/tX8qVKkxjE2NC4v7q/wC4/RaVKmIiUqVKgDq12lSoAaaQpUqAHikaVKgDgpUqVAH/2Q==",
+		"review": "El cierre épico de la trilogía 'El Señor de los Anillos', 'The Return of the King', dirigida por Peter Jackson, lleva a los espectadores a un viaje emocional y visualmente impactante. La película sigue la culminación de la odisea de Frodo y Sam hacia el Monte del Destino para destruir el Anillo Único. Mientras tanto, Gandalf, Aragorn y los habitantes de la Tierra Media se preparan para enfrentarse al ejército de Sauron en la batalla final.\n\nLa película se sumerge en temas de sacrificio, heroísmo y la lucha entre la luz y la oscuridad. El coraje de Frodo y Sam se pone a prueba mientras enfrentan adversidades inimaginables en su misión. La relación entre estos dos personajes y la influencia de la amistad en su determinación son el corazón de la narrativa. 'The Return of the King' captura la grandiosidad de la fantasía épica mientras explora la vulnerabilidad y la humanidad de sus personajes.",
+		"actors": "Elijah Wood, Viggo Mortensen",
+		"director": "Peter Jackson",
+		"composer": "Howard Shore",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Hulu",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "7",
+		"title": "The Matrix",
+		"release_date": "1999",
+		"genre": ["Action", "Sci-Fi"],
+		"image": "https://es.web.img3.acsta.net/medias/nmedia/18/72/16/76/20065616.jpg",
+		"review": "'The Matrix', dirigida por los hermanos Wachowski, desafía las nociones convencionales de la realidad y la percepción. Thomas Anderson, también conocido como Neo, interpretado por Keanu Reeves, es un hacker que descubre que el mundo en el que vive es una simulación controlada por máquinas. Rescatado por Morpheus, interpretado por Laurence Fishburne, Neo se convierte en un jugador clave en la lucha contra las máquinas que dominan la Tierra.\n\nLa película fusiona hábilmente la acción trepidante con cuestionamientos filosóficos profundos. Las icónicas secuencias de lucha y los efectos visuales innovadores definen la estética de 'The Matrix'. A medida que Neo lucha por liberar su mente y superar los límites impuestos por la Matrix, se sumerge en una búsqueda de autodescubrimiento y empoderamiento. La película presenta una alegoría de la lucha por la libertad y la trascendencia de las limitaciones impuestas por la tecnología y las instituciones.",
+		"actors": "Keanu Reeves, Laurence Fishburne",
+		"director": "The Wachowskis",
+		"composer": "Don Davis",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Hulu",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "8",
+		"title": "Inception",
+		"release_date": "2010",
+		"genre": ["Action", "Adventure", "Sci-Fi"],
+		"image": "https://render.fineartamerica.com/images/rendered/default/poster/8/10/break/images/artworkimages/medium/3/inception-bo-kev.jpg",
+		"review": "'Inception', dirigida por Christopher Nolan, nos sumerge en un mundo donde los sueños pueden ser explorados y manipulados. Dom Cobb, interpretado por Leonardo DiCaprio, es un ladrón especializado en extraer secretos de la mente mientras las personas sueñan. Se le presenta la oportunidad de realizar una 'inserción' en lugar de una extracción: plantar una idea en la mente de alguien. A medida que el equipo se adentra en capas de sueños dentro de sueños, la línea entre la realidad y la ilusión se desdibuja.\n\nLa película examina la naturaleza de la realidad y la percepción, así como los lazos emocionales que conectan a las personas. La relación de Cobb con su difunta esposa, Mal, interpretada por Marion Cotillard, añade un componente emocional profundo a la trama. 'Inception' desafía al espectador a cuestionar qué es real y qué es posible en el mundo de los sueños, mientras explora temas de arrepentimiento y la búsqueda de la redención.",
+		"actors": "Leonardo DiCaprio, Joseph Gordon-Levitt",
+		"director": "Christopher Nolan",
+		"composer": "Hans Zimmer",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "HBO",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+			},
+			{
+				"name": "Prime video",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/PrimeVideo.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "9",
+		"title": "Gladiator",
+		"release_date": "2000",
+		"genre": ["Action", "Adventure", "Drama"],
+		"image": "https://cdn.britannica.com/77/103177-050-7C3B9E69/Russell-Crowe-Gladiator.jpg",
+		"review": "'Gladiator', dirigida por Ridley Scott, transporta a los espectadores a la antigua Roma, donde el exgeneral romano Maximus Decimus Meridius, interpretado por Russell Crowe, es traicionado por el ambicioso Cómodo, interpretado por Joaquin Phoenix. Convertido en esclavo y gladiador, Maximus busca venganza y justicia contra el emperador corrupto que asesinó a su familia y lo envió a la esclavitud.\n\nLa película es una epopeya de acción y drama que explora la lucha por la redención y la búsqueda de honor. El conflicto interno de Maximus, así como su relación con otros personajes, como Lucila, interpretada por Connie Nielsen, y Gracchus, interpretado por Derek Jacobi, añaden capas de complejidad a la narrativa. A medida que Maximus enfrenta desafíos mortales en la arena, se convierte en un símbolo de resistencia y un líder en una rebelión contra la tiranía de Cómodo.",
+		"actors": "Russell Crowe, Joaquin Phoenix",
+		"director": "Ridley Scott",
+		"composer": "Hans Zimmer, Lisa Gerrard",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "Apple TV",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Appletv.png"
+			},
+			{
+				"name": "Disney+",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Disney%2B.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	},
+	{
+		"movie_id": "10",
+		"title": "The Prestige",
+		"release_date": "2006",
+		"genre": ["Drama", "Mystery", "Sci-Fi"],
+		"image": "https://m.media-amazon.com/images/I/51wILNNX2VL._AC_UF894,1000_QL80_.jpg",
+		"review": "'The Prestige', dirigida por Christopher Nolan, nos sumerge en el mundo intrigante y competitivo de la magia en el siglo XIX. La película sigue a dos magos, Robert Angier y Alfred Borden, interpretados por Hugh Jackman y Christian Bale, respectivamente, mientras compiten para crear el truco de magia definitivo. Su obsesión los lleva a extremos peligrosos y desafía sus éticas personales y profesionales.\n\nLa narrativa se desarrolla en capas, al igual que los trucos mágicos que se presentan en la pantalla. La rivalidad entre Angier y Borden se vuelve cada vez más intensa y personal, y la película juega con la percepción del espectador a medida que se desvelan giros sorprendentes. La exploración de temas como la obsesión, la identidad y el sacrificio aporta profundidad a la trama, mientras que la habilidad de Nolan para entrelazar elementos misteriosos y emocionales da como resultado una película que sigue siendo intrigante incluso después de su final.",
+		"actors": "Hugh Jackman, Christian Bale",
+		"director": "Christopher Nolan",
+		"composer": "David Julyan",
+		"rt_score": "100",
+		"imdb_score": "7.3",
+		"mc_score": "72",
+		"platforms": [
+			{
+				"name": "Apple TV",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Appletv.png"
+			},
+			{
+				"name": "Disney+",
+				"logo_url": "https://ecran.s3.amazonaws.com/Logos/Disney%2B.png"
+			}
+		],
+		"comments": [],
+		"scores": []
+	}
+]
