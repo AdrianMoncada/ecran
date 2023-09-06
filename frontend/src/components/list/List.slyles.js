@@ -7,15 +7,25 @@ export const TitleContainer = styled.div`
 	align-items: center;
 	width: 100%;
 	padding-top: 70px;
+	@media (max-width: 900px) {
+		flex-direction: column;
+		padding: 70px 50px 30px 50px;
+	}
 
 	h3 {
 		font-family: Inter;
+		text-align: start;
+		padding-bottom: 20px;
 		font-size: 45px;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 44px; /* 97.778% */
 		letter-spacing: -0.45px;
 		color: linear-gradient(309deg, rgba(248, 250, 252, 0.64) 0%, #f8fafc 47.78%, rgba(248, 250, 252, 0.64) 100%);
+		@media (max-width: 900px) {
+			text-align: center;
+			font-size: 35px;
+		}
 	}
 
 	p {

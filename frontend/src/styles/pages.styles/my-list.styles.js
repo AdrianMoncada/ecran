@@ -4,7 +4,8 @@ export const HeaderContainer = styled.section`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 43vh;
+	height: 40vh;
+	min-height: 300px;
 	margin: 0 auto;
 	width: 100%;
 	flex-shrink: 0;
@@ -17,11 +18,14 @@ export const Container = styled.div`
 	justify-content: row;
 	gap: 40px;
 	width: 70vw;
+	align-items: center;
 	justify-content: flex-start;
-	@media (max-width: 809px) {
+	@media (max-width: 900px) {
 		gap: 30px;
-		width: 100%;
-		padding: 0 20px;
+	}
+	@media (max-width: 661px) {
+		gap: 20px;
+		padding-top: 50px;
 	}
 `;
 
@@ -35,22 +39,29 @@ export const AvatarContainer = styled.div`
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
-		@media (max-width: 809px) {
-			width: 135px;
-			height: 127px;
+		@media (max-width: 900px) {
+			width: 130px;
+			height: 120px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 		}
+		@media (max-width: 661px) {
+			width: 110px;
+			height: 100px;
+		}
 	}
 	h2 {
-		font-size: 50px;
+		font-size: 4em;
 		font-style: normal;
 		font-weight: bold;
 		letter-spacing: -0.5px;
 		color: linear-gradient(309deg, rgba(248, 250, 252, 0.64) 0%, #f8fafc 47.78%, rgba(248, 250, 252, 0.64) 100%);
-		@media (max-width: 809px) {
-			font-size: 40px;
+		@media (max-width: 900px) {
+			font-size: 3em;
+		}
+		@media (max-width: 661px) {
+			font-size: 2em;
 		}
 	}
 `;
@@ -58,37 +69,44 @@ export const AvatarContainer = styled.div`
 export const TitleContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 8px;
 	align-items: flex-start;
-	padding: 15px 0;
-	@media (max-width: 809px) {
+	padding: 20px 0;
+	@media (max-width: 900px) {
 		gap: 0px;
+		/* align-items: center; */
 	}
 
 	h2 {
 		text-align: center;
 		font-family: Inter;
-		font-size: 65px;
+		font-size: 4em;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 56px; /* 86.154% */
 		letter-spacing: -0.5px;
-		@media (max-width: 809px) {
-			font-size: 50px;
+		@media (max-width: 900px) {
 			text-align: start;
+			font-size: 3em;
+			line-height: 35px; /* 86.154% */
+			letter-spacing: -0.2px;
+		}
+		@media (max-width: 661px) {
+			font-size: 2em;
 		}
 	}
 
 	p {
 		color: rgba(226, 232, 240, 0.8);
 		font-family: Inter;
-		font-size: 20px;
+		font-size: 18px;
 		font-style: normal;
 		font-weight: 500;
 		line-height: 53px; /* 212% */
 		letter-spacing: -0.5px;
-		@media (max-width: 809px) {
+		@media (max-width: 900px) {
 			font-size: 18px;
+			text-align: center;
 		}
 	}
 `;
