@@ -43,3 +43,10 @@ body {
 	background: #0f172a;
 	font-family: Inter;
 }
+
+.ReactModal__Overlay.custom-overlay {
+	position: fixed;
+  inset: 0px;
+  background-color: rgba(60, 60, 60, 0.78);
+  }
+  
