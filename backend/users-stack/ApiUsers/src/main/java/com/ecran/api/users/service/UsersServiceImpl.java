@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
+import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
 import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import feign.FeignException;
@@ -65,8 +66,10 @@ public class UsersServiceImpl implements UsersService {
 
 		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
 		userEntity.getWatchlist().add(umwl);
+
 		return usersRepository.save(userEntity).getWatchlist();
 	}
+
 	@Override
 	public UserDto createUser(UserDto userDetails) {
 		// TODO Auto-generated method stub
@@ -139,6 +142,20 @@ public class UsersServiceImpl implements UsersService {
 		}
 		logger.debug("After calling movies Microservice");
 		return moviesList;
+	}
+
+	@Override
+	public String changePassword(ChangePasswordDTO passwordDTO, String userId) {
+		UserEntity user = usersRepository.findByUserId(userId);
+
+		if(user == null) throw new UsernameNotFoundException("user not found");
+
+		String password = passwordDTO.getPassword();
+
+		user.setEncryptedPassword(bCryptPasswordEncoder.encode(password));
+		usersRepository.save(user);
+
+		return "Password successfully updated";
 	}
 
 }

@@ -1,26 +1,19 @@
 package com.ecran.api.users.ui.controllers;
 
- import com.ecran.api.users.data.UserEntity;
- import com.ecran.api.users.data.UsersMovieWatchlist;
- import com.ecran.api.users.service.UsersService;
- import com.ecran.api.users.shared.UserDto;
- import com.ecran.api.users.ui.model.*;
- import com.opencsv.CSVWriter;
- import com.opencsv.bean.StatefulBeanToCsv;
- import com.opencsv.bean.StatefulBeanToCsvBuilder;
- import jakarta.servlet.http.HttpServletResponse;
- import org.modelmapper.ModelMapper;
+import com.ecran.api.users.data.UsersMovieWatchlist;
+import com.ecran.api.users.service.UsersService;
+import com.ecran.api.users.shared.ChangePasswordDTO;
+import com.ecran.api.users.shared.UserDto;
+import com.ecran.api.users.ui.model.*;
+import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.core.env.Environment;
- import org.springframework.http.HttpHeaders;
- import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
- import org.springframework.web.bind.annotation.*;
-
- import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -73,10 +66,9 @@ public class UsersController {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
 	}
 
+/*
 	@GetMapping("/{userId}/watchlist/csvexport")
-	public void exportCSV(HttpServletResponse response, @PathVariable("userId") String userId)
-			throws Exception {
-
+	public void exportCSV(HttpServletResponse response, @PathVariable("userId") String userId) throws Exception {
 		//set file name and content type
 		String filename = "Watchlist-data.csv";
 
@@ -90,5 +82,11 @@ public class UsersController {
 		//write all employees data to csv file
 		writer.write(usersService.getWatchlistByUserId(userId));
 	}
+*/
+
+	@PatchMapping("/{userId}/changepassword")
+	public String changePassword(@RequestBody ChangePasswordDTO passwordDTO, @PathVariable String userId) {
+        return usersService.changePassword(passwordDTO, userId);
+	};
 
 }
