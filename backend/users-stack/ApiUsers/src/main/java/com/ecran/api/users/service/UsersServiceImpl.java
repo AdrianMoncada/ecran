@@ -2,6 +2,7 @@ package com.ecran.api.users.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import com.ecran.api.users.data.UserEntity;
@@ -50,23 +51,21 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public List<UsersMovieWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
-		// Agregar condicion; Si movieId existe en la watchlist -> Quitarla
 		UserEntity userEntity = usersRepository.findByUserId(userId);
 
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
 		for (UsersMovieWatchlist m :
 				userEntity.getWatchlist()) {
-			if (m.getMovieId() == movieId.getMovieId()) {
-				watchlistRepository.deleteById(m.getId());
+			if (Objects.equals(m.getMovieId(), movieId.getMovieId())) {
+				userEntity.getWatchlist().remove(m);
+				return usersRepository.save(userEntity).getWatchlist();
 			}
 		}
 
 		UsersMovieWatchlist umwl = mapper.map(movieId, UsersMovieWatchlist.class);
 		userEntity.getWatchlist().add(umwl);
 		return usersRepository.save(userEntity).getWatchlist();
-
-//		return userEntity.getWatchlist();
 	}
 	@Override
 	public UserDto createUser(UserDto userDetails) {
