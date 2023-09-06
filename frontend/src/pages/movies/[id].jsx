@@ -19,12 +19,6 @@ import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
 
 function MovieDetail({ movies, cardMovies }) {
-	// const [myList, setMyList] = useState([]); // Estado local para la lista de películas
-
-	// const addToMyList = (movie) => {
-	// 	setMyList([...myList, movie]);
-	// };
-
 	return (
 		<main>
 			<Purple></Purple>
@@ -56,8 +50,7 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} />
-							{/* addToMyList={addToMyList}  */}
-							<AddButton movie={movies} />
+							<AddButton movie={movies?.movieId} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
@@ -104,6 +97,7 @@ function MovieDetail({ movies, cardMovies }) {
 export async function getStaticProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
+	console.log(movies);
 	const cardMovies = await fetchMovies();
 
 	return {
