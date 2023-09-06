@@ -16,17 +16,12 @@ import {
 	CloseButton,
 	VideoModal,
 } from "@styles/pages.styles/movies.styles";
-import Card from "@components/card/Card";
+import { fetchSeries } from "../api/series";
+import CardSerie from "@components/cardSeries/CardSeries";
 import Image from "next/image";
-<<<<<<< HEAD
-import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
-import AddButton from "@components/addButton/AddButton";
-=======
 import StarRating from "@components/stars/Estrellas";
->>>>>>> feature/trailer-movie
 
-function MovieDetail({ movies, cardMovies }) {
-	//section for manage the modal state
+function SeriesDetail({ series, cardSeries }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
 		setIsModalOpen(true);
@@ -35,7 +30,6 @@ function MovieDetail({ movies, cardMovies }) {
 		setIsModalOpen(false);
 	};
 
-	//section to mange the rating stars
 	const [rating, setRating] = useState(0);
 
 	const handleStarClick = (newRating) => {
@@ -47,20 +41,20 @@ function MovieDetail({ movies, cardMovies }) {
 			<Contenedor>
 				<ContainerInfoMovie>
 					<Info>
-						<p className="genero">{movies?.genre}</p>
-						<p className="anio">{movies?.releaseDate}</p>
-						<p className="titulo">{movies?.title}</p>
+						<p className="genero">{series?.genres}</p>
+						<p className="anio">{series?.release_date}</p>
+						<p className="titulo">{series?.title}</p>
 						<span className="cast">
-							Director:
-							<p className="castD">{movies?.director}</p>
+							Temporadas:
+							<p className="castD">{series?.seasons}</p>
 						</span>
 						<span className="cast">
-							Musica:
-							<p className="castD">{movies?.composer}</p>
+							Capitulos:
+							<p className="castD">{series?.chapters}</p>
 						</span>
 						<span className="cast">
 							Elenco:
-							<p className="castD">{movies?.actors}</p>
+							<p className="castD">{series?.actors}</p>
 						</span>
 						<span className="platforms">
 							Disponible en:
@@ -71,47 +65,35 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-<<<<<<< HEAD
-							<Poster src={movies?.image_url} />
-							<AddButton movie={movies?.movieId} />
-=======
-							<Poster src={movies?.image_url} onClick={handleImageClick} />
->>>>>>> feature/trailer-movie
+							<Poster src={series?.image_url} onClick={handleImageClick} />
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
-							{/* <Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} /> */}
 							<StarRating rating={rating} onStarClick={handleStarClick} />
 						</div>
 					</As>
 				</ContainerInfoMovie>
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
-						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
-						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
-						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
+						<p className="numerosPorcentaje div3">{series.rt_score}</p>
+						<p className="numerosPorcentaje div4">{series.imdb_score}</p>
+						<p className="numerosPorcentaje div5">{series.mc_score}</p>
 
 						<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6" />
 						<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7" />
 						<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8" />
 					</Puntuaciones>
-					<p className="day_p">{movies.review}</p>
+					<p className="day_p">{series.review}</p>
 				</DescriptioContainer>
 				<Sugestions>
 					<h4 className="oldies_title">Sugerencias</h4>
-					{/* <Carousel movies={moviesTop} top={true} /> */}
+
 					<div className="suggestions_cards">
-						{cardMovies.slice(0, 3).map((item) => (
+						{cardSeries.slice(0, 3).map((item) => (
 							<div className="card" key={item.id}>
-								{" "}
-								{/* Asegúrate de usar una clave única para cada elemento */}
-								<Card movie={item} />
+								<CardSerie serie={item} />
 							</div>
 						))}
 					</div>
@@ -122,7 +104,7 @@ function MovieDetail({ movies, cardMovies }) {
 					overlayClassName="ReactModal__Overlay custom-overlay"
 					ariaHideApp={false}
 				>
-					<ReactPlayer url={movies?.trailer_url} playing controls width="100%" height="100%" />
+					<ReactPlayer url={series?.trailer_url} playing controls width="100%" height="100%" />
 					<CloseButton onClick={handleCloseModal}>Cerrar</CloseButton>
 				</VideoModal>
 			</Contenedor>
@@ -132,22 +114,38 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getStaticProps(context) {
 	const { id } = context.params;
-	const movies = await fetchMovieId(id);
-	console.log(movies);
-	const cardMovies = await fetchMovies();
 
-	return {
-		props: {
-			movies,
-			cardMovies,
-		},
-	};
+	try {
+		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/series/${id}`);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch movie with ID ${id}`);
+		}
+
+		const series = await response.json();
+		const cardSeries = await fetchSeries();
+
+		return {
+			props: {
+				series,
+				cardSeries,
+			},
+		};
+	} catch (error) {
+		console.error(error);
+
+		return {
+			props: {
+				error: "An error occurred while fetching the Serie.",
+			},
+		};
+	}
 }
 
 export async function getStaticPaths() {
-	const cardMovies = await fetchMovies();
-	const paths = cardMovies.map((movie) => {
-		return { params: { id: movie.movieId.toString() } };
+	const cardSeries = await fetchSeries();
+	const paths = cardSeries.map((serie) => {
+		return { params: { id: serie.serieId.toString() } };
 	});
 
 	return {
@@ -156,4 +154,4 @@ export async function getStaticPaths() {
 	};
 }
 
-export default MovieDetail;
+export default SeriesDetail;

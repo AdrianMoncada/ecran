@@ -4,9 +4,15 @@ import Image from "next/image";
 import React from "react";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
+<<<<<<< HEAD
 import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
+=======
+import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "./api/movies";
+import { fetchSeries } from "./api/series";
+import CarouselSeries from "@components/carouselSeries/CarouselSeries";
+>>>>>>> feature/trailer-movie
 
-export default function Home({ response, moviesTop, moviesOld }) {
+export default function Home({ response, moviesTop, moviesOld, responseSeries }) {
 	return (
 		<>
 			<MainHome>
@@ -37,6 +43,16 @@ export default function Home({ response, moviesTop, moviesOld }) {
 				</p>
 				<Carousel movies={response} top={false} />
 			</Day>
+			{/** en esta seccion se mostrara el carrousel de series */}
+			<Day>
+				<h2 className="day_title">se supone que son las series</h2>
+				<p className="day_p">
+					Sumérgete en nuestro emocionante mundo del entretenimiento cinematografico .En esta sección, te adentrarás en
+					reseñas apasionantes de series de suspenso y otros géneros que seguramente captarán tu interés.!
+				</p>
+				<CarouselSeries series={responseSeries} />
+			</Day>
+			{/** hasta aqui se implementa */}
 			<Oldies id="proximamente">
 				<h2 className="oldies_title">Oldies but Goodies</h2>
 				<p className="oldies_p">
@@ -72,11 +88,16 @@ export async function getStaticProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
 	const moviesOld = await fetchMoviesDate(2000, 2004);
+	{
+		/**mas codigo para las series */
+	}
+	const responseSeries = await fetchSeries();
 	return {
 		props: {
 			response,
 			moviesTop,
 			moviesOld,
+			responseSeries,
 		},
 	};
 }
