@@ -24,6 +24,7 @@
 		"autoprefixer": "10.4.14",
 		"axios": "^1.4.0",
 		"dotenv": "^16.3.1",
+		"exceljs": "^4.3.0",
 		"formik": "^2.4.3",
 		"js-cookie": "^3.0.5",
 		"next": "^13.4.12",
@@ -39,6 +40,7 @@
 		"styled-components": "^5.3.11",
 		"swiper": "^10.1.0",
 		"tailwindcss": "3.3.3",
+		"xlsx": "^0.18.5",
 		"yup": "^1.2.0"
 	},
 	"devDependencies": {
