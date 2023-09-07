@@ -1,6 +1,6 @@
 package com.ecran.api.users.service;
 
-import com.ecran.api.users.data.UserEntity;
+import com.ecran.api.users.data.UsersMovieRating;
 import com.ecran.api.users.data.UsersMovieWatchlist;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
@@ -20,6 +20,8 @@ public interface UsersService extends UserDetailsService {
 	List<MoviesResponseModel> getWatchlistByUserId(String userId);
 
 	List<UsersMovieWatchlist>  addToWatchlist(String userId, UsersMovieWLDTO movieId);
+
+	String addRating(String userId, UsersMovieRating userRating);
 
 	String changePassword(ChangePasswordDTO passwordDTO, String userId);
 }

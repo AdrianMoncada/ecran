@@ -1,5 +1,6 @@
 package com.ecran.api.users.ui.controllers;
 
+import com.ecran.api.users.data.UsersMovieRating;
 import com.ecran.api.users.data.UsersMovieWatchlist;
 import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
@@ -89,4 +90,9 @@ public class UsersController {
         return usersService.changePassword(passwordDTO, userId);
 	};
 
+	@PostMapping("/{userId}/addrating")
+	public ResponseEntity<String> addRating(@RequestBody UsersMovieRating usersMovieRating, @PathVariable String userId){
+		usersService.addRating(userId, usersMovieRating);
+		return ResponseEntity.ok().body("Valoracion agregada");
+	}
 }

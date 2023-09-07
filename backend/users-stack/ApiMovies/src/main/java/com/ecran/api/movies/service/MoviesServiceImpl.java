@@ -8,6 +8,8 @@ package com.ecran.api.movies.service;
 import com.ecran.api.movies.data.MovieEntity;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ecran.api.movies.io.controllers.UserValorationDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -56,5 +58,11 @@ public class MoviesServiceImpl implements MoviesService {
 
         return returnValue;
     }
-    
+
+    @Override
+    public String addValoration(String id, UserValorationDTO uvDTO) {
+        System.out.println("Rating modificado: " + "Movie id ->" + id + "Ultima Valoracion, Suma y Cantidad:" + uvDTO.toString());
+        return "Rating modificado: " + "Movie id ->" + id + "Ultima Valoracion, Suma y Cantidad:" + uvDTO.toString();
+    }
+
 }

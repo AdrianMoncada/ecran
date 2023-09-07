@@ -11,7 +11,7 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-@ToString(exclude = {"watchlist"})
+@ToString(exclude = {"watchlist", "valorationlist"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="users")
@@ -41,4 +41,8 @@ public class UserEntity implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private List<UsersMovieWatchlist> watchlist = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	private List<UsersMovieRating> ratings = new ArrayList<>();
 }

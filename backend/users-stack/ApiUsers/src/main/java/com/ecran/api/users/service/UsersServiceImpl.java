@@ -1,13 +1,11 @@
 package com.ecran.api.users.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import com.ecran.api.users.data.UserEntity;
 import com.ecran.api.users.data.UsersRepository;
 import com.ecran.api.users.shared.ChangePasswordDTO;
+import com.ecran.api.users.shared.UserValorationDTO;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
 import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import feign.FeignException;
@@ -31,6 +29,8 @@ public class UsersServiceImpl implements UsersService {
 
 	UsersRepository usersRepository;
 	WatchlistRepository watchlistRepository;
+
+	RatingRepository ratingRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 //	RestTemplate restTemplate;
 	Environment environment;
@@ -39,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, WatchlistRepository watchlistRepository)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, WatchlistRepository watchlistRepository, RatingRepository ratingRepository)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -48,6 +48,7 @@ public class UsersServiceImpl implements UsersService {
 		this.environment= environment;
 		this.mapper = mapper;
 		this.watchlistRepository = watchlistRepository;
+		this.ratingRepository = ratingRepository;
 	}
 
 	@Override
@@ -68,6 +69,45 @@ public class UsersServiceImpl implements UsersService {
 		userEntity.getWatchlist().add(umwl);
 
 		return usersRepository.save(userEntity).getWatchlist();
+	}
+
+	@Override
+	public String addRating(String userId, UsersMovieRating userRating) {
+		UserEntity userEntity = usersRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+		String movieId = userRating.getMovieId();
+		// Comprueba si el usuario ya ha votado para esta película
+		Optional<UsersMovieRating> existingRating = userEntity.getRatings()
+						.stream()
+								.filter(rating -> rating.getMovieId().equals(movieId))
+										.findFirst();
+
+		if(existingRating.isPresent()){
+			UsersMovieRating previousRating = existingRating.get();
+			previousRating.setRating(userRating.getRating());
+			usersRepository.save(userEntity);
+			System.out.println("User already vote for this movie. Vote changed from X to new rating");
+			return "User already vote for this movie. Vote changed from X to new rating";
+		} else {
+			userEntity.getRatings().add(userRating);
+			usersRepository.save(userEntity);
+
+			double sumVotes = ratingRepository.sumVotesByMovieId(movieId);
+
+			double countVotes = ratingRepository.countVotesByMovieId(movieId);
+
+			double rating = userRating.getRating();
+
+			UserValorationDTO valorationDTO = new UserValorationDTO(rating, sumVotes, countVotes);
+
+			try {
+				moviesServiceClient.addRating(movieId, valorationDTO);
+			} catch (FeignException e) {
+				logger.error(e.getLocalizedMessage());
+			}
+
+			return "Vote added";
+		}
 	}
 
 	@Override
@@ -157,5 +197,6 @@ public class UsersServiceImpl implements UsersService {
 
 		return "Password successfully updated";
 	}
+
 
 }
