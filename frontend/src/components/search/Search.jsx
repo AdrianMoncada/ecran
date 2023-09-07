@@ -20,7 +20,7 @@ export default function Search({ showAutocomplete, props }) {
 		() =>
 			//función que crea un componente de autocompletado.
 			createAutocomplete({
-				placeholder: "Nemo, The Walking Dead...",
+				placeholder: "Buscando a Nemo, El Padrino...",
 				//función que se invocará cuando cambie el estado del componente de autocompletado.
 				onStateChange: ({ state }) => setAutocompleteState(state),
 				// función que devuelve un array con datos
