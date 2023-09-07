@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import ReactPlayer from "react-player";
 import {
 	Sugestions,
@@ -21,8 +22,25 @@ import Image from "next/image";
 import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
 import StarRating from "@components/stars/Estrellas";
+import { useAuth } from "@/hooks/useAuth";
+import { FaStar } from "react-icons/fa";
+import Cookies from "js-cookie";
+import axios from "axios";
+
+const InactiveStarRating = () => {
+	const stars = [];
+
+	for (let i = 1; i <= 5; i++) {
+		stars.push(<FaStar key={i} style={{ color: "white", marginRight: "8px", fontSize: "28px" }} />);
+	}
+
+	return <div style={{ display: "flex" }}>{stars}</div>;
+};
 
 function MovieDetail({ movies, cardMovies }) {
+	//verify that users are logged in
+	const auth = useAuth();
+
 	//section for manage the modal state
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
@@ -35,9 +53,30 @@ function MovieDetail({ movies, cardMovies }) {
 	//section to mange the rating stars
 	const [rating, setRating] = useState(0);
 
-	const handleStarClick = (newRating) => {
-		setRating(newRating);
+	const handleStarClick = async (newRating) => {
+		const API = process.env.NEXT_PUBLIC_API_URL;
+		if (auth.user) {
+			try {
+				const userId = Cookies.get("userId");
+				const endpoint = `${API}/authorization/users/${userId}/addrating`;
+
+				const postData = {
+					movieId: movies?.movieId,
+					rating: newRating,
+				};
+
+				const response = await axios.post(endpoint, postData);
+
+				setRating(newRating);
+
+				console.log("Respuesta de la solicitud POST:", response.data);
+				alert("elemento enviado con codigo: " + response.data);
+			} catch (error) {
+				console.error("Error en la solicitud POST:", error);
+			}
+		}
 	};
+
 	return (
 		<main>
 			<Purple></Purple>
@@ -76,12 +115,16 @@ function MovieDetail({ movies, cardMovies }) {
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
-							{/* <Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} /> */}
-							<StarRating rating={rating} onStarClick={handleStarClick} />
+							{auth.user ? (
+								<StarRating rating={rating} onStarClick={handleStarClick} />
+							) : (
+								<div>
+									<InactiveStarRating />
+									<Link href="/signIn" className="link_text">
+										Inicia sesión para calificar
+									</Link>
+								</div>
+							)}
 						</div>
 					</As>
 				</ContainerInfoMovie>
@@ -90,7 +133,19 @@ function MovieDetail({ movies, cardMovies }) {
 						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
 						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
 						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
-
+						{movies.score ? <p className="numerosPorcentaje div9">{movies.score}</p> : ""}
+						{movies.score ? (
+							<Image
+								src="/images/EcranLogo.png"
+								alt="imagen1"
+								width={80}
+								height={50}
+								style={{ marginTop: "-15px" }}
+								className="div10"
+							/>
+						) : (
+							""
+						)}
 						<Image src="/images/Group.svg" alt="imagen1" width={50} height={50} className="div6" />
 						<Image src="/images/Metacritic1.png" alt="imagen1" width={50} height={50} className="div7" />
 						<Image src="/images/RottenTomatoes.png" alt="imagen1" width={80} height={50} className="div8" />
