@@ -15,7 +15,10 @@ export const FooterContainer = styled.div`
 		margin-left: 8em;
 		gap: 20px;
 	}
-
+	.footer_icons_container{
+		display: flex;
+		gap: 20px;	
+	}
 	.footer_icons svg {
 		cursor: pointer;
 		width: 2vw;
@@ -43,10 +46,28 @@ export const FooterContainer = styled.div`
 		}
 
 		.footer_logo img {
+			width: 8em;
 		}
 
 		.footer_icons {
 			margin-left: 2em;
 		}
 	}
+	
+	@media screen and (max-width: 360px) {
+
+		.footer_text {					
+			font-size: 7px;
+		}
+
+		.footer_logo img {
+			width: 6em;
+			height: 6em;
+		}
+
+		.footer_icons {
+			margin-left: 2em;
+		}
+	}
+
 `;
