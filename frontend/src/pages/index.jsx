@@ -68,7 +68,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
 	const moviesOld = await fetchMoviesDate(2000, 2004);
