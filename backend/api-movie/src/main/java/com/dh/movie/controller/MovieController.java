@@ -74,6 +74,8 @@ public class MovieController {
 
     @PostMapping("/{id}/addscore")
     ResponseEntity<String> addValoration(@PathVariable String id, @RequestBody UserValorationDTO uvDTO) {
+        System.out.println("Peticion entrante");
+        System.out.println(uvDTO);
         return new ResponseEntity<>(movieService.addValoration(id, uvDTO), HttpStatus.CREATED);
     }
 
