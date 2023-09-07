@@ -23,7 +23,6 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
     @Query("{$or: ?0}")
     List<Movie> findWatchlist(List<WatchlistDB> movieId);
 
-
     @Query("{'release_date': { $gte: ?0, $lte: ?1 }}")
     List<Movie> findByDateRange(String min_date, String max_date, Sort sort);
 

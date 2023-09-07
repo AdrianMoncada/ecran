@@ -1,0 +1,14 @@
+[
+    {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "mail@mail.com"
+    },
+    {
+        "label": "Contraseña",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Contraseña"
+    }
+]

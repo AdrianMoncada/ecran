@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "label": "Nombre",
+        "name": "firstName",
+        "type": "text",
+        "placeholder": "E.g, Jhon..."
+    },
+    {
+        "id": "2",
+        "label": "Apellido",
+        "name": "lastName",
+        "type": "text",
+        "placeholder": "E.g, Smith..."
+    },
+    {
+        "id": "3",
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "mail@mail.com"
+    },
+    {
+        "id": "4",
+        "label": "Contraseña",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Contraseña"
+    }
+]

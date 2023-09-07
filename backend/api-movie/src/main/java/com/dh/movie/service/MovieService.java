@@ -2,6 +2,7 @@ package com.dh.movie.service;
 
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.exceptions.ServiceException;
+import com.dh.movie.model.dto.UserValorationDTO;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
@@ -104,6 +105,22 @@ public class MovieService {
         }
 
         return repository.findWatchlist(ObjectIDList).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    }
+
+    public String addValoration(String movieId, UserValorationDTO uvDTO) {
+        Movie movie = repository.findById(movieId).orElseThrow(() -> new ResourceNotFoundException("Movie id " + movieId + " not found"));
+
+        Double userAndMovieVal = uvDTO.getUserValoration() + uvDTO.getValorationsSum();
+        Double newScore = userAndMovieVal / uvDTO.getValorationsCount();
+
+        movie.setScore(newScore);
+        try{
+            repository.save(movie);
+        } catch (Exception e) {
+            throw new ServiceException("There was a problem in the database updating the valoration. " + e.getMessage());
+        }
+
+        return "Score added successfully";
     }
 
 }

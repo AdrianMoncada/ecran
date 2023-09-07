@@ -36,13 +36,13 @@ const Carousel = ({ movies, top }) => {
 				{top
 					? movies
 							.sort((a, b) => a.top - b.top)
-							.map((movie) => (
-								<SwiperSlide key={parseInt(movie.id)}>
+							.map((movie, index) => (
+								<SwiperSlide key={index}>
 									<Card movie={movie} />
 								</SwiperSlide>
 							))
-					: movies.map((movie) => (
-							<SwiperSlide key={parseInt(movie.id)}>
+					: movies?.map((movie, index) => (
+							<SwiperSlide key={index}>
 								<Card movie={movie} />
 							</SwiperSlide>
 					  ))}

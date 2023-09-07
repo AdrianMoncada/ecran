@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
 import {
 	Sugestions,
 	PosterContainer,
@@ -12,12 +13,31 @@ import {
 	Info,
 	Contenedor,
 	Puntuaciones,
+	CloseButton,
+	VideoModal,
 } from "@styles/pages.styles/movies.styles";
-import { fetchMovies } from "../api/movies";
 import Card from "@components/card/Card";
 import Image from "next/image";
+import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
+import AddButton from "@components/addButton/AddButton";
+import StarRating from "@components/stars/Estrellas";
 
 function MovieDetail({ movies, cardMovies }) {
+	//section for manage the modal state
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const handleImageClick = () => {
+		setIsModalOpen(true);
+	};
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
+	//section to mange the rating stars
+	const [rating, setRating] = useState(0);
+
+	const handleStarClick = (newRating) => {
+		setRating(newRating);
+	};
 	return (
 		<main>
 			<Purple></Purple>
@@ -48,17 +68,20 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url} />
+							<Poster src={movies?.image_url} onClick={handleImageClick} />
+							<AddButton movie={movies?.movieId} />
+							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
 						<RatesContainer>
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
+							{/* <Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
 							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
-							<Image src="/images/home/Star1.png" alt="" width={40} height={40} />
+							<Image src="/images/home/Star1.png" alt="" width={40} height={40} /> */}
+							<StarRating rating={rating} onStarClick={handleStarClick} />
 						</div>
 					</As>
 				</ContainerInfoMovie>
@@ -87,6 +110,15 @@ function MovieDetail({ movies, cardMovies }) {
 						))}
 					</div>
 				</Sugestions>
+				<VideoModal
+					isOpen={isModalOpen}
+					onRequestClose={handleCloseModal}
+					overlayClassName="ReactModal__Overlay custom-overlay"
+					ariaHideApp={false}
+				>
+					<ReactPlayer url={movies?.trailer_url} playing controls width="100%" height="100%" />
+					<CloseButton onClick={handleCloseModal}>Cerrar</CloseButton>
+				</VideoModal>
 			</Contenedor>
 		</main>
 	);
@@ -94,32 +126,16 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getStaticProps(context) {
 	const { id } = context.params;
+	const movies = await fetchMovieId(id);
+	console.log(movies);
+	const cardMovies = await fetchMovies();
 
-	try {
-		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch movie with ID ${id}`);
-		}
-
-		const movies = await response.json();
-		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
-
-		return {
-			props: {
-				movies,
-				cardMovies,
-			},
-		};
-	} catch (error) {
-		console.error(error);
-
-		return {
-			props: {
-				error: "An error occurred while fetching the movie.",
-			},
-		};
-	}
+	return {
+		props: {
+			movies,
+			cardMovies,
+		},
+	};
 }
 
 export async function getStaticPaths() {

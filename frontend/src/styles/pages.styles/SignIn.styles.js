@@ -5,8 +5,7 @@ export const Container = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 15%;
-	margin-bottom: 15%;
+	height: 100vh;
 
 	.link {
 		text-decoration: none;
@@ -39,6 +38,34 @@ export const ContainerFrom = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	label {
+		margin-bottom: 5px;
+	}
+
+	.separator {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.message-error {
+	}
+
+	.message-error {
+		display: none;
+	}
+
+	.message-error.visible {
+		display: block;
+		color: red;
+		color: #9a52f2;
+		font-size: 12px;
+		margin: 0px 0 10px 0;
+	}
+
+	.input-error {
+		border: 1px solid #ff0707;
+	}
 `;
 
 export const SecondLabels = styled.div`
