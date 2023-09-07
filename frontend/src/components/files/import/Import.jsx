@@ -57,7 +57,7 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 				const worksheet = workbook.Sheets[worksheetName];
 				const data = XLSX.utils.sheet_to_json(worksheet);
 				console.log(fetchMovies);
-				fetchMovies(data);
+				await fetchMovies(data);
 
 				setLoadingMessage(""); // Limpia el mensaje de carga
 			} catch (error) {
@@ -81,8 +81,8 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 				<Box sx={style}>
 					<form onSubmit={handleFileSubmit}>
 						<input type="file" onChange={handleFileUpload} />
-						<button style={{ color: "black" }} type="submit">
-							Upload
+						<button className="" style={{ color: "black" }} type="submit">
+							Cargar peliculas
 						</button>
 						{typeError && <div>{typeError}</div>}
 					</form>

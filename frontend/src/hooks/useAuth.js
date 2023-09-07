@@ -29,6 +29,8 @@ function useProvideAuth() {
 		if (token) {
 			Cookie.set("token", token, { expires: 5 });
 			Cookie.set("userId", headers.userid);
+			const reponse = await fetch(endPoints.auth.profile(headers.userid))
+			console.log(reponse);
 			setUser({
 				firstName: "Jacobo",
 				lastName: "Arcila",
