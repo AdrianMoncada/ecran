@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserValorationDTO {
-    private Double userValoration;
     private Double valorationsSum;
     private Double valorationsCount;
 }

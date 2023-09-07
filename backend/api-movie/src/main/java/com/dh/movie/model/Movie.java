@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +36,4 @@ public class Movie implements Serializable {
     private List<Platform> platforms = new ArrayList<>();
     private List<String> comments = new ArrayList<>();
     private Double score;
-
 }

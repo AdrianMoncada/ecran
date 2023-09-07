@@ -70,19 +70,14 @@ public class MovieService {
         Sort sort = Sort.by(sortDirection, "title");
 
         if (parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
-            System.out.println("Nothing");
             return repository.findByDateRange(min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
 
         if (!parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
-            System.out.println("No platforms");
-            System.out.println(parsedGenres);
             return repository.findByGenresInDateRange(parsedGenres, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
 
         if (parsedGenres.isEmpty() && !parsedPlatforms.isEmpty()) {
-            System.out.println("No genres");
-            System.out.println(parsedPlatforms);
             return repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
         }
 
@@ -110,10 +105,9 @@ public class MovieService {
     public String addValoration(String movieId, UserValorationDTO uvDTO) {
         Movie movie = repository.findById(movieId).orElseThrow(() -> new ResourceNotFoundException("Movie id " + movieId + " not found"));
 
-        Double userAndMovieVal = uvDTO.getUserValoration() + uvDTO.getValorationsSum();
-        Double newScore = userAndMovieVal / uvDTO.getValorationsCount();
-
+        Double newScore = uvDTO.getValorationsSum() / uvDTO.getValorationsCount();
         movie.setScore(newScore);
+
         try{
             repository.save(movie);
         } catch (Exception e) {
