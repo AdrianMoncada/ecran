@@ -254,7 +254,7 @@ export const Profile = styled.div`
 `;
 
 export const Discover = styled.div`
-	background-image: url("/images/home/Start.svg");
+	background-image: url("/images/home/start2.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
