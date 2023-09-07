@@ -16,6 +16,7 @@
 		"next/core-web-vitals"
 	],
 	"ignorePatterns": ["next/babel"],
+	"endOfLine": "off",
 	"overrides": [],
 	"parserOptions": {
 		"ecmaVersion": "latest",

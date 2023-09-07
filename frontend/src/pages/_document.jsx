@@ -6,7 +6,7 @@ export default function Document() {
 		<Html lang="en">
 			<Head>
 				<link rel="icon" href="/images/A.png" />
-				<title>Écran</title>
+				<title>ÉCRAN</title>
 			</Head>
 			<body>
 				<Main />

@@ -8,6 +8,7 @@ import {
 	ContainerFilters,
 	ContainerResults,
 } from "@/styles/Discover.styles";
+
 import Filters from "@components/filtros/Filters";
 import platformsOptions from "@/assets/platforms.json";
 import Search from "@components/search/Search";

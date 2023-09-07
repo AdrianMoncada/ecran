@@ -26,6 +26,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Toaster, toast } from "sonner";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -69,8 +70,11 @@ function MovieDetail({ movies, cardMovies }) {
 
 				setRating(newRating);
 
-				console.log("Respuesta de la solicitud POST:", response.data);
-				alert("elemento enviado con codigo: " + response.data);
+				if(response.data === "Vote added") {
+					toast.success(`Película agregada a la lista`);
+				} else {
+					toast.success(`Su voto ha sido modificado con éxito`);
+				}
 			} catch (error) {
 				console.error("Error en la solicitud POST:", error);
 			}
@@ -133,7 +137,7 @@ function MovieDetail({ movies, cardMovies }) {
 						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
 						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
 						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
-						{movies.score ? <p className="numerosPorcentaje div9">{movies.score}</p> : ""}
+						{movies.score ? <p className="numerosPorcentaje div9">{movies.score.toFixed(1)}</p> : ""}
 						{movies.score ? (
 							<Image
 								src="/images/EcranLogo.png"
@@ -175,6 +179,7 @@ function MovieDetail({ movies, cardMovies }) {
 					<CloseButton onClick={handleCloseModal}>Cerrar</CloseButton>
 				</VideoModal>
 			</Contenedor>
+			<Toaster richColors position="bottom-right" />
 		</main>
 	);
 }
