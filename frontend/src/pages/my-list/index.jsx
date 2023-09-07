@@ -35,7 +35,6 @@ const MyList = () => {
 	useEffect(() => {
 		if (auth.user) {
 			// const userId = auth.user.userId;
-			console.log(auth.user);
 			fetchWatchList();
 		}
 	}, [auth.user]);
@@ -81,13 +80,13 @@ const MyList = () => {
 					<AvatarContainer>
 						<div>
 							<h2>
-								{auth.user.firstName.charAt(0)}
-								{auth.user.lastName.charAt(0)}
+								{/* {auth.user?.firstName.charAt(0)}
+								{auth.user?.lastName.charAt(0)} */}
 							</h2>
 						</div>
 					</AvatarContainer>
 					<TitleContainer>
-						<h2>Hola, {auth.user.firstName}!</h2>
+						<h2>Hola!</h2>
 						<p>Editar perfil</p>
 					</TitleContainer>
 				</Container>

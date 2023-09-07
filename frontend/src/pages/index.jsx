@@ -37,7 +37,6 @@ export default function Home({ response, moviesTop, moviesOld }) {
 				</p>
 				<Carousel movies={response} top={false} />
 			</Day>
-
 			<Oldies id="proximamente">
 				<h2 className="oldies_title">Oldies but Goodies</h2>
 				<p className="oldies_p">
@@ -54,7 +53,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 					nuestra comunidad de amantes del cine y la televisión.
 				</p>
 				<div className="profile_img">
-					<Image src="images/home/Profile.svg" alt="Profile" width={768} height={400} />
+					<Image src="images/home/custom.svg" alt="Profile" width={768} height={400} />
 				</div>
 			</Profile>
 			<Discover>
@@ -69,7 +68,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const response = await fetchMovies();
 	const moviesTop = await fetchMoviesWithTop();
 	const moviesOld = await fetchMoviesDate(2000, 2004);
