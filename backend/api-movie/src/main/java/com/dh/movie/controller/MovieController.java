@@ -21,8 +21,6 @@ public class MovieController {
 
     private final MovieService movieService;
 
-
-
     @PostMapping("")
     ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie) {
         return ResponseEntity.ok().body(movieService.save(movie));
