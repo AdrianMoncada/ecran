@@ -1,7 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const StarRating = ({ rating, onStarClick }) => {
 	const stars = [];
@@ -9,27 +7,24 @@ const StarRating = ({ rating, onStarClick }) => {
 	for (let i = 1; i <= 5; i++) {
 		if (i <= rating) {
 			stars.push(
-				<FontAwesomeIcon
+				<FaStar
 					key={i}
-					icon={solidStar}
 					onClick={() => onStarClick(i)}
 					style={{ color: "yellow", marginRight: "8px", fontSize: "28px" }}
 				/>,
 			);
 		} else if (i - 0.5 === rating) {
 			stars.push(
-				<FontAwesomeIcon
+				<FaStarHalfAlt
 					key={i}
-					icon={faStarHalfAlt}
 					onClick={() => onStarClick(i)}
 					style={{ color: "yellow", marginRight: "8px", fontSize: "28px" }}
 				/>,
 			);
 		} else {
 			stars.push(
-				<FontAwesomeIcon
+				<FaStar
 					key={i}
-					icon={regularStar}
 					onClick={() => onStarClick(i)}
 					style={{ color: "white", marginRight: "8px", fontSize: "28px" }}
 				/>,
@@ -37,7 +32,7 @@ const StarRating = ({ rating, onStarClick }) => {
 		}
 	}
 
-	return <div>{stars}</div>;
+	return <div style={{ display: "flex" }}>{stars}</div>;
 };
 
 export default StarRating;

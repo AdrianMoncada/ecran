@@ -8,3 +8,4 @@ export async function fetchSeries() {
 		throw error;
 	}
 }
+

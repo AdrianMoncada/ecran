@@ -21,11 +21,6 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    @GetMapping("/watchlist")
-    ResponseEntity<List<MovieResponseDTO>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
-        return ResponseEntity.ok().body(movieService.findWatchlist(ids));
-    }
-
     @PostMapping("")
     ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie) {
         return ResponseEntity.ok().body(movieService.save(movie));
@@ -77,6 +72,8 @@ public class MovieController {
 
     @PostMapping("/{id}/addscore")
     ResponseEntity<String> addValoration(@PathVariable String id, @RequestBody UserValorationDTO uvDTO) {
+        System.out.println("Peticion entrante");
+        System.out.println(uvDTO);
         return new ResponseEntity<>(movieService.addValoration(id, uvDTO), HttpStatus.CREATED);
     }
 
