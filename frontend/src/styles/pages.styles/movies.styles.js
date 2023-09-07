@@ -261,6 +261,12 @@ export const Puntuaciones = styled.div`
 	.div8 {
 		grid-area: 2 / 3 / 3 / 4;
 	}
+	.div9 {
+		grid-area: 1 / 4 / 5 / 5;
+	}
+	.div10 {
+		grid-area: 2 / 4 / 5 / 5;
+	}
 
 	.numerosPorcentaje {
 		color: #e2c7fe;
