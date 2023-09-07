@@ -6,9 +6,8 @@ import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
 import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
 import { fetchSeries } from "./api/series";
-import CarouselSeries from "@components/carouselSeries/CarouselSeries";
 
-export default function Home({ response, moviesTop, moviesOld, responseSeries }) {
+export default function Home({ response, moviesTop, moviesOld }) {
 	return (
 		<>
 			<MainHome>
@@ -40,14 +39,14 @@ export default function Home({ response, moviesTop, moviesOld, responseSeries })
 				<Carousel movies={response} top={false} />
 			</Day>
 			{/** en esta seccion se mostrara el carrousel de series */}
-			<Day>
+			{/* <Day>
 				<h2 className="day_title">se supone que son las series</h2>
 				<p className="day_p">
 					Sumérgete en nuestro emocionante mundo del entretenimiento cinematografico .En esta sección, te adentrarás en
 					reseñas apasionantes de series de suspenso y otros géneros que seguramente captarán tu interés.!
 				</p>
 				<CarouselSeries series={responseSeries} />
-			</Day>
+			</Day> */}
 			{/** hasta aqui se implementa */}
 			<Oldies id="proximamente">
 				<h2 className="oldies_title">Oldies but Goodies</h2>
@@ -65,7 +64,7 @@ export default function Home({ response, moviesTop, moviesOld, responseSeries })
 					nuestra comunidad de amantes del cine y la televisión.
 				</p>
 				<div className="profile_img">
-					<Image src="images/home/Profile.svg" alt="Profile" width={768} height={400} />
+					<Image src="images/home/custom.svg" alt="Profile" width={768} height={400} />
 				</div>
 			</Profile>
 			<Discover>
