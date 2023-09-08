@@ -1,0 +1,4 @@
+FROM eclipse-temurin:17-jdk-jammy
+VOLUME /tmp 
+COPY target/ApiUsers-0.0.1-SNAPSHOT.jar ApiUsers.jar 
+ENTRYPOINT ["java","-jar","ApiUsers.jar"]
