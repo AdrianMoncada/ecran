@@ -44,7 +44,7 @@ backend-test-job:
     script:
         - echo "Testing backend"
 
-deploy-job:
+.deploy-job:
     stage: deploy
     image: alpine:3.11
     extends: 
