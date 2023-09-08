@@ -27,6 +27,7 @@ import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
+import { useRouter } from "next/router";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -39,10 +40,8 @@ const InactiveStarRating = () => {
 };
 
 function MovieDetail({ movies, cardMovies }) {
-	//verify that users are logged in
 	const auth = useAuth();
-
-	//section for manage the modal state
+	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
 		setIsModalOpen(true);
@@ -51,7 +50,6 @@ function MovieDetail({ movies, cardMovies }) {
 		setIsModalOpen(false);
 	};
 
-	//section to mange the rating stars
 	const [rating, setRating] = useState(0);
 
 	const handleStarClick = async (newRating) => {
@@ -70,7 +68,7 @@ function MovieDetail({ movies, cardMovies }) {
 
 				setRating(newRating);
 
-				if(response.data === "Vote added") {
+				if (response.data === "Vote added") {
 					toast.success(`Película agregada a la lista`);
 				} else {
 					toast.success(`Su voto ha sido modificado con éxito`);
@@ -124,7 +122,7 @@ function MovieDetail({ movies, cardMovies }) {
 							) : (
 								<div>
 									<InactiveStarRating />
-									<Link href="/signIn" className="link_text">
+									<Link href={`/signIn?prevPage=${router.asPath}`} className="link_text">
 										Inicia sesión para calificar
 									</Link>
 								</div>

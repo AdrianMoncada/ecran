@@ -14,7 +14,7 @@ const AddButton = ({ movie }) => {
 		try {
 			if (!auth.user) {
 				console.log("Usuario no autenticado, redirigiendo a la página de inicio de sesión");
-				router.push("/signIn");
+				router.push(`/signIn?prevPage=${router.asPath}`);
 				return;
 			}
 

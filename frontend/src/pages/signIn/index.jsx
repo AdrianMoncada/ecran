@@ -30,7 +30,8 @@ const SignIn = () => {
 			auth
 				.signIn(formData.email, formData.password)
 				.then(() => {
-					router.push("/");
+					const prevPage = router.query.prevPage || "/";
+					router.push(prevPage);
 					toast.success("Inicio de sesión exitoso");
 				})
 				.catch((err) => {

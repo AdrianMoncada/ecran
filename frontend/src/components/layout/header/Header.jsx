@@ -7,13 +7,23 @@ import { HeaderContainer } from "./Header.styles";
 import { MdExplore } from "react-icons/md";
 import { Avatar, Box, Tooltip, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Cookie from "js-cookie";
 
 const Header = ({ auth }) => {
 	const [openNav, setOpenNav] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [anchorElUser, setAnchorElUser] = useState(null);
+	const [userInfo, setUserInfo] = useState(null);
 
 	useEffect(() => {
+		const encodedUserInfo = Cookie.get("userInfo");
+		if (encodedUserInfo) {
+			const userInfoJSON = atob(encodedUserInfo);
+			const userInfo = JSON.parse(userInfoJSON);
+			setUserInfo(userInfo);
+			auth.setUser(userInfo);
+		}
+
 		const handleScroll = () => {
 			if (window.scrollY > 0) {
 				setIsScrolled(true);
@@ -38,6 +48,7 @@ const Header = ({ auth }) => {
 
 	const handleSignOut = () => {
 		setAnchorElUser(null);
+		setUserInfo(null);
 		auth.signOut();
 	};
 
@@ -50,7 +61,7 @@ const Header = ({ auth }) => {
 				<div>
 					<MdClose className={openNav ? "close-menu" : "noshow"} onClick={() => setOpenNav(false)} />
 				</div>
-				{auth.user ? (
+				{userInfo ? (
 					<Box className={openNav ? "nav-user-mobile" : "nav-user"} sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

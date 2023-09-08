@@ -15,9 +15,9 @@ export const FooterContainer = styled.div`
 		margin-left: 8em;
 		gap: 20px;
 	}
-	.footer_icons_container{
+	.footer_icons_container {
 		display: flex;
-		gap: 20px;	
+		gap: 20px;
 	}
 	.footer_icons svg {
 		cursor: pointer;
@@ -53,10 +53,9 @@ export const FooterContainer = styled.div`
 			margin-left: 2em;
 		}
 	}
-	
-	@media screen and (max-width: 360px) {
 
-		.footer_text {					
+	@media screen and (max-width: 360px) {
+		.footer_text {
 			font-size: 7px;
 		}
 
@@ -69,5 +68,4 @@ export const FooterContainer = styled.div`
 			margin-left: 2em;
 		}
 	}
-
 `;
