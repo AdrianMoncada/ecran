@@ -26,9 +26,9 @@ public class UsersMovieRating {
     private UserEntity userEntity;
 
     @Column
-    private Integer rating;
+    private Double rating;
 
-    public UsersMovieRating(String movieId, Integer rating) {
+    public UsersMovieRating(String movieId, Double rating) {
         this.movieId = movieId;
         this.rating = rating;
     }

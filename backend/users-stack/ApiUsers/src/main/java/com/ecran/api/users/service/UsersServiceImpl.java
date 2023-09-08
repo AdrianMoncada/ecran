@@ -82,23 +82,32 @@ public class UsersServiceImpl implements UsersService {
 								.filter(rating -> rating.getMovieId().equals(movieId))
 										.findFirst();
 
+		UserValorationDTO valorationDTO = new UserValorationDTO();
+
 		if(existingRating.isPresent()){
 			UsersMovieRating previousRating = existingRating.get();
 			previousRating.setRating(userRating.getRating());
 			usersRepository.save(userEntity);
+
+
+			valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+			valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+
+			try {
+				moviesServiceClient.addRating(movieId, valorationDTO);
+			} catch (FeignException e) {
+				logger.error(e.getLocalizedMessage());
+			}
+
 			System.out.println("User already vote for this movie. Vote changed from X to new rating");
 			return "User already vote for this movie. Vote changed from X to new rating";
 		} else {
 			userEntity.getRatings().add(userRating);
 			usersRepository.save(userEntity);
 
-			double sumVotes = ratingRepository.sumVotesByMovieId(movieId);
-
-			double countVotes = ratingRepository.countVotesByMovieId(movieId);
-
-			double rating = userRating.getRating();
-
-			UserValorationDTO valorationDTO = new UserValorationDTO(rating, sumVotes, countVotes);
+			valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+			valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+			System.out.println(valorationDTO);
 
 			try {
 				moviesServiceClient.addRating(movieId, valorationDTO);

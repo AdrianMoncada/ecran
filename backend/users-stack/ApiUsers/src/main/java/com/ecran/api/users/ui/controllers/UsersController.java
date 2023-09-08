@@ -92,7 +92,6 @@ public class UsersController {
 
 	@PostMapping("/{userId}/addrating")
 	public ResponseEntity<String> addRating(@RequestBody UsersMovieRating usersMovieRating, @PathVariable String userId){
-		usersService.addRating(userId, usersMovieRating);
-		return ResponseEntity.ok().body("Valoracion agregada");
+		return ResponseEntity.ok().body(usersService.addRating(userId, usersMovieRating));
 	}
 }

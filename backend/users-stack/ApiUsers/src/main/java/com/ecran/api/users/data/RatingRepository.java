@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface RatingRepository extends CrudRepository<UsersMovieRating, Long> {
 
     @Query(value = "SELECT COUNT(*) FROM users_movie_ratings WHERE movie_id = :movieId", nativeQuery = true)
-    int countVotesByMovieId(String movieId);
+    Double countVotesByMovieId(String movieId);
 
     @Query(value = "SELECT SUM(rating) FROM users_movie_ratings WHERE movie_id = :movieId", nativeQuery = true)
-    int sumVotesByMovieId(String movieId);
+    Double sumVotesByMovieId(String movieId);
 }
