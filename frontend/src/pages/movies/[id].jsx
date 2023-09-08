@@ -184,10 +184,9 @@ function MovieDetail({ movies, cardMovies }) {
 	);
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
-	console.log(movies);
 	const cardMovies = await fetchMovies();
 
 	return {
@@ -198,7 +197,7 @@ export async function getStaticProps(context) {
 	};
 }
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
 	const cardMovies = await fetchMovies();
 	const paths = cardMovies.map((movie) => {
 		return { params: { id: movie.movieId.toString() } };
@@ -208,6 +207,6 @@ export async function getStaticPaths() {
 		paths,
 		fallback: true,
 	};
-}
+} */
 
 export default MovieDetail;
