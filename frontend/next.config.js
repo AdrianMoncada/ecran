@@ -3,6 +3,11 @@ const { parsed: env } = require("dotenv").config();
 const withPWA = require("next-pwa");
 const nextConfig = {
 	reactStrictMode: true,
+	...withPWA({
+		dest: "public",
+		register: "true",
+		skipWaiting: true,
+	}),
 };
 
 module.exports = nextConfig;
@@ -13,9 +18,3 @@ module.exports = {
 		// Agrega el dominio de las imágenes aquí
 	},
 };
-
-module.exports = withPWA({
-	dest: "public",
-	register: "true",
-	skipWaiting: true,
-});
