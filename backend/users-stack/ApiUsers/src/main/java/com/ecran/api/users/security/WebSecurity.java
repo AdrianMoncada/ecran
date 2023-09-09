@@ -61,7 +61,7 @@ public class WebSecurity{
 								.requestMatchers(HttpMethod.PATCH, "/users/*/changepassword").permitAll()
 						.requestMatchers(HttpMethod.GET, "/users/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-				.requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
+				.requestMatchers(HttpMethod.GET, "/users/status/check").authenticated()
 //        .requestMatchers(new AntPathRequestMatcher("/users/*/watchlist")).permitAll()
 				)
 				.addFilter(authenticationFilter)
