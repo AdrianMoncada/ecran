@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import endPoints from "@/service/api";
 import ImportarDesdeExcel from "@components/files/import/Import";
 import ExportarExcel from "@components/files/export/Export";
+import Head from "next/head";
 
 const MyList = () => {
 	const auth = useAuth();
@@ -75,6 +76,12 @@ const MyList = () => {
 
 	return (
 		<>
+			<Head>
+				<meta
+					name="description"
+					content="Esta es la página en la que puedes ver una lista de tus peliculas guardadas y la lista para ver las peliculas que has puntuado"
+				/>
+			</Head>
 			<HeaderContainer>
 				<Container>
 					<AvatarContainer>

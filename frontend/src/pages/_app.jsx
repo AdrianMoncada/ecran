@@ -5,7 +5,6 @@ import { theme } from "../../Theme";
 import Layout from "@components/layout/Layout";
 import Loader from "@components/loader/Loader";
 import { ProviderAuth } from "@/hooks/useAuth";
-import { checkUserCookie } from "@/utils/auth";
 
 export default function App({ Component, pageProps }) {
 	if (Component.getLayout) {

@@ -16,7 +16,6 @@
 		"next/core-web-vitals"
 	],
 	"ignorePatterns": ["next/babel"],
-	"endOfLine": "off",
 	"overrides": [],
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -26,10 +25,7 @@
 	"rules": {
 		"indent": "off",
 		"prettier/prettier": [
-			"error",
-			{
-				"endOfLine": "auto"
-			}
+			"error"
 		],
 		"no-unused-vars": "error",
 		"quotes": ["error", "double"],

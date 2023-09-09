@@ -4,6 +4,7 @@ import Search from "@components/search/Search";
 import { SearchResultsContainer, ResultsContainer, NotFound } from "@styles/pages.styles/search-results.styles";
 import AutocompleteItem from "@/components/results/AutocompleteItem";
 import Image from "next/image";
+import Head from "next/head";
 
 const SearchResults = () => {
 	const router = useRouter();
@@ -20,6 +21,10 @@ const SearchResults = () => {
 
 	return (
 		<>
+			<Head>
+				<title>ÉCRAN | Search</title>
+				<meta name="description" content="Esta es la página donde puedes ver el resultado de tu búsqueda" />
+			</Head>
 			<SearchResultsContainer>
 				<Search showAutocomplete={false} />
 			</SearchResultsContainer>

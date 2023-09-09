@@ -28,6 +28,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -69,9 +70,9 @@ function MovieDetail({ movies, cardMovies }) {
 				setRating(newRating);
 
 				if (response.data === "Vote added") {
-					toast.success(`Película agregada a la lista`);
+					toast.success("Película agregada a la lista");
 				} else {
-					toast.success(`Su voto ha sido modificado con éxito`);
+					toast.success("Su voto ha sido modificado con éxito");
 				}
 			} catch (error) {
 				console.error("Error en la solicitud POST:", error);
@@ -81,6 +82,13 @@ function MovieDetail({ movies, cardMovies }) {
 
 	return (
 		<main>
+			<Head>
+				<title>ÉCRAN | Movie</title>
+				<meta
+					name="description"
+					content="Esta es la página en la que puedes ver el detalle de cada pelicula, su descripcion, genero, directo etc. Tambien puedes agregar a la lista, puntuar y ver las puntuaciones."
+				/>
+			</Head>
 			<Purple></Purple>
 			<Contenedor>
 				<ContainerInfoMovie>
@@ -109,7 +117,7 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url} onClick={handleImageClick} />
+							<Poster src={movies?.image_url} onClick={handleImageClick} alt={movies?.title} />
 							<AddButton movie={movies?.movieId} />
 							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
