@@ -17,6 +17,7 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
 import { fetchMovies } from "@/service/movies/movies.service";
+import Head from "next/head";
 
 const genresOptions = [
 	"Acción",
@@ -94,6 +95,10 @@ const Discover = ({ response }) => {
 
 	return (
 		<div>
+			<Head>
+				<title>ÉCRAN | Discover</title>
+				<meta name="description" content="Esta es la página donde puedes encontrar todas las peliculas y filtrarlas" />
+			</Head>
 			<Container>
 				<Search />
 			</Container>

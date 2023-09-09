@@ -8,6 +8,7 @@ import { Toaster, toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Head from "next/head";
 
 const initalData = {
 	email: "",
@@ -44,6 +45,10 @@ const SignIn = () => {
 
 	return (
 		<Container>
+			<Head>
+				<title>ÉCRAN | SignIn</title>
+				<meta name="description" content="Esta es la página donde puedes ingresar a tu cuenta" />
+			</Head>
 			<ContainerHead>
 				<Link href="/">
 					<Image src="/images/signLogo.png" alt="ecranLogo" width={100} height={100} />

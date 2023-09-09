@@ -6,10 +6,18 @@ import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
 import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
 import { fetchSeries } from "./api/series";
+import Head from "next/head";
 
-export default function Home({ response, moviesTop, moviesOld, responseSeries }) {
+export default function Home({ response, moviesTop, moviesOld }) {
 	return (
 		<>
+			<Head>
+				<title>ÉCRAN | Home</title>
+				<meta
+					name="description"
+					content="Esta es la página en la página principal aquí puedes ver el top del día los generos favoritos por el publico o un carousel de peliculas antiguas"
+				/>
+			</Head>
 			<MainHome>
 				<h1 className="title">Reseñas de series y películas al instante</h1>
 				<h4 className="mainHome_p">
