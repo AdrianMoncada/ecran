@@ -55,13 +55,13 @@ public class WebSecurity{
     	http.csrf((csrf) -> csrf.disable());
 		http.cors(withDefaults());
     	http.authorizeHttpRequests((authz) -> authz
-        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+        .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/watchlist").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/addrating").permitAll()
 								.requestMatchers(HttpMethod.PATCH, "/users/*/changepassword").permitAll()
 						.requestMatchers(HttpMethod.GET, "/users/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-				.requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
+				.requestMatchers(HttpMethod.GET, "/users/status/check").authenticated()
 //        .requestMatchers(new AntPathRequestMatcher("/users/*/watchlist")).permitAll()
 				)
 				.addFilter(authenticationFilter)
