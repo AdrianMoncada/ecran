@@ -34,6 +34,6 @@ public class Movie implements Serializable {
     private String releaseDate;
     private List<String> genres = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
-    private List<String> comments = new ArrayList<>();
+    private List<UsersComment> comments = new ArrayList<>();
     private Double score;
 }
