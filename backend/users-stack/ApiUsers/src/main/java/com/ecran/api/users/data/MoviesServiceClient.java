@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@FeignClient(name="api-movie")
-@FeignClient(name="movies")
+@FeignClient(name="api-movie")
+//@FeignClient(name="movies")
 public interface MoviesServiceClient {
     @GetMapping("/api/v1/movies/watchlist")
     @Retry(name="api-movie")
