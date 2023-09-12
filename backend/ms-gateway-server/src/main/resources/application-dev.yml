@@ -18,11 +18,18 @@ spring:
           uri: lb://api-series
           predicates:
             - Path=/api/v1/series/**
-        - id: users-status-check
+        - id: users-signup
+          uri: lb://users
+          predicates:
+            - Path=/users/signup
+        - id: users-login
+          uri: lb://users
+          predicates:
+            - Path=/users/login
+        - id : users-authorization
           uri: lb://users
           predicates:
             - Path=/users/**
-            - Method=GET
             - Header=Authorization, Bearer (.*)
           filters:
             - RemoveRequestHeader=Cookie

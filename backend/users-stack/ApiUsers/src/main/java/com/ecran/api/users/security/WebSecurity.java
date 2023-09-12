@@ -55,7 +55,7 @@ public class WebSecurity{
     	http.csrf((csrf) -> csrf.disable());
 		http.cors(withDefaults());
     	http.authorizeHttpRequests((authz) -> authz
-        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+        .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/watchlist").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/addrating").permitAll()
 								.requestMatchers(HttpMethod.PATCH, "/users/*/changepassword").permitAll()
