@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ms-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: api-movie
+          uri: lb://api-movie
+          predicates:
+            - Path=/api/v1/movies/**
+        - id: api-series
+          uri: lb://api-series
+          predicates:
+            - Path=/api/v1/series/**
+        - id: users-signup
+          uri: lb://users
+          predicates:
+            - Path=/users/signup
+        - id: users-login
+          uri: lb://users
+          predicates:
+            - Path=/users/login
+        - id : users-authorization
+          uri: lb://users
+          predicates:
+            - Path=/users/**
+            - Header=Authorization, Bearer (.*)
+          filters:
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+
+
+info:
+  app:
+    name: ${spring.application.name}
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway,serviceregistry,health,info
+
+token:
+  secret: UhQbrtfsX8Q0S6MoJFjzQZthOK4Kbd5h7gH6YtT3jKreEjICe9OdpUULUaG50mbM
