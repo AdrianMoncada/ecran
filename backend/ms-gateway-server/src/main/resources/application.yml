@@ -1,3 +1,6 @@
 spring:
-  profiles:
-    active: prod
+  application:
+    name: ms-gateway-server
+  cloud:
+    config:
+      uri: http://34.238.41.135:8888
