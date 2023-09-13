@@ -4,6 +4,7 @@ spring:
   cloud:
     config:
       uri: http://34.238.41.135:8888
+
 #server:
 #  port: 8080
 
