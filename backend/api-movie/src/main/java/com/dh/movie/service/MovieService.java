@@ -1,8 +1,12 @@
 package com.dh.movie.service;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.dh.movie.config.BucketName;
+import com.dh.movie.controller.feign.UsersFeign;
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.exceptions.ServiceException;
 import com.dh.movie.model.dto.UserValorationDTO;
+import com.dh.movie.model.dto.movie.AllMoviesDTO;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
@@ -15,7 +19,9 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -23,15 +29,38 @@ import java.util.*;
 public class MovieService {
 
     private final MovieRepository repository;
+    private final UsersFeign usersFeign;
     private final ModelMapper mapper;
+    private final FileStoreService fileStore;
 
-    public MovieResponseDTO save(MovieRequestDTO movie) {
+    public MovieResponseDTO save(MovieRequestDTO movie, MultipartFile image) {
+        String path = saveImage(image);
         Movie movieDB = mapper.map(movie, Movie.class);
+        movieDB.setImage_url(path);
         return mapper.map(repository.save(movieDB), MovieResponseDTO.class);
     }
 
-    public List<MovieResponseDTO> findAll() {
-        return repository.findAll().stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    public String saveImage(MultipartFile image) {
+        if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentType("image/jpeg");
+        objectMetadata.setContentDisposition("inline; filename="+ image.getOriginalFilename());
+
+        String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Peliculas");
+        String fileName = String.format("%s", image.getOriginalFilename());
+
+        try {
+            fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to upload file", e);
+        }
+
+        return "https://ecran.s3.amazonaws.com/Peliculas/" + image.getOriginalFilename();
+    }
+
+    public List<AllMoviesDTO> findAll() {
+        return repository.findAll().stream().map(m -> mapper.map(m, AllMoviesDTO.class)).toList();
     }
 
     public List<MovieResponseDTO> findAllByTitle(String title){
@@ -40,7 +69,9 @@ public class MovieService {
 
     public MovieResponseDTO findById(String id) {
         Movie movie = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
-        return mapper.map(movie, MovieResponseDTO.class);
+        MovieResponseDTO responseDTO = mapper.map(movie, MovieResponseDTO.class);
+        responseDTO.setComments(usersFeign.getCommentsByMovieId(id));
+        return responseDTO;
     }
 
     public MovieResponseDTO updateById(String id, MovieRequestDTO movie) {

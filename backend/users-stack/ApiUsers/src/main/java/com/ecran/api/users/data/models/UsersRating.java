@@ -1,9 +1,8 @@
-package com.ecran.api.users.data;
+package com.ecran.api.users.data.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Setter
@@ -11,11 +10,11 @@ import org.hibernate.annotations.UuidGenerator;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users_watchlist")
-public class UsersMovieWatchlist {
+@Table(name="users_movie_ratings")
+public class UsersRating {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "movie_id")
@@ -26,7 +25,11 @@ public class UsersMovieWatchlist {
     @JoinColumn(name="user_id")
     private UserEntity userEntity;
 
-    public UsersMovieWatchlist(String movieId) {
+    @Column
+    private Double rating;
+
+    public UsersRating(String movieId, Double rating) {
         this.movieId = movieId;
+        this.rating = rating;
     }
 }
