@@ -1,9 +1,12 @@
 package com.ecran.api.users.service;
 
-import com.ecran.api.users.data.UsersMovieRating;
-import com.ecran.api.users.data.UsersMovieWatchlist;
+import com.ecran.api.users.data.models.UsersComment;
+import com.ecran.api.users.data.models.UsersRating;
+import com.ecran.api.users.data.models.UsersWatchlist;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.ui.model.MoviesResponseModel;
+import com.ecran.api.users.ui.model.UserCommentDTO;
+import com.ecran.api.users.ui.model.UserCommentResponseDTO;
 import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -19,9 +22,13 @@ public interface UsersService extends UserDetailsService {
 
 	List<MoviesResponseModel> getWatchlistByUserId(String userId);
 
-	List<UsersMovieWatchlist>  addToWatchlist(String userId, UsersMovieWLDTO movieId);
+	List<UsersWatchlist>  addToWatchlist(String userId, UsersMovieWLDTO movieId);
 
-	String addRating(String userId, UsersMovieRating userRating);
+	String addRating(String userId, UsersRating userRating);
 
 	String changePassword(ChangePasswordDTO passwordDTO, String userId);
+
+	UsersComment addComment(String userId, UserCommentDTO commentDTO);
+
+	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
 }

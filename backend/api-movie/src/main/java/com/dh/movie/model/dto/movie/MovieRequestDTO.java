@@ -43,6 +43,5 @@ public class MovieRequestDTO implements Serializable {
     private String mc_score;
     private List<String> genres = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
-    private List<String> comments = new ArrayList<>();
     private Double score;
 }

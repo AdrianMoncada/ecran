@@ -1,11 +1,13 @@
 package com.ecran.api.users.ui.controllers;
 
-import com.ecran.api.users.data.UsersMovieRating;
-import com.ecran.api.users.data.UsersMovieWatchlist;
+import com.ecran.api.users.data.models.UsersComment;
+import com.ecran.api.users.data.models.UsersRating;
+import com.ecran.api.users.data.models.UsersWatchlist;
 import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
+import jakarta.ws.rs.QueryParam;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,7 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
 	}
 	@PostMapping("/{userId}/watchlist")
-	public ResponseEntity<List<UsersMovieWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
+	public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
 	}
 
@@ -88,7 +90,17 @@ public class UsersController {
 	};
 
 	@PostMapping("/{userId}/addrating")
-	public ResponseEntity<String> addRating(@RequestBody UsersMovieRating usersMovieRating, @PathVariable String userId){
-		return ResponseEntity.ok().body(usersService.addRating(userId, usersMovieRating));
+	public ResponseEntity<String> addRating(@RequestBody UsersRating usersRating, @PathVariable String userId){
+		return ResponseEntity.ok().body(usersService.addRating(userId, usersRating));
+	}
+
+	@PostMapping("/{userId}/comment")
+	public ResponseEntity<UsersComment> addComment(@RequestBody UserCommentDTO userComment, @PathVariable String userId){
+		return ResponseEntity.ok().body(usersService.addComment(userId, userComment));
+	}
+
+	@GetMapping("/comments/{movieId}")
+	public List<UserCommentResponseDTO> getCommentsByMovieId(@PathVariable String movieId) {
+		return usersService.getCommentsByMovieId(movieId);
 	}
 }

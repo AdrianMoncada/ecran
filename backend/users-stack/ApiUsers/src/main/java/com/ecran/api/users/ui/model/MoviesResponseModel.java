@@ -6,8 +6,6 @@
 package com.ecran.api.users.ui.model;
 
 
-import com.ecran.api.users.data.UsersMovieWatchlist;
-
 import java.util.ArrayList;
 import java.util.List;
 

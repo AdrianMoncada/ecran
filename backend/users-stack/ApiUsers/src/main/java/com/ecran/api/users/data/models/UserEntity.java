@@ -1,4 +1,4 @@
-package com.ecran.api.users.data;
+package com.ecran.api.users.data.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-@ToString(exclude = {"watchlist", "valorationlist"})
+@ToString(exclude = {"watchlist", "ratings"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="users")
@@ -40,9 +40,13 @@ public class UserEntity implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
-	private List<UsersMovieWatchlist> watchlist = new ArrayList<>();
+	private List<UsersWatchlist> watchlist = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
-	private List<UsersMovieRating> ratings = new ArrayList<>();
+	private List<UsersRating> ratings = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	private List<UsersComment> comments = new ArrayList<>();
 }

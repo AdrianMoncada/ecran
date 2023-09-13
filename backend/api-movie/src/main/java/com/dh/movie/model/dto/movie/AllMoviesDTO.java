@@ -1,14 +1,12 @@
 package com.dh.movie.model.dto.movie;
 
 import com.dh.movie.model.Platform;
-import com.dh.movie.model.UsersComment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +14,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieResponseDTO implements Serializable {
-
+public class AllMoviesDTO {
     private String movieId;
     private String title;
     private String actors;
@@ -33,6 +30,5 @@ public class MovieResponseDTO implements Serializable {
     private String mc_score;
     private List<String> genres = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
-    private List<UsersComment> comments = new ArrayList<>();
     private Double score;
 }

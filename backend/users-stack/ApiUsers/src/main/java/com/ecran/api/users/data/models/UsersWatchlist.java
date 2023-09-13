@@ -1,4 +1,4 @@
-package com.ecran.api.users.data;
+package com.ecran.api.users.data.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,11 +10,11 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users_movie_ratings")
-public class UsersMovieRating {
+@Table(name="users_watchlist")
+public class UsersWatchlist {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "movie_id")
@@ -25,11 +25,7 @@ public class UsersMovieRating {
     @JoinColumn(name="user_id")
     private UserEntity userEntity;
 
-    @Column
-    private Double rating;
-
-    public UsersMovieRating(String movieId, Double rating) {
+    public UsersWatchlist(String movieId) {
         this.movieId = movieId;
-        this.rating = rating;
     }
 }

@@ -44,7 +44,7 @@ backend-test-job:
     script:
         - echo "Testing backend"
 
-.deploy-job:
+deploy-job:
     stage: deploy
     image: alpine:3.11
     extends: 
@@ -66,6 +66,7 @@ backend-test-job:
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/console-app/
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl start consoleapp.service"
+        - sleep 60
 #  - EUREKA SERVER
         - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/

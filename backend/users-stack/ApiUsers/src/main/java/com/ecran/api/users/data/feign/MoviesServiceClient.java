@@ -1,4 +1,4 @@
-package com.ecran.api.users.data;
+package com.ecran.api.users.data.feign;
 
 import com.ecran.api.users.shared.UserValorationDTO;
 import com.ecran.api.users.ui.model.MoviesResponseModel;

@@ -1,6 +1,30 @@
-spring:
-  application:
-    name: api-movie
-  cloud:
-    config:
-      uri: http://34.238.41.135:8888
+#spring:
+#  application:
+#    name: api-movie
+#  cloud:
+#    config:
+#      uri: http://34.238.41.135:8888
+
+#server:
+#  port: 8080
+
+#spring:
+#  application:
+#    name: api-movie
+#  data:
+#    mongodb:
+#      uri: mongodb://root:root1234@44.201.102.47:27017
+#      database: movies-dev-mongo
+
+#eureka:
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: serviceregistry,health,info

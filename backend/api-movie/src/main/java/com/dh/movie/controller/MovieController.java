@@ -1,6 +1,7 @@
 package com.dh.movie.controller;
 
 import com.dh.movie.model.dto.UserValorationDTO;
+import com.dh.movie.model.dto.movie.AllMoviesDTO;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.service.MovieService;
@@ -27,7 +28,7 @@ public class MovieController {
     }
 
     @GetMapping("")
-    ResponseEntity<List<MovieResponseDTO>> findAll() {
+    ResponseEntity<List<AllMoviesDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
     }
 

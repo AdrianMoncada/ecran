@@ -1,5 +1,6 @@
-package com.ecran.api.users.data;
+package com.ecran.api.users.data.repository;
 
+import com.ecran.api.users.data.models.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UsersRepository extends CrudRepository<UserEntity, Long> {

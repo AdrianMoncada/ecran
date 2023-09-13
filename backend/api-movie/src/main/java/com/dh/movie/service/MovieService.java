@@ -1,8 +1,10 @@
 package com.dh.movie.service;
 
+import com.dh.movie.controller.feign.UsersFeign;
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.exceptions.ServiceException;
 import com.dh.movie.model.dto.UserValorationDTO;
+import com.dh.movie.model.dto.movie.AllMoviesDTO;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
@@ -23,6 +25,7 @@ import java.util.*;
 public class MovieService {
 
     private final MovieRepository repository;
+    private final UsersFeign usersFeign;
     private final ModelMapper mapper;
 
     public MovieResponseDTO save(MovieRequestDTO movie) {
@@ -30,8 +33,8 @@ public class MovieService {
         return mapper.map(repository.save(movieDB), MovieResponseDTO.class);
     }
 
-    public List<MovieResponseDTO> findAll() {
-        return repository.findAll().stream().map(m -> mapper.map(m, MovieResponseDTO.class)).toList();
+    public List<AllMoviesDTO> findAll() {
+        return repository.findAll().stream().map(m -> mapper.map(m, AllMoviesDTO.class)).toList();
     }
 
     public List<MovieResponseDTO> findAllByTitle(String title){
@@ -40,7 +43,9 @@ public class MovieService {
 
     public MovieResponseDTO findById(String id) {
         Movie movie = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie id " + id + " doesn't exists."));
-        return mapper.map(movie, MovieResponseDTO.class);
+        MovieResponseDTO responseDTO = mapper.map(movie, MovieResponseDTO.class);
+        responseDTO.setComments(usersFeign.getCommentsByMovieId(id));
+        return responseDTO;
     }
 
     public MovieResponseDTO updateById(String id, MovieRequestDTO movie) {

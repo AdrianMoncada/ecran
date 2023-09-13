@@ -1,10 +1,18 @@
 package com.ecran.api.users.shared;
 
-import com.ecran.api.users.data.UsersMovieWatchlist;
+import com.ecran.api.users.data.models.UsersWatchlist;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto implements Serializable {
 	/**
 	 * 
@@ -18,7 +26,7 @@ public class UserDto implements Serializable {
 	private String userId;
 	private String encryptedPassword;
 
-	private List<UsersMovieWatchlist> watchlist;
+	private List<UsersWatchlist> watchlist;
 
 //	private List<MoviesResponseModel> movies;
 
@@ -31,56 +39,28 @@ public class UserDto implements Serializable {
 //	}
 
 
-	public List<UsersMovieWatchlist> getWatchlist() {
-		return watchlist;
-	}
-
-	public void setWatchlist(List<UsersMovieWatchlist> watchlist) {
+	public void setWatchlist(List<UsersWatchlist> watchlist) {
 		this.watchlist = watchlist;
-	}
-
-	public String getFirstName() {
-		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getEncryptedPassword() {
-		return encryptedPassword;
 	}
 
 	public void setEncryptedPassword(String encryptedPassword) {
