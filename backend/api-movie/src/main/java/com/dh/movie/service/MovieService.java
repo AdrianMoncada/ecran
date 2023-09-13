@@ -1,5 +1,7 @@
 package com.dh.movie.service;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.dh.movie.config.BucketName;
 import com.dh.movie.controller.feign.UsersFeign;
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.exceptions.ServiceException;
@@ -17,7 +19,9 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -27,10 +31,32 @@ public class MovieService {
     private final MovieRepository repository;
     private final UsersFeign usersFeign;
     private final ModelMapper mapper;
+    private final FileStoreService fileStore;
 
-    public MovieResponseDTO save(MovieRequestDTO movie) {
+    public MovieResponseDTO save(MovieRequestDTO movie, MultipartFile image) {
+        String path = saveImage(image);
         Movie movieDB = mapper.map(movie, Movie.class);
+        movieDB.setImage_url(path);
         return mapper.map(repository.save(movieDB), MovieResponseDTO.class);
+    }
+
+    public String saveImage(MultipartFile image) {
+        if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentType("image/jpeg");
+        objectMetadata.setContentDisposition("inline; filename="+ image.getOriginalFilename());
+
+        String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Peliculas");
+        String fileName = String.format("%s", image.getOriginalFilename());
+
+        try {
+            fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to upload file", e);
+        }
+
+        return "https://ecran.s3.amazonaws.com/Peliculas/" + image.getOriginalFilename();
     }
 
     public List<AllMoviesDTO> findAll() {
