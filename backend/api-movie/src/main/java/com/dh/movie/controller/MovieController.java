@@ -8,8 +8,10 @@ import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -23,13 +25,18 @@ public class MovieController {
     private final MovieService movieService;
 
     @PostMapping("")
-    ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie) {
-        return ResponseEntity.ok().body(movieService.save(movie));
+    ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie, @RequestParam MultipartFile image) {
+        return ResponseEntity.ok().body(movieService.save(movie, image));
     }
 
     @GetMapping("")
     ResponseEntity<List<AllMoviesDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
+    }
+
+    @PostMapping("/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(movieService.saveImage(file), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

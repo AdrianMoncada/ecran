@@ -29,8 +29,6 @@ public class MovieRequestDTO implements Serializable {
     @NotBlank
     private String review;
     @NotBlank
-    private String image_url;
-    @NotBlank
     private String trailer_url;
     @NotBlank
     @JsonProperty("release_date")
