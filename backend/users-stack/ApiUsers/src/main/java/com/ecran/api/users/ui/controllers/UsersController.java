@@ -3,20 +3,26 @@ package com.ecran.api.users.ui.controllers;
 import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UsersRating;
 import com.ecran.api.users.data.models.UsersWatchlist;
+import com.ecran.api.users.event.OnRegistrationCompleteEvent;
 import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.QueryParam;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/users")
@@ -28,6 +34,9 @@ public class UsersController {
 	@Autowired
     UsersService usersService;
 
+	@Autowired
+	ApplicationEventPublisher eventPublisher;
+
 	@GetMapping("/status/check")
 	public String status()
 	{
@@ -36,14 +45,19 @@ public class UsersController {
 	}
  
 	@PostMapping("/signup")
-	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
+	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request)
 	{
+		String appUrl = request.getContextPath();
+
 		ModelMapper modelMapper = new ModelMapper(); 
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
+		userDetails.setEnabled(false);
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 		
 		UserDto createdUser = usersService.createUser(userDto);
+
+		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
+				request.getLocale(), appUrl));
 		
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
 		
@@ -64,6 +78,14 @@ public class UsersController {
 	@PostMapping("/{userId}/watchlist")
 	public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
+	}
+
+	@GetMapping("/confirm")
+	public void confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+		usersService.enableUser(token);
 	}
 
 /*

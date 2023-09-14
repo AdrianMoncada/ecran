@@ -31,4 +31,6 @@ public interface UsersService extends UserDetailsService {
 	UsersComment addComment(String userId, UserCommentDTO commentDTO);
 
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
+
+	UserDto enableUser(String userId);
 }
