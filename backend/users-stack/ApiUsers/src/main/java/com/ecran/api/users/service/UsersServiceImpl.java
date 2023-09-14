@@ -1,6 +1,7 @@
 package com.ecran.api.users.service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -218,11 +219,14 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersComment addComment(String userId, UserCommentDTO commentDTO) {
+        UserEntity user = usersRepository.findByUserId(userId);
+        if (user == null) throw new UsernameNotFoundException("user not found");
+
         UsersComment comment = mapper.map(commentDTO, UsersComment.class);
 
-        UserEntity user = usersRepository.findByUserId(userId);
-
-        if (user == null) throw new UsernameNotFoundException("user not found");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaFormateada = dateFormat.format(new Date());
+        comment.setDate(fechaFormateada);
 
         user.getComments().add(comment);
         usersRepository.save(user);
@@ -274,9 +278,12 @@ public class UsersServiceImpl implements UsersService {
 //	Codes
 //	200 Verificado (enabled 0 --> 1)
 //	300 Ya estaba verificado (enabled 1 --> 1)
-    public UserConfirmationResponse enableUser(String userId) {
+    @Override
+    public UserConfirmationResponse enableUser(String userId)  throws UsernameNotFoundException{
         UserConfirmationResponse response = new UserConfirmationResponse();
         UserEntity foundUser = usersRepository.findByUserId(userId);
+        if (foundUser == null) throw new UsernameNotFoundException("user not found");
+
         if (foundUser.getEnabled()) {
             response.setCode("300");
             return response;

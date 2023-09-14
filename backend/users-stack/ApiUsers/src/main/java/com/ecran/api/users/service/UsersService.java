@@ -29,6 +29,8 @@ public interface UsersService extends UserDetailsService {
 	UsersComment addComment(String userId, UserCommentDTO commentDTO);
 
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
+
 	String saveImage(String userId, MultipartFile image);
+
 	UserConfirmationResponse enableUser(String userId);
 }

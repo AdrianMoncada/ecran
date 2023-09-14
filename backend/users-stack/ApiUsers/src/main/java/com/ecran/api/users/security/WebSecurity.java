@@ -58,7 +58,7 @@ public class WebSecurity{
         .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/watchlist").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/image").permitAll()
-								.requestMatchers(HttpMethod.POST, "/users/*/addcomment").permitAll()
+								.requestMatchers(HttpMethod.POST, "/users/*/comments").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/addrating").permitAll()
 								.requestMatchers(HttpMethod.PATCH, "/users/*/changepassword").permitAll()
 						.requestMatchers(HttpMethod.GET, "/users/**").permitAll()

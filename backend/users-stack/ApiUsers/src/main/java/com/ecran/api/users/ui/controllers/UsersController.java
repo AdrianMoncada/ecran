@@ -19,75 +19,75 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.context.request.WebRequest;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-	
-	@Autowired
-	private Environment env;
-	
-	@Autowired
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
     UsersService usersService;
 
-	@Autowired
-	ApplicationEventPublisher eventPublisher;
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
 
-	@GetMapping("/status/check")
-	public String status()
-	{
-		return "Working on port " + env.getProperty("local.server.port") +
-				", with token = " + env.getProperty("token.secret");
-	}
+    @GetMapping("/status/check")
+    public String status() {
+        return "Working on port " + env.getProperty("local.server.port") +
+                ", with token = " + env.getProperty("token.secret");
+    }
 
-	@PostMapping("/signup")
-	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request)
-	{
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		userDetails.setEnabled(false);
-		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
+    @PostMapping("/signup")
+    public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        userDetails.setEnabled(false);
+        UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 
-		UserDto createdUser = usersService.createUser(userDto);
+        UserDto createdUser = usersService.createUser(userDto);
 
-		String appUrl = request.getContextPath();
-		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
-				request.getLocale(), appUrl));
+        String appUrl = request.getContextPath();
+        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
+                request.getLocale(), appUrl));
 
-		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
+        CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
-	}
+        return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
+    }
 
 
-	@GetMapping(value = "/{userId}")
-	public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){
-		UserDto userDto = usersService.getUserDetailsById(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(userDto);
-	}
+    @GetMapping(value = "/{userId}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId) {
+        UserDto userDto = usersService.getUserDetailsById(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(userDto);
+    }
 
-	@PostMapping("/{userId}/image")
-	public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") String userId) {
-		return new ResponseEntity<>(usersService.saveImage(userId, file), HttpStatus.OK);
-	}
+    @PostMapping("/{userId}/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") String userId) {
+        return new ResponseEntity<>(usersService.saveImage(userId, file), HttpStatus.OK);
+    }
 
-	@GetMapping(value = "/{userId}/watchlist")
-	public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId){
-		List<MoviesResponseModel> moviesDetails = usersService.getWatchlistByUserId(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
-	}
-	@PostMapping("/{userId}/watchlist")
-	public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
-		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
-	}
+    @GetMapping(value = "/{userId}/watchlist")
+    public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId) {
+        List<MoviesResponseModel> moviesDetails = usersService.getWatchlistByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(moviesDetails);
+    }
 
-	@GetMapping("/confirm")
-	public ResponseEntity<UserConfirmationResponse> confirmRegistration(@RequestParam("token") String token) {
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-	return ResponseEntity.ok().body(usersService.enableUser(token));
-	}
+    @PostMapping("/{userId}/watchlist")
+    public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
+        return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
+    }
+
+    @GetMapping(value = "/confirm/{userId}")
+    public UserConfirmationResponse confirmRegistration(@PathVariable String userId){
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return usersService.enableUser(userId);
+    }
 
 /*
 	@GetMapping("/{userId}/watchlist/csvexport")
@@ -107,23 +107,25 @@ public class UsersController {
 	}
 */
 
-	@PatchMapping("/{userId}/changepassword")
-	public String changePassword(@RequestBody ChangePasswordDTO passwordDTO, @PathVariable String userId) {
+    @PatchMapping("/{userId}/changepassword")
+    public String changePassword(@RequestBody ChangePasswordDTO passwordDTO, @PathVariable String userId) {
         return usersService.changePassword(passwordDTO, userId);
-	};
+    }
 
-	@PostMapping("/{userId}/addrating")
-	public ResponseEntity<String> addRating(@RequestBody UsersRating usersRating, @PathVariable String userId){
-		return ResponseEntity.ok().body(usersService.addRating(userId, usersRating));
-	}
+    ;
 
-	@PostMapping("/{userId}/comment")
-	public ResponseEntity<UsersComment> addComment(@RequestBody UserCommentDTO userComment, @PathVariable String userId){
-		return ResponseEntity.ok().body(usersService.addComment(userId, userComment));
-	}
+    @PostMapping("/{userId}/addrating")
+    public ResponseEntity<String> addRating(@RequestBody UsersRating usersRating, @PathVariable String userId) {
+        return ResponseEntity.ok().body(usersService.addRating(userId, usersRating));
+    }
 
-	@GetMapping("/{movieId}/comments")
-	public List<UserCommentResponseDTO> getCommentsByMovieId(@PathVariable String movieId) {
-		return usersService.getCommentsByMovieId(movieId);
-	}
+    @PostMapping("/{userId}/comments")
+    public ResponseEntity<UsersComment> addComment(@RequestBody UserCommentDTO userComment, @PathVariable String userId) {
+        return ResponseEntity.ok().body(usersService.addComment(userId, userComment));
+    }
+
+    @GetMapping("/{movieId}/comments")
+    public List<UserCommentResponseDTO> getCommentsByMovieId(@PathVariable String movieId) {
+        return usersService.getCommentsByMovieId(movieId);
+    }
 }
