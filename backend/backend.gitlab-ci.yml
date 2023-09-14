@@ -24,13 +24,12 @@ backend-build-first-job:
     script:
         - mvn -f backend/api-series/pom.xml clean install
         - mvn -f backend/api-movie/pom.xml clean install
-        - mvn -f backend/users-stack/ApiUsers/pom.xml clean install
+
     artifacts:
         expire_in: 1 week
         paths:
             - backend/api-series/target/api-series-0.0.1-SNAPSHOT.jar
             - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
-            - backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar
 
 backend-build-second-job:
     stage: build
@@ -42,12 +41,14 @@ backend-build-second-job:
         - mvn -f backend/ms-config-server/pom.xml clean install
         - mvn -f backend/ms-eureka-server/pom.xml clean install
         - mvn -f backend/ms-gateway-server/pom.xml clean install
+        - mvn -f backend/users-stack/ApiUsers/pom.xml clean install
     artifacts:
         expire_in: 1 week
         paths:
             - backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar
             - backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar
             - backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar
+            - backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar
 
 backend-test-job:
     extends: 
