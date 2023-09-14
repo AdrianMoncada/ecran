@@ -117,7 +117,7 @@ public class UsersController {
 		return ResponseEntity.ok().body(usersService.addRating(userId, usersRating));
 	}
 
-	@PostMapping("/{userId}/comment")
+	@PostMapping("/{userId}/comments")
 	public ResponseEntity<UsersComment> addComment(@RequestBody UserCommentDTO userComment, @PathVariable String userId){
 		return ResponseEntity.ok().body(usersService.addComment(userId, userComment));
 	}

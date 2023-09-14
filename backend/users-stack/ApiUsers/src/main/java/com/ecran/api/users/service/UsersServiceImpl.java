@@ -1,6 +1,7 @@
 package com.ecran.api.users.service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -218,11 +219,14 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersComment addComment(String userId, UserCommentDTO commentDTO) {
+        UserEntity user = usersRepository.findByUserId(userId);
+        if (user == null) throw new UsernameNotFoundException("user not found");
+
         UsersComment comment = mapper.map(commentDTO, UsersComment.class);
 
-        UserEntity user = usersRepository.findByUserId(userId);
-
-        if (user == null) throw new UsernameNotFoundException("user not found");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaFormateada = dateFormat.format(new Date());
+        comment.setDate(fechaFormateada);
 
         user.getComments().add(comment);
         usersRepository.save(user);
