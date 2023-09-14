@@ -5,7 +5,7 @@ const endPoints = {
 		login: `${API}/users/login`,
 		signUp: `${API}/users/signup`,
 		profile: (userid) => `${API}/users/${userid}`,
-		verification: (userid) => `${API}/users/confirm?token=${userid}`,
+		verification: (userid) => `${API}/users/confirm/${userid}`,
 	},
 	movies: {
 		getMovie: (id) => `${API}/api/v1/movies/${id}`,
