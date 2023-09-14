@@ -3,20 +3,26 @@ package com.ecran.api.users.ui.controllers;
 import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UsersRating;
 import com.ecran.api.users.data.models.UsersWatchlist;
+import com.ecran.api.users.event.OnRegistrationCompleteEvent;
 import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.QueryParam;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/users")
@@ -28,26 +34,30 @@ public class UsersController {
 	@Autowired
     UsersService usersService;
 
+	@Autowired
+	ApplicationEventPublisher eventPublisher;
+
 	@GetMapping("/status/check")
 	public String status()
 	{
 		return "Working on port " + env.getProperty("local.server.port") +
 				", with token = " + env.getProperty("token.secret");
 	}
- 
+
 	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
 	{
-		ModelMapper modelMapper = new ModelMapper(); 
+		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
+
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-		
+
 		UserDto createdUser = usersService.createUser(userDto);
-		
+
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
+
 
 	@GetMapping(value = "/{userId}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){
@@ -63,6 +73,14 @@ public class UsersController {
 	@PostMapping("/{userId}/watchlist")
 	public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
+	}
+
+	@GetMapping("/confirm")
+	public void confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+		usersService.enableUser(token);
 	}
 
 /*
