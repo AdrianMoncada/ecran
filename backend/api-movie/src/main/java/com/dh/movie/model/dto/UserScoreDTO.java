@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserValorationDTO {
-    private Double valorationsSum;
-    private Double valorationsCount;
+public class UserScoreDTO {
+    private Double scoreSum;
+    private Double scoreCount;
 }

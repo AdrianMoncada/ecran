@@ -8,6 +8,6 @@ import java.util.List;
 
 @FeignClient(name="USERS")
 public interface UsersFeign {
-    @GetMapping("/users/comments/{movieId}")
+    @GetMapping("/users/{movieId}/comments")
     List<UsersComment> getCommentsByMovieId(@PathVariable String movieId);
 }
