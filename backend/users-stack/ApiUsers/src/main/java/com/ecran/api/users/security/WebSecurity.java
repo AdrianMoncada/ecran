@@ -56,7 +56,6 @@ public class WebSecurity{
 		http.cors(withDefaults());
     	http.authorizeHttpRequests((authz) -> authz
         .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
-		.requestMatchers(HttpMethod.POST, "/users").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/watchlist").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/image").permitAll()
 								.requestMatchers(HttpMethod.POST, "/users/*/addcomment").permitAll()

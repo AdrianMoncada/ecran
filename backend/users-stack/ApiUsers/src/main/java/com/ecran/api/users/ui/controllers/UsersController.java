@@ -39,11 +39,12 @@ public class UsersController {
 				", with token = " + env.getProperty("token.secret");
 	}
 
+	@PostMapping("/signup")
 	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
 	{
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
+		userDetails.setEnabled(false);
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 
 		UserDto createdUser = usersService.createUser(userDto);
