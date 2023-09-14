@@ -128,7 +128,6 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public UserDto createUser(UserDto userDetails) {
 		// TODO Auto-generated method stub
-		
 		userDetails.setUserId(UUID.randomUUID().toString());
 		userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 		
@@ -241,5 +240,14 @@ public class UsersServiceImpl implements UsersService {
 		}
 
 		return responseDTO;
+	}
+
+	@Override
+	public UserDto enableUser(String userId) {
+		UserEntity foundUser = usersRepository.findByUserId(userId);
+		foundUser.setEnabled(true);
+		UserEntity saved =  usersRepository.save(foundUser);
+		UserDto enabledUser = mapper.map(saved, UserDto.class);
+		return enabledUser;
 	}
 }
