@@ -11,6 +11,7 @@ import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.ecran.api.users.shared.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -31,4 +32,5 @@ public interface UsersService extends UserDetailsService {
 	UsersComment addComment(String userId, UserCommentDTO commentDTO);
 
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
+	String saveImage(String userId, MultipartFile image);
 }

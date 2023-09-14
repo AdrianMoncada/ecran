@@ -1,7 +1,10 @@
 package com.ecran.api.users.service;
 
+import java.io.IOException;
 import java.util.*;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.ecran.api.users.config.BucketName;
 import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UserEntity;
 import com.ecran.api.users.data.feign.MoviesServiceClient;
@@ -18,6 +21,7 @@ import com.ecran.api.users.ui.model.UserCommentDTO;
 import com.ecran.api.users.ui.model.UserCommentResponseDTO;
 import com.ecran.api.users.ui.model.UsersMovieWLDTO;
 import feign.FeignException;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -31,6 +35,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ecran.api.users.shared.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -43,10 +48,11 @@ public class UsersServiceImpl implements UsersService {
 	Environment environment;
 	MoviesServiceClient moviesServiceClient;
 	private final ModelMapper mapper;
+	private final FileStoreService fileStore;
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper) {
+	public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, FileStoreService fileStore) {
 		this.usersRepository = usersRepository;
 		this.watchlistRepository = watchlistRepository;
 		this.ratingRepository = ratingRepository;
@@ -55,6 +61,7 @@ public class UsersServiceImpl implements UsersService {
 		this.environment = environment;
 		this.moviesServiceClient = moviesServiceClient;
 		this.mapper = mapper;
+		this.fileStore = fileStore;
 	}
 
 	@Override
@@ -241,5 +248,30 @@ public class UsersServiceImpl implements UsersService {
 		}
 
 		return responseDTO;
+	}
+
+	@Override
+	public String saveImage(String userId, MultipartFile image) {
+
+		if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
+
+		ObjectMetadata objectMetadata = new ObjectMetadata();
+		objectMetadata.setContentType("image/jpeg");
+		objectMetadata.setContentDisposition("inline; filename="+ image.getOriginalFilename());
+
+		String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Usuarios");
+		String fileName = String.format("%s", image.getOriginalFilename());
+
+		try {
+			fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
+		} catch (IOException e) {
+			throw new IllegalStateException("Failed to upload file", e);
+		}
+
+		UserEntity user = usersRepository.findByUserId(userId);
+		user.setImageUrl("https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename());
+		usersRepository.save(user);
+
+		return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
 	}
 }

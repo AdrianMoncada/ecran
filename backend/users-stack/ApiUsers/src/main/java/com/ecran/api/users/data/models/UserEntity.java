@@ -38,6 +38,9 @@ public class UserEntity implements Serializable {
 	@Column(nullable=false, unique=true)	
 	private String encryptedPassword;
 
+	@Column(name = "image_url")
+	private String imageUrl;
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private List<UsersWatchlist> watchlist = new ArrayList<>();
