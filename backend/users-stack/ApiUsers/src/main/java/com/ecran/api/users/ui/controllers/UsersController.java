@@ -7,17 +7,16 @@ import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
-import jakarta.ws.rs.QueryParam;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.context.request.WebRequest;
 import java.util.List;
 
 @RestController
@@ -30,27 +29,30 @@ public class UsersController {
 	@Autowired
     UsersService usersService;
 
+	@Autowired
+	ApplicationEventPublisher eventPublisher;
+
 	@GetMapping("/status/check")
 	public String status()
 	{
 		return "Working on port " + env.getProperty("local.server.port") +
 				", with token = " + env.getProperty("token.secret");
 	}
- 
-	@PostMapping("/signup")
+
 	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
 	{
-		ModelMapper modelMapper = new ModelMapper(); 
+		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
+
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-		
+
 		UserDto createdUser = usersService.createUser(userDto);
-		
+
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
+
 
 	@GetMapping(value = "/{userId}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){
@@ -72,6 +74,32 @@ public class UsersController {
 	public ResponseEntity<List<UsersWatchlist>> addToWatchlist(@PathVariable String userId, @RequestBody UsersMovieWLDTO movieId) {
 		return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
 	}
+
+	@GetMapping("/confirm")
+	public void confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+		usersService.enableUser(token);
+	}
+
+/*
+	@GetMapping("/{userId}/watchlist/csvexport")
+	public void exportCSV(HttpServletResponse response, @PathVariable("userId") String userId) throws Exception {
+		//set file name and content type
+		String filename = "Watchlist-data.csv";
+
+		response.setContentType("text/csv");
+		response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
+				"attachment; filename=\"" + filename + "\"");
+		//create a csv writer
+		StatefulBeanToCsv<MoviesResponseModel> writer = new StatefulBeanToCsvBuilder<MoviesResponseModel>(response.getWriter())
+				.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).withSeparator(CSVWriter.DEFAULT_SEPARATOR).withOrderedResults(false)
+				.build();
+		//write all employees data to csv file
+		writer.write(usersService.getWatchlistByUserId(userId));
+	}
+*/
 
 	@PatchMapping("/{userId}/changepassword")
 	public String changePassword(@RequestBody ChangePasswordDTO passwordDTO, @PathVariable String userId) {

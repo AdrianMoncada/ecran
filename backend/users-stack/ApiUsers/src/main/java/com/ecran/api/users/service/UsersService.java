@@ -33,4 +33,5 @@ public interface UsersService extends UserDetailsService {
 
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
 	String saveImage(String userId, MultipartFile image);
+	UserDto enableUser(String userId);
 }

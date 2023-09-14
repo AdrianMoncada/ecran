@@ -25,6 +25,7 @@ public class UserDto implements Serializable {
 	private String password;
 	private String userId;
 	private String encryptedPassword;
+	private Boolean enabled;
 	private List<UsersWatchlist> watchlist;
 	private String imageUrl;
 

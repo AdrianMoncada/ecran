@@ -16,6 +16,17 @@ spring:
     url: jdbc:mysql://db.ctd.academy:3306/0723TDPI2N1C01LAED1021FT_GRUPO1?serverTimezone=UTC
     username: 0723TDPI2N1C01LAED1021FT_GRUPO1
     password: sae4Keix
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ecran.lat@gmail.com
+    password: vwrmdffvfnpgxtqv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 eureka:
   client:
@@ -73,6 +84,7 @@ token:
 login:
   url:
     path: /users/login
+
 
 #movies:
 #  url: http://movies/users/%s/movies

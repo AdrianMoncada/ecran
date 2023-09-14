@@ -135,7 +135,6 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public UserDto createUser(UserDto userDetails) {
 		// TODO Auto-generated method stub
-		
 		userDetails.setUserId(UUID.randomUUID().toString());
 		userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 		
@@ -273,5 +272,11 @@ public class UsersServiceImpl implements UsersService {
 		usersRepository.save(user);
 
 		return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
+	}
+	public UserDto enableUser(String userId) {
+		UserEntity foundUser = usersRepository.findByUserId(userId);
+		foundUser.setEnabled(true);
+		UserEntity saved =  usersRepository.save(foundUser);
+        return mapper.map(saved, UserDto.class);
 	}
 }
