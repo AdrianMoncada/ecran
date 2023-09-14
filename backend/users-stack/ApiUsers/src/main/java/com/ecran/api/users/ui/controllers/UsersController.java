@@ -43,26 +43,21 @@ public class UsersController {
 		return "Working on port " + env.getProperty("local.server.port") +
 				", with token = " + env.getProperty("token.secret");
 	}
- 
-	@PostMapping("/signup")
-	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request)
-	{
-		String appUrl = request.getContextPath();
 
-		ModelMapper modelMapper = new ModelMapper(); 
+	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
+	{
+		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		userDetails.setEnabled(false);
+
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-		
+
 		UserDto createdUser = usersService.createUser(userDto);
 
-		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
-				request.getLocale(), appUrl));
-		
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
+
 
 	@GetMapping(value = "/{userId}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){

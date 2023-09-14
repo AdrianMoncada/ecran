@@ -34,7 +34,8 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         UserDto user = event.getUser();
         String recipientAddress = user.getEmail();
         String subject = "ECRAN: Verifique su mail";
-        String confirmationUrl = "http://localhost:8082/users/confirm?token=" + user.getUserId();
+        String confirmationUrl = "https://www.ecran.lat/verification/" + user.getUserId();
+
         String imageUrl = "https://ecran.s3.amazonaws.com/Logos/%C3%89CRAN.png";
 
         SimpleMailMessage email = new SimpleMailMessage();
