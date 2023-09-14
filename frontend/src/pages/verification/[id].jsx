@@ -1,57 +1,42 @@
-// import { Container, ContainerHead, ContainerFrom, SecondLabels, Button } from "@styles/pages.styles/SignIn.styles";
-import { Container, ContainerHead, ContainerFrom } from "@styles/pages.styles/SignIn.styles";
+import {
+	Container,
+	ContainerHead,
+	ContainerFrom,
+	Button,
+	ImageContainer,
+	SecondaryButton,
+	ButtonsContainer,
+} from "@styles/pages.styles/verification.styles";
+import { Dot1, Dot2 } from "@styles/pages.styles/verification.styles";
 import Link from "next/link";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import dataInput from "@/assets/login.json";
-// import * as Yup from "yup";
-import { useFormik } from "formik";
-import { Toaster, toast } from "sonner";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
-import Image from "next/image";
+import { Toaster } from "sonner";
 import Head from "next/head";
-import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
 import endPoints from "@/service/api";
+import Loader from "@components/loader/Loader";
+import { dot1, dot2 } from "../../assets/svgs";
 
-// const initalData = {
-// 	email: "",
-// 	password: "",
-// };
-
-const Verification = ({ userId }) => {
-	const auth = useAuth();
-	const router = useRouter();
+const Verification = ({ id }) => {
 	const [loading, setLoading] = useState(true);
 	const [verificated, setVerificated] = useState(false);
+	const [alreadyVerified, setAlreadyVerified] = useState(false);
 	const [error, setError] = useState(false);
-	const [response, setResponse] = useState(false);
-
-	// const formik = useFormik({
-	// 	// initialValues: initalData,
-	// 	onSubmit: async (formData) => {
-	// 		auth
-	// 			.signIn(formData.email, formData.password)
-	// 			.then(() => {
-	// 				const prevPage = router.query.prevPage || "/";
-	// 				router.push(prevPage);
-	// 				toast.success("Inicio de sesión exitoso");
-	// 			})
-	// 			.catch((err) => {
-	// 				toast.error("Sus credenciales son incorrectas");
-	// 				console.error(err);
-	// 			});
-	// 	},
-	// 	// validationSchema: validate,
-	// });
 
 	useEffect(() => {
 		axios
-			.get(endPoints.auth.verification(userId))
+			.get(endPoints.auth.verification(id))
 			.then((response) => {
-				setVerificated(true);
+				if (response.data.code === "300") {
+					setVerificated(false);
+					setAlreadyVerified(true);
+				}
+				if (response.data.code === "200") {
+					setAlreadyVerified(false);
+					setVerificated(true);
+				}
+
 				setLoading(false);
-				setResponse(response);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -67,41 +52,81 @@ const Verification = ({ userId }) => {
 				<title>ÉCRAN | Verification</title>
 				<meta name="description" content="Esta es la página donde verificas tu cuenta" />
 			</Head>
-			{loading && <p>Cargando</p>}
+			<Dot1>{dot1}</Dot1>
+			<Dot2>{dot2}</Dot2>
+
+			{loading && <Loader color={"#7400FF"}></Loader>}
 			{!loading && error && (
 				<>
 					<ContainerHead>
-						<Link href="/">
-							<Image src="/images/signLogo.png" alt="ecranLogo" width={100} height={100} />
-						</Link>
+						<ImageContainer>
+							<Link href="/">
+								{/* eslint-disable-next-line */}
+								<img src="https://ecran.s3.amazonaws.com/Logos/%C3%89CRAN.png" alt="ecranLogo" />
+							</Link>
+						</ImageContainer>
 						<h3 className="title">Lo sentimos, hubo un error al verificar tu cuenta.</h3>
 					</ContainerHead>
 					<ContainerFrom>
 						<p className="text">Por favor, intente más tarde.</p>
-						<Link className="link" href="/signIn">
-							Iniciar sesión
-						</Link>
+						<ButtonsContainer>
+							<Link className="link" href="/">
+								<Button>Inicio </Button>
+							</Link>
+							<Link className="link" href="/signIn">
+								<SecondaryButton>Iniciar sesión </SecondaryButton>
+							</Link>
+						</ButtonsContainer>
+					</ContainerFrom>
+				</>
+			)}
+			{!loading && !error && alreadyVerified && (
+				<>
+					<ContainerHead>
+						<ImageContainer>
+							<Link href="/">
+								{/* eslint-disable-next-line */}
+								<img src="https://ecran.s3.amazonaws.com/Logos/%C3%89CRAN.png" alt="ecranLogo" />
+							</Link>
+						</ImageContainer>
+						<h3 className="title">Tu cuenta ya estaba verificada!</h3>
+					</ContainerHead>
+					<ContainerFrom>
+						<p className="text">Ya puedes acceder a todas nuestras increíbles funcionalidades con tu cuenta.</p>
+						<ButtonsContainer>
+							<Link className="link" href="/">
+								<Button>Inicio </Button>
+							</Link>
+							<Link className="link" href="/signIn">
+								<SecondaryButton>Iniciar sesión </SecondaryButton>
+							</Link>
+						</ButtonsContainer>
 					</ContainerFrom>
 				</>
 			)}
 			{!loading && !error && verificated && (
 				<>
 					<ContainerHead>
-						<Link href="/">
-							<Image src="/images/signLogo.png" alt="ecranLogo" width={100} height={100} />
-						</Link>
+						<ImageContainer>
+							<Link href="/">
+								{/* eslint-disable-next-line */}
+								<img src="https://ecran.s3.amazonaws.com/Logos/%C3%89CRAN.png" alt="ecranLogo" />
+							</Link>
+						</ImageContainer>
 						<h3 className="title">Tu cuenta ha sido verificada con éxito!</h3>
 					</ContainerHead>
 					<ContainerFrom>
 						<p className="text">
 							Ahora puedes acceder a todas nuestras increíbles funcionalidades con tu nueva cuenta.
 						</p>
-						{/* <p className="text">
-					No tienes una cuenta? */}
-						<Link className="link" href="/signIn">
-							Iniciar sesión
-						</Link>
-						{/* </p> */}
+						<ButtonsContainer>
+							<Link className="link" href="/">
+								<Button>Inicio </Button>
+							</Link>
+							<Link className="link" href="/signIn">
+								<SecondaryButton>Iniciar sesión </SecondaryButton>
+							</Link>
+						</ButtonsContainer>
 					</ContainerFrom>
 				</>
 			)}
@@ -113,14 +138,12 @@ const Verification = ({ userId }) => {
 export default Verification;
 
 export async function getServerSideProps(context) {
-	let userId;
-	console.log(context.params);
-	// const { userId } = context.params;
-	context.params.userId ? (userId = context.params.userId) : (userId = null);
+	let id;
+	context.params.id ? (id = context.params.id) : (id = null);
 
 	return {
 		props: {
-			userId,
+			id,
 		},
 	};
 }
