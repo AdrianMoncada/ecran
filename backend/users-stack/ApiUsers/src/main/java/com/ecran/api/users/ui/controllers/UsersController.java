@@ -35,7 +35,6 @@ public class UsersController {
 				", with token = " + env.getProperty("token.secret");
 	}
  
-	@PostMapping("/signup")
 	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
 	{
 		ModelMapper modelMapper = new ModelMapper(); 
