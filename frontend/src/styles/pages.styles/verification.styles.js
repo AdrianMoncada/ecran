@@ -71,7 +71,6 @@ export const ContainerFrom = styled.div`
 	}
 `;
 export const ImageContainer = styled.div`
-	// padding-left: 70px;
 	margin: 1.5em 1.5em;
 	width: 10em;
 	position: absolute;
@@ -115,7 +114,7 @@ export const SecondaryButton = styled.button`
 	width: 195px;
 	height: 36px;
 	border-radius: 20px;
-	border: 2px solid #7400ff;w
+	border: 2px solid #7400ff;
 	margin-top: 20px;
 	margin-bottom: 15px;
 	color: white;
