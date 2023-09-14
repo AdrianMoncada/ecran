@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
 		return (
 			<ThemeProvider theme={theme}>
 				<ProviderAuth>
-					<Suspense fallback={<Loader />}>{Component.getLayout(<Component {...pageProps} />)}</Suspense>
+					<Suspense fallback={<Loader color="black" />}>{Component.getLayout(<Component {...pageProps} />)}</Suspense>
 				</ProviderAuth>
 			</ThemeProvider>
 		);
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<ProviderAuth>
-				<Suspense fallback={<Loader />}>
+				<Suspense fallback={<Loader color="black" />}>
 					<Layout>
 						<Component {...pageProps} />
 					</Layout>
