@@ -21,6 +21,8 @@ public class CreateUserRequestModel {
 	@NotNull(message="Email cannot be null")
 	@Email
 	private String email;
+
+	private Boolean enabled;
 	
 	public String getFirstName() {
 		return firstName;
@@ -46,6 +48,6 @@ public class CreateUserRequestModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+	public Boolean getEnabled() { return enabled; }
+	public void setEnabled(Boolean enabled) { this.enabled = enabled; }
 }

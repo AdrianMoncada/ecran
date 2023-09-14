@@ -5,6 +5,7 @@ public class CreateUserResponseModel {
 	private String lastName;
 	private String email;
 	private String userId;
+	private Boolean enabled;
 
 	public String getFirstName() {
 		return firstName;

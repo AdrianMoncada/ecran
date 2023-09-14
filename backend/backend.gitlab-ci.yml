@@ -15,7 +15,7 @@ stages:
         - changes:
             - 'backend/**/*'
 
-backend-build-job:
+backend-build-first-job:
     stage: build
     extends: 
         - .backend-common
@@ -24,17 +24,42 @@ backend-build-job:
     script:
         - mvn -f backend/api-series/pom.xml clean install
         - mvn -f backend/api-movie/pom.xml clean install
+
+    artifacts:
+        expire_in: 1 week
+        paths:
+            - backend/api-series/target/api-series-0.0.1-SNAPSHOT.jar
+            - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
+
+backend-build-second-job:
+    stage: build
+    extends: 
+        - .backend-common
+        - .base-rules
+    image:  maven:latest
+    script:
         - mvn -f backend/ms-config-server/pom.xml clean install
         - mvn -f backend/ms-eureka-server/pom.xml clean install
         - mvn -f backend/ms-gateway-server/pom.xml clean install
     artifacts:
         expire_in: 1 week
         paths:
-            - backend/api-series/target/api-series-0.0.1-SNAPSHOT.jar
-            - backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar
             - backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar
             - backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar
             - backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar
+
+backend-build-users-job:
+    stage: build
+    extends: 
+        - .backend-common
+        - .base-rules
+    image:  maven:latest
+    script:
+        - mvn -f backend/users-stack/ApiUsers/pom.xml clean install
+    artifacts:
+        expire_in: 1 week
+        paths:
+            - backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar
 
 backend-test-job:
     extends: 
@@ -61,6 +86,7 @@ deploy-job:
         - ssh-keyscan -H $CONFIG_SERVER_IP >> ~/.ssh/known_hosts
         - ssh-keyscan -H $EUREKA_SERVER_IP >> ~/.ssh/known_hosts
         - ssh-keyscan -H $GATEWAY_SERVER_IP >> ~/.ssh/known_hosts
+        - ssh-keyscan -H $USERS_SERVER_IP >> ~/.ssh/known_hosts
     script:
 #  - CONFIG SERVER
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop consoleapp.service"
@@ -71,7 +97,7 @@ deploy-job:
         - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/
         - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl start consoleapp.service"
-#  - API USERS
+#  - API MOVIES
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
         - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
@@ -83,3 +109,7 @@ deploy-job:
         - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
         - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
+#  - API USERS
+        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl stop consoleapp.service"
+        - scp backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar ubuntu@$USERS_SERVER_IP:~/console-app/
+        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl start consoleapp.service"

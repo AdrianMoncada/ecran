@@ -1,0 +1,16 @@
+com\ecran\api\users\shared\UserValorationDTO.class
+com\ecran\api\users\ui\model\CreateUserResponseModel.class
+com\ecran\api\users\shared\ChangePasswordDTO.class
+com\ecran\api\users\service\UsersService.class
+com\ecran\api\users\ui\model\LoginRequestModel.class
+com\ecran\api\users\shared\UserDto.class
+com\ecran\api\users\config\ModelMapperConfig.class
+com\ecran\api\users\ui\model\UserResponseModel.class
+com\ecran\api\users\security\AuthenticationFilter.class
+com\ecran\api\users\service\UsersServiceImpl.class
+com\ecran\api\users\security\WebSecurity.class
+com\ecran\api\users\ui\model\UsersMovieWLDTO.class
+com\ecran\api\users\ui\model\MoviesResponseModel.class
+com\ecran\api\users\ui\model\CreateUserRequestModel.class
+com\ecran\api\users\ui\controllers\UsersController.class
+com\ecran\api\users\ApiUsersApplication.class

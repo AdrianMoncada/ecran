@@ -29,8 +29,6 @@ public class MovieRequestDTO implements Serializable {
     @NotBlank
     private String review;
     @NotBlank
-    private String image_url;
-    @NotBlank
     private String trailer_url;
     @NotBlank
     @JsonProperty("release_date")
@@ -43,6 +41,5 @@ public class MovieRequestDTO implements Serializable {
     private String mc_score;
     private List<String> genres = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
-    private List<String> comments = new ArrayList<>();
     private Double score;
 }

@@ -1,14 +1,17 @@
 package com.dh.movie.controller;
 
 import com.dh.movie.model.dto.UserValorationDTO;
+import com.dh.movie.model.dto.movie.AllMoviesDTO;
 import com.dh.movie.model.dto.movie.MovieRequestDTO;
 import com.dh.movie.model.dto.movie.MovieResponseDTO;
 import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -27,8 +30,13 @@ public class MovieController {
     }
 
     @GetMapping("")
-    ResponseEntity<List<MovieResponseDTO>> findAll() {
+    ResponseEntity<List<AllMoviesDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
+    }
+
+    @PostMapping("/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(movieService.saveImage(file), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
