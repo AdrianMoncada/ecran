@@ -9,20 +9,17 @@ import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.ws.rs.QueryParam;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.context.request.WebRequest;
-
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/users")
@@ -44,14 +41,19 @@ public class UsersController {
 				", with token = " + env.getProperty("token.secret");
 	}
 
-	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
+	@PostMapping("/signup")
+	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request)
 	{
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
+		userDetails.setEnabled(false);
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 
 		UserDto createdUser = usersService.createUser(userDto);
+
+		String appUrl = request.getContextPath();
+		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
+				request.getLocale(), appUrl));
 
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
 
@@ -65,6 +67,11 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.OK).body(userDto);
 	}
 
+	@PostMapping("/{userId}/image")
+	public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") String userId) {
+		return new ResponseEntity<>(usersService.saveImage(userId, file), HttpStatus.OK);
+	}
+
 	@GetMapping(value = "/{userId}/watchlist")
 	public ResponseEntity<List<MoviesResponseModel>> getWatchlistByUserId(@PathVariable("userId") String userId){
 		List<MoviesResponseModel> moviesDetails = usersService.getWatchlistByUserId(userId);
@@ -76,11 +83,10 @@ public class UsersController {
 	}
 
 	@GetMapping("/confirm")
-	public void confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+	public ResponseEntity<UserConfirmationResponse> confirmRegistration(@RequestParam("token") String token) {
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-		usersService.enableUser(token);
+	return ResponseEntity.ok().body(usersService.enableUser(token));
 	}
 
 /*

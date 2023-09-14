@@ -41,13 +41,24 @@ backend-build-second-job:
         - mvn -f backend/ms-config-server/pom.xml clean install
         - mvn -f backend/ms-eureka-server/pom.xml clean install
         - mvn -f backend/ms-gateway-server/pom.xml clean install
-        - mvn -f backend/users-stack/ApiUsers/pom.xml clean install
     artifacts:
         expire_in: 1 week
         paths:
             - backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar
             - backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar
             - backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar
+
+backend-build-users-job:
+    stage: build
+    extends: 
+        - .backend-common
+        - .base-rules
+    image:  maven:latest
+    script:
+        - mvn -f backend/users-stack/ApiUsers/pom.xml clean install
+    artifacts:
+        expire_in: 1 week
+        paths:
             - backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar
 
 backend-test-job:

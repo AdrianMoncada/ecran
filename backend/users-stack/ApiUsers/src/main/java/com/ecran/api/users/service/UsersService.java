@@ -4,13 +4,11 @@ import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UsersRating;
 import com.ecran.api.users.data.models.UsersWatchlist;
 import com.ecran.api.users.shared.ChangePasswordDTO;
-import com.ecran.api.users.ui.model.MoviesResponseModel;
-import com.ecran.api.users.ui.model.UserCommentDTO;
-import com.ecran.api.users.ui.model.UserCommentResponseDTO;
-import com.ecran.api.users.ui.model.UsersMovieWLDTO;
+import com.ecran.api.users.ui.model.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.ecran.api.users.shared.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -31,6 +29,6 @@ public interface UsersService extends UserDetailsService {
 	UsersComment addComment(String userId, UserCommentDTO commentDTO);
 
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
-
-	UserDto enableUser(String userId);
+	String saveImage(String userId, MultipartFile image);
+	UserConfirmationResponse enableUser(String userId);
 }

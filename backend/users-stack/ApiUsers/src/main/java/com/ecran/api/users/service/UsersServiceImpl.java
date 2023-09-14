@@ -1,7 +1,10 @@
 package com.ecran.api.users.service;
 
+import java.io.IOException;
 import java.util.*;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.ecran.api.users.config.BucketName;
 import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UserEntity;
 import com.ecran.api.users.data.feign.MoviesServiceClient;
@@ -13,11 +16,9 @@ import com.ecran.api.users.data.repository.UsersRepository;
 import com.ecran.api.users.data.repository.WatchlistRepository;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserValorationDTO;
-import com.ecran.api.users.ui.model.MoviesResponseModel;
-import com.ecran.api.users.ui.model.UserCommentDTO;
-import com.ecran.api.users.ui.model.UserCommentResponseDTO;
-import com.ecran.api.users.ui.model.UsersMovieWLDTO;
+import com.ecran.api.users.ui.model.*;
 import feign.FeignException;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -31,223 +32,258 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ecran.api.users.shared.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
-	UsersRepository usersRepository;
-	WatchlistRepository watchlistRepository;
-	RatingRepository ratingRepository;
-	UserCommentsRepository commentRepository;
-	BCryptPasswordEncoder bCryptPasswordEncoder;
-	Environment environment;
-	MoviesServiceClient moviesServiceClient;
-	private final ModelMapper mapper;
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+    UsersRepository usersRepository;
+    WatchlistRepository watchlistRepository;
+    RatingRepository ratingRepository;
+    UserCommentsRepository commentRepository;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+    Environment environment;
+    MoviesServiceClient moviesServiceClient;
+    private final ModelMapper mapper;
+    private final FileStoreService fileStore;
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper) {
-		this.usersRepository = usersRepository;
-		this.watchlistRepository = watchlistRepository;
-		this.ratingRepository = ratingRepository;
-		this.commentRepository = commentRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.environment = environment;
-		this.moviesServiceClient = moviesServiceClient;
-		this.mapper = mapper;
-	}
+    @Autowired
+    public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, FileStoreService fileStore) {
+        this.usersRepository = usersRepository;
+        this.watchlistRepository = watchlistRepository;
+        this.ratingRepository = ratingRepository;
+        this.commentRepository = commentRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.environment = environment;
+        this.moviesServiceClient = moviesServiceClient;
+        this.mapper = mapper;
+        this.fileStore = fileStore;
+    }
 
-	@Override
-	public List<UsersWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
-		UserEntity userEntity = usersRepository.findByUserId(userId);
+    @Override
+    public List<UsersWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
 
-		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+        if (userEntity == null) throw new UsernameNotFoundException("User not found");
 
-		for (UsersWatchlist m :
-				userEntity.getWatchlist()) {
-			if (Objects.equals(m.getMovieId(), movieId.getMovieId())) {
-				userEntity.getWatchlist().remove(m);
-				return usersRepository.save(userEntity).getWatchlist();
-			}
-		}
+        for (UsersWatchlist m :
+                userEntity.getWatchlist()) {
+            if (Objects.equals(m.getMovieId(), movieId.getMovieId())) {
+                userEntity.getWatchlist().remove(m);
+                return usersRepository.save(userEntity).getWatchlist();
+            }
+        }
 
-		UsersWatchlist umwl = mapper.map(movieId, UsersWatchlist.class);
-		userEntity.getWatchlist().add(umwl);
+        UsersWatchlist umwl = mapper.map(movieId, UsersWatchlist.class);
+        userEntity.getWatchlist().add(umwl);
 
-		return usersRepository.save(userEntity).getWatchlist();
-	}
+        return usersRepository.save(userEntity).getWatchlist();
+    }
 
-	@Override
-	public String addRating(String userId, UsersRating userRating) {
-		UserEntity userEntity = usersRepository.findByUserId(userId);
-		if(userEntity == null) throw new UsernameNotFoundException("User not found");
-		String movieId = userRating.getMovieId();
-		// Comprueba si el usuario ya ha votado para esta película
-		Optional<UsersRating> existingRating = userEntity.getRatings()
-						.stream()
-								.filter(rating -> rating.getMovieId().equals(movieId))
-										.findFirst();
+    @Override
+    public String addRating(String userId, UsersRating userRating) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
+        if (userEntity == null) throw new UsernameNotFoundException("User not found");
+        String movieId = userRating.getMovieId();
+        // Comprueba si el usuario ya ha votado para esta película
+        Optional<UsersRating> existingRating = userEntity.getRatings()
+                .stream()
+                .filter(rating -> rating.getMovieId().equals(movieId))
+                .findFirst();
 
-		UserValorationDTO valorationDTO = new UserValorationDTO();
+        UserValorationDTO valorationDTO = new UserValorationDTO();
 
-		if(existingRating.isPresent()){
-			UsersRating previousRating = existingRating.get();
-			previousRating.setRating(userRating.getRating());
-			usersRepository.save(userEntity);
+        if (existingRating.isPresent()) {
+            UsersRating previousRating = existingRating.get();
+            previousRating.setRating(userRating.getRating());
+            usersRepository.save(userEntity);
 
 
-			valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-			valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
 
-			try {
-				moviesServiceClient.addRating(movieId, valorationDTO);
-			} catch (FeignException e) {
-				logger.error(e.getLocalizedMessage());
-			}
+            try {
+                moviesServiceClient.addRating(movieId, valorationDTO);
+            } catch (FeignException e) {
+                logger.error(e.getLocalizedMessage());
+            }
 
-			System.out.println("User already vote for this movie. Vote changed from X to new rating");
-			return "User already vote for this movie. Vote changed from X to new rating";
-		} else {
-			userEntity.getRatings().add(userRating);
-			usersRepository.save(userEntity);
+            System.out.println("User already vote for this movie. Vote changed from X to new rating");
+            return "User already vote for this movie. Vote changed from X to new rating";
+        } else {
+            userEntity.getRatings().add(userRating);
+            usersRepository.save(userEntity);
 
-			valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-			valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
-			System.out.println(valorationDTO);
+            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+            System.out.println(valorationDTO);
 
-			try {
-				moviesServiceClient.addRating(movieId, valorationDTO);
-			} catch (FeignException e) {
-				logger.error(e.getLocalizedMessage());
-			}
+            try {
+                moviesServiceClient.addRating(movieId, valorationDTO);
+            } catch (FeignException e) {
+                logger.error(e.getLocalizedMessage());
+            }
 
-			return "Vote added";
-		}
-	}
+            return "Vote added";
+        }
+    }
 
-	@Override
-	public UserDto createUser(UserDto userDetails) {
-		// TODO Auto-generated method stub
-		userDetails.setUserId(UUID.randomUUID().toString());
-		userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
-		
-		ModelMapper modelMapper = new ModelMapper(); 
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
-		UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
+    @Override
+    public UserDto createUser(UserDto userDetails) {
+        // TODO Auto-generated method stub
+        userDetails.setUserId(UUID.randomUUID().toString());
+        userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 
-		usersRepository.save(userEntity);
-		
-		UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
- 
-		return returnValue;
-	}
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity userEntity = usersRepository.findByEmail(username);
-		
-		if(userEntity == null) throw new UsernameNotFoundException(username);
-		
-		return new User(userEntity.getEmail(),userEntity.getEncryptedPassword(),
-				true, true, true, true, new ArrayList<>());
-	}
+        UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
 
-	@Override
-	public UserDto getUserDetailsById(String userId) {
-		UserEntity userEntity = usersRepository.findByUserId(userId);
-		if(userEntity == null) throw new UsernameNotFoundException(userId);
-		return new ModelMapper().map(userEntity, UserDto.class);
-	}
+        usersRepository.save(userEntity);
 
-	@Override
-	public UserDto getUserDetailsByEmail(String email) {
-		UserEntity userEntity = usersRepository.findByEmail(email);
-		
-		if(userEntity == null) throw new UsernameNotFoundException(email);
-		
-		return new ModelMapper().map(userEntity, UserDto.class);
-	}
+        UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
-	@Override
-	public List<MoviesResponseModel> getWatchlistByUserId(String userId) {
-		UserEntity userEntity = usersRepository.findByUserId(userId);
-		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+        return returnValue;
+    }
 
-		// TO DO: El ms Movies recibe como parametro una lista de IDs
-		// Con la implementacion de <UsersWatchlist> los IDs se encuentran
-		// dentro del objeto watchlistIds
-		List<UsersWatchlist> watchlistIds = userEntity.getWatchlist();
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserEntity userEntity = usersRepository.findByEmail(username);
 
-		logger.debug("Before calling movies Microservice");
-		List<String> moviesIds = new ArrayList<>();
-		for (UsersWatchlist m:
-			 watchlistIds) {
-			moviesIds.add(m.getMovieId());
-		}
-		System.out.println(moviesIds);
-		List<MoviesResponseModel> moviesList = new ArrayList<>();
+        if (userEntity == null) throw new UsernameNotFoundException(username);
 
-		try {
-			moviesList = moviesServiceClient.watchlist(moviesIds);
+        return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(),
+                true, true, true, true, new ArrayList<>());
+    }
 
-		} catch (FeignException e) {
-			logger.error(e.getLocalizedMessage());
-		}
-		logger.debug("After calling movies Microservice");
-		return moviesList;
-	}
+    @Override
+    public UserDto getUserDetailsById(String userId) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
+        if (userEntity == null) throw new UsernameNotFoundException(userId);
+        return new ModelMapper().map(userEntity, UserDto.class);
+    }
 
-	@Override
-	public String changePassword(ChangePasswordDTO passwordDTO, String userId) {
-		UserEntity user = usersRepository.findByUserId(userId);
+    @Override
+    public UserDto getUserDetailsByEmail(String email) {
+        UserEntity userEntity = usersRepository.findByEmail(email);
 
-		if(user == null) throw new UsernameNotFoundException("user not found");
+        if (userEntity == null) throw new UsernameNotFoundException(email);
 
-		String password = passwordDTO.getPassword();
+        return new ModelMapper().map(userEntity, UserDto.class);
+    }
 
-		user.setEncryptedPassword(bCryptPasswordEncoder.encode(password));
-		usersRepository.save(user);
+    @Override
+    public List<MoviesResponseModel> getWatchlistByUserId(String userId) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
+        if (userEntity == null) throw new UsernameNotFoundException("User not found");
 
-		return "Password successfully updated";
-	}
+        // TO DO: El ms Movies recibe como parametro una lista de IDs
+        // Con la implementacion de <UsersWatchlist> los IDs se encuentran
+        // dentro del objeto watchlistIds
+        List<UsersWatchlist> watchlistIds = userEntity.getWatchlist();
 
-	@Override
-	public UsersComment addComment(String userId, UserCommentDTO commentDTO) {
-		UsersComment comment = mapper.map(commentDTO, UsersComment.class);
+        logger.debug("Before calling movies Microservice");
+        List<String> moviesIds = new ArrayList<>();
+        for (UsersWatchlist m :
+                watchlistIds) {
+            moviesIds.add(m.getMovieId());
+        }
+        System.out.println(moviesIds);
+        List<MoviesResponseModel> moviesList = new ArrayList<>();
 
-		UserEntity user = usersRepository.findByUserId(userId);
+        try {
+            moviesList = moviesServiceClient.watchlist(moviesIds);
 
-		if(user == null) throw new UsernameNotFoundException("user not found");
+        } catch (FeignException e) {
+            logger.error(e.getLocalizedMessage());
+        }
+        logger.debug("After calling movies Microservice");
+        return moviesList;
+    }
 
-		user.getComments().add(comment);
-		usersRepository.save(user);
+    @Override
+    public String changePassword(ChangePasswordDTO passwordDTO, String userId) {
+        UserEntity user = usersRepository.findByUserId(userId);
 
-		return comment;
-	}
+        if (user == null) throw new UsernameNotFoundException("user not found");
 
-	@Override
-	public List<UserCommentResponseDTO> getCommentsByMovieId(String movieId) {
+        String password = passwordDTO.getPassword();
 
-		List<UsersComment> comments = commentRepository.getAllByMovieId(movieId);
-		List<UserCommentResponseDTO> responseDTO = new ArrayList<>();
+        user.setEncryptedPassword(bCryptPasswordEncoder.encode(password));
+        usersRepository.save(user);
 
-		for (UsersComment c :
-				comments) {
-			UserCommentResponseDTO crDTO = mapper.map(c, UserCommentResponseDTO.class);
-			crDTO.setUsername(c.getUserEntity().getFirstName() + c.getUserEntity().getLastName());
-			responseDTO.add(crDTO);
-		}
+        return "Password successfully updated";
+    }
 
-		return responseDTO;
-	}
+    @Override
+    public UsersComment addComment(String userId, UserCommentDTO commentDTO) {
+        UsersComment comment = mapper.map(commentDTO, UsersComment.class);
 
-	@Override
-	public UserDto enableUser(String userId) {
-		UserEntity foundUser = usersRepository.findByUserId(userId);
-		foundUser.setEnabled(true);
-		UserEntity saved =  usersRepository.save(foundUser);
-		UserDto enabledUser = mapper.map(saved, UserDto.class);
-		return enabledUser;
-	}
+        UserEntity user = usersRepository.findByUserId(userId);
+
+        if (user == null) throw new UsernameNotFoundException("user not found");
+
+        user.getComments().add(comment);
+        usersRepository.save(user);
+
+        return comment;
+    }
+
+    @Override
+    public List<UserCommentResponseDTO> getCommentsByMovieId(String movieId) {
+
+        List<UsersComment> comments = commentRepository.getAllByMovieId(movieId);
+        List<UserCommentResponseDTO> responseDTO = new ArrayList<>();
+
+        for (UsersComment c :
+                comments) {
+            UserCommentResponseDTO crDTO = mapper.map(c, UserCommentResponseDTO.class);
+            crDTO.setUsername(c.getUserEntity().getFirstName() + c.getUserEntity().getLastName());
+            responseDTO.add(crDTO);
+        }
+
+        return responseDTO;
+    }
+
+    @Override
+    public String saveImage(String userId, MultipartFile image) {
+
+        if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentType("image/jpeg");
+        objectMetadata.setContentDisposition("inline; filename=" + image.getOriginalFilename());
+
+        String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Usuarios");
+        String fileName = String.format("%s", image.getOriginalFilename());
+
+        try {
+            fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to upload file", e);
+        }
+
+        UserEntity user = usersRepository.findByUserId(userId);
+        user.setImageUrl("https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename());
+        usersRepository.save(user);
+
+        return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
+    }
+
+//	Codes
+//	200 Verificado (enabled 0 --> 1)
+//	300 Ya estaba verificado (enabled 1 --> 1)
+    public UserConfirmationResponse enableUser(String userId) {
+        UserConfirmationResponse response = new UserConfirmationResponse();
+        UserEntity foundUser = usersRepository.findByUserId(userId);
+        if (foundUser.getEnabled()) {
+            response.setCode("300");
+            return response;
+        }
+        foundUser.setEnabled(true);
+        UserEntity saved = usersRepository.save(foundUser);
+        response.setCode("200");
+        return response;
+    }
 }
