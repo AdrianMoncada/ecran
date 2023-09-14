@@ -278,9 +278,12 @@ public class UsersServiceImpl implements UsersService {
 //	Codes
 //	200 Verificado (enabled 0 --> 1)
 //	300 Ya estaba verificado (enabled 1 --> 1)
-    public UserConfirmationResponse enableUser(String userId) {
+    @Override
+    public UserConfirmationResponse enableUser(String userId)  throws UsernameNotFoundException{
         UserConfirmationResponse response = new UserConfirmationResponse();
         UserEntity foundUser = usersRepository.findByUserId(userId);
+        if (foundUser == null) throw new UsernameNotFoundException("user not found");
+
         if (foundUser.getEnabled()) {
             response.setCode("300");
             return response;
