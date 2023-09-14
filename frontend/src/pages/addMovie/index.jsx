@@ -17,7 +17,6 @@ import {
 
 const AddMovie = () => {
 	const [formData, setFormData] = useState({
-		movieId: "",
 		title: "",
 		actors: "",
 		director: "",
@@ -25,13 +24,14 @@ const AddMovie = () => {
 		review: "",
 		image_url: "",
 		trailer_url: "",
-		release_date: "",
 		rt_score: "",
 		imdb_score: "",
 		mc_score: "",
 		genres: [],
 		platforms: [],
-		score: "0",
+		comments: [],
+		score: "",
+		release_date: "",
 	});
 	const generosList = [
 		"Acción",
@@ -70,7 +70,7 @@ const AddMovie = () => {
 
 		// Enviar la solicitud POST con Axios
 		axios
-			.post("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies ", formData)
+			.post("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies", formData)
 
 			.then((response) => {
 				console.log("Respuesta de la API:", response.data);
@@ -190,7 +190,7 @@ const AddMovie = () => {
 								name="image_url"
 								value={formData.image_url}
 								onChange={handleInputChange}
-								required
+								// required
 							/>
 						</div>
 						<div className="info-field">
