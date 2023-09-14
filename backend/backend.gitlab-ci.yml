@@ -97,7 +97,8 @@ deploy-job:
 #  - GATEWAY SERVER
         - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
+        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
 #  - API USERS
         - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl stop consoleapp.service"
         - scp backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar ubuntu@$USERS_SERVER_IP:~/console-app/
-        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
+        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl start consoleapp.service"
