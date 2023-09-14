@@ -122,7 +122,7 @@ public class UsersController {
 		return ResponseEntity.ok().body(usersService.addComment(userId, userComment));
 	}
 
-	@GetMapping("/comments/{movieId}")
+	@GetMapping("/{movieId}/comments")
 	public List<UserCommentResponseDTO> getCommentsByMovieId(@PathVariable String movieId) {
 		return usersService.getCommentsByMovieId(movieId);
 	}
