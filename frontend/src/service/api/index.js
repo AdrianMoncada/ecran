@@ -2,10 +2,10 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 
 const endPoints = {
 	auth: {
-		login: `${API}/authorization/users/login`,
-		signUp: `${API}/authorization/users`,
-		profile: (userid) => `${API}/authorization/users/${userid}`,
-		verification: (userid) => `${API}/authorization/users/confirm?token=${userid}`,
+		login: `${API}/users/login`,
+		signUp: `${API}/users/signup`,
+		profile: (userid) => `${API}/users/${userid}`,
+		verification: (userid) => `${API}/users/confirm?token=${userid}`,
 	},
 	movies: {
 		getMovie: (id) => `${API}/api/v1/movies/${id}`,
