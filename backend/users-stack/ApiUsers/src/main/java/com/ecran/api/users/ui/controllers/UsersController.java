@@ -3,10 +3,12 @@ package com.ecran.api.users.ui.controllers;
 import com.ecran.api.users.data.models.UsersComment;
 import com.ecran.api.users.data.models.UsersRating;
 import com.ecran.api.users.data.models.UsersWatchlist;
+import com.ecran.api.users.event.OnRegistrationCompleteEvent;
 import com.ecran.api.users.service.UsersService;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserDto;
 import com.ecran.api.users.ui.model.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class UsersController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
+	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails, HttpServletRequest request)
 	{
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -48,6 +50,10 @@ public class UsersController {
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 
 		UserDto createdUser = usersService.createUser(userDto);
+
+		String appUrl = request.getContextPath();
+		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(createdUser,
+				request.getLocale(), appUrl));
 
 		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
 
@@ -77,11 +83,10 @@ public class UsersController {
 	}
 
 	@GetMapping("/confirm")
-	public void confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+	public ResponseEntity<UserConfirmationResponse> confirmRegistration(@RequestParam("token") String token) {
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-		usersService.enableUser(token);
+	return ResponseEntity.ok().body(usersService.enableUser(token));
 	}
 
 /*
