@@ -1,20 +1,16 @@
 package com.dh.movie.controller;
 
-import com.dh.movie.model.dto.UserValorationDTO;
-import com.dh.movie.model.dto.movie.AllMoviesDTO;
-import com.dh.movie.model.dto.movie.MovieRequestDTO;
-import com.dh.movie.model.dto.movie.MovieResponseDTO;
-import com.dh.movie.service.MovieService;
+import com.dh.movie.model.dto.UserScoreDTO;
+import com.dh.movie.model.dto.movie.MovieReqDTO;
+import com.dh.movie.model.dto.movie.MovieResDTO;
+import com.dh.movie.service.impl.MovieServiceImpl;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -22,30 +18,25 @@ import java.util.List;
 @AllArgsConstructor
 public class MovieController {
 
-    private final MovieService movieService;
+    private final MovieServiceImpl movieService;
 
     @PostMapping("")
-    ResponseEntity<MovieResponseDTO> save(@Valid @RequestBody MovieRequestDTO movie, @RequestParam MultipartFile image) {
-        return ResponseEntity.ok().body(movieService.save(movie, image));
+    ResponseEntity<MovieResDTO> save(@Valid @RequestBody MovieReqDTO movie) {
+        return new ResponseEntity<>(movieService.save(movie), HttpStatus.CREATED);
     }
 
     @GetMapping("")
-    ResponseEntity<List<AllMoviesDTO>> findAll() {
+    ResponseEntity<List<MovieResDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
     }
 
-    @PostMapping("/image")
-    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
-        return new ResponseEntity<>(movieService.saveImage(file), HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
-    ResponseEntity<MovieResponseDTO> findById(@PathVariable("id") String id) {
+    ResponseEntity<MovieResDTO> findById(@PathVariable("id") String id) {
         return ResponseEntity.ok().body(movieService.findById(id));
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<MovieResponseDTO> updateById(@PathVariable("id") String id, @Valid @RequestBody MovieRequestDTO movie) {
+    ResponseEntity<MovieResDTO> updateById(@PathVariable("id") String id, @Valid @RequestBody MovieReqDTO movie) {
         return ResponseEntity.ok().body(movieService.updateById(id, movie));
     }
 
@@ -56,12 +47,12 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    ResponseEntity<List<MovieResponseDTO>> findByName(@RequestParam String title) {
+    ResponseEntity<List<MovieResDTO>> findAllByTitle(@RequestParam String title) {
         return ResponseEntity.ok().body(movieService.findAllByTitle(title));
     }
 
     @GetMapping("/filter")
-    ResponseEntity<List<MovieResponseDTO>> findByFilters
+    ResponseEntity<List<MovieResDTO>> findByFilters
             (
                     @RequestParam(defaultValue = "") List<String> genres,
                     @RequestParam(defaultValue = "") List<String> platforms,
@@ -74,15 +65,17 @@ public class MovieController {
     }
 
     @GetMapping("/watchlist")
-    ResponseEntity<List<MovieResponseDTO>> watchlist(@RequestParam(defaultValue = "") List<String> ids) {
+    ResponseEntity<List<MovieResDTO>> findWatchlist(@RequestParam(defaultValue = "") List<String> ids) {
         return ResponseEntity.ok().body(movieService.findWatchlist(ids));
     }
 
     @PostMapping("/{id}/addscore")
-    ResponseEntity<String> addValoration(@PathVariable String id, @RequestBody UserValorationDTO uvDTO) {
-        System.out.println("Peticion entrante");
-        System.out.println(uvDTO);
-        return new ResponseEntity<>(movieService.addValoration(id, uvDTO), HttpStatus.CREATED);
+    ResponseEntity<String> addScore(@PathVariable String id, @RequestBody UserScoreDTO uvDTO) {
+        return new ResponseEntity<>(movieService.addScore(id, uvDTO), HttpStatus.CREATED);
     }
 
+    @PostMapping("/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(movieService.saveImage(file), HttpStatus.CREATED);
+    }
 }
