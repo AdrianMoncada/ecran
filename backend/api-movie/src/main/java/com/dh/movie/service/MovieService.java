@@ -33,10 +33,8 @@ public class MovieService {
     private final ModelMapper mapper;
     private final FileStoreService fileStore;
 
-    public MovieResponseDTO save(MovieRequestDTO movie, MultipartFile image) {
-        String path = saveImage(image);
+    public MovieResponseDTO save(MovieRequestDTO movie) {
         Movie movieDB = mapper.map(movie, Movie.class);
-        movieDB.setImage_url(path);
         return mapper.map(repository.save(movieDB), MovieResponseDTO.class);
     }
 
