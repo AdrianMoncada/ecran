@@ -82,7 +82,7 @@ public class UsersController {
         return ResponseEntity.ok().body(usersService.addToWatchlist(userId, movieId));
     }
 
-    @GetMapping(value = "/confirm/{userId}")
+    @GetMapping(value = "/{userId}/confirm")
     public UserConfirmationResponse confirmRegistration(@PathVariable String userId){
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
