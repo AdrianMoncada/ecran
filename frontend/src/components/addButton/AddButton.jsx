@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import { Toaster, toast } from "sonner";
 import Cookies from "js-cookie";
+import endPoints from "@/service/api";
 
 const AddButton = ({ movie }) => {
 	const auth = useAuth();
@@ -20,16 +21,17 @@ const AddButton = ({ movie }) => {
 
 			const movieId = movie;
 			const userId = Cookies.get("userId");
-			const url = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/authorization/users/${userId}/watchlist`;
+			const token = Cookies.get("token");
 
 			const body = {
 				movieId: movieId,
 			};
 
-			const response = await fetch(url, {
+			const response = await fetch(endPoints.movies.watchlist(userId), {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					"Authorization": `Bearer ${token}`
 				},
 				body: JSON.stringify(body),
 			});

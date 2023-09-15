@@ -24,11 +24,11 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
-		const { headers } = await axios.post(endPoints.auth.login, { email, password }, options);
+		const { headers } = await axios.post(endPoints.auth.login, { email, password }, options).then(res => console.log(res)).catch(err => console.err(err))
 		const token = headers.token;
 		if (token) {
 			Cookie.set("token", token, { expires: 5 });
-			Cookie.set("userId", headers.userid);
+			Cookie.set("userId", headers.userid, { expires: 5 });
 			const userInfo = {
 				firstName: "Jacobo",
 				lastName: "Arcila",
@@ -38,11 +38,15 @@ function useProvideAuth() {
 			const encodedUserInfo = btoa(userInfoJSON);
 			Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
 			setUser(userInfo);
-			//Esto lo que hace es traer toda la info del usuario con el token
 			/* axios.defaults.headers.Authorization = `Bearer ${token}`;
-			const { data: user } = await axios.get();
+			const options = {
+				headers: {
+					"Content-Type": "application/json",
+				}
+			}; */
+			const { data: user } = await axios.get(endPoints.auth.profile(headers.userid), options);
 			console.log(user);
-			setUser(user); */
+			setUser(user);
 		}
 	};
 
