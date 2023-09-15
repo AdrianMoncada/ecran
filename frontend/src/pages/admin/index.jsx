@@ -41,9 +41,11 @@ const AdminPage = () => {
 						</Link>
 					</div>
 					<hr></hr>
-					<div className="actions-container">
-						<Image src="images/pencil.svg" alt="pencil sign" width={24} height={24} className="icon" />
-						<p>Editar película</p>
+					<div>
+						<Link href={"/editMovie"} className="actions-container">
+							<Image src="images/pencil.svg" alt="pencil sign" width={24} height={24} className="icon" />
+							<p>Editar película</p>
+						</Link>
 					</div>
 				</div>
 			</TitleListContainer>

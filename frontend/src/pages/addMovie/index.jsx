@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
-import platformData from "@/assets/platforms.json";
+import platformData from "@/assets/platformsAdd.json";
 import { HeaderContainer, Container, AvatarContainer, TitleContainer } from "@/styles/pages.styles/admin.styles";
 import {
 	FormContainer,
@@ -230,16 +230,16 @@ const AddMovie = () => {
 							<SectionTitle>Disponibilidad</SectionTitle>
 							<div className="availability-fields">
 								{plataformasList.map((platform) => (
-									<div key={platform.id} className="availability-field">
+									<div key={platform.name} className="availability-field">
 										<label className="platform-label">
 											<input
 												type="checkbox"
 												name="platforms"
-												value={platform.label}
-												checked={formData.platforms.includes(platform.label)}
+												value={platform.name}
+												checked={formData.platforms.includes(platform.name)}
 												onChange={handleCheckboxChange}
 											/>
-											<Image src={platform.value} alt={platform.label} width={50} height={50} />
+											<Image src={platform.logo_url} alt={platform.name} width={50} height={50} />
 										</label>
 									</div>
 								))}
