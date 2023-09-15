@@ -24,30 +24,25 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
-		const { headers } = await axios.post(endPoints.auth.login, { email, password }, options).then(res => console.log(res)).catch(err => console.err(err))
-		const token = headers.token;
-		if (token) {
-			Cookie.set("token", token, { expires: 5 });
-			Cookie.set("userId", headers.userid, { expires: 5 });
-			const userInfo = {
-				firstName: "Jacobo",
-				lastName: "Arcila",
-				email: "jacoboArcila1@gmail.com",
-			};
-			const userInfoJSON = JSON.stringify(userInfo);
-			const encodedUserInfo = btoa(userInfoJSON);
-			Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
-			setUser(userInfo);
-			/* axios.defaults.headers.Authorization = `Bearer ${token}`;
-			const options = {
-				headers: {
-					"Content-Type": "application/json",
+		await axios
+			.post(endPoints.auth.login, { email, password }, options)
+			.then(async (res) => {
+				const response = res.headers;
+				console.log("🚀 ~ file: useAuth.js:31 ~ signIn ~ headers:", res);
+				const token = response.token;
+				if (token) {
+					Cookie.set("token", token, { expires: 5 });
+					Cookie.set("userId", response.userid, { expires: 5 });
+					/* axios.defaults.headers.Authorization = `Bearer ${token}`; */
+					const { data: user } = await axios.get(endPoints.auth.profile(response.userid));
+					console.log("🚀 ~ file: useAuth.js:38 ~ .then ~ user:", user);
+					setUser(user);
+					const userInfoJSON = JSON.stringify(user);
+					const encodedUserInfo = btoa(userInfoJSON);
+					Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
 				}
-			}; */
-			const { data: user } = await axios.get(endPoints.auth.profile(headers.userid), options);
-			console.log(user);
-			setUser(user);
-		}
+			})
+			.catch((err) => console.error(err));
 	};
 
 	const signUp = async (data) => {
