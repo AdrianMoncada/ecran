@@ -39,9 +39,7 @@ public class MovieReqDTO implements Serializable {
     private String imdb_score;
     @NotBlank
     private String mc_score;
-    @NotBlank
     private List<String> genres = new ArrayList<>();
-    @NotBlank
     private List<Platform> platforms = new ArrayList<>();
     private Double score;
 }
