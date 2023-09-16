@@ -74,6 +74,7 @@ GET -> {{BASEURL}}/users/{{movieId}}/comments
 POST AVATAR
 
 POST -> {{BASEURL}}/users/{{userId}}/image
+
         {{BASEURL}}/users/d6c8b8d8-75da-4e7a-bef7-b7f2830b0aa0/image
 
 EXAMPLE BODY: {
