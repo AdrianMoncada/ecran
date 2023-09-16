@@ -68,3 +68,16 @@ EXAMPLE BODY: {
 GET COMMENTS BY MOVIE ID
 GET -> {{BASEURL}}/users/{{movieId}}/comments
        {{BASEURL}}/users/64e4d1b9daf2a2c7f2f2d1f7/comments
+
+---
+
+POST AVATAR
+
+POST -> {{BASEURL}}/users/{{userId}}/image
+        {{BASEURL}}/users/d6c8b8d8-75da-4e7a-bef7-b7f2830b0aa0/image
+
+EXAMPLE BODY: {
+        "file": "profilePicture.jpeg"
+}
+
+Response 200 OK LINK TO IMAGE, EXAMPLE: https://ecran.s3.amazonaws.com/Usuarios/profile_picture.jpeg
