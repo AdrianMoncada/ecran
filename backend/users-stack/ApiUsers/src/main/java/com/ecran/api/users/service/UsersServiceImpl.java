@@ -15,6 +15,7 @@ import com.ecran.api.users.data.repository.RatingRepository;
 import com.ecran.api.users.data.repository.UserCommentsRepository;
 import com.ecran.api.users.data.repository.UsersRepository;
 import com.ecran.api.users.data.repository.WatchlistRepository;
+import com.ecran.api.users.event.OnRegistrationCompleteEvent;
 import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserValorationDTO;
 import com.ecran.api.users.ui.model.*;
@@ -25,6 +26,8 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +51,8 @@ public class UsersServiceImpl implements UsersService {
     private final ModelMapper mapper;
     private final FileStoreService fileStore;
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
 
     @Autowired
     public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, FileStoreService fileStore) {
@@ -292,5 +297,13 @@ public class UsersServiceImpl implements UsersService {
         UserEntity saved = usersRepository.save(foundUser);
         response.setCode("200");
         return response;
+    }
+
+    @Override
+    public void sendVerificationEmail(String userId, String appUrl, Locale locale) {
+        UserEntity foundUser = usersRepository.findByUserId(userId);
+        UserDto foundUserDto = mapper.map(foundUser, UserDto.class);
+        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(foundUserDto,
+                locale, appUrl));
     }
 }
