@@ -20,6 +20,7 @@ const MyList = () => {
 	const [watchlistMovies, setWatchlistMovies] = useState([]);
 	const [successMessage, setSuccessMessage] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [isVerified, setVerified] = useState(false);
 
 	const fetchWatchList = () => {
 		const userId = Cookies.get("userId");
@@ -36,6 +37,7 @@ const MyList = () => {
 	useEffect(() => {
 		if (auth.user) {
 			// const userId = auth.user.userId;
+			auth.user.enabled ? setVerified(true) : setVerified(false);
 			fetchWatchList();
 		}
 	}, [auth.user]);
@@ -73,6 +75,11 @@ const MyList = () => {
 			setErrorMessage(`No se pudieron cargar ${failedImports.length} películas.`);
 		}
 	};
+	useEffect(() => {
+		if (auth.user && auth.user.enabled) {
+			setVerified(true);
+		}
+	}, [auth]);
 
 	return (
 		<>

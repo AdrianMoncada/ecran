@@ -1,7 +1,8 @@
 import React from "react";
 import ExcelJS from "exceljs";
 
-function ExportarExcel({ listaPeliculas }) {
+function ExportarExcel({ listaPeliculas, disableButton }) {
+
 	const exportToExcel = async () => {
 		const workbook = new ExcelJS.Workbook();
 		const worksheet = workbook.addWorksheet("Lista de Películas");
@@ -28,7 +29,7 @@ function ExportarExcel({ listaPeliculas }) {
 
 	return (
 		<div>
-			<button onClick={exportToExcel}>Exportar</button>
+			<button onClick={exportToExcel} {dis}>Exportar</button>
 		</div>
 	);
 }
