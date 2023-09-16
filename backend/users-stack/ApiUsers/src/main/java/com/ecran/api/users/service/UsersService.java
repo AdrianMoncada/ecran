@@ -11,6 +11,7 @@ import com.ecran.api.users.shared.UserDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Locale;
 
 public interface UsersService extends UserDetailsService {
 	UserDto createUser(UserDto userDetails);
@@ -33,4 +34,6 @@ public interface UsersService extends UserDetailsService {
 	String saveImage(String userId, MultipartFile image);
 
 	UserConfirmationResponse enableUser(String userId);
+
+	void sendVerificationEmail(String userId, String appUrl, Locale locale);
 }
