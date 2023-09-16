@@ -24,26 +24,34 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
-		const { headers } = await axios.post(endPoints.auth.login, { email, password }, options);
-		const token = headers.token;
-		if (token) {
-			Cookie.set("token", token, { expires: 5 });
-			Cookie.set("userId", headers.userid);
-			const userInfo = {
-				firstName: "Jacobo",
-				lastName: "Arcila",
-				email: "jacoboArcila1@gmail.com",
-			};
-			const userInfoJSON = JSON.stringify(userInfo);
-			const encodedUserInfo = btoa(userInfoJSON);
-			Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
-			setUser(userInfo);
-			//Esto lo que hace es traer toda la info del usuario con el token
-			/* axios.defaults.headers.Authorization = `Bearer ${token}`;
-			const { data: user } = await axios.get();
-			console.log(user);
-			setUser(user); */
-		}
+		/* await fetch(endPoints.auth.check, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization:
+					"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYmZlYmY3OS0zY2NkLTRlNjMtYWE3NC02MWEzOThiNWFkMTAiLCJleHAiOjE2OTUwNjkyNTMsImlhdCI6MTY5NDgxMDA1M30.ema6o9_SxFdSj9U74U6Syu8QXTXm6n_m5hAf6o7wFzCvgnIKSFnp24sOJaLvII5EfXCoxGJpm92PY8UdiX7KEQ",
+			},
+		})
+			.then((res) => console.log(res))
+			.catch((err) => console.error(err)); */
+		await axios
+			.post(endPoints.auth.login, { email, password }, options)
+			.then(async (res) => {
+				const response = res.headers;
+				console.log("🚀 ~ file: useAuth.js:31 ~ signIn ~ headers:", res);
+				const token = response.token;
+				if (token) {
+					Cookie.set("token", token, { expires: 5 });
+					Cookie.set("userId", response.userid, { expires: 5 });
+					axios.defaults.headers.Authorization = `Bearer ${token}`;
+					const { data: user } = await axios.get(endPoints.auth.profile(response.userid));
+					console.log("🚀 ~ file: useAuth.js:38 ~ .then ~ user:", user);
+					setUser(user);
+					const userInfoJSON = JSON.stringify(user);
+					const encodedUserInfo = btoa(userInfoJSON);
+					Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
+				}
+			})
+			.catch((err) => console.error(err));
 	};
 
 	const signUp = async (data) => {
