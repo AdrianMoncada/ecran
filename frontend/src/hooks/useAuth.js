@@ -24,6 +24,15 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
+		/* await fetch(endPoints.auth.check, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization:
+					"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYmZlYmY3OS0zY2NkLTRlNjMtYWE3NC02MWEzOThiNWFkMTAiLCJleHAiOjE2OTUwNjkyNTMsImlhdCI6MTY5NDgxMDA1M30.ema6o9_SxFdSj9U74U6Syu8QXTXm6n_m5hAf6o7wFzCvgnIKSFnp24sOJaLvII5EfXCoxGJpm92PY8UdiX7KEQ",
+			},
+		})
+			.then((res) => console.log(res))
+			.catch((err) => console.error(err)); */
 		await axios
 			.post(endPoints.auth.login, { email, password }, options)
 			.then(async (res) => {
@@ -33,7 +42,7 @@ function useProvideAuth() {
 				if (token) {
 					Cookie.set("token", token, { expires: 5 });
 					Cookie.set("userId", response.userid, { expires: 5 });
-					/* axios.defaults.headers.Authorization = `Bearer ${token}`; */
+					axios.defaults.headers.Authorization = `Bearer ${token}`;
 					const { data: user } = await axios.get(endPoints.auth.profile(response.userid));
 					console.log("🚀 ~ file: useAuth.js:38 ~ .then ~ user:", user);
 					setUser(user);
