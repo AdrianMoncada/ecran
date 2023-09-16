@@ -1,6 +1,5 @@
 package com.ecran.api.users.event;
 
-import com.ecran.api.users.data.models.UserEntity;
 import com.ecran.api.users.shared.UserDto;
 import lombok.Getter;
 import lombok.Setter;

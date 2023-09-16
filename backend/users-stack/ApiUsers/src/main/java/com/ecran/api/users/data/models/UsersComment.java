@@ -23,6 +23,7 @@ public class UsersComment {
     @Column(columnDefinition="TEXT")
     private String comment;
     private String date;
+    private String imageUrl;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
