@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/users")
@@ -127,5 +128,11 @@ public class UsersController {
     @GetMapping("/{movieId}/comments")
     public List<UserCommentResponseDTO> getCommentsByMovieId(@PathVariable String movieId) {
         return usersService.getCommentsByMovieId(movieId);
+    }
+
+    @GetMapping("/{userId}/sendemail")
+    public void sendVerificationEmail(@PathVariable String userId, HttpServletRequest request) {
+        String appUrl = request.getContextPath();
+         usersService.sendVerificationEmail(userId, appUrl, request.getLocale() );
     }
 }
