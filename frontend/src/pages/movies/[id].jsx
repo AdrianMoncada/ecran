@@ -29,6 +29,7 @@ import axios from "axios";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Comentarios from "@components/comments-clientSide/Comentarios";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -50,6 +51,7 @@ function MovieDetail({ movies, cardMovies }) {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 	};
+	const userId = Cookies.get("userId");
 
 	const [rating, setRating] = useState(0);
 
@@ -57,7 +59,6 @@ function MovieDetail({ movies, cardMovies }) {
 		const API = process.env.NEXT_PUBLIC_API_URL;
 		if (auth.user) {
 			try {
-				const userId = Cookies.get("userId");
 				const endpoint = `${API}/authorization/users/${userId}/addrating`;
 
 				const postData = {
@@ -162,6 +163,7 @@ function MovieDetail({ movies, cardMovies }) {
 					</Puntuaciones>
 					<p className="day_p">{movies.review}</p>
 				</DescriptioContainer>
+				<Comentarios movies={movies} />
 				<Sugestions>
 					<h4 className="oldies_title">Sugerencias</h4>
 					{/* <Carousel movies={moviesTop} top={true} /> */}

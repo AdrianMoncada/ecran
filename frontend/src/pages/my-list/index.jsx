@@ -44,6 +44,7 @@ const MyList = () => {
 		console.log(data);
 		const successfulImports = [];
 		const failedImports = [];
+		const token = Cookies.get("token");
 
 		for (const item of data) {
 			const body = {
@@ -55,6 +56,7 @@ const MyList = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
 					},
 					body: JSON.stringify(body),
 				});
