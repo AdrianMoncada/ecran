@@ -7,6 +7,7 @@ export const FooterContainer = styled.div`
 	width: 100%;
 	margin-bottom: 2em;
 	bottom: 0;
+	height: 90px;
 
 	.footer_icons {
 		display: flex;
