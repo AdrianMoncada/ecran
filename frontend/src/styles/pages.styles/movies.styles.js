@@ -385,3 +385,71 @@ export const CloseButton = styled.button`
 	cursor: pointer;
 	font-size: 18px;
 `;
+
+export const Comments = styled.section`
+	margin: 0 auto;
+	width: 80%;
+	position: relative;
+	.comments-title {
+		background: linear-gradient(90deg, rgba(168, 85, 247, 0.8) 0%, rgba(233, 213, 255, 0.8) 92.39%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-size: 4vw;
+		font-weight: 700;
+		letter-spacing: -0.25px;
+		margin: 50px auto 20px auto;
+		text-align: center;
+	}
+
+	.comments-text {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+		height: 135px;
+		flex-shrink: 0;
+		border-radius: 2px;
+		margin-bottom: 60px;
+		padding: 10px;
+		border: 1px solid #1e293b;
+		background: linear-gradient(
+			45deg,
+			rgba(30, 41, 59, 0.15) 0%,
+			rgba(30, 41, 59, 0.48) 50.64%,
+			rgba(30, 41, 59, 0.15) 98.66%
+		);
+	}
+
+	button {
+		background-color: #ad5ef8;
+		position: absolute;
+		top: 310px;
+		right: 0;
+		color: white;
+		cursor: pointer;
+		border-radius: 20px;
+		width: 100px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 250ms ease;
+
+		&:hover {
+			background-color: #7f47b7;
+		}
+	}
+
+	.comments-comments {
+		.title {
+			font-size: 1.5vw;
+		}
+	}
+`;
