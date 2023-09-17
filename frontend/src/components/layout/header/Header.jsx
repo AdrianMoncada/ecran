@@ -17,6 +17,7 @@ const Header = ({ auth }) => {
 
 	useEffect(() => {
 		const encodedUserInfo = Cookie.get("userInfo");
+		console.log(encodedUserInfo);
 		if (encodedUserInfo) {
 			const userInfoJSON = atob(encodedUserInfo);
 			const userInfo = JSON.parse(userInfoJSON);
@@ -91,11 +92,11 @@ const Header = ({ auth }) => {
 									<Typography textAlign="center">Mi lista</Typography>
 								</Link>
 							</MenuItem>
-							{/* <MenuItem onClick={handleCloseUserMenu}>
+							<MenuItem onClick={handleCloseUserMenu}>
 								<Link href="/profile">
 									<Typography textAlign="center">Editar Perfil</Typography>
 								</Link>
-							</MenuItem> */}
+							</MenuItem>
 							<MenuItem onClick={handleSignOut}>
 								<Link href="/">
 									<Typography textAlign="center">Cerrar Sesión</Typography>

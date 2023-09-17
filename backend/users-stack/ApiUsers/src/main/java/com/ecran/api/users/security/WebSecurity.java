@@ -53,7 +53,7 @@ public class WebSecurity {
 
 
         http.csrf((csrf) -> csrf.disable());
-        http.cors(withDefaults());
+        // http.cors(withDefaults());
         http.authorizeHttpRequests((authz) -> authz
                                 .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
                                 .requestMatchers(HttpMethod.PUT, "/users/*").permitAll()
@@ -79,16 +79,16 @@ public class WebSecurity {
         return http.build();
     }
 
-     @Bean
-     CorsConfigurationSource corsConfigurationSource() {
-         CorsConfiguration configuration = new CorsConfiguration();
-         configuration.setAllowedOrigins(Arrays.asList("*"));
-         configuration.setAllowedMethods(Arrays.asList("*"));
-         configuration.setAllowedHeaders(Arrays.asList("*"));
-         configuration.setExposedHeaders(Arrays.asList("*"));
-         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-         source.registerCorsConfiguration("/**", configuration);
-         return source;
-     }
+    //  @Bean
+    //  CorsConfigurationSource corsConfigurationSource() {
+    //      CorsConfiguration configuration = new CorsConfiguration();
+    //      configuration.setAllowedOrigins(Arrays.asList("*"));
+    //      configuration.setAllowedMethods(Arrays.asList("*"));
+    //      configuration.setAllowedHeaders(Arrays.asList("*"));
+    //      configuration.setExposedHeaders(Arrays.asList("*"));
+    //      UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //      source.registerCorsConfiguration("/**", configuration);
+    //      return source;
+    //  }
 
 }
