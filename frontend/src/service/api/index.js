@@ -4,7 +4,10 @@ const endPoints = {
 	auth: {
 		login: `${API}/authorization/users/login`,
 		signUp: `${API}/authorization/users`,
+		getProfile: (userid) => `${API}/users/${userid}`,
+		update: (userid) => `${API}/users/${userid}`,
 		profile: (userid) => `${API}/authorization/users/${userid}`,
+		profilePicture: (userid) => `${API}/authorization/users/${userid}/image`,
 	},
 	movies: {
 		getMovie: (id) => `${API}/api/v1/movies/${id}`,
