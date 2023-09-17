@@ -23,6 +23,6 @@ public interface UsersService extends UserDetailsService {
 	String changePassword(ChangePasswordDTO passwordDTO, String userId);
 	UsersComment addComment(String userId, UserCommentDTO commentDTO);
 	List<UserCommentResponseDTO> getCommentsByMovieId(String movieId);
-	String saveImage(String userId, MultipartFile image);
+	String saveImage(MultipartFile image);
 	UserConfirmationResponse enableUser(String userId);
 }

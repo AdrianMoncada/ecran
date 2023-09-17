@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.amazonaws.services.directory.model.ServiceException;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.ecran.api.users.config.BucketName;
 import com.ecran.api.users.data.models.UsersComment;
@@ -197,28 +198,9 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String saveImage(String userId, MultipartFile image) {
-
-        if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
-
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentType("image/jpeg");
-        objectMetadata.setContentDisposition("inline; filename=" + image.getOriginalFilename());
-
-        String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Usuarios");
-        String fileName = String.format("%s", image.getOriginalFilename());
-
-        try {
-            fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed to upload file", e);
-        }
-
-        UserEntity user = usersRepository.findByUserId(userId);
-        user.setImageUrl("https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename());
-        usersRepository.save(user);
-
-        return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
+    public String saveImage(MultipartFile image) {
+        if (image.isEmpty()) throw new ServiceException("Cannot upload empty file");
+        return fileStore.upload(image);
     }
 
 

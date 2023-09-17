@@ -6,6 +6,9 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.io.InputStream;
 
 @Service
@@ -13,16 +16,24 @@ import java.io.InputStream;
 public class FileStoreService {
     private final AmazonS3 amazonS3;
 
-    public void upload(String path,
-                       String fileName,
-                       ObjectMetadata metadata,
-                       InputStream inputStream) {
+    public String upload(MultipartFile image) {
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType("image/jpeg");
+        metadata.setContentDisposition("inline; filename="+ image.getOriginalFilename());
+
+        String path = "ecran" + "/" + "Usuarios";
+        String fileName = image.getOriginalFilename();
 
         try {
-            amazonS3.putObject(path, fileName, inputStream, metadata);
+            InputStream iStream = image.getInputStream();
+            amazonS3.putObject(path, fileName, iStream, metadata);
             amazonS3.setObjectAcl(path, fileName, CannedAccessControlList.PublicRead);
-        } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Failed to upload the file", e);
+        } catch (AmazonServiceException | IOException e) {
+            throw new IllegalStateException(e.getMessage());
         }
+
+        return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
     }
+
 }

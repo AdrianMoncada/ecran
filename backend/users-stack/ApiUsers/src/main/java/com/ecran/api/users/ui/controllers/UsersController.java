@@ -70,9 +70,9 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
 
-    @PostMapping("/{userId}/image")
-    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") String userId) {
-        return new ResponseEntity<>(usersService.saveImage(userId, file), HttpStatus.OK);
+    @PostMapping("/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(usersService.saveImage(file), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}/watchlist")
