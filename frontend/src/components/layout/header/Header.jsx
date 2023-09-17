@@ -36,7 +36,7 @@ const Header = ({ auth }) => {
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	}, [auth]);
 
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
