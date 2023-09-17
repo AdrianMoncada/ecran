@@ -32,21 +32,13 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
-		/* await fetch(endPoints.auth.check, {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization:
-					"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYmZlYmY3OS0zY2NkLTRlNjMtYWE3NC02MWEzOThiNWFkMTAiLCJleHAiOjE2OTUwNjkyNTMsImlhdCI6MTY5NDgxMDA1M30.ema6o9_SxFdSj9U74U6Syu8QXTXm6n_m5hAf6o7wFzCvgnIKSFnp24sOJaLvII5EfXCoxGJpm92PY8UdiX7KEQ",
-			},
-		})
-			.then((res) => console.log(res))
-			.catch((err) => console.error(err)); */
 		await axios
 			.post(endPoints.auth.login, { email, password }, options)
 			.then(async (res) => {
 				const response = res.headers;
 				console.log("🚀 ~ file: useAuth.js:31 ~ signIn ~ headers:", res);
 				const token = response.token;
+				//lógica para guardar estos datos en las cookies
 				if (token) {
 					Cookie.set("token", token, { expires: 5 });
 					Cookie.set("userId", response.userid, { expires: 5 });
@@ -82,34 +74,6 @@ function useProvideAuth() {
 		setUser(null);
 	};
 
-	// Función para obtener la información del perfil del usuario
-	const getProfileInfo = async () => {
-		try {
-			const token = Cookie.get("token");
-			if (!token) {
-				// Manejar la falta de token (usuario no autenticado)
-				return null;
-			}
-			const userId = Cookie.get("userId");
-			const response = await axios.get(endPoints.getProfile(userId), {
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			});
-			if (response.status === 200 && response.data) {
-				const userInfo = response.data;
-				setUser(userInfo);
-				return userInfo;
-			}
-			return null;
-		} catch (error) {
-			console.error(error);
-			return null;
-		}
-	};
-
-	// Función para actualizar la información del perfil del usuario
 	const updateProfileInfo = async (updatedData) => {
 		try {
 			const token = Cookie.get("token");
@@ -172,7 +136,6 @@ function useProvideAuth() {
 		signIn,
 		signUp,
 		signOut,
-		getProfileInfo,
 		updateProfileInfo,
 		uploadProfilePicture,
 	};

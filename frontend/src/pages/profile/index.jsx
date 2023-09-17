@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import dataInput from "@/assets/input.json";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { Toaster, toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import Head from "next/head";
 import {
 	HeaderContainer,
@@ -11,52 +18,22 @@ import {
 	ContainerImage,
 	EditButton,
 } from "@styles/pages.styles/profile.styles";
-import Image from "next/image";
-import dataInput from "@/assets/input.json";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { Toaster, toast } from "sonner";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
 import { MdOutlineModeEditOutline } from "react-icons/md";
-
-const initalData = {
-	firstName: "",
-	lastName: "",
-	email: "",
-	password: "",
-};
 
 const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const auth = useAuth();
+	const { user, updateProfileInfo, uploadProfilePicture } = auth;
 	const router = useRouter();
-	const [profilePicture, setProfilePicture] = useState(null);
-	const [profilePictureUrl, setProfilePictureUrl] = useState("");
+	const [profilePictureUrl, setProfilePictureUrl] = useState(user?.profilePictureUrl || ""); // Supongo que existe un campo 'profilePictureUrl' en el objeto 'user'
+	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
 
-	//Esta función se activa cada vez que el usuario selecciona un nuevo archivo de
-	//imagen en el input de tipo archivo
-	const handleProfilePictureChange = (event) => {
-		const selectedFile = event.target.files[0];
-		setProfilePicture(selectedFile);
-		//busca el elemento HTML con el ID "profileImage"
-		const profileImage = document.getElementById("profileImage");
-		if (profileImage) {
-			//crea una URL que representa el objeto seleccionado (selectedFile)
-			const imageUrl = URL.createObjectURL(selectedFile);
-			console.log(imageUrl);
-			profileImage.src = imageUrl;
-			setProfilePictureUrl(imageUrl);
-		}
+	const initalData = {
+		firstName: user?.firstName,
+		lastName: user?.lastName,
+		email: user?.email,
+		password: user?.password,
 	};
-
-	//Este efecto se activa cada vez que el valor de profilePicture cambia.
-	useEffect(() => {
-		if (profilePicture) {
-			const imageUrl = URL.createObjectURL(profilePicture);
-			setProfilePictureUrl(imageUrl);
-		}
-	}, [profilePicture]);
 
 	const validate = Yup.object({
 		firstName: Yup.string().max(15).required("*El nombre es obligatorio*"),
@@ -65,57 +42,40 @@ const Profile = () => {
 		password: Yup.string().min(6, "Contraseña debe ser de 6 o más caracteres").required("*Obligatorio*"),
 	});
 
+	const handleProfilePictureChange = (event) => {
+		const file = event.target.files[0];
+		if (file) {
+			const imageUrl = URL.createObjectURL(file);
+			setProfilePictureUrl(imageUrl);
+			setSelectedProfilePicture(file);
+		}
+	};
+
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			console.log(formData);
 			try {
-				auth
-					.updateProfileInfo(formData)
+				if (selectedProfilePicture) {
+					const imageUrl = await uploadProfilePicture(selectedProfilePicture);
+					formData.profilePictureUrl = imageUrl;
+				}
+				updateProfileInfo(formData)
 					.then(() => {
 						router.push("/");
-						toast.success("Usuario actualizado con éxito!");
+						toast.success("Perfil actualizado con exito!");
 					})
 					.catch((err) => {
 						console.error(err);
 						toast.error("Lo siento, intentelo de nuevo");
 					});
-				if (profilePicture) {
-					const imageUrl = await auth.uploadProfilePicture(profilePicture);
-
-					// Actualiza la información del usuario, incluida la URL de la nueva imagen
-					formData.profilePicture = imageUrl;
-
-					// Actualiza el usuario
-					auth.updateUserProfile(formData);
-
-					router.push("/");
-					toast.success("Usuario actualizado con éxito!");
-				}
 			} catch (error) {
 				console.error(error);
-				toast.error("Lo siento, intentelo de nuevo");
+				toast.error("Error al cargar la imagen");
 			}
 		},
 		validationSchema: validate,
 	});
 
-	useEffect(() => {
-		// Cuando se carga el componente, obtén la información del perfil del usuario
-		const fetchProfileInfo = async () => {
-			try {
-				const user = await auth.getProfileInfo();
-				if (user) {
-					// Llena el formulario con los datos del usuario
-					formik.setValues(user);
-				}
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		fetchProfileInfo();
-	}, [auth, formik]);
 	return (
 		<>
 			<Head>
@@ -161,7 +121,17 @@ const Profile = () => {
 										type={item.type}
 										name={item.name}
 										onChange={formik.handleChange}
-										placeholder={item.placeholder}
+										defaultValue={
+											item.name === "firstName"
+												? formik.initialValues.firstName
+												: item.name === "lastName"
+												? formik.initialValues.lastName
+												: item.name === "email"
+												? formik.initialValues.email
+												: item.name === "password"
+												? "********"
+												: null
+										}
 									/>
 									<span
 										className={`message-error ${
@@ -173,7 +143,7 @@ const Profile = () => {
 								</div>
 							))}
 							<Button type="submit" onClick={() => setSubmitted(true)}>
-								Actualizar
+								Actualizar perfil
 							</Button>
 						</form>
 						<Toaster richColors position="bottom-right" />
@@ -186,4 +156,9 @@ const Profile = () => {
 		</>
 	);
 };
+
 export default Profile;
+
+Profile.getLayout = function PageLayout(page) {
+	return <>{page}</>;
+};
