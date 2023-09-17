@@ -28,5 +28,7 @@ public class CreateUserRequestModel {
 	@Email
 	private String email;
 
+	private String imageUrl;
+
 	private Boolean enabled;
 }
