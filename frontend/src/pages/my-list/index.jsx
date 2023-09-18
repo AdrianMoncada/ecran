@@ -14,6 +14,7 @@ import { useAuth } from "@/hooks/useAuth";
 import endPoints from "@/service/api";
 import Cookies from "js-cookie";
 import Head from "next/head";
+import Link from "next/link";
 
 const MyList = () => {
 	const auth = useAuth();
@@ -29,6 +30,7 @@ const MyList = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setWatchlistMovies(data);
+				console.log(data);
 			})
 			.catch((error) => {
 				console.error("Error al obtener las películas guardadas:", error);
@@ -100,7 +102,9 @@ const MyList = () => {
 					</AvatarContainer>
 					<TitleContainer>
 						<h2>Hola!</h2>
-						<p>Editar perfil</p>
+						<Link href="/profile">
+							<p>Editar perfil</p>
+						</Link>
 					</TitleContainer>
 				</Container>
 			</HeaderContainer>

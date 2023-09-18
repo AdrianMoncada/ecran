@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Locale;
@@ -60,6 +59,11 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
+    @PutMapping(value = "/{userId}")
+    public ResponseEntity<UserDto> updateUserById(@PathVariable("userId") String userId, @RequestBody UserDto userDTO) {
+        UserDto userDto = usersService.updateUser(userId, userDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(userDto);
+    }
 
     @GetMapping(value = "/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId) {
@@ -67,9 +71,9 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
 
-    @PostMapping("/{userId}/image")
-    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") String userId) {
-        return new ResponseEntity<>(usersService.saveImage(userId, file), HttpStatus.OK);
+    @PostMapping("/image")
+    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(usersService.saveImage(file), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}/watchlist")

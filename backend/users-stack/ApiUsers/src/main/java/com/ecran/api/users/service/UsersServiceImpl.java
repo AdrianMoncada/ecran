@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.amazonaws.services.directory.model.ServiceException;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.ecran.api.users.config.BucketName;
 import com.ecran.api.users.data.models.UsersComment;
@@ -20,7 +21,6 @@ import com.ecran.api.users.shared.ChangePasswordDTO;
 import com.ecran.api.users.shared.UserValorationDTO;
 import com.ecran.api.users.ui.model.*;
 import feign.FeignException;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -68,74 +68,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<UsersWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
-        UserEntity userEntity = usersRepository.findByUserId(userId);
-
-        if (userEntity == null) throw new UsernameNotFoundException("User not found");
-
-        for (UsersWatchlist m :
-                userEntity.getWatchlist()) {
-            if (Objects.equals(m.getMovieId(), movieId.getMovieId())) {
-                userEntity.getWatchlist().remove(m);
-                return usersRepository.save(userEntity).getWatchlist();
-            }
-        }
-
-        UsersWatchlist umwl = mapper.map(movieId, UsersWatchlist.class);
-        userEntity.getWatchlist().add(umwl);
-
-        return usersRepository.save(userEntity).getWatchlist();
-    }
-
-    @Override
-    public String addRating(String userId, UsersRating userRating) {
-        UserEntity userEntity = usersRepository.findByUserId(userId);
-        if (userEntity == null) throw new UsernameNotFoundException("User not found");
-        String movieId = userRating.getMovieId();
-        // Comprueba si el usuario ya ha votado para esta película
-        Optional<UsersRating> existingRating = userEntity.getRatings()
-                .stream()
-                .filter(rating -> rating.getMovieId().equals(movieId))
-                .findFirst();
-
-        UserValorationDTO valorationDTO = new UserValorationDTO();
-
-        if (existingRating.isPresent()) {
-            UsersRating previousRating = existingRating.get();
-            previousRating.setRating(userRating.getRating());
-            usersRepository.save(userEntity);
-
-
-            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
-
-            try {
-                moviesServiceClient.addRating(movieId, valorationDTO);
-            } catch (FeignException e) {
-                logger.error(e.getLocalizedMessage());
-            }
-
-            System.out.println("User already vote for this movie. Vote changed from X to new rating");
-            return "User already vote for this movie. Vote changed from X to new rating";
-        } else {
-            userEntity.getRatings().add(userRating);
-            usersRepository.save(userEntity);
-
-            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
-            System.out.println(valorationDTO);
-
-            try {
-                moviesServiceClient.addRating(movieId, valorationDTO);
-            } catch (FeignException e) {
-                logger.error(e.getLocalizedMessage());
-            }
-
-            return "Vote added";
-        }
-    }
-
-    @Override
     public UserDto createUser(UserDto userDetails) {
         // TODO Auto-generated method stub
         userDetails.setUserId(UUID.randomUUID().toString());
@@ -151,6 +83,20 @@ public class UsersServiceImpl implements UsersService {
         UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
         return returnValue;
+    }
+
+    @Override
+    public UserDto updateUser(String id, UserDto userDTO) {
+        UserEntity userEntity = usersRepository.findByUserId(id);
+
+        if (userEntity == null) throw new UsernameNotFoundException(id);
+
+       userEntity.setFirstName(userDTO.getFirstName());
+       userEntity.setLastName(userDTO.getLastName());
+       userEntity.setEmail(userDTO.getEmail());
+       userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+
+        return mapper.map(usersRepository.save(userEntity), UserDto.class);
     }
 
     @Override
@@ -228,10 +174,11 @@ public class UsersServiceImpl implements UsersService {
         if (user == null) throw new UsernameNotFoundException("user not found");
 
         UsersComment comment = mapper.map(commentDTO, UsersComment.class);
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaFormateada = dateFormat.format(new Date());
-        comment.setDate(fechaFormateada);
+        String formattedDate = dateFormat.format(new Date());
+
+        comment.setDate(formattedDate);
+        comment.setImageUrl(user.getImageUrl());
 
         user.getComments().add(comment);
         usersRepository.save(user);
@@ -248,7 +195,7 @@ public class UsersServiceImpl implements UsersService {
         for (UsersComment c :
                 comments) {
             UserCommentResponseDTO crDTO = mapper.map(c, UserCommentResponseDTO.class);
-            crDTO.setUsername(c.getUserEntity().getFirstName() + c.getUserEntity().getLastName());
+            crDTO.setUsername(c.getUserEntity().getFirstName() + " " + c.getUserEntity().getLastName());
             responseDTO.add(crDTO);
         }
 
@@ -256,28 +203,78 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String saveImage(String userId, MultipartFile image) {
+    public String saveImage(MultipartFile image) {
+        if (image.isEmpty()) throw new ServiceException("Cannot upload empty file");
+        return fileStore.upload(image);
+    }
 
-        if (image.isEmpty()) throw new IllegalStateException("Cannot upload empty file");
 
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentType("image/jpeg");
-        objectMetadata.setContentDisposition("inline; filename=" + image.getOriginalFilename());
+    @Override
+    public List<UsersWatchlist> addToWatchlist(String userId, UsersMovieWLDTO movieId) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
 
-        String path = String.format("%s/%s", BucketName.S3_IMAGE.getBucketName(), "Usuarios");
-        String fileName = String.format("%s", image.getOriginalFilename());
+        if (userEntity == null) throw new UsernameNotFoundException("User not found");
 
-        try {
-            fileStore.upload(path, fileName, objectMetadata, image.getInputStream());
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed to upload file", e);
+        for (UsersWatchlist m :
+                userEntity.getWatchlist()) {
+            if (Objects.equals(m.getMovieId(), movieId.getMovieId())) {
+                userEntity.getWatchlist().remove(m);
+                return usersRepository.save(userEntity).getWatchlist();
+            }
         }
 
-        UserEntity user = usersRepository.findByUserId(userId);
-        user.setImageUrl("https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename());
-        usersRepository.save(user);
+        UsersWatchlist umwl = mapper.map(movieId, UsersWatchlist.class);
+        userEntity.getWatchlist().add(umwl);
 
-        return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
+        return usersRepository.save(userEntity).getWatchlist();
+    }
+
+    @Override
+    public String addRating(String userId, UsersRating userRating) {
+        UserEntity userEntity = usersRepository.findByUserId(userId);
+        if (userEntity == null) throw new UsernameNotFoundException("User not found");
+        String movieId = userRating.getMovieId();
+        // Comprueba si el usuario ya ha votado para esta película
+        Optional<UsersRating> existingRating = userEntity.getRatings()
+                .stream()
+                .filter(rating -> rating.getMovieId().equals(movieId))
+                .findFirst();
+
+        UserValorationDTO valorationDTO = new UserValorationDTO();
+
+        if (existingRating.isPresent()) {
+            UsersRating previousRating = existingRating.get();
+            previousRating.setRating(userRating.getRating());
+            usersRepository.save(userEntity);
+
+
+            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+
+            try {
+                moviesServiceClient.addRating(movieId, valorationDTO);
+            } catch (FeignException e) {
+                logger.error(e.getLocalizedMessage());
+            }
+
+            System.out.println("User already vote for this movie. Vote changed from X to new rating");
+            return "User already vote for this movie. Vote changed from X to new rating";
+        } else {
+            userEntity.getRatings().add(userRating);
+            usersRepository.save(userEntity);
+
+            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+            System.out.println(valorationDTO);
+
+            try {
+                moviesServiceClient.addRating(movieId, valorationDTO);
+            } catch (FeignException e) {
+                logger.error(e.getLocalizedMessage());
+            }
+
+            return "Vote added";
+        }
     }
 
     //	Codes

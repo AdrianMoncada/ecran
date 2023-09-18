@@ -35,4 +35,5 @@ public class MovieResDTO implements Serializable {
     private List<Platform> platforms = new ArrayList<>();
     private List<UsersComment> comments = new ArrayList<>();
     private Double score;
+    private Integer pageSize;
 }

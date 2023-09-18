@@ -1,6 +1,7 @@
 package com.dh.movie.controller;
 
 import com.dh.movie.model.dto.UserScoreDTO;
+import com.dh.movie.model.dto.movie.AllPageableDTO;
 import com.dh.movie.model.dto.movie.MovieReqDTO;
 import com.dh.movie.model.dto.movie.MovieResDTO;
 import com.dh.movie.service.impl.MovieServiceImpl;
@@ -28,6 +29,16 @@ public class MovieController {
     @GetMapping("")
     ResponseEntity<List<MovieResDTO>> findAll() {
         return ResponseEntity.ok().body(movieService.findAll());
+    }
+
+    @GetMapping("/page/{page}")
+    ResponseEntity<AllPageableDTO> findAllPageable(@PathVariable String page) {
+        return ResponseEntity.ok().body(movieService.findAllPageable(Integer.valueOf(page), 8));
+    }
+
+    @GetMapping("/top")
+    ResponseEntity<List<MovieResDTO>> findTop10() {
+        return ResponseEntity.ok().body(movieService.top10Rating());
     }
 
     @GetMapping("/{id}")

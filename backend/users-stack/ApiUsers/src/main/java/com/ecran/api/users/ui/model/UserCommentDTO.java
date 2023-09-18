@@ -10,4 +10,5 @@ import lombok.*;
 public class  UserCommentDTO {
     private String movie;
     private String comment;
+    private String imageUrl;
 }

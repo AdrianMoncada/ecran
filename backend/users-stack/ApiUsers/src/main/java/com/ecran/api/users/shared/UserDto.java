@@ -1,5 +1,6 @@
 package com.ecran.api.users.shared;
 
+import com.ecran.api.users.data.models.UsersRating;
 import com.ecran.api.users.data.models.UsersWatchlist;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,46 +28,6 @@ public class UserDto implements Serializable {
 	private String userId;
 	private String encryptedPassword;
 	private Boolean enabled;
-	private List<UsersWatchlist> watchlist;
 	private String imageUrl;
-
-//	private List<MoviesResponseModel> movies;
-
-//	public List<MoviesResponseModel> getMovies() {
-//		return movies;
-//	}
-//
-//	public void setMovies(List<MoviesResponseModel> movies) {
-//		this.movies = movies;
-//	}
-
-
-	public void setWatchlist(List<UsersWatchlist> watchlist) {
-		this.watchlist = watchlist;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public void setEncryptedPassword(String encryptedPassword) {
-		this.encryptedPassword = encryptedPassword;
-	}
-
+	private List<UsersRating> ratings = new ArrayList<>();
 }
