@@ -277,11 +277,11 @@ public class UsersServiceImpl implements UsersService {
         }
     }
 
-//	Codes
+    //	Codes
 //	200 Verificado (enabled 0 --> 1)
 //	300 Ya estaba verificado (enabled 1 --> 1)
     @Override
-    public UserConfirmationResponse enableUser(String userId)  throws UsernameNotFoundException{
+    public UserConfirmationResponse enableUser(String userId) throws UsernameNotFoundException {
         UserConfirmationResponse response = new UserConfirmationResponse();
         UserEntity foundUser = usersRepository.findByUserId(userId);
         if (foundUser == null) throw new UsernameNotFoundException("user not found");
@@ -297,10 +297,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void sendVerificationEmail(String userId, String appUrl, Locale locale) {
+    public int sendVerificationEmail(String userId, String appUrl, Locale locale) {
         UserEntity foundUser = usersRepository.findByUserId(userId);
         UserDto foundUserDto = mapper.map(foundUser, UserDto.class);
-        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(foundUserDto,
-                locale, appUrl));
+        try {
+            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(foundUserDto,
+                    locale, appUrl));
+            return 200;
+        } catch (Exception e) {
+            System.out.println(e);
+            return 500;
+        }
+
     }
 }

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import * as XLSX from "xlsx";
-import Box from "@mui/material/Box";
+import { ModalContainer, LinkButton } from "./Import.styles";
+import { useAuth } from "@/hooks/useAuth";
+import { Toaster, toast } from "sonner";
 import Modal from "@mui/material/Modal";
-import { ModalContainer } from "./Import.styles";
+import endPoints from "@/service/api";
+import Box from "@mui/material/Box";
+import * as XLSX from "xlsx";
+import Link from "next/link";
+import axios from "axios";
 
 const style = {
 	position: "absolute",
@@ -17,10 +22,12 @@ const style = {
 	p: 4,
 };
 
-function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
+function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerified, isLogged, setMsg }) {
 	const [typeError, setTyperError] = useState(null);
 	const [excelFile, setExcelFile] = useState(null);
 	const [loadingMessage, setLoadingMessage] = useState(false);
+	const [sent, setSent] = useState(false);
+	const auth = useAuth();
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
@@ -42,10 +49,10 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 					setExcelFile(e.target.result);
 				};
 			} else {
-				setTyperError("porfavor seleccione un archivo con extension xls");
+				setTyperError("Por favor seleccione un archivo con extensión xls");
 			}
 		} else {
-			console.log("Porfavor seleccione su archivo");
+			console.log("Por favor seleccione su archivo");
 		}
 	};
 
@@ -68,6 +75,21 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 		}
 	};
 
+	const sendEmail = async () => {
+		axios
+			.get(endPoints.auth.sendEmail(auth.user.userId))
+			.then((response) => {
+				console.log(response);
+				setSent(true);
+				setMsg("Se envió el email a su correo");
+				toast.success("Se envió el email a su correo");
+			})
+			.catch((e) => {
+				console.log(e);
+				toast.error("Ocurrió un error al enviar el email");
+			});
+	};
+
 	return (
 		<div style={{ color: "black" }}>
 			<button style={{ color: "white" }} onClick={handleOpen}>
@@ -80,28 +102,53 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<ModalContainer>
-						<h1 className="title">Importar peliculas</h1>
-						<form onSubmit={handleFileSubmit}>
-							<input
-								className="input-file"
-								type="file"
-								accept=".xlsx"
-								placeholder="hidden_input"
-								onChange={handleFileUpload}
-							/>
-							<button className="button-import" type="submit">
-								{loadingMessage ? "Cargando Peliculas..." : "Cargar peliculas"}
-							</button>
-							{typeError && <div>{typeError}</div>}
-						</form>
-					</ModalContainer>
+					{isLogged ? (
+						isVerified ? (
+							<ModalContainer>
+								<h1 className="title">Importar peliculas</h1>
+								<form onSubmit={handleFileSubmit}>
+									<input
+										className="input-file"
+										type="file"
+										accept=".xlsx"
+										placeholder="hidden_input"
+										onChange={handleFileUpload}
+									/>
+									<button className="button-import" type="submit">
+										{loadingMessage ? "Cargando Peliculas..." : "Cargar peliculas"}
+									</button>
+									{typeError && <div>{typeError}</div>}
+								</form>
+							</ModalContainer>
+						) : (
+							<ModalContainer>
+								<h1 className="title">No estás verificado</h1>
+								<p>Revisa tu casilla de correo para verificar tu cuenta y poder acceder a esta funcionalidad.</p>
+								<p className="second-line">
+									No te llegó el correo? <LinkButton onClick={() => sendEmail()}>Reenviar</LinkButton>
+								</p>
+							</ModalContainer>
+						)
+					) : (
+						<ModalContainer>
+							<h1 className="title">No iniciaste sesión</h1>
+							<p>Inicia sesión con tu cuenta para poder exportar tu lista de películas.</p>
+							<p className="second-line">
+								No tienes cuenta?
+								<LinkButton>
+									<Link href="/signUp">Registrarse</Link>
+								</LinkButton>
+							</p>
+						</ModalContainer>
+					)}
+
 					<div style={{ color: "black" }}>
 						{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
 						{errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 					</div>
 				</Box>
 			</Modal>
+			<Toaster richColors position="bottom-right" />
 		</div>
 	);
 }

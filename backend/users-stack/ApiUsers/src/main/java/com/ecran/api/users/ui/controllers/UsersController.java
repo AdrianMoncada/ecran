@@ -88,7 +88,7 @@ public class UsersController {
     }
 
     @GetMapping(value = "/{userId}/confirm")
-    public UserConfirmationResponse confirmRegistration(@PathVariable String userId){
+    public UserConfirmationResponse confirmRegistration(@PathVariable String userId) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return usersService.enableUser(userId);
@@ -135,8 +135,8 @@ public class UsersController {
     }
 
     @GetMapping("/{userId}/sendemail")
-    public void sendVerificationEmail(@PathVariable String userId, HttpServletRequest request) {
+    public int sendVerificationEmail(@PathVariable String userId, HttpServletRequest request) {
         String appUrl = request.getContextPath();
-         usersService.sendVerificationEmail(userId, appUrl, request.getLocale() );
+        return usersService.sendVerificationEmail(userId, appUrl, request.getLocale());
     }
 }
