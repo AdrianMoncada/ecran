@@ -116,6 +116,7 @@ const MyList = () => {
 						successMessage={successMessage}
 						errorMessage={errorMessage}
 						isVerified={isVerified}
+						isLogged={isLogged}
 						setMsg={setSuccessMessage}
 					/>
 				</div>

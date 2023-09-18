@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ModalContainer, LinkButton } from "./Import.styles";
 import { useAuth } from "@/hooks/useAuth";
+import { Toaster, toast } from "sonner";
 import Modal from "@mui/material/Modal";
 import endPoints from "@/service/api";
 import Box from "@mui/material/Box";
@@ -81,9 +82,11 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerif
 				console.log(response);
 				setSent(true);
 				setMsg("Se envió el email a su correo");
+				toast.success("Se envió el email a su correo");
 			})
 			.catch((e) => {
 				console.log(e);
+				toast.error("Ocurrió un error al enviar el email");
 			});
 	};
 
@@ -145,6 +148,7 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerif
 					</div>
 				</Box>
 			</Modal>
+			<Toaster richColors position="bottom-right" />
 		</div>
 	);
 }
