@@ -27,5 +27,5 @@ public interface UsersService extends UserDetailsService {
 	String saveImage(MultipartFile image);
 	UserConfirmationResponse enableUser(String userId);
 
-	void sendVerificationEmail(String userId, String appUrl, Locale locale);
+	int sendVerificationEmail(String userId, String appUrl, Locale locale);
 }
