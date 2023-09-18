@@ -4,6 +4,7 @@ import com.dh.movie.controller.feign.UsersFeign;
 import com.dh.movie.exceptions.ResourceNotFoundException;
 import com.dh.movie.exceptions.ServiceException;
 import com.dh.movie.model.dto.UserScoreDTO;
+import com.dh.movie.model.dto.movie.AllPageableDTO;
 import com.dh.movie.model.dto.movie.MovieReqDTO;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
@@ -15,9 +16,11 @@ import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.*;
 
 @Service
@@ -28,6 +31,7 @@ public class MovieServiceImpl implements MovieService {
     private final UsersFeign usersFeign;
     private final ModelMapper mapper;
     private final FileStoreServiceImpl fileStore;
+    public static int pageSize = 0;
 
     @Override
     public MovieResDTO save(MovieReqDTO movie) {
@@ -63,6 +67,24 @@ public class MovieServiceImpl implements MovieService {
             throw new RuntimeException("Movie with id " + id + " doesn't exists.");
         }
         repository.deleteById(id);
+    }
+
+    @Override
+    public AllPageableDTO findAllPageable(Integer page, int elements) {
+        PageRequest pageable = PageRequest.of(page, elements);
+
+        List<MovieResDTO> movies = repository.findAll(pageable).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
+        AllPageableDTO responseDTO = new AllPageableDTO();
+
+        responseDTO.setSize(Math.round((float) repository.count() /8));
+        responseDTO.setMovies(movies);
+
+        return responseDTO;
+    }
+
+    @Override
+    public List<MovieResDTO> top10Rating() {
+        return repository.findTop10ByOrderByScoreDesc().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
     }
 
     @Override
