@@ -19,6 +19,10 @@ export const ModalContainer = styled(Box)`
 		margin: 10px 0;
 	}
 
+	.second-line {
+		margin: 20px 0 10px 0;
+	}
+
 	.button-import {
 		background-color: #683ca0;
 		padding: 10px 20px;
@@ -27,5 +31,15 @@ export const ModalContainer = styled(Box)`
 		margin: 10px auto;
 		display: flex;
 		justify-content: center;
+	}
+`;
+
+export const LinkButton = styled.b`
+	color: #683ca0;
+	text-decoration: underline;
+	margin-left: 4px;
+
+	:hover {
+		cursor: pointer;
 	}
 `;

@@ -6,13 +6,13 @@ import {
 	CardContainer,
 	TitleListContainer,
 } from "@/styles/pages.styles/my-list.styles";
-import Carousel from "@components/carousel/Carousel";
-import { useAuth } from "@/hooks/useAuth";
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import endPoints from "@/service/api";
 import ImportarDesdeExcel from "@components/files/import/Import";
 import ExportarExcel from "@components/files/export/Export";
+import Carousel from "@components/carousel/Carousel";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import endPoints from "@/service/api";
+import Cookies from "js-cookie";
 import Head from "next/head";
 
 const MyList = () => {
@@ -21,6 +21,7 @@ const MyList = () => {
 	const [successMessage, setSuccessMessage] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isVerified, setVerified] = useState(false);
+	const [isLogged, setLogged] = useState(true);
 
 	const fetchWatchList = () => {
 		const userId = Cookies.get("userId");
@@ -38,7 +39,10 @@ const MyList = () => {
 		if (auth.user) {
 			// const userId = auth.user.userId;
 			auth.user.enabled ? setVerified(true) : setVerified(false);
+			setLogged(true);
 			fetchWatchList();
+		} else {
+			setLogged(false);
 		}
 	}, [auth.user]);
 
@@ -106,12 +110,13 @@ const MyList = () => {
 					<p>Aquí podrás encontrar las películas y series que hayas guardado previamente.</p>
 				</div>
 				<div className="buttons">
-					<ExportarExcel listaPeliculas={watchlistMovies} isVerified={isVerified} />
+					<ExportarExcel listaPeliculas={watchlistMovies} isVerified={isVerified} isLogged={isLogged} />
 					<ImportarDesdeExcel
 						fetchMovies={fetchMovies}
 						successMessage={successMessage}
 						errorMessage={errorMessage}
 						isVerified={isVerified}
+						setMsg={setSuccessMessage}
 					/>
 				</div>
 			</TitleListContainer>

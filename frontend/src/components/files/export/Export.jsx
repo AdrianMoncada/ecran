@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import ExcelJS from "exceljs";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import React, { useState } from "react";
 import { ModalContainer, LinkButton } from "./Export.styles";
-import axios from "axios";
+import { useAuth } from "@/hooks/useAuth";
+import Modal from "@mui/material/Modal";
 import endPoints from "@/service/api";
+import Box from "@mui/material/Box";
+import ExcelJS from "exceljs";
+import Link from "next/link";
+import axios from "axios";
 
 const style = {
 	position: "absolute",
@@ -19,15 +21,13 @@ const style = {
 	p: 4,
 };
 
-function ExportarExcel({ listaPeliculas, isVerified }) {
+function ExportarExcel({ listaPeliculas, isVerified, isLogged }) {
+	const auth = useAuth();
 	const [open, setOpen] = useState(false);
 	const [sent, setSent] = useState(false);
 	const handleErrorOpen = () => setOpen(true);
 	const handleErrorClose = () => setOpen(false);
-	// useEffect
-	useEffect(() => {
-		console.log(isVerified);
-	}, [isVerified]);
+
 	const exportToExcel = async () => {
 		const workbook = new ExcelJS.Workbook();
 		const worksheet = workbook.addWorksheet("Lista de Películas");
@@ -51,17 +51,16 @@ function ExportarExcel({ listaPeliculas, isVerified }) {
 		a.click();
 		window.URL.revokeObjectURL(url);
 	};
+
 	const sendEmail = async () => {
 		axios
-			.get(endPoints.auth.sendEmail(id))
+			.get(endPoints.auth.sendEmail(auth.user.userId))
 			.then((response) => {
-
-				// setLoading(false);
+				console.log(response);
+				setSent(true);
 			})
 			.catch((e) => {
 				console.log(e);
-				setError(true);
-				setLoading(false);
 			});
 	};
 
@@ -75,13 +74,27 @@ function ExportarExcel({ listaPeliculas, isVerified }) {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<ModalContainer>
-						<h1 className="title">No estás verificado</h1>
-						<p>Revisa tu casilla de correo para verificar tu cuenta y poder acceder a esta funcionalidad.</p>
-						<p className="second-line">
-							No te llegó el correo? <LinkButton>Reenviar</LinkButton>
-						</p>
-					</ModalContainer>
+					{isLogged ? (
+						<ModalContainer>
+							<h1 className="title">No estás verificado</h1>
+							<p>Revisa tu casilla de correo para verificar tu cuenta y poder acceder a esta funcionalidad.</p>
+							<p className="second-line">
+								No te llegó el correo? <LinkButton onClick={() => sendEmail()}>Reenviar</LinkButton>
+							</p>
+						</ModalContainer>
+					) : (
+						<ModalContainer>
+							<h1 className="title">No iniciaste sesión</h1>
+							<p>Inicia sesión con tu cuenta para poder exportar tu lista de películas.</p>
+							<p className="second-line">
+								No tienes cuenta?
+								<LinkButton>
+									<Link href="/signUp">Registrarse</Link>
+								</LinkButton>
+							</p>
+						</ModalContainer>
+					)}
+
 					{/* <div style={{ color: "black" }}>
 						{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
 						{errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}

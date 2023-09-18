@@ -32,6 +32,7 @@ export const ModalContainer = styled(Box)`
 export const LinkButton = styled.b`
 	color: #683ca0;
 	text-decoration: underline;
+	margin-left: 4px;
 
     :hover{
         cursor: pointer;
