@@ -17,7 +17,7 @@ const style = {
 	p: 4,
 };
 
-function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
+function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerified }) {
 	const [typeError, setTyperError] = useState(null);
 	const [excelFile, setExcelFile] = useState(null);
 	const [loadingMessage, setLoadingMessage] = useState(false);
@@ -25,6 +25,8 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const handleErrorOpen = () => setOpen(true);
+	const handleErrorClose = () => setOpen(false);
 
 	const handleFileUpload = (e) => {
 		let fileTypes = [
@@ -70,7 +72,7 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage }) {
 
 	return (
 		<div style={{ color: "black" }}>
-			<button style={{ color: "white" }} onClick={handleOpen}>
+			<button style={{ color: "white" }} onClick={isVerified ? handleOpen : handleErrorOpen}>
 				Importar
 			</button>
 			<Modal

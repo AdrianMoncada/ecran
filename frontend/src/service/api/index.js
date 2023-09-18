@@ -8,6 +8,7 @@ const endPoints = {
 		verification: (userid) => `${API}/users/${userid}/confirm`,
 		check: `${API}/users/status/check`,
 		comment: (userid) => `${USER}/users/${userid}/comments`,
+		sendEmail: (userid) => `${USER}/users/${userid}/sendemail`,
 	},
 	movies: {
 		getMovie: (id) => `${API}/api/v1/movies/${id}`,

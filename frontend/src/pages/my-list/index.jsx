@@ -46,7 +46,6 @@ const MyList = () => {
 		console.log(data);
 		const successfulImports = [];
 		const failedImports = [];
-		const token = Cookies.get("token");
 
 		for (const item of data) {
 			const body = {
@@ -58,7 +57,6 @@ const MyList = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`,
 					},
 					body: JSON.stringify(body),
 				});
@@ -77,11 +75,6 @@ const MyList = () => {
 			setErrorMessage(`No se pudieron cargar ${failedImports.length} películas.`);
 		}
 	};
-	useEffect(() => {
-		if (auth.user && auth.user.enabled) {
-			setVerified(true);
-		}
-	}, [auth]);
 
 	return (
 		<>
@@ -113,8 +106,13 @@ const MyList = () => {
 					<p>Aquí podrás encontrar las películas y series que hayas guardado previamente.</p>
 				</div>
 				<div className="buttons">
-					<ExportarExcel listaPeliculas={watchlistMovies} />
-					<ImportarDesdeExcel fetchMovies={fetchMovies} successMessage={successMessage} errorMessage={errorMessage} />
+					<ExportarExcel listaPeliculas={watchlistMovies} isVerified={isVerified} />
+					<ImportarDesdeExcel
+						fetchMovies={fetchMovies}
+						successMessage={successMessage}
+						errorMessage={errorMessage}
+						isVerified={isVerified}
+					/>
 				</div>
 			</TitleListContainer>
 			<CardContainer>
