@@ -69,8 +69,8 @@ public class MovieController {
                     @RequestParam(defaultValue = "") List<String> platforms,
                     @RequestParam(defaultValue = "0") String min_date,
                     @RequestParam(defaultValue = "3000") String max_date,
-                    @PathVariable String page,
-                    @RequestParam(required = false, defaultValue = "asc") String order
+                    @RequestParam(required = false, defaultValue = "asc") String order,
+                    @PathVariable("page") String page
 
             )
     {
