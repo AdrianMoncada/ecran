@@ -5,11 +5,12 @@ import RangeSlider from "./help/RangeSlider";
 import { ContainerGenre, ContainerPlaforms, Container } from "./Filters.styles";
 import CheckboxImage from "./help/CheckboxImage";
 import endPoints from "@/service/api";
+import { paginationMovies } from "@/service/movies/movies.service";
 
 const MIN_DATE = 1990;
 const MAX_DATE = 2023;
 
-const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFiltered }) => {
+const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount }) => {
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 	const [dateRange, setDateRange] = useState([MIN_DATE, MAX_DATE]);
@@ -46,9 +47,20 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFi
 		const apiUrl = endPoints.movies.filters(queryParams);
 		fetch(apiUrl)
 			.then((response) => response.json())
-			.then((data) => setFilteredMovies(data))
+			.then(async (data) => {
+				console.log("🚀 ~ file: Filters.jsx:52 ~ .then ~ data.movies.length:", data.movies.length);
+				console.log("🚀 ~ file: Filters.jsx:52 ~ .then ~ data.movies:", data.movies);
+				if (data.movies.length === 0) {
+					const response = await paginationMovies(pagina);
+					setMovies(response.movies);
+					setCount(response.size);
+				} else {
+					setMovies(data.movies);
+					setCount(data.size);
+				}
+			})
 			.catch((error) => console.log(error));
-	}, [selectedGenres, selectedPlatforms, dateRange]);
+	}, [selectedGenres, selectedPlatforms, dateRange, pagina]);
 
 	return (
 		<Container style={{ color: "#663B9F" }} className="p-4 space-y-4 text-center">
@@ -85,7 +97,6 @@ const Filters = ({ genresOptions, platformsOptions, setFilteredMovies, setShowFi
 			</div>
 			<button
 				onClick={() => {
-					setShowFiltered(false);
 					setSelectedGenres([]);
 					setSelectedPlatforms([]);
 					setDateRange([MIN_DATE, MAX_DATE]);

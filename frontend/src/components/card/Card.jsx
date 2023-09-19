@@ -3,7 +3,7 @@ import { Container, CardHeader } from "./Card.styles";
 //import { useRouter } from "next/router";
 import Link from "next/link";
 
-const Card = ({ movie }) => {
+const Card = ({ movie, top }) => {
 	// const router = useRouter();
 
 	// const handleClick = () => {
@@ -37,7 +37,7 @@ const Card = ({ movie }) => {
 	return (
 		<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "430px" }}>
 			<Container imageUrl={movie?.image_url}>
-				<span className="card_top">{movie?.top}</span>
+				<span className="card_top">{top}</span>
 				<CardHeader>
 					<div>
 						<p>{movie?.director}</p>
