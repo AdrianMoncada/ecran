@@ -43,6 +43,15 @@ const SignUp = () => {
 				"7477C0",
 				"BA7BD1",
 				"803D31",
+				"4A15F5",
+				"2CBF5D",
+				"B3D690",
+				"CC2FAB",
+				"DD1B47",
+				"EBB652",
+				"8961E4",
+				"BBADC2",
+				"3A202B",
 			];
 			const backgroundTypeOptions = ["gradientLinear", "solid"];
 			const eyesOptions = [
