@@ -81,7 +81,7 @@ export const ContainerFrom = styled.section`
 
 export const Button = styled.button`
 	background-color: #7400ff;
-	width: 370px;
+	width: 100%;
 	height: 45px;
 	border-radius: 15px;
 	border: 0px solid transparent;
