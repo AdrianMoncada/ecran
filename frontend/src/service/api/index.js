@@ -12,13 +12,14 @@ const endPoints = {
 	movies: {
 		getMovie: (id) => `${API}/api/v1/movies/${id}`,
 		movies: `${API}/api/v1/movies`,
-		moviesDate: (minDate, maxDate) => `${API}/api/v1/movies/filter?min_date=${minDate}&max_date=${maxDate}&order=desc`,
-		filters: (queryParams) => `${API}/api/v1/movies/filter?${queryParams}`,
+		moviesDate: (minDate, maxDate) =>
+			`${API}/api/v1/movies/filter/1?min_date=${minDate}&max_date=${maxDate}&order=desc`,
+		filters: (queryParams, page) => `${API}/api/v1/movies/filter/${page}?${queryParams}`,
 		search: (query) => `${API}/api/v1/movies/search?title=${query}`,
 		watchlist: (userid) => `${API}/users/${userid}/watchlist`,
 		avatar: `${API}/users/image`,
 		top: `${API}/api/v1/movies/top`,
-		genre: `${API}/api/v1/movies/filter?=Drama`,
+		genre: `${API}/api/v1/movies/filter/1?=Drama`,
 		pagination: (page) => `${API}/api/v1/movies/page/${page}`,
 	},
 };

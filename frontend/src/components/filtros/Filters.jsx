@@ -44,12 +44,10 @@ const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount 
 			order: "desc",
 		});
 
-		const apiUrl = endPoints.movies.filters(queryParams);
+		const apiUrl = endPoints.movies.filters(queryParams, pagina);
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then(async (data) => {
-				console.log("🚀 ~ file: Filters.jsx:52 ~ .then ~ data.movies.length:", data.movies.length);
-				console.log("🚀 ~ file: Filters.jsx:52 ~ .then ~ data.movies:", data.movies);
 				if (data.movies.length === 0) {
 					const response = await paginationMovies(pagina);
 					setMovies(response.movies);

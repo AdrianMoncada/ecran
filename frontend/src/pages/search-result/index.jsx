@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Search from "@components/search/Search";
 import { SearchResultsContainer, ResultsContainer, NotFound } from "@styles/pages.styles/search-results.styles";
 import AutocompleteItem from "@/components/results/AutocompleteItem";
-import Image from "next/image";
 import Head from "next/head";
 
 const SearchResults = () => {
@@ -44,7 +43,7 @@ const SearchResults = () => {
 						</ul>
 					) : (
 						<NotFound>
-							<Image src="/images/Not-found.png" alt="" width={200} height={200} />
+							<img src="/images/Not-found.png" alt="" width={200} height={200} />
 							<div className="not-found-text">
 								<h2>Oops!</h2>
 								<p>No hay resultados para tu busqueda</p>
