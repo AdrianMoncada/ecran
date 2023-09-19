@@ -106,7 +106,7 @@ const SignUp = () => {
 				<p className="text">
 					Already have an account?{"   "}
 					<Link className="link" href="/signIn">
-						Sign In
+						Iniciar Sesión
 					</Link>
 				</p>
 				<Toaster richColors position="bottom-right" />
