@@ -25,8 +25,8 @@ const Profile = () => {
 	const auth = useAuth();
 	const { user, updateProfileInfo, uploadProfilePicture } = auth;
 	const router = useRouter();
-	const [profilePictureUrl, setProfilePictureUrl] = useState(user?.profilePictureUrl || ""); // Supongo que existe un campo 'profilePictureUrl' en el objeto 'user'
-	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
+	const [profilePictureUrl, setProfilePictureUrl] = useState(user?.profilePictureUrl || "");
+	// const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
 
 	const initalData = {
 		firstName: user?.firstName,
@@ -47,16 +47,17 @@ const Profile = () => {
 		if (file) {
 			const imageUrl = URL.createObjectURL(file);
 			setProfilePictureUrl(imageUrl);
-			setSelectedProfilePicture(file);
+			// setSelectedProfilePicture(file);
 		}
 	};
 
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
+			console.log(formData);
 			try {
-				if (selectedProfilePicture) {
-					const imageUrl = await uploadProfilePicture(selectedProfilePicture);
+				if (profilePictureUrl) {
+					const imageUrl = await uploadProfilePicture(profilePictureUrl);
 					formData.profilePictureUrl = imageUrl;
 				}
 				updateProfileInfo(formData)

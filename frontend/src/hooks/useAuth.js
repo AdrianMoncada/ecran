@@ -76,21 +76,14 @@ function useProvideAuth() {
 
 	const updateProfileInfo = async (updatedData) => {
 		try {
-			const token = Cookie.get("token");
-
-			if (!token) {
-				return null;
-			}
-
 			const userId = Cookie.get("userId");
 
 			if (!userId) {
 				return null;
 			}
 
-			const response = await axios.put(endPoints.update(userId), updatedData, {
+			const response = await axios.put(endPoints.auth.update(userId), updatedData, {
 				headers: {
-					Authorization: `Bearer ${token}`,
 					"Content-Type": "application/json",
 				},
 			});
@@ -111,11 +104,23 @@ function useProvideAuth() {
 	// Función para actualizar imagen del perfil del usuario
 	const uploadProfilePicture = async (profilePicture) => {
 		try {
+			const token = Cookie.get("token");
+
+			if (!token) {
+				return null;
+			}
 			const formImageData = new FormData();
 			formImageData.append("file", profilePicture);
 
-			const imageResponse = await axios.post(endPoints.auth.profilePicture, formImageData, {
+			const userId = Cookie.get("userId");
+
+			if (!userId) {
+				return null;
+			}
+
+			const imageResponse = await axios.post(endPoints.auth.profilePicture(userId), formImageData, {
 				headers: {
+					Authorization: `Bearer ${token}`,
 					"Content-Type": "multipart/form-data",
 				},
 			});
