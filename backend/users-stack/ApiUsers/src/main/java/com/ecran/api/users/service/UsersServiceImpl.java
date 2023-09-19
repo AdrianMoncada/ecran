@@ -77,9 +77,9 @@ public class UsersServiceImpl implements UsersService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
-//        RoleEntity roleUser = roleRepository.findByName(Roles.ROLE_USER.name());
-//        userEntity.setRoles(Arrays.asList(roleUser));
-//        usersRepository.save(userEntity);
+        RoleEntity roleUser = roleRepository.findByName(Roles.ROLE_USER.name());
+        userEntity.setRoles(Arrays.asList(roleUser));
+        usersRepository.save(userEntity);
 
         UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
