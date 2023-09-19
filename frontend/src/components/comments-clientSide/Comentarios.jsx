@@ -1,15 +1,15 @@
 import { Comments } from "@styles/pages.styles/movies.styles";
-import React, { useEffect, useState } from "react";
-import endPoints from "@/service/api";
+import { ModalContainer, LinkButton } from "./Comments.styles";
 import CommentsUser from "@components/comments/CommentsUser";
-import { Toaster, toast } from "sonner";
-import Cookies from "js-cookie";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import Modal from "@mui/material/Modal";
+import { Toaster, toast } from "sonner";
+import endPoints from "@/service/api";
 import Box from "@mui/material/Box";
+import Cookies from "js-cookie";
 import Link from "next/link";
-import { ModalContainer, LinkButton } from "./Comments.styles";
+import axios from "axios";
 
 const Comentarios = ({ movies }) => {
 	const [inputComments, setInputComments] = useState("");
@@ -22,7 +22,7 @@ const Comentarios = ({ movies }) => {
 	const handleErrorOpen = () => setOpen(true);
 	const handleErrorClose = () => {
 		setOpen(false);
-		setInputComments("");
+		// setInputComments("");
 	};
 
 	function obtenerFechaActual() {
@@ -167,11 +167,6 @@ const Comentarios = ({ movies }) => {
 							</p>
 						</ModalContainer>
 					)}
-
-					{/* <div style={{ color: "black" }}>
-						{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-						{errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-					</div> */}
 				</Box>
 			</Modal>
 		</Comments>
