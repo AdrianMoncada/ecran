@@ -1,16 +1,17 @@
 package com.dh.movie.model.dto.movie;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.dh.movie.model.Movie;
+import lombok.*;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AllPageableDTO {
     private List<MovieResDTO> movies;
-    private long size;
+    private int size;
 }

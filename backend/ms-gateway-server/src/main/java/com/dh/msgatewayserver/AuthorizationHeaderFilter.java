@@ -14,7 +14,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config>{
@@ -25,6 +26,20 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         super(Config.class);
     }
     public static class Config {
+        private List<String> authorities;
+        public List<String> getAuthorities() {
+            return authorities;
+        }
+
+        public void setAuthorities(String authorities) {
+            this.authorities = Arrays.asList(authorities.split(" "));
+        }
+
+    }
+
+    @Override
+    public List<String> shortcutFieldOrder() {
+        return Arrays.asList("authorities");
     }
 
     @Override
@@ -36,10 +51,13 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             }
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
             String jwt = authorizationHeader.replace("Bearer", "");
+            List<String> authorities = getAuthorities(jwt);
+            boolean hasRequiredAuthority = authorities.stream()
+                    .anyMatch(authority->configuration.getAuthorities().contains(authority));
 
-            if(!isJwtValid(jwt)) {
-                return onError(exchange, "JWT is not valid", HttpStatus.UNAUTHORIZED);
-            }
+            if(!hasRequiredAuthority)
+                return onError(exchange,"User is not authorized to perform this operation", HttpStatus.FORBIDDEN);
+
             return chain.filter(exchange);
         };
     }
@@ -50,9 +68,8 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         return response.setComplete();
     }
 
-    private boolean isJwtValid(String jwt){
-        boolean returnValue=true;
-        String subject=null;
+    private List<String> getAuthorities(String jwt){
+        List<String> returnValue = new ArrayList<>();
 
         String tokenSecret = env.getProperty("token.secret");
         byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
@@ -63,12 +80,10 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
                 .build();
         try {
             Jwt<Header, Claims> parsedToken = jwtParser.parse(jwt);
-            subject = parsedToken.getBody().getSubject();
+            List<Map<String, String>> scopes = ((Claims)parsedToken.getBody()).get("scope", List.class);
+            scopes.stream().map(scopeMap -> returnValue.add(scopeMap.get("authority"))).collect(Collectors.toList());
         } catch (Exception ex) {
-            returnValue=false;
-        }
-        if (subject ==null || subject.isEmpty()){
-            returnValue=false;
+            return returnValue;
         }
 
         return returnValue;

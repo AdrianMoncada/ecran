@@ -15,10 +15,6 @@ export const ModalContainer = styled(Box)`
 		margin-bottom: 20px;
 	}
 
-	.input-file {
-		margin: 10px 0;
-	}
-
 	.second-line {
 		margin: 20px 0 10px 0;
 	}
@@ -33,7 +29,6 @@ export const ModalContainer = styled(Box)`
 		justify-content: center;
 	}
 `;
-
 export const LinkButton = styled.b`
 	color: #683ca0;
 	text-decoration: underline;

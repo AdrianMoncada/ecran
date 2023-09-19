@@ -2,6 +2,7 @@ package com.ecran.api.users.data.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -32,6 +33,10 @@ public class UserEntity implements Serializable {
 	private String email;
 	@Column(nullable=false, unique=true)	
 	private String encryptedPassword;
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinTable(name="users_roles", joinColumns=@JoinColumn(name = "users_id", referencedColumnName = "id"),
+			inverseJoinColumns=@JoinColumn(name = "roles_id", referencedColumnName = "id"))
+	Collection<RoleEntity> roles;
 	@Column(name = "image_url")
 	private String imageUrl;
 	@Column(nullable=false)

@@ -16,6 +16,7 @@ import com.dh.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,6 @@ public class MovieServiceImpl implements MovieService {
     private final UsersFeign usersFeign;
     private final ModelMapper mapper;
     private final FileStoreServiceImpl fileStore;
-    public static int pageSize = 0;
 
     @Override
     public MovieResDTO save(MovieReqDTO movie) {
@@ -71,12 +71,15 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public AllPageableDTO findAllPageable(Integer page, int elements) {
-        PageRequest pageable = PageRequest.of(page, elements);
+
+        if (page < 1) throw new ServiceException("Page cannot be less than 1");
+
+        PageRequest pageable = PageRequest.of(page-1, elements);
 
         List<MovieResDTO> movies = repository.findAll(pageable).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
         AllPageableDTO responseDTO = new AllPageableDTO();
 
-        responseDTO.setSize(Math.round((float) repository.count() /8));
+        responseDTO.setSize((int) Math.ceil((double) repository.count() /8));
         responseDTO.setMovies(movies);
 
         return responseDTO;
@@ -93,23 +96,39 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieResDTO> findByFilters(List<String> genres, List<String> platforms, String min_date, String max_date, String order) {
+    public AllPageableDTO findByFilters(List<String> genres, List<String> platforms, String min_date, String max_date, String order, Integer num) {
+
+        if (num < 1) throw new ServiceException("Page cannot be less than 1");
+
         List<GenreDB> parsedGenres = genres.stream().map(GenreDB::new).toList();
         List<PlatformDB> parsedPlatforms = platforms.stream().map(PlatformDB::new).toList();
 
-        Sort.Direction sortDirection = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Sort sort = Sort.by(sortDirection, "title");
+        AllPageableDTO pagesDTO = new AllPageableDTO();
+        PageRequest page = PageRequest.of(num-1, 8, Sort.by("title").descending());
 
         if (parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
-            return repository.findByDateRange(min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
+            Page<Movie> moviesList = repository.findByDateRange(min_date, max_date, page);
+            pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
+            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            return pagesDTO;
         }
         if (!parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
-            return repository.findByGenresInDateRange(parsedGenres, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
+            Page<Movie> moviesList = repository.findByGenresInDateRange(parsedGenres, min_date, max_date, page);
+            pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
+            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            return pagesDTO;
         }
         if (parsedGenres.isEmpty()) {
-            return repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
+            Page<Movie> moviesList = repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date, page);
+            pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
+            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            return pagesDTO;
         }
-        return repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date, sort).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
+        Page<Movie> moviesList = repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date, page);
+        pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
+        pagesDTO.setSize(moviesList.getTotalPages() - 1);
+
+        return pagesDTO;
     };
 
     @Override
