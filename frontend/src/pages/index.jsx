@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
-import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
+import fetchMoviesWithTop, { fetchMoviesDate, fetchMoviesGenre } from "@/service/movies/movies.service";
 import { fetchSeries } from "./api/series";
 import Head from "next/head";
 
@@ -88,7 +88,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 }
 
 export async function getServerSideProps() {
-	const response = await fetchMovies();
+	const response = await fetchMoviesGenre();
 	const moviesTop = await fetchMoviesWithTop();
 	const moviesOld = await fetchMoviesDate(2000, 2004);
 	const responseSeries = await fetchSeries();
