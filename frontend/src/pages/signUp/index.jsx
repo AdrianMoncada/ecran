@@ -9,7 +9,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import axios from "axios";
 
 const initalData = {
 	firstName: "",
@@ -20,7 +19,6 @@ const initalData = {
 
 const SignUp = () => {
 	const [submitted, setSubmitted] = useState(false);
-	const [image, setImage] = useState(null);
 	const auth = useAuth();
 	const router = useRouter();
 
@@ -101,7 +99,6 @@ const SignUp = () => {
 							</span>
 						</div>
 					))}
-					<input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
 					<Button type="submit" onClick={() => setSubmitted(true)}>
 						Sign Up
 					</Button>
