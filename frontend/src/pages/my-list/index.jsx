@@ -121,7 +121,6 @@ const MyList = () => {
 						errorMessage={errorMessage}
 						isVerified={isVerified}
 						isLogged={isLogged}
-						setMsg={setSuccessMessage}
 					/>
 				</div>
 			</TitleListContainer>
