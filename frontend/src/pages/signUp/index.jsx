@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
+import axios from "axios";
 
 const initalData = {
 	firstName: "",
@@ -19,6 +20,7 @@ const initalData = {
 
 const SignUp = () => {
 	const [submitted, setSubmitted] = useState(false);
+	const [image, setImage] = useState(null);
 	const auth = useAuth();
 	const router = useRouter();
 
@@ -32,8 +34,28 @@ const SignUp = () => {
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
+			/* const dataImage = new FormData();
+			dataImage.append("file", image);
+			const imageHeader = {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			};
+			console.log(image);
+			await axios
+				.post("http://ec2-52-90-142-35.compute-1.amazonaws.com:8082/users/image", dataImage, imageHeader)
+				.then((res) => console.log(res))
+				.catch((err) => console.log(err)); */
+
+			const datas = {
+				firstName: formData.firstName,
+				lastName: formData.lastName,
+				email: formData.email,
+				password: formData.password,
+				imageUrl: "https://api.dicebear.com/7.x/bottts-neutral/svg",
+			};
 			auth
-				.signUp(formData)
+				.signUp(datas)
 				.then(() => {
 					router.push("/");
 					toast.success("Cuenta creada con exito!");
@@ -79,6 +101,7 @@ const SignUp = () => {
 							</span>
 						</div>
 					))}
+					<input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
 					<Button type="submit" onClick={() => setSubmitted(true)}>
 						Sign Up
 					</Button>

@@ -63,7 +63,7 @@ const Header = ({ auth }) => {
 				</div>
 				{userInfo ? (
 					<Box className={openNav ? "nav-user-mobile" : "nav-user"} sx={{ flexGrow: 0 }}>
-						<Tooltip title="Open settings">
+						<Tooltip title="Abrir configuracion">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar>
 									<AccountCircleIcon />

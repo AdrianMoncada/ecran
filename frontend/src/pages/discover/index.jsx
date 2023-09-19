@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
 	Container,
 	Filtros,
@@ -8,7 +8,6 @@ import {
 	ContainerFilters,
 	ContainerResults,
 } from "@/styles/Discover.styles";
-
 import Filters from "@components/filtros/Filters";
 import platformsOptions from "@/assets/platforms.json";
 import Search from "@components/search/Search";
@@ -16,8 +15,8 @@ import { useRouter } from "next/router";
 import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
-import { fetchMovies } from "@/service/movies/movies.service";
 import Head from "next/head";
+import Image from "next/image";
 
 const genresOptions = [
 	"Acción",
@@ -34,15 +33,12 @@ const genresOptions = [
 	"Familia",
 ];
 
-const POR_PAGINA = 5;
-
-const Discover = ({ response }) => {
+const Discover = () => {
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
-	const [filteredMovies, setFilteredMovies] = useState([]);
-	const [showFiltered, setShowFiltered] = useState(false);
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState(1);
 	const router = useRouter();
 	const [pagina, setPagina] = useState(1);
+	const [movies, setMovies] = useState([]);
 
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevState) => !prevState);
@@ -51,26 +47,6 @@ const Discover = ({ response }) => {
 	const handleChange = (e, value) => {
 		setPagina(value);
 	};
-
-	useEffect(() => {
-		/* filteredMovies.length !== 0 ? setShowFiltered(true) : setShowFiltered(false); */
-		setShowFiltered(true);
-		if (showFiltered) {
-			setCount(filteredMovies.length / POR_PAGINA);
-		} else {
-			setCount(response.length / POR_PAGINA);
-		}
-	}, [filteredMovies]);
-
-	useEffect(() => {
-		if (showFiltered) {
-			setCount(filteredMovies.length / POR_PAGINA);
-		} else {
-			setCount(response.length / POR_PAGINA);
-		}
-	}, [showFiltered]);
-
-	const displayedMovies = showFiltered ? filteredMovies : response;
 
 	function cortarTexto(texto, limite) {
 		if (texto.length <= limite) {
@@ -109,8 +85,9 @@ const Discover = ({ response }) => {
 							<Filters
 								genresOptions={genresOptions}
 								platformsOptions={platformsOptions}
-								setFilteredMovies={setFilteredMovies}
-								setShowFiltered={setShowFiltered}
+								setMovies={setMovies}
+								pagina={pagina}
+								setCount={setCount}
 							/>
 						</Filtros>
 					</Hidden>
@@ -128,18 +105,19 @@ const Discover = ({ response }) => {
 							<Filters
 								genresOptions={genresOptions}
 								platformsOptions={platformsOptions}
-								setFilteredMovies={setFilteredMovies}
-								setShowFiltered={setShowFiltered}
+								setMovies={setMovies}
+								pagina={pagina}
+								setCount={setCount}
 							/>
 						</ModalFilters>
 					</Modal>
 				</Hidden>
 				<ContainerResults>
-					{displayedMovies.slice((pagina - 1) * POR_PAGINA, (pagina - 1) * POR_PAGINA + POR_PAGINA).map((item) => (
+					{movies?.map((item) => (
 						<List key={item.id} onClick={() => router.push(`/movies/${item.movieId}`)}>
 							<div className="list">
 								<div className="imageList">
-									<img src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
+									<Image src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
 								</div>
 								<div className="descriptionList">
 									<p className="textItem genre">{item.genres.map((i) => i).join("/")}</p>
@@ -154,7 +132,7 @@ const Discover = ({ response }) => {
 					<Box sx={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
 						<Box
 							sx={{
-								width: "300px",
+								width: "500px",
 								backgroundColor: "#c0bbbb",
 								padding: "10px",
 								borderRadius: "20px",
@@ -163,7 +141,7 @@ const Discover = ({ response }) => {
 							}}
 						>
 							<Pagination
-								count={Math.round(count)}
+								count={count}
 								page={pagina}
 								onChange={handleChange}
 								color="secondary"
@@ -177,14 +155,5 @@ const Discover = ({ response }) => {
 		</div>
 	);
 };
-
-export async function getServerSideProps() {
-	const response = await fetchMovies();
-	return {
-		props: {
-			response,
-		},
-	};
-}
 
 export default Discover;

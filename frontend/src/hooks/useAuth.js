@@ -24,15 +24,16 @@ function useProvideAuth() {
 				"Content-Type": "application/json",
 			},
 		};
-		/* await fetch(endPoints.auth.check, {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization:
-					"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYmZlYmY3OS0zY2NkLTRlNjMtYWE3NC02MWEzOThiNWFkMTAiLCJleHAiOjE2OTUwNjkyNTMsImlhdCI6MTY5NDgxMDA1M30.ema6o9_SxFdSj9U74U6Syu8QXTXm6n_m5hAf6o7wFzCvgnIKSFnp24sOJaLvII5EfXCoxGJpm92PY8UdiX7KEQ",
-			},
-		})
+		await axios
+			.get(endPoints.auth.check, {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization:
+						"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYmZlYmY3OS0zY2NkLTRlNjMtYWE3NC02MWEzOThiNWFkMTAiLCJleHAiOjE2OTUwNjkyNTMsImlhdCI6MTY5NDgxMDA1M30.ema6o9_SxFdSj9U74U6Syu8QXTXm6n_m5hAf6o7wFzCvgnIKSFnp24sOJaLvII5EfXCoxGJpm92PY8UdiX7KEQ",
+				},
+			})
 			.then((res) => console.log(res))
-			.catch((err) => console.error(err)); */
+			.catch((err) => console.error(err));
 		await axios
 			.post(endPoints.auth.login, { email, password }, options)
 			.then(async (res) => {

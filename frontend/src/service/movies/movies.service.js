@@ -11,11 +11,34 @@ export async function fetchMovies() {
 	}
 }
 
+export async function paginationMovies(page) {
+	try {
+		const response = await fetch(endPoints.movies.pagination(page));
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error("Error fetching movies data:", error);
+		throw error;
+	}
+}
+
+export async function fetchMoviesGenre() {
+	try {
+		const response = await fetch(endPoints.movies.genre);
+		const data = await response.json();
+		console.log(data);
+		return data.movies;
+	} catch (error) {
+		console.error("Error fetching movies data:", error);
+		throw error;
+	}
+}
+
 export async function fetchMoviesDate(minDate, maxDate) {
 	try {
 		const response = await fetch(endPoints.movies.moviesDate(minDate, maxDate));
 		const data = await response.json();
-		return data;
+		return data.movies;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);
 		throw error;
@@ -33,7 +56,7 @@ export async function fetchMovieId(id) {
 	}
 }
 
-function assignTopToMovies(movieData) {
+/* function assignTopToMovies(movieData) {
 	const movies = JSON.parse(JSON.stringify(movieData));
 
 	const randomIndices = [];
@@ -54,15 +77,16 @@ function assignTopToMovies(movieData) {
 	}
 
 	return result;
-}
+} */
 
 export default async function fetchMoviesWithTop() {
 	try {
-		const data = await fetchMovies();
-
-		const moviesWithTop = assignTopToMovies(data);
-		return moviesWithTop;
+		const response = await fetch(endPoints.movies.top);
+		const data = await response.json();
+		console.log(data);
+		return data;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);
+		throw error;
 	}
 }
