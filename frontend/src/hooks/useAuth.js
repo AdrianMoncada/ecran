@@ -36,19 +36,17 @@ function useProvideAuth() {
 			.post(endPoints.auth.login, { email, password }, options)
 			.then(async (res) => {
 				const response = res.headers;
-				console.log("🚀 ~ file: useAuth.js:31 ~ signIn ~ headers:", res);
 				const token = response.token;
 				//lógica para guardar estos datos en las cookies
 				if (token) {
-					Cookie.set("token", token, { expires: 5 });
-					Cookie.set("userId", response.userid, { expires: 5 });
+					Cookie.set("token", token, { expires: 2 });
+					Cookie.set("userId", response.userid, { expires: 2 });
 					axios.defaults.headers.Authorization = `Bearer ${token}`;
 					const { data: user } = await axios.get(endPoints.auth.profile(response.userid));
-					console.log("🚀 ~ file: useAuth.js:38 ~ .then ~ user:", user);
 					setUser(user);
 					const userInfoJSON = JSON.stringify(user);
 					const encodedUserInfo = btoa(userInfoJSON);
-					Cookie.set("userInfo", encodedUserInfo, { expires: 5 });
+					Cookie.set("userInfo", encodedUserInfo, { expires: 2 });
 				}
 			})
 			.catch((err) => console.error(err));

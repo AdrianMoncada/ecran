@@ -6,7 +6,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { HeaderContainer } from "./Header.styles";
 import { MdExplore } from "react-icons/md";
 import { Avatar, Box, Tooltip, IconButton, Menu, MenuItem, Typography } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cookie from "js-cookie";
 
 const Header = ({ auth }) => {
@@ -64,10 +63,10 @@ const Header = ({ auth }) => {
 				</div>
 				{userInfo ? (
 					<Box className={openNav ? "nav-user-mobile" : "nav-user"} sx={{ flexGrow: 0 }}>
-						<Tooltip title="Open settings">
+						<Tooltip title="Abrir configuracion">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar>
-									<AccountCircleIcon />
+									<img src={userInfo.imageUrl} />
 								</Avatar>
 							</IconButton>
 						</Tooltip>

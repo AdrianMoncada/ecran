@@ -66,6 +66,7 @@ const Comentarios = ({ movies }) => {
 						comment: sendComment,
 						date: fechaActual,
 						username: `${userInfo.firstName} ${userInfo.lastName}`,
+						imageUrl: userInfo.imageUrl,
 					},
 				]);
 				axios

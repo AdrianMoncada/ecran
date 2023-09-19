@@ -11,4 +11,5 @@ public class UserCommentResponseDTO {
     private String comment;
     private String date;
     private String username;
+    private String imageUrl;
 }
