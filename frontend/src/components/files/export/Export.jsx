@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ModalContainer, LinkButton } from "./Export.styles";
 import { useAuth } from "@/hooks/useAuth";
 import Modal from "@mui/material/Modal";
+import { Toaster, toast } from "sonner";
 import endPoints from "@/service/api";
 import Box from "@mui/material/Box";
 import ExcelJS from "exceljs";
@@ -24,7 +25,6 @@ const style = {
 function ExportarExcel({ listaPeliculas, isVerified, isLogged }) {
 	const auth = useAuth();
 	const [open, setOpen] = useState(false);
-	const [sent, setSent] = useState(false);
 	const handleErrorOpen = () => setOpen(true);
 	const handleErrorClose = () => setOpen(false);
 
@@ -56,11 +56,15 @@ function ExportarExcel({ listaPeliculas, isVerified, isLogged }) {
 		axios
 			.get(endPoints.auth.sendEmail(auth.user.userId))
 			.then((response) => {
-				console.log(response);
-				setSent(true);
+				if (response.data === 200) {
+					toast.success("Se envió el email a su correo. Por favor, revise su casilla de correo.");
+				} else {
+					toast.error("Ocurrió un error al enviar el email. Por favor, intente más tarde.");
+				}
 			})
 			.catch((e) => {
 				console.log(e);
+				toast.error("Ocurrió un error al enviar el email");
 			});
 	};
 
@@ -101,6 +105,7 @@ function ExportarExcel({ listaPeliculas, isVerified, isLogged }) {
 					</div> */}
 				</Box>
 			</Modal>
+			<Toaster richColors position="bottom-right" />
 		</div>
 	);
 }
