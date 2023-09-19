@@ -6,7 +6,9 @@ const CommentsUser = ({ user }) => {
 	return (
 		<ContainerComment>
 			<div className="header">
-				<Avatar>JA</Avatar>
+				<Avatar>
+					<img src={user.imageUrl} />
+				</Avatar>
 				<h4 className="username">{user.username}</h4>
 				<p className="date">- {user.date}</p>
 			</div>
