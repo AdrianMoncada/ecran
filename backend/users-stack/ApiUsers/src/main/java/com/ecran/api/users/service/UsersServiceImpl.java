@@ -96,6 +96,7 @@ public class UsersServiceImpl implements UsersService {
        userEntity.setLastName(userDTO.getLastName());
        userEntity.setEmail(userDTO.getEmail());
        userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+       userEntity.setImageUrl(userDTO.getImageUrl() != null ? userDTO.getImageUrl() : "");
 
         return mapper.map(usersRepository.save(userEntity), UserDto.class);
     }
