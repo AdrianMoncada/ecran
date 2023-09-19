@@ -12,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class AllPageableDTO {
     private List<MovieResDTO> movies;
-    private long size;
+    private int size;
 }
