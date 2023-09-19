@@ -83,6 +83,11 @@ export const GeneralInfo = styled.div`
 		flex: 1;
 		margin-right: 10px;
 	}
+	.custom-file-upload {
+		background: #1e293b;
+		color: #cbd5e1;
+		font-size: 13px;
+	}
 `;
 
 export const GenreAvailabilityRatings = styled.div`

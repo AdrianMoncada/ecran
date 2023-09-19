@@ -303,17 +303,29 @@ const EditMovie = () => {
 											/>
 										</div>
 									</div>
-									<div className="info-field">
-										<Label htmlFor="image_url">Poster pelicula</Label>
-										<input type="file" id="file" name="file" accept="image/*" onChange={handleImageUpload} />
-										<Input
-											type="text"
-											id="image_url"
-											name="image_url"
-											value={formData.image_url}
-											onChange={handleInputChange}
-											required
-										/>
+									<div className="info-group">
+										<div className="info-field">
+											<Label htmlFor="image_url">Poster pelicula</Label>
+											<Input
+												type="file"
+												id="file"
+												name="file"
+												accept="image/*"
+												onChange={handleImageUpload}
+												className="custom-file-upload"
+											/>
+										</div>
+										<div className="info-field">
+											<Label htmlFor="url-image">Url de la imagen</Label>
+											<Input
+												type="text"
+												id="image_url"
+												name="image_url"
+												value={formData.image_url}
+												onChange={handleInputChange}
+												required
+											/>
+										</div>
 									</div>
 									<div className="info-field">
 										<Label htmlFor="review">Review</Label>
