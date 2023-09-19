@@ -32,25 +32,68 @@ const SignUp = () => {
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			/* const dataImage = new FormData();
-			dataImage.append("file", image);
-			const imageHeader = {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			};
-			console.log(image);
-			await axios
-				.post("http://ec2-52-90-142-35.compute-1.amazonaws.com:8082/users/image", dataImage, imageHeader)
-				.then((res) => console.log(res))
-				.catch((err) => console.log(err)); */
+			const backgroundColorOptions = [
+				"b6e3f4",
+				"c0aede",
+				"d1d4f9",
+				"ffd5dc",
+				"ffdfbf",
+				"126D11",
+				"CCAC6E",
+				"7477C0",
+				"BA7BD1",
+				"803D31",
+			];
+			const backgroundTypeOptions = ["gradientLinear", "solid"];
+			const eyesOptions = [
+				"bulging",
+				"dizzy",
+				"eva",
+				"frame1",
+				"frame2",
+				"glow",
+				"happy",
+				"hearts",
+				"robocop",
+				"round",
+				"roundFrame01",
+				"roundFrame02",
+				"sensor",
+				"shade01",
+			];
+			const mouthOptions = [
+				"bite",
+				"diagram",
+				"grill01",
+				"grill02",
+				"grill03",
+				"smile01",
+				"smile02",
+				"square01",
+				"square02",
+			];
+			function getRandomValueFromArray(arr) {
+				const randomIndex = Math.floor(Math.random() * arr.length);
+				return arr[randomIndex];
+			}
+			function generateRandomAvatarUrl() {
+				const backgroundColor = getRandomValueFromArray(backgroundColorOptions);
+				const backgroundColor2 = getRandomValueFromArray(backgroundColorOptions);
+				const backgroundType = getRandomValueFromArray(backgroundTypeOptions);
+				const eyes = getRandomValueFromArray(eyesOptions);
+				const mouth = getRandomValueFromArray(mouthOptions);
+				const avatarUrl = `https://api.dicebear.com/7.x/bottts-neutral/svg?&backgroundColor=${backgroundColor},${backgroundColor2}&backgroundType=${backgroundType}&eyes=${eyes}&mouth=${mouth}`;
+				return avatarUrl;
+			}
+
+			const randomAvatarUrl = generateRandomAvatarUrl();
 
 			const datas = {
 				firstName: formData.firstName,
 				lastName: formData.lastName,
 				email: formData.email,
 				password: formData.password,
-				imageUrl: "https://api.dicebear.com/7.x/bottts-neutral/svg",
+				imageUrl: randomAvatarUrl,
 			};
 			auth
 				.signUp(datas)
