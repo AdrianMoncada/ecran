@@ -72,7 +72,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 					nuestra comunidad de amantes del cine y la televisión.
 				</p>
 				<div className="profile_img">
-					<Image src="images/home/Profile.svg" alt="Profile" width={768} height={400} />
+					<Image src="/images/home/Illustration.png" alt="Profile" width={768} height={400} />
 				</div>
 			</Profile>
 			<Discover>

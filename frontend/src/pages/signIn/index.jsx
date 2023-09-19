@@ -81,11 +81,11 @@ const SignIn = () => {
 						))}
 					</SecondLabels>
 					<Button type="submit" onClick={() => setSubmitted(true)}>
-						Sign In
+						Iniciar Sesión
 					</Button>
 				</form>
 				<p className="text">
-					No tienes una cuenta?
+					¿No tienes una cuenta?
 					<Link className="link" href="/signUp">
 						Registrarse
 					</Link>
