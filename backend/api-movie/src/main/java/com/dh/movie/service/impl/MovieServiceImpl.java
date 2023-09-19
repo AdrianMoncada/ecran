@@ -71,12 +71,15 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public AllPageableDTO findAllPageable(Integer page, int elements) {
-        PageRequest pageable = PageRequest.of(page, elements);
+
+        if (page < 1) throw new ServiceException("Page cannot be less than 1");
+
+        PageRequest pageable = PageRequest.of(page-1, elements);
 
         List<MovieResDTO> movies = repository.findAll(pageable).stream().map(m -> mapper.map(m, MovieResDTO.class)).toList();
         AllPageableDTO responseDTO = new AllPageableDTO();
 
-        responseDTO.setSize(Math.round((float) repository.count() /8));
+        responseDTO.setSize((int) Math.ceil((double) repository.count() /8));
         responseDTO.setMovies(movies);
 
         return responseDTO;

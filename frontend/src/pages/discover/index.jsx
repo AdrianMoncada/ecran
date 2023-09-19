@@ -16,7 +16,6 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
 import Head from "next/head";
-import Image from "next/image";
 
 const genresOptions = [
 	"Acción",
@@ -117,7 +116,7 @@ const Discover = () => {
 						<List key={item.id} onClick={() => router.push(`/movies/${item.movieId}`)}>
 							<div className="list">
 								<div className="imageList">
-									<Image src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
+									<img src={item?.image_url} alt={item?.title} className="image" width={100} height={200} />
 								</div>
 								<div className="descriptionList">
 									<p className="textItem genre">{item.genres.map((i) => i).join("/")}</p>
