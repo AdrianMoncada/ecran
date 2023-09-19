@@ -34,7 +34,7 @@ export const LinkButton = styled.b`
 	text-decoration: underline;
 	margin-left: 4px;
 
-    :hover{
-        cursor: pointer;
-    }
+	:hover {
+		cursor: pointer;
+	}
 `;

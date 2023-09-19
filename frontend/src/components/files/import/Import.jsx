@@ -22,11 +22,10 @@ const style = {
 	p: 4,
 };
 
-function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerified, isLogged, setMsg }) {
+function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerified, isLogged }) {
 	const [typeError, setTyperError] = useState(null);
 	const [excelFile, setExcelFile] = useState(null);
 	const [loadingMessage, setLoadingMessage] = useState(false);
-	const [sent, setSent] = useState(false);
 	const auth = useAuth();
 
 	const [open, setOpen] = useState(false);
@@ -79,10 +78,11 @@ function ImportarDesdeExcel({ fetchMovies, successMessage, errorMessage, isVerif
 		axios
 			.get(endPoints.auth.sendEmail(auth.user.userId))
 			.then((response) => {
-				console.log(response);
-				setSent(true);
-				setMsg("Se envió el email a su correo");
-				toast.success("Se envió el email a su correo");
+				if (response.data === 200) {
+					toast.success("Se envió el email a su correo. Por favor, revise su casilla de correo.");
+				} else {
+					toast.error("Ocurrió un error al enviar el email. Por favor, intente más tarde.");
+				}
 			})
 			.catch((e) => {
 				console.log(e);
