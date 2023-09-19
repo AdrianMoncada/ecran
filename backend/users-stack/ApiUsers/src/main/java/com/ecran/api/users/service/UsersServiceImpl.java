@@ -7,17 +7,12 @@ import java.util.*;
 import com.amazonaws.services.directory.model.ServiceException;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.ecran.api.users.config.BucketName;
-import com.ecran.api.users.data.models.UsersComment;
-import com.ecran.api.users.data.models.UserEntity;
+import com.ecran.api.users.data.models.*;
 import com.ecran.api.users.data.feign.MoviesServiceClient;
-import com.ecran.api.users.data.models.UsersRating;
-import com.ecran.api.users.data.models.UsersWatchlist;
-import com.ecran.api.users.data.repository.RatingRepository;
-import com.ecran.api.users.data.repository.UserCommentsRepository;
-import com.ecran.api.users.data.repository.UsersRepository;
-import com.ecran.api.users.data.repository.WatchlistRepository;
+import com.ecran.api.users.data.repository.*;
 import com.ecran.api.users.event.OnRegistrationCompleteEvent;
 import com.ecran.api.users.shared.ChangePasswordDTO;
+import com.ecran.api.users.shared.Roles;
 import com.ecran.api.users.shared.UserValorationDTO;
 import com.ecran.api.users.ui.model.*;
 import feign.FeignException;
@@ -29,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,6 +42,8 @@ public class UsersServiceImpl implements UsersService {
     WatchlistRepository watchlistRepository;
     RatingRepository ratingRepository;
     UserCommentsRepository commentRepository;
+
+    RoleRepository roleRepository;
     BCryptPasswordEncoder bCryptPasswordEncoder;
     Environment environment;
     MoviesServiceClient moviesServiceClient;
@@ -55,7 +54,7 @@ public class UsersServiceImpl implements UsersService {
     ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, FileStoreService fileStore) {
+    public UsersServiceImpl(UsersRepository usersRepository, WatchlistRepository watchlistRepository, RatingRepository ratingRepository, UserCommentsRepository commentRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment environment, MoviesServiceClient moviesServiceClient, ModelMapper mapper, FileStoreService fileStore, RoleRepository roleRepository) {
         this.usersRepository = usersRepository;
         this.watchlistRepository = watchlistRepository;
         this.ratingRepository = ratingRepository;
@@ -65,6 +64,7 @@ public class UsersServiceImpl implements UsersService {
         this.moviesServiceClient = moviesServiceClient;
         this.mapper = mapper;
         this.fileStore = fileStore;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -77,8 +77,9 @@ public class UsersServiceImpl implements UsersService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
-
-        usersRepository.save(userEntity);
+//        RoleEntity roleUser = roleRepository.findByName(Roles.ROLE_USER.name());
+//        userEntity.setRoles(Arrays.asList(roleUser));
+//        usersRepository.save(userEntity);
 
         UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
@@ -105,8 +106,22 @@ public class UsersServiceImpl implements UsersService {
 
         if (userEntity == null) throw new UsernameNotFoundException(username);
 
-        return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(),
-                true, true, true, true, new ArrayList<>());
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        Collection<RoleEntity> roles = userEntity.getRoles();
+
+        roles.forEach((role)->{
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+
+            Collection<AuthorityEntity> authorityEntities = role.getAuthorities();
+            authorityEntities.forEach((authorityEntity)->{
+                authorities.add(new SimpleGrantedAuthority(authorityEntity.getName()));
+            });
+        });
+
+        return new User(userEntity.getEmail(),
+                userEntity.getEncryptedPassword(),
+                true, true, true, true,
+                authorities);
     }
 
     @Override
