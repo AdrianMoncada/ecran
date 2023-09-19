@@ -58,17 +58,58 @@ const AddMovie = () => {
 
 	const handleCheckboxChange = (e) => {
 		const { name, value, checked } = e.target;
-		const updatedArray = checked ? [...formData[name], value] : formData[name].filter((item) => item !== value);
-		setFormData({
-			...formData,
-			[name]: updatedArray,
-		});
+		if (name === "platforms") {
+			const updatedPlatforms = checked
+				? [
+						...formData.platforms,
+						{
+							name: value,
+							logo_url: plataformasList.find((platform) => platform.name === value)?.logo_url || "",
+						},
+				  ]
+				: formData.platforms.filter((platform) => platform.name !== value);
+
+			setFormData({
+				...formData,
+				[name]: updatedPlatforms,
+			});
+		} else {
+			const updatedArray = checked ? [...formData[name], value] : formData[name].filter((item) => item !== value);
+			setFormData({
+				...formData,
+				[name]: updatedArray,
+			});
+		}
+	};
+	const handleImageUpload = async (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+
+		try {
+			const imageData = new FormData();
+			imageData.append("file", file);
+
+			const response = await axios.post(
+				"https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/image",
+				imageData,
+			);
+
+			const imageUrl = response.data;
+			console.log("Contenido de newImageUrl:", imageUrl);
+			setFormData({
+				...formData,
+				image_url: imageUrl,
+			});
+
+			alert("La imagen se ha cargado con éxito.");
+		} catch (error) {
+			console.error("Error al cargar la imagen:", error);
+			alert("Error al cargar la imagen. Inténtalo de nuevo más tarde.");
+		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		// Enviar la solicitud POST con Axios
 		axios
 			.post("https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies", formData)
 
@@ -184,13 +225,15 @@ const AddMovie = () => {
 						</div>
 						<div className="info-field">
 							<Label htmlFor="image_url">Poster pelicula</Label>
+							<input type="file" id="file" name="file" accept="image/*" onChange={handleImageUpload} />
+
 							<Input
 								type="text"
 								id="image_url"
 								name="image_url"
 								value={formData.image_url}
 								onChange={handleInputChange}
-								// required
+								required
 							/>
 						</div>
 						<div className="info-field">

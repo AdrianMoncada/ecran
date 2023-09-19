@@ -1,5 +1,46 @@
 import styled from "styled-components";
 
+export const SearchBar = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 80px;
+
+	input {
+		background: #1e293b;
+		border: 0px solid transparent;
+		width: 480px;
+		height: 46px;
+		padding: 10px 10px 10px 10px;
+		border-radius: 10px;
+	}
+	button {
+		width: 150px;
+		padding: 10px;
+		color: #fff;
+		border: none;
+		border-radius: 18px;
+		background: #a855f7;
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+`;
+
+export const Title = styled.div`
+	h2 {
+		margin-top: 50px;
+		margin-bottom: 30px;
+		margin-left: 10%;
+		font-family: Inter;
+		font-size: 25px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 44px; /* 97.778% */
+		letter-spacing: -0.45px;
+	}
+`;
+
 export const FormContainer = styled.div`
 	display: flex;
 	flex-direction: column;
