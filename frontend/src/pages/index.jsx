@@ -21,7 +21,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 			<MainHome>
 				<h1 className="title">Reseñas de series y películas al instante</h1>
 				<h4 className="mainHome_p">
-					Desde éxitos de taquilla hasta joyas ocultas, Ecran te ofrece una visión única del mundo del cine y la
+					Desde éxitos de taquilla hasta joyas ocultas, Écran te ofrece una visión única del mundo del cine y la
 					televisión, todo a solo un clic de distancia.
 				</h4>
 				<Search showAutocomplete={true} />
@@ -39,7 +39,7 @@ export default function Home({ response, moviesTop, moviesOld }) {
 				</SuggestionCarousel>
 			</SuggestionsStyle>
 			<Day>
-				<h2 className="day_title">Género del dia</h2>
+				<h2 className="day_title">Género del día</h2>
 				<p className="day_p">
 					Descubre una sugerencia diferente cada día para explorar nuevos títulos y géneros cinematográficos. ¡Encuentra
 					emocionantes series y películas que te sorprenderán!
@@ -57,9 +57,9 @@ export default function Home({ response, moviesTop, moviesOld }) {
 			</Day> */}
 			{/** hasta aqui se implementa */}
 			<Oldies id="proximamente">
-				<h2 className="oldies_title">Oldies but Goodies</h2>
+				<h2 className="oldies_title">Clásicos</h2>
 				<p className="oldies_p">
-					Un Viaje en el Tiempo a los Clásicos Cinematográficos. Redescubre las joyas atemporales que continúan
+					Un viaje en el tiempo a los Clásicos Cinematográficos. Redescubre las joyas atemporales que continúan
 					cautivando con su encanto único y narrativas inolvidables.
 				</p>
 				<Carousel movies={moviesOld} top={false} />
