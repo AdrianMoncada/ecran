@@ -63,16 +63,18 @@ public class MovieController {
     }
 
     @GetMapping("/filter")
-    ResponseEntity<List<MovieResDTO>> findByFilters
+    ResponseEntity<AllPageableDTO> findByFilters
             (
                     @RequestParam(defaultValue = "") List<String> genres,
                     @RequestParam(defaultValue = "") List<String> platforms,
                     @RequestParam(defaultValue = "0") String min_date,
                     @RequestParam(defaultValue = "3000") String max_date,
+                    @RequestParam(defaultValue = "0") String page,
                     @RequestParam(required = false, defaultValue = "asc") String order
+
             )
     {
-        return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date, order));
+        return ResponseEntity.ok().body(movieService.findByFilters(genres, platforms, min_date, max_date, order, Integer.valueOf(page)));
     }
 
     @GetMapping("/watchlist")
