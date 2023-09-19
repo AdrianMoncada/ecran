@@ -97,10 +97,14 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public AllPageableDTO findByFilters(List<String> genres, List<String> platforms, String min_date, String max_date, String order, Integer num) {
+
+        if (num < 1) throw new ServiceException("Page cannot be less than 1");
+
         List<GenreDB> parsedGenres = genres.stream().map(GenreDB::new).toList();
         List<PlatformDB> parsedPlatforms = platforms.stream().map(PlatformDB::new).toList();
+
         AllPageableDTO pagesDTO = new AllPageableDTO();
-        PageRequest page = PageRequest.of(num, 8, Sort.by("title").descending());
+        PageRequest page = PageRequest.of(num-1, 8, Sort.by("title").descending());
 
         if (parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
             Page<Movie> moviesList = repository.findByDateRange(min_date, max_date, page);
