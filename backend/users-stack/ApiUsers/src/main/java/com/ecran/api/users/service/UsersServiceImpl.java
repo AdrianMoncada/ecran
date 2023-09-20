@@ -265,8 +265,8 @@ public class UsersServiceImpl implements UsersService {
             usersRepository.save(userEntity);
 
 
-            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+            valorationDTO.setScoreCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setScoreSum(ratingRepository.sumVotesByMovieId(movieId));
 
             try {
                 moviesServiceClient.addRating(movieId, valorationDTO);
@@ -280,8 +280,8 @@ public class UsersServiceImpl implements UsersService {
             userEntity.getRatings().add(userRating);
             usersRepository.save(userEntity);
 
-            valorationDTO.setValorationsCount(ratingRepository.countVotesByMovieId(movieId));
-            valorationDTO.setValorationsSum(ratingRepository.sumVotesByMovieId(movieId));
+            valorationDTO.setScoreCount(ratingRepository.countVotesByMovieId(movieId));
+            valorationDTO.setScoreSum(ratingRepository.sumVotesByMovieId(movieId));
             System.out.println(valorationDTO);
 
             try {
