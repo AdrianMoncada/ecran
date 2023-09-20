@@ -1,9 +1,8 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
-const StarRating = ({ rating, onStarClick, user }) => {
+const StarRating = ({ rating, onStarClick }) => {
 	const stars = [];
-	console.log(user);
 
 	for (let i = 1; i <= 5; i++) {
 		if (i <= rating) {

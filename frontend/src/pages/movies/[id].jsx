@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 import {
@@ -29,7 +29,6 @@ import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Comentarios from "@components/comments-clientSide/Comentarios";
-import endPoints from "@/service/api";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -41,7 +40,7 @@ const InactiveStarRating = () => {
 	return <div style={{ display: "flex" }}>{stars}</div>;
 };
 
-function MovieDetail({ movies, cardMovies, user }) {
+function MovieDetail({ movies, cardMovies }) {
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
@@ -51,6 +50,16 @@ function MovieDetail({ movies, cardMovies, user }) {
 		setIsModalOpen(false);
 	};
 	const userId = Cookies.get("userId");
+
+	useEffect(() => {
+		const encodedUserInfo = Cookies.get("userInfo");
+		if (encodedUserInfo) {
+			const userInfoJSON = atob(encodedUserInfo);
+			const userInfo = JSON.parse(userInfoJSON);
+			const movieEncontrada = userInfo.ratings?.find((obj) => obj.movieId === movies.movieId);
+			movieEncontrada ? setRating(movieEncontrada.rating) : null;
+		}
+	});
 
 	const [rating, setRating] = useState(0);
 
@@ -124,8 +133,7 @@ function MovieDetail({ movies, cardMovies, user }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url}  alt={movies?.title} />
-							<Image className="play" src="/images/play.png" alt="" width={100} height={100} onClick={handleImageClick} />
+							<Poster src={movies?.image_url} onClick={handleImageClick} alt={movies?.title} />
 							<AddButton movie={movies?.movieId} />
 							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
@@ -134,7 +142,7 @@ function MovieDetail({ movies, cardMovies, user }) {
 						</RatesContainer>
 						<div className="container">
 							{userId ? (
-								<StarRating rating={rating} onStarClick={handleStarClick} user={user} />
+								<StarRating rating={rating} onStarClick={handleStarClick} />
 							) : (
 								<div>
 									<InactiveStarRating />
@@ -203,13 +211,10 @@ export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
 	const cardMovies = await fetchMovies();
-	const user = await fetch(endPoints.auth.profile(id));
-
 	return {
 		props: {
 			movies,
 			cardMovies,
-			user,
 		},
 	};
 }
