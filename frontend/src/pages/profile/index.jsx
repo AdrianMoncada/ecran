@@ -27,11 +27,10 @@ const Profile = () => {
 	const auth = useAuth();
 	const { updateProfileInfo, uploadProfilePicture } = auth;
 	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
-	// const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
-	// const user = Cookies.get("userInfo");
+
 	const encodedUserInfo = Cookies.get("userInfo");
-	const userInfoJSON = atob(encodedUserInfo);
-	const user = JSON.parse(userInfoJSON);
+	const userInfoJSON = encodedUserInfo ? atob(encodedUserInfo) : null;
+	const user = userInfoJSON ? JSON.parse(userInfoJSON) : null;
 	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
 	const [showPassword, setShowPassword] = useState(false);
 
@@ -138,7 +137,7 @@ const Profile = () => {
 						</EditButton>
 					</AvatarContainer>
 					<TitleContainer>
-						<h2>Hola!</h2>
+						<h2>Hola, {auth.user?.firstName}!</h2>
 					</TitleContainer>
 				</Container>
 			</HeaderContainer>
@@ -168,9 +167,9 @@ const Profile = () => {
 										}
 									/>
 									{item.name === "password" && (
-										<button onClick={togglePasswordVisibility}>
+										<p className="password-toggle" onClick={togglePasswordVisibility}>
 											{showPassword ? <MdVisibility /> : <MdVisibilityOff />}
-										</button>
+										</p>
 									)}
 
 									<span

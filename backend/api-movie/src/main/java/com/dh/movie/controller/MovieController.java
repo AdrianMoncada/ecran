@@ -91,4 +91,8 @@ public class MovieController {
     public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file) {
         return new ResponseEntity<>(movieService.saveImage(file), HttpStatus.CREATED);
     }
+
+    @GetMapping("/suggestions")
+    public ResponseEntity<List<MovieResDTO>> findThreeSuggestions() {
+        return new ResponseEntity<>(movieService.findThreeSuggestions(), HttpStatus.OK);    }
 }

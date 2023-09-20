@@ -51,7 +51,7 @@ const EditMovie = () => {
 					imdb_score: movie.imdb_score,
 					mc_score: movie.mc_score,
 					genres: movie.genres,
-					platforms: [],
+					platforms: movie.platforms,
 					comments: [],
 					score: movie.score || "",
 					release_date: response[0].release_date,
@@ -395,7 +395,7 @@ const EditMovie = () => {
 															type="checkbox"
 															name="platforms"
 															value={platform.name}
-															checked={formData.platforms.includes(platform.name)}
+															checked={formData.platforms.some((p) => p.name === platform.name)}
 															onChange={handleCheckboxChange}
 														/>
 														<Image src={platform.logo_url} alt={platform.name} width={50} height={50} />
