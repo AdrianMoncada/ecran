@@ -77,9 +77,9 @@ public class UsersServiceImpl implements UsersService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
-//        RoleEntity roleUser = roleRepository.findByName(Roles.ROLE_USER.name());
-//        userEntity.setRoles(Arrays.asList(roleUser));
-//        usersRepository.save(userEntity);
+        RoleEntity roleUser = roleRepository.findByName(Roles.ROLE_USER.name());
+        userEntity.setRoles(Arrays.asList(roleUser));
+        usersRepository.save(userEntity);
 
         UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
@@ -96,6 +96,7 @@ public class UsersServiceImpl implements UsersService {
        userEntity.setLastName(userDTO.getLastName());
        userEntity.setEmail(userDTO.getEmail());
        userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+       userEntity.setImageUrl(userDTO.getImageUrl() != null ? userDTO.getImageUrl() : "");
 
         return mapper.map(usersRepository.save(userEntity), UserDto.class);
     }
@@ -211,6 +212,7 @@ public class UsersServiceImpl implements UsersService {
                 comments) {
             UserCommentResponseDTO crDTO = mapper.map(c, UserCommentResponseDTO.class);
             crDTO.setUsername(c.getUserEntity().getFirstName() + " " + c.getUserEntity().getLastName());
+            crDTO.setImageUrl(c.getUserEntity().getImageUrl());
             responseDTO.add(crDTO);
         }
 

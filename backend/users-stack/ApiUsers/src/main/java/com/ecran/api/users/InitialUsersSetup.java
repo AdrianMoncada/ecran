@@ -42,7 +42,7 @@ import java.util.UUID;
             AuthorityEntity writeAuthority = createAuthority("WRITE");
             AuthorityEntity deleteAuthority = createAuthority("DELETE");
 
-//            createRole(Roles.ROLE_USER.name(), Arrays.asList(readAuthority, writeAuthority));
+            createRole(Roles.ROLE_USER.name(), Arrays.asList(readAuthority, writeAuthority));
             RoleEntity roleAdmin = createRole(Roles.ROLE_ADMIN.name(), Arrays.asList(readAuthority, writeAuthority, deleteAuthority));
 
             if (roleAdmin == null) return;

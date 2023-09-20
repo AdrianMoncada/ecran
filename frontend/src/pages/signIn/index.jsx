@@ -9,6 +9,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
+import Cookies from "js-cookie";
+import decodeJwt from "@/utils/decodeJwt";
 
 const initalData = {
 	email: "",
@@ -22,7 +24,7 @@ const SignIn = () => {
 
 	const validate = Yup.object({
 		email: Yup.string().email("Email invalido").required("*Obligatorio*"),
-		password: Yup.string().min(6, "Contraseña debe ser de 6 o más caracteres").required("*Obligatorio*"),
+		password: Yup.string().min(5, "Contraseña debe ser de 5 o más caracteres").required("*Obligatorio*"),
 	});
 
 	const formik = useFormik({
@@ -32,8 +34,15 @@ const SignIn = () => {
 				.signIn(formData.email, formData.password)
 				.then(() => {
 					const prevPage = router.query.prevPage || "/";
-					router.push(prevPage);
-					toast.success("Inicio de sesión exitoso");
+					const token = Cookies.get("token");
+					const decodeToken = decodeJwt(token);
+					if (decodeToken.payload.scope[1].authority === "ROLE_USER") {
+						router.push(prevPage);
+						toast.success("Inicio de sesión exitoso");
+					} else {
+						router.push("/admin");
+						toast.success("Hola Admin");
+					}
 				})
 				.catch((err) => {
 					toast.error("Sus credenciales son incorrectas");

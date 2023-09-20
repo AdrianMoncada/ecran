@@ -26,7 +26,6 @@ export async function fetchMoviesGenre() {
 	try {
 		const response = await fetch(endPoints.movies.genre);
 		const data = await response.json();
-		console.log(data);
 		return data.movies;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);

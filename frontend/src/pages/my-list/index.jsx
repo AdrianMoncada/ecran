@@ -15,6 +15,7 @@ import endPoints from "@/service/api";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import Link from "next/link";
+import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
 
 const MyList = () => {
 	const auth = useAuth();
@@ -23,14 +24,18 @@ const MyList = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isVerified, setVerified] = useState(false);
 	const [isLogged, setLogged] = useState(true);
+	const token = Cookies.get("token");
 
 	const fetchWatchList = () => {
 		const userId = Cookies.get("userId");
-		fetch(endPoints.movies.watchlist(userId))
+		fetch(endPoints.movies.watchlist(userId), {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				setWatchlistMovies(data);
-				console.log(data);
 			})
 			.catch((error) => {
 				console.error("Error al obtener las películas guardadas:", error);
@@ -63,6 +68,7 @@ const MyList = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
 					},
 					body: JSON.stringify(body),
 				});
@@ -83,7 +89,7 @@ const MyList = () => {
 	};
 
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<meta
 					name="description"
@@ -128,7 +134,7 @@ const MyList = () => {
 			<CardContainer>
 				<Carousel movies={watchlistMovies} top={false} />
 			</CardContainer>
-		</>
+		</ProtectedRoute>
 	);
 };
 
