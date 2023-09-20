@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<ProviderAuth>
-				<Suspense fallback={<Loader color="black" />}>
+				<Suspense fallback={<Loader color="#683ca0" />}>
 					<Layout>
 						<Component {...pageProps} />
 					</Layout>
