@@ -212,6 +212,7 @@ public class UsersServiceImpl implements UsersService {
                 comments) {
             UserCommentResponseDTO crDTO = mapper.map(c, UserCommentResponseDTO.class);
             crDTO.setUsername(c.getUserEntity().getFirstName() + " " + c.getUserEntity().getLastName());
+            crDTO.setImageUrl(c.getUserEntity().getImageUrl());
             responseDTO.add(crDTO);
         }
 
