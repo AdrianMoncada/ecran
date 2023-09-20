@@ -35,14 +35,14 @@ const AdminPage = () => {
 				<div>
 					<h3>Acciones</h3>
 					<div>
-						<Link href={"/addMovie"} className="actions-container">
+						<Link href={"/admin/addMovie"} className="actions-container">
 							<Image src="images/plus.svg" alt="plus sign" width={24} height={24} className="icon" />
-							<p>Agragar nueva película</p>
+							<p>Agregar nueva película</p>
 						</Link>
 					</div>
 					<hr></hr>
 					<div>
-						<Link href={"/editMovie"} className="actions-container">
+						<Link href={"/admin/editMovie"} className="actions-container">
 							<Image src="images/pencil.svg" alt="pencil sign" width={24} height={24} className="icon" />
 							<p>Editar película</p>
 						</Link>

@@ -76,7 +76,7 @@ export const TitleContainer = styled.div`
 		gap: 0px;
 		/* align-items: center; */
 	}
-   
+
 	h2 {
 		text-align: center;
 		font-family: Inter;
@@ -118,49 +118,46 @@ export const TitleListContainer = styled.div`
 	align-items: center;
 	width: 100%;
 	padding-top: 70px;
-    margin-bottom:150px;
-    margin-left:-20%;
+	margin-bottom: 150px;
+	margin-left: -20%;
 	@media (max-width: 900px) {
 		flex-direction: column;
 		padding: 70px 50px 30px 50px;
 	}
 
-    hr {
-        background-color: #DEBFFE;
-        width: 630px;
-        height: 2px;
-        margin-bottom: 15px;
-        margin-top: 15px;
-        margin-left:12%;
-        @media (max-width: 900px) {
-		
-            width: 330px;
-            margin-left:24%;
+	hr {
+		background-color: #debffe;
+		width: 630px;
+		height: 2px;
+		margin-bottom: 15px;
+		margin-top: 15px;
+		margin-left: 12%;
+		@media (max-width: 900px) {
+			width: 330px;
+			margin-left: 24%;
 		}
-    }
-    
-    .actions-container {
-        display: flex;
-        flex-direction: row;
-      
-    }
+	}
 
-    .icon{
-        margin-left:18%;
-        margin-right:3%;
+	.actions-container {
+		display: flex;
+		flex-direction: row;
+	}
 
-        @media (max-width: 900px) {
-			 margin-left:36%;
-        margin-right:6%;
+	.icon {
+		margin-left: 18%;
+		margin-right: 3%;
+
+		@media (max-width: 900px) {
+			margin-left: 36%;
+			margin-right: 6%;
 		}
-    }
-
+	}
 
 	h3 {
 		font-family: Inter;
 		text-align: start;
 		padding-bottom: 20px;
-        margin-bottom: 50px;
+		margin-bottom: 50px;
 		font-size: 45px;
 		font-style: normal;
 		font-weight: 800;
@@ -182,13 +179,9 @@ export const TitleListContainer = styled.div`
 		font-weight: 400;
 		line-height: 27px; /* 150% */
 		letter-spacing: -0.25px;
-        @media (max-width: 900px) {
+		@media (max-width: 900px) {
 			text-align: center;
-			font-size:15px;
+			font-size: 15px;
 		}
 	}
-
-	
 `;
-
-

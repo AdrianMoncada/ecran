@@ -2,7 +2,7 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 
 const endPoints = {
 	auth: {
-		login: `${API}/authorization/users/login`,
+		login: `${API}/users/login`,
 		signUp: `${API}/authorization/users`,
 		profile: (userid) => `${API}/authorization/users/${userid}`,
 	},

@@ -346,7 +346,7 @@ const EditMovie = () => {
 									<div className="genre-group">
 										<SectionTitle>Géneros</SectionTitle>
 										<div className="genre-fields">
-											{generosList.map((genero, index) => (
+											{generosList.map((genero) => (
 												<div key={genero} className="genre-field">
 													<input
 														type="checkbox"
