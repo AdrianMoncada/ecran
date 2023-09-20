@@ -35,7 +35,6 @@ const Verification = ({ id }) => {
 					setAlreadyVerified(false);
 					setVerificated(true);
 				}
-
 				setLoading(false);
 			})
 			.catch((e) => {
