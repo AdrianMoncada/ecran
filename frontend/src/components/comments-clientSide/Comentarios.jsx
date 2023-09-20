@@ -38,8 +38,8 @@ const Comentarios = ({ movies }) => {
 		const token = Cookies.get("token");
 		const userId = Cookies.get("userId");
 		const encodedUserInfo = Cookies.get("userInfo");
-		// const userInfoJSON = atob(encodedUserInfo);
-		// const userInfo = JSON.parse(userInfoJSON);
+		const userInfoJSON = atob(encodedUserInfo);
+		const userInfo = JSON.parse(userInfoJSON);
 		const fechaActual = obtenerFechaActual();
 		const data = {
 			movie: movies.movieId,
@@ -90,16 +90,15 @@ const Comentarios = ({ movies }) => {
 	useEffect(() => {
 		if (!auth.user) {
 			setLogged(false);
-			console.log(auth.user);
 		} else {
 			setLogged(true);
-
 			if (auth.user.enabled) {
 				setVerified(true);
 			} else {
 				setVerified(false);
 			}
 		}
+		console.log(auth.user);
 	}, [auth]);
 
 	const sendEmail = async () => {
