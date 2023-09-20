@@ -104,10 +104,10 @@ function useProvideAuth() {
 	const uploadProfilePicture = async (profilePicture) => {
 		try {
 			const formImageData = new FormData();
-			console.log("hooks/useAuth - profilePicture", profilePicture);
-			console.log("hooks/useAuth - formImageData - before", formImageData.get("file"));
+			// console.log("hooks/useAuth - profilePicture", profilePicture);
+			// console.log("hooks/useAuth - formImageData - before", formImageData.get("file"));
 			formImageData.append("file", profilePicture);
-			console.log("hooks/useAuth - formImageData - after", formImageData.get("file"));
+			// console.log("hooks/useAuth - formImageData - after", formImageData.get("file"));
 
 			const token = Cookie.get("token");
 
@@ -120,13 +120,13 @@ function useProvideAuth() {
 				Authorization: `Bearer ${token}`,
 			};
 
-			console.log("hooks/useAuth - headers", headers);
+			// console.log("hooks/useAuth - headers", headers);
 
 			const imageResponse = await axios.post(endPoints.auth.profilePicture, formImageData, {
 				headers,
 			});
 
-			console.log("hooks/useAuth - imageResponse", imageResponse);
+			// console.log("hooks/useAuth - imageResponse", imageResponse);
 			const imageUrl = imageResponse.data;
 
 			return imageUrl;
