@@ -63,13 +63,20 @@ function MovieDetail({ movies, cardMovies }) {
 					movieId: movies?.movieId,
 					rating: newRating,
 				};
+				const token = Cookies.get("token");
 
-				const response = await axios.post(endpoint, postData);
+				const options = {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				};
+
+				const response = await axios.post(endpoint, postData, options);
 
 				setRating(newRating);
 
 				if (response.data === "Vote added") {
-					toast.success("Película agregada a la lista");
+					toast.success("Película puntuada con éxito");
 				} else {
 					toast.success("Su voto ha sido modificado con éxito");
 				}
