@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import {
@@ -20,20 +19,32 @@ import {
 } from "@styles/pages.styles/profile.styles";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
+import Cookies from "js-cookie";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const auth = useAuth();
-	const { user, updateProfileInfo, uploadProfilePicture } = auth;
-	const router = useRouter();
-	const [profilePictureUrl, setProfilePictureUrl] = useState(user?.profilePictureUrl || ""); // Supongo que existe un campo 'profilePictureUrl' en el objeto 'user'
+	const { updateProfileInfo, uploadProfilePicture } = auth;
 	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
+	// const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
+	// const user = Cookies.get("userInfo");
+	const encodedUserInfo = Cookies.get("userInfo");
+	const userInfoJSON = atob(encodedUserInfo);
+	const user = JSON.parse(userInfoJSON);
+	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
+	const [showPassword, setShowPassword] = useState(false);
+
+	const togglePasswordVisibility = () => {
+		setShowPassword(!showPassword);
+	};
 
 	const initalData = {
 		firstName: user?.firstName,
 		lastName: user?.lastName,
 		email: user?.email,
-		password: user?.password,
+		password: "",
+		imageUrl: user?.imageUrl,
 	};
 
 	const validate = Yup.object({
@@ -47,22 +58,43 @@ const Profile = () => {
 		const file = event.target.files[0];
 		if (file) {
 			const imageUrl = URL.createObjectURL(file);
-			setProfilePictureUrl(imageUrl);
-			setSelectedProfilePicture(file);
+			// console.log("profile/index - imageURL", imageUrl);
+			setProfilePicture(file);
+			setSelectedProfilePicture(imageUrl);
 		}
 	};
 
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
+			const data = {
+				firstName: formData.firstName,
+				lastName: formData.lastName,
+				email: formData.email,
+				password: formData.password,
+				imageUrl: formData.imageUrl,
+			};
 			try {
-				if (selectedProfilePicture) {
-					const imageUrl = await uploadProfilePicture(selectedProfilePicture);
-					formData.profilePictureUrl = imageUrl;
+				if (profilePicture) {
+					const imageUrl = await uploadProfilePicture(profilePicture);
+					data.imageUrl = imageUrl;
 				}
-				updateProfileInfo(formData)
+				const cookieOld = {
+					email: formData.email,
+					enabled: user.enabled,
+					encryptedPassword: user.encryptedPassword,
+					firstName: formData.firstName,
+					imageUrl: data.imageUrl,
+					lastName: formData.lastName,
+					password: formData.password,
+					ratings: user.ratings,
+					userId: user.userId,
+				};
+				updateProfileInfo(data)
 					.then(() => {
-						router.push("/");
+						const userInfoJSON = JSON.stringify(cookieOld);
+						const encodedUserInfo = btoa(userInfoJSON);
+						Cookies.set("userInfo", encodedUserInfo, { expires: 2 });
 						toast.success("Perfil actualizado con exito!");
 					})
 					.catch((err) => {
@@ -70,7 +102,7 @@ const Profile = () => {
 						toast.error("Lo siento, intentelo de nuevo");
 					});
 			} catch (error) {
-				console.error(error);
+				console.error("Error al cargar la imagen:", error);
 				toast.error("Error al cargar la imagen");
 			}
 		},
@@ -86,8 +118,8 @@ const Profile = () => {
 				<Container>
 					<AvatarContainer>
 						<div>
-							<Image
-								src={profilePictureUrl || "/images/A.png"}
+							<img
+								src={selectedProfilePicture || initalData.imageUrl}
 								alt="Imagen de perfil"
 								width={150}
 								height={150}
@@ -119,7 +151,8 @@ const Profile = () => {
 									<label>{item.label}</label>
 									<input
 										className={`input ${submitted && formik.errors[item.name] ? "input-error" : ""}`}
-										type={item.type}
+										type={showPassword ? "text" : item.type}
+										// type={item.type}
 										name={item.name}
 										onChange={formik.handleChange}
 										defaultValue={
@@ -130,10 +163,16 @@ const Profile = () => {
 												: item.name === "email"
 												? formik.initialValues.email
 												: item.name === "password"
-												? "********"
+												? formik.initialValues.password
 												: null
 										}
 									/>
+									{item.name === "password" && (
+										<button className="password-toggle" onClick={togglePasswordVisibility}>
+											{showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+										</button>
+									)}
+
 									<span
 										className={`message-error ${
 											submitted && formik.touched[item.name] && formik.errors[item.name] ? "visible" : ""
@@ -159,7 +198,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-Profile.getLayout = function PageLayout(page) {
-	return <>{page}</>;
-};

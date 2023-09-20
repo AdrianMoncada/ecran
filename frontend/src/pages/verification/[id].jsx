@@ -16,6 +16,7 @@ import Head from "next/head";
 import endPoints from "@/service/api";
 import Loader from "@components/loader/Loader";
 import { dot1, dot2 } from "../../assets/svgs";
+import Cookies from "js-cookie";
 
 const Verification = ({ id }) => {
 	const [loading, setLoading] = useState(true);
@@ -26,16 +27,19 @@ const Verification = ({ id }) => {
 	useEffect(() => {
 		axios
 			.get(endPoints.auth.verification(id))
-			.then((response) => {
+			.then(async (response) => {
 				if (response.data.code === "300") {
 					setVerificated(false);
 					setAlreadyVerified(true);
+					const user = await fetch(endPoints.auth.profile(id));
+					const userInfoJSON = JSON.stringify(user);
+					const encodedUserInfo = btoa(userInfoJSON);
+					Cookies.set("userInfo", encodedUserInfo, { expires: 2 });
 				}
 				if (response.data.code === "200") {
 					setAlreadyVerified(false);
 					setVerificated(true);
 				}
-
 				setLoading(false);
 			})
 			.catch((e) => {

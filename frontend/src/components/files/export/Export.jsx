@@ -64,7 +64,7 @@ function ExportarExcel({ listaPeliculas, isVerified, isLogged }) {
 			})
 			.catch((e) => {
 				console.log(e);
-				toast.error("Ocurrió un error al enviar el email");
+				toast.error("Ocurrió un error al enviar el email. Por favor, intente más tarde.");
 			});
 	};
 

@@ -123,7 +123,8 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url} onClick={handleImageClick} alt={movies?.title} />
+							<Poster src={movies?.image_url}  alt={movies?.title} />
+							<Image className="play" src="/images/play.png" alt="" width={100} height={100} onClick={handleImageClick} />
 							<AddButton movie={movies?.movieId} />
 							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
