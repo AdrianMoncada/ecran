@@ -15,6 +15,9 @@ import {
 	SearchBar,
 	Title,
 } from "@styles/pages.styles/editMovie.styles";
+import ProtectedRouteAdmin from "@components/protectedRoute/ProtectedAdmin";
+import Cookies from "js-cookie";
+import endPoints from "@/service/api";
 
 const EditMovie = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -27,12 +30,12 @@ const EditMovie = () => {
 		e.preventDefault();
 
 		try {
-			const response = await axios.get(
-				`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/search?title=${searchQuery}`,
-			);
+			const data = await fetch(endPoints.movies.search(searchQuery));
+			const response = await data.json();
+			console.log(response[0]);
 
-			if (response.data.length > 0) {
-				const movie = response.data[0];
+			if (response.length > 0) {
+				const movie = response[0];
 				const movieId = movie.movieId;
 
 				setFormData({
@@ -51,10 +54,10 @@ const EditMovie = () => {
 					platforms: [],
 					comments: [],
 					score: movie.score || "",
-					release_date: response.data[0].release_date,
+					release_date: response[0].release_date,
 				});
 
-				setMovieData(response.data);
+				setMovieData(movie);
 			} else {
 				console.log("No se encontraron películas.");
 			}
@@ -168,14 +171,20 @@ const EditMovie = () => {
 		delete formDataWithoutMovieId.movieId;
 
 		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${movieId}`;
-
-		const headers = {
-			"Content-Type": "application/json",
-		};
+		const token = Cookies.get("token");
 		const jsonFormData = JSON.stringify(formDataWithoutMovieId, null, 2);
+		console.log(formData);
 
-		axios
-			.put(apiUrl, jsonFormData, { headers: headers })
+		const options = {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: jsonFormData,
+		};
+
+		fetch(apiUrl, options)
 			.then((response) => {
 				console.log("Respuesta de la API:", response.data);
 				alert("Se modificó la película con éxito");
@@ -187,7 +196,7 @@ const EditMovie = () => {
 	};
 
 	return (
-		<>
+		<ProtectedRouteAdmin>
 			<Head>
 				<meta
 					name="add movie"
@@ -429,7 +438,7 @@ const EditMovie = () => {
 					</div>
 				)}
 			</div>
-		</>
+		</ProtectedRouteAdmin>
 	);
 };
 
