@@ -29,6 +29,7 @@ import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Comentarios from "@components/comments-clientSide/Comentarios";
+import endPoints from "@/service/api";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -40,7 +41,7 @@ const InactiveStarRating = () => {
 	return <div style={{ display: "flex" }}>{stars}</div>;
 };
 
-function MovieDetail({ movies, cardMovies }) {
+function MovieDetail({ movies, cardMovies, user }) {
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
@@ -132,7 +133,7 @@ function MovieDetail({ movies, cardMovies }) {
 						</RatesContainer>
 						<div className="container">
 							{userId ? (
-								<StarRating rating={rating} onStarClick={handleStarClick} />
+								<StarRating rating={rating} onStarClick={handleStarClick} user={user} />
 							) : (
 								<div>
 									<InactiveStarRating />
@@ -201,11 +202,13 @@ export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
 	const cardMovies = await fetchMovies();
+	const user = await fetch(endPoints.auth.profile(id));
 
 	return {
 		props: {
 			movies,
 			cardMovies,
+			user,
 		},
 	};
 }
