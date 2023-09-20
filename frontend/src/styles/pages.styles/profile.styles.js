@@ -192,6 +192,7 @@ export const ContainerFrom = styled.section`
 	.separator {
 		display: flex;
 		flex-direction: column;
+		position: relative;
 	}
 
 	.message-error {
@@ -219,10 +220,23 @@ export const ContainerFrom = styled.section`
 		padding: 5px;
 		margin-top: 5px;
 		margin-bottom: 15px;
+		position: relative;
+		padding-right: 40px;
 	}
 
 	.input-error {
 		border: 1px solid #ff0707;
+	}
+
+	.password-toggle {
+		/* Estilos para el botón de contraseña */
+		position: absolute;
+		top: 50%; /* Alineación vertical en el centro */
+		right: 10px; /* Distancia desde el borde derecho del campo de entrada */
+		transform: translate (-50% -50%); /* Alineación vertical y horizontal en el centro */
+		background: none;
+		border: none;
+		cursor: pointer;
 	}
 `;
 

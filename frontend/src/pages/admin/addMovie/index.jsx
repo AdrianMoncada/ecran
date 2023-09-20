@@ -292,7 +292,7 @@ const AddMovie = () => {
 												type="checkbox"
 												name="platforms"
 												value={platform.name}
-												checked={formData.platforms.includes(platform.name)}
+												checked={formData.platforms.some((p) => p.name === platform.name)}
 												onChange={handleCheckboxChange}
 											/>
 											<Image src={platform.logo_url} alt={platform.name} width={50} height={50} />

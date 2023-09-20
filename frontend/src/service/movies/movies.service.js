@@ -82,7 +82,6 @@ export default async function fetchMoviesWithTop() {
 	try {
 		const response = await fetch(endPoints.movies.top);
 		const data = await response.json();
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.error("Error fetching movies data:", error);

@@ -10,6 +10,7 @@ export const Container = styled.div`
 	.link {
 		text-decoration: none;
 		color: #7400ff;
+		padding-left: 10px;
 	}
 	.text {
 		color: #94a3b8;
@@ -82,7 +83,7 @@ export const SecondLabels = styled.div`
 		height: 40px;
 		margin-top: -5px;
 		padding: 7px;
-		width: 300px;
+		width: 100%;
 	}
 `;
 

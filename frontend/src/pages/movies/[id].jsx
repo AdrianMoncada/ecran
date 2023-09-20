@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 import {
@@ -50,6 +50,16 @@ function MovieDetail({ movies, cardMovies }) {
 		setIsModalOpen(false);
 	};
 	const userId = Cookies.get("userId");
+
+	useEffect(() => {
+		const encodedUserInfo = Cookies.get("userInfo");
+		if (encodedUserInfo) {
+			const userInfoJSON = atob(encodedUserInfo);
+			const userInfo = JSON.parse(userInfoJSON);
+			const movieEncontrada = userInfo.ratings?.find((obj) => obj.movieId === movies.movieId);
+			movieEncontrada ? setRating(movieEncontrada.rating) : null;
+		}
+	});
 
 	const [rating, setRating] = useState(0);
 
@@ -201,7 +211,6 @@ export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
 	const cardMovies = await fetchMovies();
-
 	return {
 		props: {
 			movies,

@@ -2,5 +2,6 @@
     "cSpell.words": [
         "entretenimiento",
         "sugerencia"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

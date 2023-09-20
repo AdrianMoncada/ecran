@@ -100,14 +100,16 @@ const MyList = () => {
 				<Container>
 					<AvatarContainer>
 						<div>
-							<h2>
-								{/* {auth.user?.firstName.charAt(0)}
-								{auth.user?.lastName.charAt(0)} */}
-							</h2>
+							<img
+								src={auth.user?.imageUrl || "/image/profile.png"} // Ruta de la imagen de perfil
+								alt="Imagen de perfil"
+								width={150}
+								height={150}
+							/>
 						</div>
 					</AvatarContainer>
 					<TitleContainer>
-						<h2>Hola!</h2>
+						<h2>Hola, {auth.user?.firstName}!</h2>
 						<Link href="/profile">
 							<p>Editar perfil</p>
 						</Link>
@@ -127,7 +129,6 @@ const MyList = () => {
 						errorMessage={errorMessage}
 						isVerified={isVerified}
 						isLogged={isLogged}
-						setMsg={setSuccessMessage}
 					/>
 				</div>
 			</TitleListContainer>

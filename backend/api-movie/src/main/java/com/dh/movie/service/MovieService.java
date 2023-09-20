@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface MovieService extends IService<MovieResDTO, MovieReqDTO> {
 
+    List<MovieResDTO> findThreeSuggestions();
     AllPageableDTO findAllPageable(Integer page, int elements);
     List<MovieResDTO> top10Rating();
     List<MovieResDTO> findAllByTitle(String title);

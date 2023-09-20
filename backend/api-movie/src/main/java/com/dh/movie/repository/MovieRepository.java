@@ -1,5 +1,6 @@
 package com.dh.movie.repository;
 
+import com.dh.movie.model.dto.movie.MovieResDTO;
 import com.dh.movie.repository.dtos.GenreDB;
 import com.dh.movie.model.Movie;
 import com.dh.movie.repository.dtos.PlatformDB;
@@ -20,6 +21,9 @@ public interface MovieRepository extends MongoRepository<Movie, String>, PagingA
 
     @Query("{title: {'$regex':?0,'$options':'i'}}")
     List<Movie> findAllByTitle(String title);
+
+    @Query("{ $sample: { size: 3 } }")
+    List<Movie> findThreeSuggestions();
 
     @Query("{genres: ?0}")
     List<Movie> findAllByGenre(String genres);
