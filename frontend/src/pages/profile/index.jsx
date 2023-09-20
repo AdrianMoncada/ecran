@@ -35,7 +35,6 @@ const Profile = () => {
 	const user = JSON.parse(userInfoJSON);
 	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
 
-	console.log("profile/index - user.imageUrl de la API", user?.imageUrl);
 	const initalData = {
 		firstName: user?.firstName,
 		lastName: user?.lastName,
@@ -43,7 +42,6 @@ const Profile = () => {
 		password: "",
 		imageUrl: user?.imageUrl,
 	};
-	console.log("profile/index - user.imageUrl calculado", initalData.imageUrl);
 
 	const validate = Yup.object({
 		firstName: Yup.string().max(15).required("*El nombre es obligatorio*"),
@@ -55,7 +53,6 @@ const Profile = () => {
 	const handleProfilePictureChange = (event) => {
 		const file = event.target.files[0];
 		if (file) {
-			console.log("profile/index - file", file);
 			const imageUrl = URL.createObjectURL(file);
 			// console.log("profile/index - imageURL", imageUrl);
 			setProfilePicture(file);
@@ -73,26 +70,28 @@ const Profile = () => {
 				password: formData.password,
 				imageUrl: formData.imageUrl,
 			};
-			const cookieOld = {
-				...user,
-				data,
-			};
-
-			console.log(cookieOld);
 			try {
 				if (profilePicture) {
 					const imageUrl = await uploadProfilePicture(profilePicture);
-					console.log(imageUrl);
 					data.imageUrl = imageUrl;
 				}
-				console.log(data);
+				const cookieOld = {
+					email: formData.email,
+					enabled: user.enabled,
+					encryptedPassword: user.encryptedPassword,
+					firstName: formData.firstName,
+					imageUrl: data.imageUrl,
+					lastName: formData.lastName,
+					password: formData.password,
+					ratings: user.ratings,
+					userId: user.userId,
+				};
 				updateProfileInfo(data)
 					.then(() => {
 						const userInfoJSON = JSON.stringify(cookieOld);
 						const encodedUserInfo = btoa(userInfoJSON);
 						Cookies.set("userInfo", encodedUserInfo, { expires: 2 });
 						toast.success("Perfil actualizado con exito!");
-						console.log(encodedUserInfo);
 					})
 					.catch((err) => {
 						console.error(err);
