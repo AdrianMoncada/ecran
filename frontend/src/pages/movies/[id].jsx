@@ -22,7 +22,6 @@ import Image from "next/image";
 import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
 import StarRating from "@components/stars/Estrellas";
-import { useAuth } from "@/hooks/useAuth";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -42,7 +41,6 @@ const InactiveStarRating = () => {
 };
 
 function MovieDetail({ movies, cardMovies }) {
-	const auth = useAuth();
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleImageClick = () => {
@@ -57,9 +55,9 @@ function MovieDetail({ movies, cardMovies }) {
 
 	const handleStarClick = async (newRating) => {
 		const API = process.env.NEXT_PUBLIC_API_URL;
-		if (auth.user) {
+		if (userId) {
 			try {
-				const endpoint = `${API}/authorization/users/${userId}/addrating`;
+				const endpoint = `${API}/users/${userId}/addrating`;
 
 				const postData = {
 					movieId: movies?.movieId,
@@ -102,7 +100,7 @@ function MovieDetail({ movies, cardMovies }) {
 							<p className="castD">{movies?.director}</p>
 						</span>
 						<span className="cast">
-							Musica:
+							Productores:
 							<p className="castD">{movies?.composer}</p>
 						</span>
 						<span className="cast">
@@ -126,7 +124,7 @@ function MovieDetail({ movies, cardMovies }) {
 							<LogoRates src="/images/home/A.png" alt="Profile" />
 						</RatesContainer>
 						<div className="container">
-							{auth.user ? (
+							{userId ? (
 								<StarRating rating={rating} onStarClick={handleStarClick} />
 							) : (
 								<div>
@@ -141,9 +139,9 @@ function MovieDetail({ movies, cardMovies }) {
 				</ContainerInfoMovie>
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
-						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
+						<p className="numerosPorcentaje div3">{movies.mc_score}</p>
 						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
-						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
+						<p className="numerosPorcentaje div5">{movies.rt_score}</p>
 						{movies.score ? <p className="numerosPorcentaje div9">{movies.score.toFixed(1)}</p> : ""}
 						{movies.score ? (
 							<Image
