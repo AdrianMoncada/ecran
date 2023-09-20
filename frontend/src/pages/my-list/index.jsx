@@ -15,6 +15,7 @@ import endPoints from "@/service/api";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import Link from "next/link";
+import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
 
 const MyList = () => {
 	const auth = useAuth();
@@ -88,7 +89,7 @@ const MyList = () => {
 	};
 
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<meta
 					name="description"
@@ -133,7 +134,7 @@ const MyList = () => {
 			<CardContainer>
 				<Carousel movies={watchlistMovies} top={false} />
 			</CardContainer>
-		</>
+		</ProtectedRoute>
 	);
 };
 

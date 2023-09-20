@@ -9,10 +9,11 @@ import {
 	TitleContainer,
 	TitleListContainer,
 } from "@/styles/pages.styles/admin.styles";
+import ProtectedRouteAdmin from "@components/protectedRoute/ProtectedAdmin";
 
 const AdminPage = () => {
 	return (
-		<>
+		<ProtectedRouteAdmin>
 			<Head>
 				<meta name="admin page" content="Esta seccion es de uso privado para administradores de la pagina web" />
 			</Head>
@@ -49,7 +50,7 @@ const AdminPage = () => {
 					</div>
 				</div>
 			</TitleListContainer>
-		</>
+		</ProtectedRouteAdmin>
 	);
 };
 

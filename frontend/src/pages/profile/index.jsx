@@ -19,6 +19,7 @@ import {
 	EditButton,
 } from "@styles/pages.styles/profile.styles";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
 
 const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
@@ -77,7 +78,7 @@ const Profile = () => {
 	});
 
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<meta name="description" content="Esta es la página en la que puedes actualizar y configurar tu perfil" />
 			</Head>
@@ -153,7 +154,7 @@ const Profile = () => {
 					</ContainerImage>
 				</SectionForm>
 			</section>
-		</>
+		</ProtectedRoute>
 	);
 };
 

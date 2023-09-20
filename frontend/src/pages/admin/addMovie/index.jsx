@@ -14,6 +14,7 @@ import {
 	Input,
 	SubmitButton,
 } from "@styles/pages.styles/addMovie.styles";
+import ProtectedRouteAdmin from "@components/protectedRoute/ProtectedAdmin";
 
 const AddMovie = () => {
 	const [formData, setFormData] = useState({
@@ -124,7 +125,7 @@ const AddMovie = () => {
 			});
 	};
 	return (
-		<>
+		<ProtectedRouteAdmin>
 			<Head>
 				<meta
 					name="add movie"
@@ -347,7 +348,7 @@ const AddMovie = () => {
 
 				<SubmitButton type="submit">Crear Pelicula</SubmitButton>
 			</form>
-		</>
+		</ProtectedRouteAdmin>
 	);
 };
 
