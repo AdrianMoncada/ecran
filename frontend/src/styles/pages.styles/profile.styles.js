@@ -219,10 +219,21 @@ export const ContainerFrom = styled.section`
 		padding: 5px;
 		margin-top: 5px;
 		margin-bottom: 15px;
+		position: relative;
 	}
 
 	.input-error {
 		border: 1px solid #ff0707;
+	}
+
+	.separetor .input {
+		position: relative;
+		button {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 `;
 

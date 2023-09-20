@@ -75,21 +75,14 @@ function useProvideAuth() {
 
 	const updateProfileInfo = async (updatedData) => {
 		try {
-			const token = Cookie.get("token");
-
-			if (!token) {
-				return null;
-			}
-
 			const userId = Cookie.get("userId");
 
 			if (!userId) {
 				return null;
 			}
 
-			const response = await axios.put(endPoints.update(userId), updatedData, {
+			const response = await axios.put(endPoints.auth.update(userId), updatedData, {
 				headers: {
-					Authorization: `Bearer ${token}`,
 					"Content-Type": "application/json",
 				},
 			});
@@ -111,15 +104,30 @@ function useProvideAuth() {
 	const uploadProfilePicture = async (profilePicture) => {
 		try {
 			const formImageData = new FormData();
+			console.log("hooks/useAuth - profilePicture", profilePicture);
+			console.log("hooks/useAuth - formImageData - before", formImageData.get("file"));
 			formImageData.append("file", profilePicture);
+			console.log("hooks/useAuth - formImageData - after", formImageData.get("file"));
+
+			const token = Cookie.get("token");
+
+			if (!token) {
+				return null;
+			}
+
+			const headers = {
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
+			};
+
+			console.log("hooks/useAuth - headers", headers);
 
 			const imageResponse = await axios.post(endPoints.auth.profilePicture, formImageData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
+				headers,
 			});
 
-			const imageUrl = imageResponse.data.imageUrl;
+			console.log("hooks/useAuth - imageResponse", imageResponse);
+			const imageUrl = imageResponse.data;
 
 			return imageUrl;
 		} catch (error) {
