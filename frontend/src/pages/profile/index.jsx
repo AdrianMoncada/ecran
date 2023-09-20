@@ -144,6 +144,7 @@ const Profile = () => {
 												? "********"
 												: null
 										}
+										disabled={item.name === "password" ? true : false}
 									/>
 									<span
 										className={`message-error ${
