@@ -23,14 +23,18 @@ const MyList = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isVerified, setVerified] = useState(false);
 	const [isLogged, setLogged] = useState(true);
+	const token = Cookies.get("token");
 
 	const fetchWatchList = () => {
 		const userId = Cookies.get("userId");
-		fetch(endPoints.movies.watchlist(userId))
+		fetch(endPoints.movies.watchlist(userId), {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				setWatchlistMovies(data);
-				console.log(data);
 			})
 			.catch((error) => {
 				console.error("Error al obtener las películas guardadas:", error);
@@ -63,6 +67,7 @@ const MyList = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
 					},
 					body: JSON.stringify(body),
 				});

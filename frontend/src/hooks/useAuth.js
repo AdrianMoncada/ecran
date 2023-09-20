@@ -43,6 +43,7 @@ function useProvideAuth() {
 					Cookie.set("userId", response.userid, { expires: 2 });
 					axios.defaults.headers.Authorization = `Bearer ${token}`;
 					const { data: user } = await axios.get(endPoints.auth.profile(response.userid));
+					console.log("🚀 ~ file: useAuth.js:46 ~ .then ~ user:", user);
 					setUser(user);
 					const userInfoJSON = JSON.stringify(user);
 					const encodedUserInfo = btoa(userInfoJSON);

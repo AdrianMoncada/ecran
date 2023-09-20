@@ -10,6 +10,7 @@ export const ButtonStyle = styled.button`
 	align-items: center;
 	padding: 15px 13px;
 	transition: all 250ms ease;
+	cursor: pointer;
 
 	p {
 		font-size: 14px;
@@ -17,6 +18,7 @@ export const ButtonStyle = styled.button`
 	}
 
 	:hover {
+		cursor: pointer;
 		background-color: #553482;
 	}
 `;
