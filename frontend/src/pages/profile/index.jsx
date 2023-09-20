@@ -40,7 +40,7 @@ const Profile = () => {
 		firstName: user?.firstName,
 		lastName: user?.lastName,
 		email: user?.email,
-		password: user?.password,
+		password: "",
 		imageUrl: user?.imageUrl,
 	};
 	console.log("profile/index - user.imageUrl calculado", initalData.imageUrl);
@@ -92,6 +92,7 @@ const Profile = () => {
 						const encodedUserInfo = btoa(userInfoJSON);
 						Cookies.set("userInfo", encodedUserInfo, { expires: 2 });
 						toast.success("Perfil actualizado con exito!");
+						console.log(encodedUserInfo);
 					})
 					.catch((err) => {
 						console.error(err);
@@ -158,10 +159,10 @@ const Profile = () => {
 												: item.name === "email"
 												? formik.initialValues.email
 												: item.name === "password"
-												? "********"
+												? formik.initialValues.password
 												: null
 										}
-										disabled={item.name === "password" ? true : false}
+										// disabled={item.name === "password" ? true : false}
 									/>
 									<span
 										className={`message-error ${
