@@ -114,28 +114,31 @@ function useProvideAuth() {
 	// Función para actualizar imagen del perfil del usuario
 	const uploadProfilePicture = async (profilePicture) => {
 		try {
+			const formImageData = new FormData();
+			console.log("hooks/useAuth - profilePicture", profilePicture);
+			console.log("hooks/useAuth - formImageData - before", formImageData.get("file"));
+			formImageData.append("file", profilePicture);
+			console.log("hooks/useAuth - formImageData - after", formImageData.get("file"));
+
 			const token = Cookie.get("token");
 
 			if (!token) {
 				return null;
 			}
-			const formImageData = new FormData();
-			formImageData.append("file", profilePicture);
 
-			const userId = Cookie.get("userId");
+			const headers = {
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
+			};
 
-			if (!userId) {
-				return null;
-			}
+			console.log("hooks/useAuth - headers", headers);
 
-			const imageResponse = await axios.post(endPoints.auth.profilePicture(userId), formImageData, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "multipart/form-data",
-				},
+			const imageResponse = await axios.post(endPoints.auth.profilePicture, formImageData, {
+				headers,
 			});
 
-			const imageUrl = imageResponse.data.imageUrl;
+			console.log("hooks/useAuth - imageResponse", imageResponse);
+			const imageUrl = imageResponse.data;
 
 			return imageUrl;
 		} catch (error) {

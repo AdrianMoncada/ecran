@@ -6,7 +6,7 @@ const endPoints = {
 		profile: (userid) => `${API}/users/${userid}`,
 		verification: (userid) => `${API}/users/${userid}/confirm`,
 		check: `${API}/users/status/check`,
-		profilePicture: (userid) => `${API}/users/${userid}/image`,
+		profilePicture: `${API}/users/image`,
 		update: (userid) => `${API}/users/${userid}`,
 		comment: (userid) => `${API}/users/${userid}/comments`,
 		sendEmail: (userid) => `${API}/users/${userid}/sendemail`,

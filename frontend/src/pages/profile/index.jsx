@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Toaster, toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import {
@@ -24,16 +23,19 @@ const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const auth = useAuth();
 	const { user, updateProfileInfo, uploadProfilePicture } = auth;
-	const router = useRouter();
-	const [profilePictureUrl, setProfilePictureUrl] = useState(user?.profilePictureUrl || "");
-	// const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
+	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
+	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
+	const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
 
+	console.log("profile/index - user.imageUrl de la API", user?.imageUrl);
 	const initalData = {
 		firstName: user?.firstName,
 		lastName: user?.lastName,
 		email: user?.email,
 		password: user?.password,
+		imageUrl: user?.imageUrl === defaultImage ? null : user?.imageUrl,
 	};
+	console.log("profile/index - user.imageUrl calculado", initalData.imageUrl);
 
 	const validate = Yup.object({
 		firstName: Yup.string().max(15).required("*El nombre es obligatorio*"),
@@ -45,24 +47,33 @@ const Profile = () => {
 	const handleProfilePictureChange = (event) => {
 		const file = event.target.files[0];
 		if (file) {
+			console.log("profile/index - file", file);
 			const imageUrl = URL.createObjectURL(file);
-			setProfilePictureUrl(imageUrl);
-			// setSelectedProfilePicture(file);
+			// console.log("profile/index - imageURL", imageUrl);
+			setProfilePicture(file);
+			setSelectedProfilePicture(imageUrl);
 		}
 	};
 
 	const formik = useFormik({
 		initialValues: initalData,
 		onSubmit: async (formData) => {
-			console.log(formData);
+			const data = {
+				firstName: formData.firstName,
+				lastName: formData.lastName,
+				email: formData.email,
+				password: formData.password,
+				imageUrl: formData.imageUrl,
+			};
 			try {
-				if (profilePictureUrl) {
-					const imageUrl = await uploadProfilePicture(profilePictureUrl);
-					formData.profilePictureUrl = imageUrl;
+				if (profilePicture) {
+					const imageUrl = await uploadProfilePicture(profilePicture);
+					console.log(imageUrl);
+					data.imageUrl = imageUrl;
 				}
-				updateProfileInfo(formData)
+				console.log(data);
+				updateProfileInfo(data)
 					.then(() => {
-						router.push("/");
 						toast.success("Perfil actualizado con exito!");
 					})
 					.catch((err) => {
@@ -70,7 +81,7 @@ const Profile = () => {
 						toast.error("Lo siento, intentelo de nuevo");
 					});
 			} catch (error) {
-				console.error(error);
+				console.error("Error al cargar la imagen:", error);
 				toast.error("Error al cargar la imagen");
 			}
 		},
@@ -87,7 +98,7 @@ const Profile = () => {
 					<AvatarContainer>
 						<div>
 							<Image
-								src={profilePictureUrl || "/images/A.png"}
+								src={selectedProfilePicture || initalData.imageUrl || "/images/A.png"}
 								alt="Imagen de perfil"
 								width={150}
 								height={150}
@@ -159,7 +170,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-Profile.getLayout = function PageLayout(page) {
-	return <>{page}</>;
-};

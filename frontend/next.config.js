@@ -13,7 +13,7 @@ const nextConfig = {
 module.exports = nextConfig;
 module.exports = {
 	images: {
-		domains: ["ecran.s3.amazonaws.com", "hydramovies.com", "https://image.tmdb.org"],
+		domains: ["ecran.s3.amazonaws.com", "hydramovies.com", "https://image.tmdb.org", "api.dicebear.com"],
 		env,
 		// Agrega el dominio de las imágenes aquí
 	},
