@@ -102,7 +102,7 @@ function MovieDetail({ movies, cardMovies }) {
 							<p className="castD">{movies?.director}</p>
 						</span>
 						<span className="cast">
-							Musica:
+							Productores:
 							<p className="castD">{movies?.composer}</p>
 						</span>
 						<span className="cast">
@@ -141,9 +141,9 @@ function MovieDetail({ movies, cardMovies }) {
 				</ContainerInfoMovie>
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
-						<p className="numerosPorcentaje div3">{movies.rt_score}</p>
+						<p className="numerosPorcentaje div3">{movies.mc_score}</p>
 						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
-						<p className="numerosPorcentaje div5">{movies.mc_score}</p>
+						<p className="numerosPorcentaje div5">{movies.rt_score}</p>
 						{movies.score ? <p className="numerosPorcentaje div9">{movies.score.toFixed(1)}</p> : ""}
 						{movies.score ? (
 							<Image
