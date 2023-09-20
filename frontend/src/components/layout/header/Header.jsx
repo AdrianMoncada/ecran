@@ -16,7 +16,6 @@ const Header = ({ auth }) => {
 
 	useEffect(() => {
 		const encodedUserInfo = Cookie.get("userInfo");
-		console.log(encodedUserInfo);
 		if (encodedUserInfo) {
 			const userInfoJSON = atob(encodedUserInfo);
 			const userInfo = JSON.parse(userInfoJSON);

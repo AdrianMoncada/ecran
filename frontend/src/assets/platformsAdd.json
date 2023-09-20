@@ -1,0 +1,31 @@
+[
+	{
+		
+		"name": "HBO",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/HBO.png"
+	},
+	{
+		
+		"name": "Prime video",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/PrimeVideo.png"
+	},
+	{
+		
+		"name": "Apple TV",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/Appletv.png"
+	},
+	{
+		
+		"name": "Disney+",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/Disney%2B.png"
+	},
+	{
+	
+		"name": "Netflix",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/Netflix.png"
+	},
+	{
+		"name": "Hulu",
+		"logo_url": "https://ecran.s3.amazonaws.com/Logos/Hulu.png"
+	}
+]

@@ -10,7 +10,7 @@ const StarRating = ({ rating, onStarClick }) => {
 				<FaStar
 					key={i}
 					onClick={() => onStarClick(i)}
-					style={{ color: "yellow", marginRight: "8px", fontSize: "28px" }}
+					style={{ color: "yellow", marginRight: "8px", fontSize: "28px", cursor: "pointer" }}
 				/>,
 			);
 		} else if (i - 0.5 === rating) {
@@ -18,7 +18,7 @@ const StarRating = ({ rating, onStarClick }) => {
 				<FaStarHalfAlt
 					key={i}
 					onClick={() => onStarClick(i)}
-					style={{ color: "yellow", marginRight: "8px", fontSize: "28px" }}
+					style={{ color: "yellow", marginRight: "8px", fontSize: "28px", cursor: "pointer" }}
 				/>,
 			);
 		} else {
@@ -26,7 +26,7 @@ const StarRating = ({ rating, onStarClick }) => {
 				<FaStar
 					key={i}
 					onClick={() => onStarClick(i)}
-					style={{ color: "white", marginRight: "8px", fontSize: "28px" }}
+					style={{ color: "white", marginRight: "8px", fontSize: "28px", cursor: "pointer" }}
 				/>,
 			);
 		}
