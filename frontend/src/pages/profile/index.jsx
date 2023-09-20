@@ -20,20 +20,24 @@ import {
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
 import Cookies from "js-cookie";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const auth = useAuth();
 	const { updateProfileInfo, uploadProfilePicture } = auth;
-
 	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
 	// const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
 	// const user = Cookies.get("userInfo");
-
 	const encodedUserInfo = Cookies.get("userInfo");
 	const userInfoJSON = atob(encodedUserInfo);
 	const user = JSON.parse(userInfoJSON);
 	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
+	const [showPassword, setShowPassword] = useState(false);
+
+	const togglePasswordVisibility = () => {
+		setShowPassword(!showPassword);
+	};
 
 	const initalData = {
 		firstName: user?.firstName,
@@ -147,7 +151,8 @@ const Profile = () => {
 									<label>{item.label}</label>
 									<input
 										className={`input ${submitted && formik.errors[item.name] ? "input-error" : ""}`}
-										type={item.type}
+										type={showPassword ? "text" : item.type}
+										// type={item.type}
 										name={item.name}
 										onChange={formik.handleChange}
 										defaultValue={
@@ -161,8 +166,13 @@ const Profile = () => {
 												? formik.initialValues.password
 												: null
 										}
-										// disabled={item.name === "password" ? true : false}
 									/>
+									{item.name === "password" && (
+										<button onClick={togglePasswordVisibility}>
+											{showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+										</button>
+									)}
+
 									<span
 										className={`message-error ${
 											submitted && formik.touched[item.name] && formik.errors[item.name] ? "visible" : ""
