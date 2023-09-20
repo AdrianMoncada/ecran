@@ -25,7 +25,7 @@ export const MainHome = styled.div`
 		font-size: 4vw;
 		width: 80%;
 		font-weight: 800;
-		line-height: 55px;
+		line-height: 80px;
 	}
 
 	.buscador {

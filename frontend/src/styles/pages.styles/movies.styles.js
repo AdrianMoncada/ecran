@@ -165,6 +165,15 @@ export const PosterContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
+
+	.play{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+	}
 
 	@media screen and (max-width: 1024px) {
 		margin-bottom: 2rem;
@@ -172,6 +181,8 @@ export const PosterContainer = styled.div`
 		justify-content: center;
 	}
 `;
+
+
 export const Poster = styled.img`
 	height: 100%;
 	width: 100%;
