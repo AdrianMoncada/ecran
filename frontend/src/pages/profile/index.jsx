@@ -168,7 +168,7 @@ const Profile = () => {
 										}
 									/>
 									{item.name === "password" && (
-										<button onClick={togglePasswordVisibility}>
+										<button className="password-toggle" onClick={togglePasswordVisibility}>
 											{showPassword ? <MdVisibility /> : <MdVisibilityOff />}
 										</button>
 									)}
