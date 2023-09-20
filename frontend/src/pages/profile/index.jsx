@@ -19,14 +19,21 @@ import {
 } from "@styles/pages.styles/profile.styles";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
+import Cookies from "js-cookie";
 
 const Profile = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const auth = useAuth();
-	const { user, updateProfileInfo, uploadProfilePicture } = auth;
-	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
+	const { updateProfileInfo, uploadProfilePicture } = auth;
+
 	const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
-	const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
+	// const defaultImage = "https://api.dicebear.com/7.x/bottts-neutral/svg";
+	// const user = Cookies.get("userInfo");
+
+	const encodedUserInfo = Cookies.get("userInfo");
+	const userInfoJSON = atob(encodedUserInfo);
+	const user = JSON.parse(userInfoJSON);
+	const [profilePicture, setProfilePicture] = useState(user?.profilePictureUrl || "");
 
 	console.log("profile/index - user.imageUrl de la API", user?.imageUrl);
 	const initalData = {
@@ -34,7 +41,7 @@ const Profile = () => {
 		lastName: user?.lastName,
 		email: user?.email,
 		password: user?.password,
-		imageUrl: user?.imageUrl === defaultImage ? null : user?.imageUrl,
+		imageUrl: user?.imageUrl,
 	};
 	console.log("profile/index - user.imageUrl calculado", initalData.imageUrl);
 
@@ -66,6 +73,12 @@ const Profile = () => {
 				password: formData.password,
 				imageUrl: formData.imageUrl,
 			};
+			const cookieOld = {
+				...user,
+				data,
+			};
+
+			console.log(cookieOld);
 			try {
 				if (profilePicture) {
 					const imageUrl = await uploadProfilePicture(profilePicture);
@@ -75,6 +88,9 @@ const Profile = () => {
 				console.log(data);
 				updateProfileInfo(data)
 					.then(() => {
+						const userInfoJSON = JSON.stringify(cookieOld);
+						const encodedUserInfo = btoa(userInfoJSON);
+						Cookies.set("userInfo", encodedUserInfo, { expires: 2 });
 						toast.success("Perfil actualizado con exito!");
 					})
 					.catch((err) => {
@@ -98,8 +114,8 @@ const Profile = () => {
 				<Container>
 					<AvatarContainer>
 						<div>
-							<Image
-								src={selectedProfilePicture || initalData.imageUrl || "/images/A.png"}
+							<img
+								src={selectedProfilePicture || initalData.imageUrl}
 								alt="Imagen de perfil"
 								width={150}
 								height={150}
