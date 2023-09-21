@@ -174,11 +174,30 @@ export const PosterContainer = styled.div`
 	align-items: center;
 	position: relative;
 
-	.play {
+	/* .play {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+	} */
+	.play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100px; /* Tamaño del botón */
+		height: 100px; /* Tamaño del botón */
+		background-color: rgba(2, 5, 5, 0.7); /* Fondo borroso (puedes ajustar la opacidad) */
+		border-radius: 50%; /* Forma circular */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer; /* Cambia el cursor al puntero al pasar el ratón por encima */
+	}
+
+	.play-icon {
+		font-size: 50px; /* Tamaño del icono de reproducción */
+		color: white; /* Color del icono */
 	}
 
 	@media screen and (max-width: 1024px) {
