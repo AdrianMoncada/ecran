@@ -115,24 +115,24 @@ public class MovieServiceImpl implements MovieService {
         if (parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
             Page<Movie> moviesList = repository.findByDateRange(min_date, max_date, page);
             pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
-            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            pagesDTO.setSize(moviesList.getTotalPages());
             return pagesDTO;
         }
         if (!parsedGenres.isEmpty() && parsedPlatforms.isEmpty()) {
             Page<Movie> moviesList = repository.findByGenresInDateRange(parsedGenres, min_date, max_date, page);
             pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
-            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            pagesDTO.setSize(moviesList.getTotalPages());
             return pagesDTO;
         }
         if (parsedGenres.isEmpty()) {
             Page<Movie> moviesList = repository.findByPlatformInDateRange(parsedPlatforms, min_date, max_date, page);
             pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
-            pagesDTO.setSize(moviesList.getTotalPages() - 1);
+            pagesDTO.setSize(moviesList.getTotalPages());
             return pagesDTO;
         }
         Page<Movie> moviesList = repository.findByGenresAndPlatformsInDateRange(parsedGenres, parsedPlatforms, min_date, max_date, page);
         pagesDTO.setMovies(moviesList.getContent().stream().map(m -> mapper.map(m, MovieResDTO.class)).toList());
-        pagesDTO.setSize(moviesList.getTotalPages() - 1);
+        pagesDTO.setSize(moviesList.getTotalPages());
 
         return pagesDTO;
     };
