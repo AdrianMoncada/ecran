@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const Form = styled.form`
 	display: flex;
 	justify-content: center;
-	width: 60%;
+	width: 100%;
 	max-width: 500px;
 	/* height: 100%; */
-	min-width: 200px;
+	min-width: 150px;
 
 	@media screen and (max-width: 768px) {
-		width: 50%;
+		width: 60%;
 	}
 `;
 
@@ -52,6 +52,11 @@ export const Input = styled.input`
 
 	&:focus {
 		outline: none;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 10px;
+		padding: 10px 20px 10px 20px;
 	}
 `;
 
