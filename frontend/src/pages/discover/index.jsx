@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Container,
 	Filtros,
@@ -16,6 +16,8 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
 import Head from "next/head";
+import endPoints from "@/service/api";
+import { paginationMovies } from "@/service/movies/movies.service";
 
 const genresOptions = [
 	"Acción",
@@ -46,6 +48,26 @@ const Discover = () => {
 	const handleChange = (e, value) => {
 		setPagina(value);
 	};
+
+	useEffect(() => {
+		const fetchApi = async () => {
+			const apiUrl = endPoints.movies.pagination(pagina);
+			await fetch(apiUrl)
+				.then((response) => response.json())
+				.then(async (data) => {
+					if (data.movies.length === 0) {
+						const response = await paginationMovies(pagina);
+						setMovies(response.movies);
+						setCount(response.size);
+					} else {
+						setMovies(data.movies);
+						setCount(data.size);
+					}
+				})
+				.catch((error) => console.log(error));
+		};
+		fetchApi();
+	}, [pagina]);
 
 	function cortarTexto(texto, limite) {
 		if (texto.length <= limite) {
