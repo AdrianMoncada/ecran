@@ -5,7 +5,6 @@ import React from "react";
 import Infinite from "@components/InfiniteCarrousel/Infinite";
 import Search from "@components/search/Search";
 import fetchMoviesWithTop, { fetchMoviesDate, fetchMoviesGenre } from "@/service/movies/movies.service";
-import { fetchSeries } from "./api/series";
 import Head from "next/head";
 
 export default function Home({ response, moviesTop, moviesOld }) {
@@ -91,13 +90,11 @@ export async function getServerSideProps() {
 	const response = await fetchMoviesGenre();
 	const moviesTop = await fetchMoviesWithTop();
 	const moviesOld = await fetchMoviesDate(2000, 2004);
-	const responseSeries = await fetchSeries();
 	return {
 		props: {
 			response,
 			moviesTop,
 			moviesOld,
-			responseSeries,
 		},
 	};
 }

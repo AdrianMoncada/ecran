@@ -2,33 +2,28 @@ import styled from "styled-components";
 
 export const MainHome = styled.div`
 	height: 73vh;
-	background-image: url("/images/home/Bg.svg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	border-radius: 0% 0% 50px 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background-size: cover;
 	gap: 40px;
 	margin: 0 auto;
 	flex-shrink: 0;
 	border-radius: 0px 0px 48px 48px;
 	background: radial-gradient(122.17% 122.17% at 50% 100%, #e9d5ff 0%, #a855f7 22.35%, rgba(15, 23, 42, 0) 100%);
 	margin: 0 20px;
+	width: 100%;
 
 	.title {
 		font-family: InterBold;
 		text-align: center;
 		font-size: 4vw;
-		width: 80%;
+		width: 70%;
 		font-weight: 800;
-		line-height: 80px;
+		/* line-height: 80px; */
 	}
 
-	.buscador {
+	/* .buscador {
 		width: 100%;
 		height: 3em;
 		flex-shrink: 0;
@@ -39,14 +34,14 @@ export const MainHome = styled.div`
 			rgba(30, 41, 59, 0.48) 51.32%,
 			rgba(30, 41, 59, 0.15) 100%
 		);
-	}
+	} */
 
 	.mainHome_p {
 		color: #cbd5e1;
 		text-align: center;
-		font-size: 1.3vw;
+		font-size: 1.5vw;
 		font-weight: 400;
-		width: 80%;
+		width: 70%;
 	}
 
 	/*<------------Media Query-------------->*/
@@ -54,16 +49,16 @@ export const MainHome = styled.div`
 	@media screen and (max-width: 768px) {
 		height: 60vh;
 		/* padding-top: 50px; */
-		gap: 30px;
+		gap: 40px;
 
 		.title {
-			font-size: 5vw;
-			width: 12em;
+			font-size: 4vw;
+			/* width: 12em; */
 		}
 
 		.mainHome_p {
 			font-size: 2vw;
-			width: 25em;
+			/* width: 25em; */
 		}
 
 		.buscador {

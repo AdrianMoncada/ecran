@@ -111,6 +111,7 @@ export const TitleContainer = styled.div`
 		font-weight: 500;
 		line-height: 53px; /* 212% */
 		letter-spacing: -0.5px;
+		text-decoration: underline;
 		@media (max-width: 900px) {
 			font-size: 18px;
 			text-align: center;
@@ -176,6 +177,7 @@ export const TitleListContainer = styled.div`
 	.buttons {
 		display: flex;
 		gap: 10px;
+		padding-top: 2rem;
 	}
 `;
 
