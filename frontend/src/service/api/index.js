@@ -23,6 +23,7 @@ const endPoints = {
 		top: `${API}/api/v1/movies/top`,
 		genre: `${API}/api/v1/movies/filter/1?=Drama`,
 		pagination: (page) => `${API}/api/v1/movies/page/${page}`,
+		suggestion: `${API}/api/v1/movies/suggestions`,
 	},
 };
 

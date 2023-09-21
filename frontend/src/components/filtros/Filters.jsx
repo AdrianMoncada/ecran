@@ -7,10 +7,10 @@ import CheckboxImage from "./help/CheckboxImage";
 import endPoints from "@/service/api";
 import { paginationMovies } from "@/service/movies/movies.service";
 
-const MIN_DATE = 1990;
+const MIN_DATE = 1914;
 const MAX_DATE = 2023;
 
-const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount }) => {
+const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount, count, setControl }) => {
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 	const [dateRange, setDateRange] = useState([MIN_DATE, MAX_DATE]);
@@ -45,6 +45,7 @@ const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount 
 		});
 
 		const apiUrl = endPoints.movies.filters(queryParams, pagina);
+		console.log("🚀 ~ file: Filters.jsx:48 ~ useEffect ~ apiUrl:", apiUrl);
 		fetch(apiUrl)
 			.then((response) => response.json())
 			.then(async (data) => {
@@ -52,13 +53,15 @@ const Filters = ({ genresOptions, platformsOptions, setMovies, pagina, setCount 
 					const response = await paginationMovies(pagina);
 					setMovies(response.movies);
 					setCount(response.size);
+					setControl(false);
 				} else {
 					setMovies(data.movies);
 					setCount(data.size);
+					setControl(false);
 				}
 			})
 			.catch((error) => console.log(error));
-	}, [selectedGenres, selectedPlatforms, dateRange, pagina]);
+	}, [selectedGenres, selectedPlatforms, dateRange, pagina, count, setMovies, setCount]);
 
 	return (
 		<Container style={{ color: "#663B9F" }} className="p-4 space-y-4 text-center">

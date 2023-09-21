@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Container,
 	Filtros,
@@ -16,6 +16,8 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Modal, Hidden } from "@mui/material";
 import { LiaFilterSolid } from "react-icons/lia";
 import Head from "next/head";
+import endPoints from "@/service/api";
+import { paginationMovies } from "@/service/movies/movies.service";
 
 const genresOptions = [
 	"Acción",
@@ -23,13 +25,20 @@ const genresOptions = [
 	"Comedia",
 	"Aventura",
 	"Fantasía",
-	"Musical",
+	"Música",
 	"Documental",
 	"Animación",
 	"Terror",
 	"Deporte",
 	"Romance",
 	"Familia",
+	"Suspenso",
+	"Crimen",
+	"Ciencia Ficción",
+	"Misterio",
+	"Historia",
+	"Bélica",
+	"Western",
 ];
 
 const Discover = () => {
@@ -38,6 +47,7 @@ const Discover = () => {
 	const router = useRouter();
 	const [pagina, setPagina] = useState(1);
 	const [movies, setMovies] = useState([]);
+	const [control, setControl] = useState(true);
 
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevState) => !prevState);
@@ -46,6 +56,29 @@ const Discover = () => {
 	const handleChange = (e, value) => {
 		setPagina(value);
 	};
+
+	useEffect(() => {
+		if (control) {
+			const fetchApi = async () => {
+				const apiUrl = endPoints.movies.pagination(pagina);
+				await fetch(apiUrl)
+					.then((response) => response.json())
+					.then(async (data) => {
+						if (data.movies.length === 0) {
+							const response = await paginationMovies(pagina);
+							console.log(response);
+							setMovies(response.movies);
+							setCount(response.size);
+						} else {
+							setMovies(data.movies);
+							setCount(data.size);
+						}
+					})
+					.catch((error) => console.log(error));
+			};
+			fetchApi();
+		}
+	}, [pagina]);
 
 	function cortarTexto(texto, limite) {
 		if (texto.length <= limite) {
@@ -87,6 +120,8 @@ const Discover = () => {
 								setMovies={setMovies}
 								pagina={pagina}
 								setCount={setCount}
+								count={count}
+								setControl={setControl}
 							/>
 						</Filtros>
 					</Hidden>
@@ -107,6 +142,8 @@ const Discover = () => {
 								setMovies={setMovies}
 								pagina={pagina}
 								setCount={setCount}
+								count={count}
+								setControl={setControl}
 							/>
 						</ModalFilters>
 					</Modal>

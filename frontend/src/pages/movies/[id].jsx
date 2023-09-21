@@ -19,7 +19,7 @@ import {
 } from "@styles/pages.styles/movies.styles";
 import Card from "@components/card/Card";
 import Image from "next/image";
-import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
+import { fetchMovieId, fetchMoviesSuggestions } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
 import StarRating from "@components/stars/Estrellas";
 import { FaStar } from "react-icons/fa";
@@ -42,6 +42,7 @@ const InactiveStarRating = () => {
 };
 
 function MovieDetail({ movies, cardMovies }) {
+	console.log(movies);
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [control, setControl] = useState(true);
@@ -133,10 +134,24 @@ function MovieDetail({ movies, cardMovies }) {
 							Elenco:
 							<p className="castD">{movies?.actors}</p>
 						</span>
+						<span className="cast">
+							Generos:
+							{movies?.genres.map((genre) => (
+								<p key={genre} className="castD">
+									{genre}
+								</p>
+							))}
+						</span>
+						<span className="cast">
+							Fecha de estreno:
+							<p className="castD">{movies?.release_date}</p>
+						</span>
 						<span className="platforms">
 							Disponible en:
 							<div className="imagenPlatform">
-								<Image className="logo" src="/images/home/logos/disney.svg" alt="" width={100} height={100} />
+								{movies?.platforms.map((movie) => (
+									<img className="logo" key={movie.name} src={movie.logo_url} alt={movie.name} />
+								))}
 							</div>
 						</span>
 					</Info>
@@ -165,8 +180,8 @@ function MovieDetail({ movies, cardMovies }) {
 				</ContainerInfoMovie>
 				<DescriptioContainer>
 					<Puntuaciones className="puntuacion">
-						<p className="numerosPorcentaje div3">{movies.mc_score}</p>
-						<p className="numerosPorcentaje div4">{movies.imdb_score}</p>
+						<p className="numerosPorcentaje div3">{movies.imdb_score}</p>
+						<p className="numerosPorcentaje div4">{movies.mc_score}</p>
 						<p className="numerosPorcentaje div5">{movies.rt_score}</p>
 						{movies.score ? <p className="numerosPorcentaje div9">{movies.score.toFixed(1)}</p> : ""}
 						{movies.score ? (
@@ -219,7 +234,7 @@ function MovieDetail({ movies, cardMovies }) {
 export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
-	const cardMovies = await fetchMovies();
+	const cardMovies = await fetchMoviesSuggestions();
 	return {
 		props: {
 			movies,
@@ -227,17 +242,5 @@ export async function getServerSideProps(context) {
 		},
 	};
 }
-
-/* export async function getStaticPaths() {
-	const cardMovies = await fetchMovies();
-	const paths = cardMovies.map((movie) => {
-		return { params: { id: movie.movieId.toString() } };
-	});
-
-	return {
-		paths,
-		fallback: true,
-	};
-} */
 
 export default MovieDetail;
