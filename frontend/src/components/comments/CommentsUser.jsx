@@ -3,7 +3,6 @@ import React from "react";
 import { ContainerComment } from "./Comments.styles";
 
 const CommentsUser = ({ user }) => {
-	console.log(user);
 	return (
 		<ContainerComment>
 			<div className="header">
