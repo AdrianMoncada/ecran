@@ -124,14 +124,21 @@ export const Info = styled.div`
 	.imagenPlatform {
 		display: flex;
 		margin-left: 20%;
+		gap: 20px;
+		height: 80px;
 	}
 
 	.logo {
-		height: 120px;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	@media screen and (max-width: 768px) {
 		width: 80%;
+
+		.imagenPlatform {
+			height: 40px;
+		}
 	}
 
 	@media screen and (max-width: 640px) {
