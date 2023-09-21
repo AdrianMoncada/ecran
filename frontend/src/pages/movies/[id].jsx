@@ -134,10 +134,24 @@ function MovieDetail({ movies, cardMovies }) {
 							Elenco:
 							<p className="castD">{movies?.actors}</p>
 						</span>
+						<span className="cast">
+							Generos:
+							{movies?.genres.map((genre) => (
+								<p key={genre} className="castD">
+									{genre}
+								</p>
+							))}
+						</span>
+						<span className="cast">
+							Fecha de estreno:
+							<p className="castD">{movies?.release_date}</p>
+						</span>
 						<span className="platforms">
 							Disponible en:
 							<div className="imagenPlatform">
-								<Image className="logo" src="/images/home/logos/disney.svg" alt="" width={100} height={100} />
+								{movies?.platforms.map((movie) => (
+									<img className="logo" key={movie.name} src={movie.logo_url} alt={movie.name} />
+								))}
 							</div>
 						</span>
 					</Info>
