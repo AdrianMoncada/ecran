@@ -15,6 +15,7 @@ import java.io.InputStream;
 @AllArgsConstructor
 public class FileStoreService {
     private final AmazonS3 amazonS3;
+    private static int fileNum;
 
     public String upload(MultipartFile image) {
 
@@ -23,7 +24,7 @@ public class FileStoreService {
         metadata.setContentDisposition("inline; filename="+ image.getOriginalFilename());
 
         String path = "ecran" + "/" + "Usuarios";
-        String fileName = image.getOriginalFilename();
+        String fileName = "usrprflpc" + fileNum++;
 
         try {
             InputStream iStream = image.getInputStream();
@@ -33,7 +34,7 @@ public class FileStoreService {
             throw new IllegalStateException(e.getMessage());
         }
 
-        return "https://ecran.s3.amazonaws.com/Usuarios/" + image.getOriginalFilename();
+        return "https://ecran.s3.amazonaws.com/Usuarios/" + fileName;
     }
 
 }
