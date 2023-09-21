@@ -167,12 +167,11 @@ export const PosterContainer = styled.div`
 	align-items: center;
 	position: relative;
 
-	.play{
+	.play {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-
 	}
 
 	@media screen and (max-width: 1024px) {
@@ -181,7 +180,6 @@ export const PosterContainer = styled.div`
 		justify-content: center;
 	}
 `;
-
 
 export const Poster = styled.img`
 	height: 100%;

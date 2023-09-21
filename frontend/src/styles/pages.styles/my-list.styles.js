@@ -39,6 +39,7 @@ export const AvatarContainer = styled.div`
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
+
 		@media (max-width: 900px) {
 			width: 130px;
 			height: 120px;
@@ -50,6 +51,12 @@ export const AvatarContainer = styled.div`
 			width: 110px;
 			height: 100px;
 		}
+	}
+	img {
+		border-radius: 50%;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
 	}
 	h2 {
 		font-size: 4em;

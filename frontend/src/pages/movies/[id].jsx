@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 import {
@@ -29,6 +29,7 @@ import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Comentarios from "@components/comments-clientSide/Comentarios";
+import { getUser } from "@/service/users/users.service";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -43,6 +44,7 @@ const InactiveStarRating = () => {
 function MovieDetail({ movies, cardMovies }) {
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [control, setControl] = useState(true);
 	const handleImageClick = () => {
 		setIsModalOpen(true);
 	};
@@ -50,6 +52,24 @@ function MovieDetail({ movies, cardMovies }) {
 		setIsModalOpen(false);
 	};
 	const userId = Cookies.get("userId");
+
+	useEffect(() => {
+		const encodedUserInfo = Cookies.get("userInfo");
+		if (encodedUserInfo) {
+			const userId = Cookies.get("userId");
+			const userInfoJSON = atob(encodedUserInfo);
+			const userInfo = JSON.parse(userInfoJSON);
+			const movieEncontrada = userInfo.ratings?.find((obj) => obj.movieId === movies.movieId);
+			if (movieEncontrada) {
+				if (control) {
+					setRating(movieEncontrada.rating);
+					getUser(userId);
+				}
+			}
+			getUser(userId);
+			setControl(false);
+		}
+	});
 
 	const [rating, setRating] = useState(0);
 
@@ -74,7 +94,6 @@ function MovieDetail({ movies, cardMovies }) {
 				const response = await axios.post(endpoint, postData, options);
 
 				setRating(newRating);
-
 				if (response.data === "Vote added") {
 					toast.success("Película puntuada con éxito");
 				} else {
@@ -123,8 +142,7 @@ function MovieDetail({ movies, cardMovies }) {
 					</Info>
 					<As>
 						<PosterContainer>
-							<Poster src={movies?.image_url}  alt={movies?.title} />
-							<Image className="play" src="/images/play.png" alt="" width={100} height={100} onClick={handleImageClick} />
+							<Poster src={movies?.image_url} onClick={handleImageClick} alt={movies?.title} />
 							<AddButton movie={movies?.movieId} />
 							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
@@ -202,7 +220,6 @@ export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
 	const cardMovies = await fetchMovies();
-
 	return {
 		props: {
 			movies,

@@ -158,7 +158,7 @@ const EditMovie = () => {
 		}
 	};
 
-	const handleSubmitEdit = (e) => {
+	const handleSubmitEdit = async (e) => {
 		e.preventDefault();
 
 		const movieId = formData.movieId;
@@ -168,23 +168,20 @@ const EditMovie = () => {
 			return;
 		}
 		const formDataWithoutMovieId = { ...formData };
-		delete formDataWithoutMovieId.movieId;
+		delete formDataWithoutMovieId.score;
 
 		const apiUrl = `https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${movieId}`;
 		const token = Cookies.get("token");
 		const jsonFormData = JSON.stringify(formDataWithoutMovieId, null, 2);
-		console.log(formData);
+		console.log(jsonFormData);
 
-		const options = {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
-			body: jsonFormData,
+		const headers = {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
 		};
 
-		fetch(apiUrl, options)
+		await axios
+			.put(apiUrl, jsonFormData, { headers })
 			.then((response) => {
 				console.log("Respuesta de la API:", response.data);
 				alert("Se modificó la película con éxito");
@@ -193,6 +190,25 @@ const EditMovie = () => {
 				console.error("Error al enviar la solicitud:", error);
 				alert("Algo salió mal al modificar la película");
 			});
+
+		/* const options = {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: jsonFormData,
+		};
+
+		await fetch(apiUrl, options)
+			.then((response) => {
+				console.log("Respuesta de la API:", response.data);
+				alert("Se modificó la película con éxito");
+			})
+			.catch((error) => {
+				console.error("Error al enviar la solicitud:", error);
+				alert("Algo salió mal al modificar la película");
+			}); */
 	};
 
 	return (
