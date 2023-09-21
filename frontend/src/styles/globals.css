@@ -36,12 +36,14 @@
 
 html {
 	height: 100vh;
+	
 }
 
 body {
 	color: white;
 	background: #0f172a;
 	font-family: Inter;
+	
 }
 
 .ReactModal__Overlay.custom-overlay {

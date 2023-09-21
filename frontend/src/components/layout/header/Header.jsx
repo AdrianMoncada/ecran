@@ -103,7 +103,7 @@ const Header = ({ auth }) => {
 						</Menu>
 						<Link href="/discover" className="buttonExplore">
 							<MdExplore className="icon" />
-							Explorar
+							<span className="text">Explorar</span>
 						</Link>
 					</Box>
 				) : (
