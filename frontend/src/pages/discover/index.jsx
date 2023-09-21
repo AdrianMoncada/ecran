@@ -25,13 +25,20 @@ const genresOptions = [
 	"Comedia",
 	"Aventura",
 	"Fantasía",
-	"Musical",
+	"Música",
 	"Documental",
 	"Animación",
 	"Terror",
 	"Deporte",
 	"Romance",
 	"Familia",
+	"Suspenso",
+	"Crimen",
+	"Ciencia Ficción",
+	"Misterio",
+	"Historia",
+	"Bélica",
+	"Western",
 ];
 
 const Discover = () => {

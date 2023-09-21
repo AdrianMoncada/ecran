@@ -42,6 +42,7 @@ const InactiveStarRating = () => {
 };
 
 function MovieDetail({ movies, cardMovies }) {
+	console.log(movies);
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [control, setControl] = useState(true);
