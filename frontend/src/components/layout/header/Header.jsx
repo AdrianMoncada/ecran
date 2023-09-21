@@ -7,8 +7,6 @@ import { HeaderContainer } from "./Header.styles";
 import { MdExplore } from "react-icons/md";
 import { Avatar, Box, Tooltip, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import Cookie from "js-cookie";
-import endPoints from "@/service/api";
-import axios from "axios";
 
 const Header = ({ auth }) => {
 	const [openNav, setOpenNav] = useState(false);
@@ -43,22 +41,6 @@ const Header = ({ auth }) => {
 		setAnchorElUser(event.currentTarget);
 	};
 
-	const handleClick = async () => {
-		const userId = Cookie.get("userId");
-		if (userId) {
-			try {
-				const token = Cookie.get("token");
-				axios.defaults.headers.Authorization = `Bearer ${token}`;
-				const { data: user } = await axios.get(endPoints.auth.profile(userId));
-				const userInfoJSON = JSON.stringify(user);
-				const encodedUserInfo = btoa(userInfoJSON);
-				Cookie.set("userInfo", encodedUserInfo, { expires: 2 });
-			} catch (err) {
-				console.log(err);
-			}
-		}
-	};
-
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
@@ -71,7 +53,7 @@ const Header = ({ auth }) => {
 
 	return (
 		<HeaderContainer isScrolled={isScrolled}>
-			<Link href="/" className="logo" onClick={handleClick}>
+			<Link href="/" className="logo">
 				<Image src="/images/home/ecran.svg" alt="logo ecran" width={50} height={100} />{" "}
 			</Link>
 			<nav className={openNav ? "nav nav-mobile" : "nav"}>

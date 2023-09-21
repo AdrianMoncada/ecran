@@ -29,6 +29,7 @@ import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Comentarios from "@components/comments-clientSide/Comentarios";
+import { getUser } from "@/service/users/users.service";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -43,6 +44,7 @@ const InactiveStarRating = () => {
 function MovieDetail({ movies, cardMovies }) {
 	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [control, setControl] = useState(true);
 	const handleImageClick = () => {
 		setIsModalOpen(true);
 	};
@@ -54,10 +56,18 @@ function MovieDetail({ movies, cardMovies }) {
 	useEffect(() => {
 		const encodedUserInfo = Cookies.get("userInfo");
 		if (encodedUserInfo) {
+			const userId = Cookies.get("userId");
 			const userInfoJSON = atob(encodedUserInfo);
 			const userInfo = JSON.parse(userInfoJSON);
 			const movieEncontrada = userInfo.ratings?.find((obj) => obj.movieId === movies.movieId);
-			movieEncontrada ? setRating(movieEncontrada.rating) : null;
+			if (movieEncontrada) {
+				if (control) {
+					setRating(movieEncontrada.rating);
+					getUser(userId);
+				}
+			}
+			getUser(userId);
+			setControl(false);
 		}
 	});
 
@@ -84,7 +94,6 @@ function MovieDetail({ movies, cardMovies }) {
 				const response = await axios.post(endpoint, postData, options);
 
 				setRating(newRating);
-
 				if (response.data === "Vote added") {
 					toast.success("Película puntuada con éxito");
 				} else {
