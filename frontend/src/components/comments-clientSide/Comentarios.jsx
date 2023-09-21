@@ -71,7 +71,10 @@ const Comentarios = ({ movies }) => {
 				]);
 				axios
 					.post(endPoints.auth.comment(userId), data, options)
-					.then(() => toast.success("Comentario enviado con éxito"))
+					.then(() => {
+						setInputComments("");
+						toast.success("Comentario enviado con éxito");
+					})
 					.catch((err) => {
 						console.error(err);
 						toast.error("Error al publicar tu comentario");

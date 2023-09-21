@@ -421,7 +421,7 @@ export const Comments = styled.section`
 	.comments-text {
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-end;
 		flex-direction: column;
 		text-align: center;
 		width: 100%;
@@ -445,9 +445,6 @@ export const Comments = styled.section`
 
 	button {
 		background-color: #ad5ef8;
-		position: absolute;
-		top: 310px;
-		right: 0;
 		color: white;
 		cursor: pointer;
 		border-radius: 20px;
