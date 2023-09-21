@@ -11,6 +11,17 @@ export async function fetchMovies() {
 	}
 }
 
+export async function fetchMoviesSuggestions() {
+	try {
+		const response = await fetch(endPoints.movies.suggestion);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error("Error fetching movies data:", error);
+		throw error;
+	}
+}
+
 export async function paginationMovies(page) {
 	try {
 		const response = await fetch(endPoints.movies.pagination(page));

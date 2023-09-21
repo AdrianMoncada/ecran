@@ -19,7 +19,7 @@ import {
 } from "@styles/pages.styles/movies.styles";
 import Card from "@components/card/Card";
 import Image from "next/image";
-import { fetchMovieId, fetchMovies } from "@/service/movies/movies.service";
+import { fetchMovieId, fetchMoviesSuggestions } from "@/service/movies/movies.service";
 import AddButton from "@components/addButton/AddButton";
 import StarRating from "@components/stars/Estrellas";
 import { FaStar } from "react-icons/fa";
@@ -234,7 +234,7 @@ function MovieDetail({ movies, cardMovies }) {
 export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const movies = await fetchMovieId(id);
-	const cardMovies = await fetchMovies();
+	const cardMovies = await fetchMoviesSuggestions();
 	return {
 		props: {
 			movies,
@@ -242,17 +242,5 @@ export async function getServerSideProps(context) {
 		},
 	};
 }
-
-/* export async function getStaticPaths() {
-	const cardMovies = await fetchMovies();
-	const paths = cardMovies.map((movie) => {
-		return { params: { id: movie.movieId.toString() } };
-	});
-
-	return {
-		paths,
-		fallback: true,
-	};
-} */
 
 export default MovieDetail;
