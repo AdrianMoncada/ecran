@@ -30,6 +30,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Comentarios from "@components/comments-clientSide/Comentarios";
 import { getUser } from "@/service/users/users.service";
+import { BiPlay } from "react-icons/bi";
 
 const InactiveStarRating = () => {
 	const stars = [];
@@ -158,6 +159,12 @@ function MovieDetail({ movies, cardMovies }) {
 					<As>
 						<PosterContainer>
 							<Poster src={movies?.image_url} onClick={handleImageClick} alt={movies?.title} />
+							{/* <img src="/images/play.png" alt="play" className="play" /> */}
+							<div class="play-button" onClick={handleImageClick}>
+								<div class="play-icon">
+									<BiPlay />
+								</div>
+							</div>
 							<AddButton movie={movies?.movieId} />
 							{/* <Poster src={movies?.image_url} onClick={handleImageClick} /> */}
 						</PosterContainer>
