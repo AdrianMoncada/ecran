@@ -47,6 +47,7 @@ const Discover = () => {
 	const router = useRouter();
 	const [pagina, setPagina] = useState(1);
 	const [movies, setMovies] = useState([]);
+	const [control, setControl] = useState(true);
 
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevState) => !prevState);
@@ -57,23 +58,26 @@ const Discover = () => {
 	};
 
 	useEffect(() => {
-		const fetchApi = async () => {
-			const apiUrl = endPoints.movies.pagination(pagina);
-			await fetch(apiUrl)
-				.then((response) => response.json())
-				.then(async (data) => {
-					if (data.movies.length === 0) {
-						const response = await paginationMovies(pagina);
-						setMovies(response.movies);
-						setCount(response.size);
-					} else {
-						setMovies(data.movies);
-						setCount(data.size);
-					}
-				})
-				.catch((error) => console.log(error));
-		};
-		fetchApi();
+		if (control) {
+			const fetchApi = async () => {
+				const apiUrl = endPoints.movies.pagination(pagina);
+				await fetch(apiUrl)
+					.then((response) => response.json())
+					.then(async (data) => {
+						if (data.movies.length === 0) {
+							const response = await paginationMovies(pagina);
+							console.log(response);
+							setMovies(response.movies);
+							setCount(response.size);
+						} else {
+							setMovies(data.movies);
+							setCount(data.size);
+						}
+					})
+					.catch((error) => console.log(error));
+			};
+			fetchApi();
+		}
 	}, [pagina]);
 
 	function cortarTexto(texto, limite) {
@@ -116,6 +120,8 @@ const Discover = () => {
 								setMovies={setMovies}
 								pagina={pagina}
 								setCount={setCount}
+								count={count}
+								setControl={setControl}
 							/>
 						</Filtros>
 					</Hidden>
@@ -136,6 +142,8 @@ const Discover = () => {
 								setMovies={setMovies}
 								pagina={pagina}
 								setCount={setCount}
+								count={count}
+								setControl={setControl}
 							/>
 						</ModalFilters>
 					</Modal>
