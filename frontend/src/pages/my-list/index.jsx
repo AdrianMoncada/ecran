@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 import Head from "next/head";
 import Link from "next/link";
 import ProtectedRoute from "@components/protectedRoute/ProtectedRoute";
+import { getUser } from "@/service/users/users.service";
 
 const MyList = () => {
 	const auth = useAuth();
@@ -25,9 +26,10 @@ const MyList = () => {
 	const [isVerified, setVerified] = useState(false);
 	const [isLogged, setLogged] = useState(true);
 	const token = Cookies.get("token");
+	const userId = Cookies.get("userId");
+	const encodedUserInfo = Cookies.get("userInfo");
 
 	const fetchWatchList = () => {
-		const userId = Cookies.get("userId");
 		fetch(endPoints.movies.watchlist(userId), {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -43,9 +45,12 @@ const MyList = () => {
 	};
 
 	useEffect(() => {
-		if (auth.user) {
+		getUser(userId);
+		if (userId) {
+			const userInfoJSON = atob(encodedUserInfo);
+			const userInfo = JSON.parse(userInfoJSON);
 			// const userId = auth.user.userId;
-			auth.user.enabled ? setVerified(true) : setVerified(false);
+			userInfo.enabled ? setVerified(true) : setVerified(false);
 			setLogged(true);
 			fetchWatchList();
 		} else {
