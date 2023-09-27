@@ -13,4 +13,4 @@ spring:
           force-pull: true
           search-paths: backend/configs/
           username: tomascaceres
-          password: Wing6gitlab1Lam;
+          password: ${GITLAB_PASSWORD}
