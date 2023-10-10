@@ -3,7 +3,7 @@ spring:
     name: api-movie
   cloud:
     config:
-      uri: http://34.238.41.135:8888
+      uri: http://54.162.176.203:8888
 
 #server:
 #  port: 8080
