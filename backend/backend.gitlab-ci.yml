@@ -85,8 +85,8 @@ deploy-job:
         - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
         - ssh-keyscan -H $CONFIG_SERVER_IP >> ~/.ssh/known_hosts
         - ssh-keyscan -H $EUREKA_SERVER_IP >> ~/.ssh/known_hosts
-        - ssh-keyscan -H $GATEWAY_SERVER_IP >> ~/.ssh/known_hosts
-        - ssh-keyscan -H $USERS_SERVER_IP >> ~/.ssh/known_hosts
+#        - ssh-keyscan -H $GATEWAY_SERVER_IP >> ~/.ssh/known_hosts
+#        - ssh-keyscan -H $USERS_SERVER_IP >> ~/.ssh/known_hosts
     script:
 #  - CONFIG SERVER
         - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop config.service"
