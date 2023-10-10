@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: 44.203.152.200
+    hostname: 54.162.176.203
   client:
     register-with-eureka: false
     fetch-registry: false
