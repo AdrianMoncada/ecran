@@ -89,27 +89,27 @@ deploy-job:
         - ssh-keyscan -H $USERS_SERVER_IP >> ~/.ssh/known_hosts
     script:
 #  - CONFIG SERVER
-        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/console-app/
-        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl start consoleapp.service"
+        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl stop config.service"
+        - scp backend/ms-config-server/target/ms-config-server-0.0.1-SNAPSHOT.jar ubuntu@$CONFIG_SERVER_IP:~/config-app/
+        - ssh ubuntu@$CONFIG_SERVER_IP "sudo systemctl start config.service"
         - sleep 60
 #  - EUREKA SERVER
-        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/console-app/
-        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl start consoleapp.service"
+        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl stop eureka.service"
+        - scp backend/ms-eureka-server/target/ms-eureka-server-0.0.1-SNAPSHOT.jar ubuntu@$EUREKA_SERVER_IP:~/eureka-app/
+        - ssh ubuntu@$EUREKA_SERVER_IP "sudo systemctl start eureka.service"
 #  - API MOVIES
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
+        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop moviesapp.service"
+        - scp backend/api-movie/target/api-movie-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/movies-app/
+        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start moviesapp.service"
 #  - API SERIES
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop series.service"
-        - scp backend/api-series/target/api-series-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/series-app/
-        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start series.service"
+#        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop series.service"
+#        - scp backend/api-series/target/api-series-0.0.1-SNAPSHOT.jar ubuntu@$DEPLOY_SERVER_IP:~/series-app/
+#        - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start series.service"
 #  - GATEWAY SERVER
-        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
-        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
+#        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl stop consoleapp.service"
+#        - scp backend/ms-gateway-server/target/ms-gateway-server-0.0.1-SNAPSHOT.jar ubuntu@$GATEWAY_SERVER_IP:~/console-app/
+#        - ssh ubuntu@$GATEWAY_SERVER_IP "sudo systemctl start consoleapp.service"
 #  - API USERS
-        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl stop consoleapp.service"
-        - scp backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar ubuntu@$USERS_SERVER_IP:~/console-app/
-        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl start consoleapp.service"
+#        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl stop consoleapp.service"
+#        - scp backend/users-stack/ApiUsers/target/ApiUsers-0.0.1-SNAPSHOT.jar ubuntu@$USERS_SERVER_IP:~/console-app/
+#        - ssh ubuntu@$USERS_SERVER_IP "sudo systemctl start consoleapp.service"
