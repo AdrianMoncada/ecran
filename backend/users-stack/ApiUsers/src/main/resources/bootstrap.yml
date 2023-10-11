@@ -3,4 +3,4 @@ spring:
     name: users
   cloud:
     config:
-      uri: http://34.238.41.135:8888
+      uri: http://34.229.226.117:8888
