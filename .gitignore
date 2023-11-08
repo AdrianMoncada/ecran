@@ -1,3 +1,4 @@
 .vercel
 /.metadata/
 backend/configs/users.yml
+backend/configs/ms-gateway-server.yml
