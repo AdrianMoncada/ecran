@@ -1,1 +1,2 @@
 backend/users-stack/ApiUsers/src/main/resources/application-dev.yml
+backend/users-stack/ApiUsers/src/main/java/com/ecran/api/users/config/AmazonConfig.java
