@@ -2,3 +2,4 @@
 /.metadata/
 backend/configs/users.yml
 backend/configs/ms-gateway-server.yml
+backend/users-stack/ApiUsers/src/main/java/com/ecran/api/users/config/AmazonConfig.java
